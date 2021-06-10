@@ -25,7 +25,7 @@ jobs:
       working-directory: ./StarTrek
       run: dotnet build --configuration Release --no-restore
     - name: Install star trek app test dependencies
-      working-directory: ./Star Trek
+      working-directory: ./StarTrek
       run: dotnet restore
     - name: Test star trek app
       working-directory: ./StarTrekTests
