@@ -1,2 +1,2 @@
-# Tdd-Katas
-A playground for practising test driven development concepts
+# Star Trek Game
+A test driven C# version based on the original 1970s console game
