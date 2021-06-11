@@ -1,14 +1,26 @@
+using System.Collections.Generic;
+using System.Linq;
 using StarTrek.Contracts;
 using StarTrek.Controllers;
+using StarTrek.World.CelestialObjects;
 using Xunit;
 
 namespace StarTrekTests.Features
 {
     public class WorldGeneratorShould
     {
-
+        private List<IStarSystem> _starSystems;
 
         private IMapGenerator _mapGenerator = new MapGenerator();
+
+        public WorldGeneratorShould()
+        {
+            _starSystems = new List<IStarSystem>()
+            {
+                new StarSystem("Bob", "Red Dwarf", 3000, 200000),
+                new StarSystem("Dave", "Yellow", 7000, 10000),
+            };
+        }
 
         //Generate a galaxy (world map)
         [Fact]
@@ -23,41 +35,50 @@ namespace StarTrekTests.Features
             Assert.NotEmpty(map.World);
         }
 
-        //Probably should refactor this test
         //Populate the galaxy with randomly generated persistant star systems
-        //Populate star systems with randomly generated persistant planets and moons
-        [Fact(Skip = "Big messy test")]
-        public void GenerateAPopulatedStarSystem()
+        [Fact]
+        public void GenerateStarSystems()
         {
             //Act
-            var starSystems = _mapGenerator.GeneratePopulatedGalaxyStarSystems();
+            var starSystems = _mapGenerator.GenerateGalaxyStarSystems(10, new StarSystemGenerator());
 
             //Assert
             Assert.NotNull(starSystems);
             Assert.NotEmpty(starSystems);
+            Assert.Equal(10, starSystems.ToList().Count);
+        }
 
+        //Populate star systems with randomly generated persistant planets
+        [Fact]
+        public void GeneratePlanets()
+        {
+            //Act
+            var starSystems = _mapGenerator.GenerateStarSystemPlanets(_starSystems, new PlanetGenerator());
+
+            //Assert
             foreach (var starSystem in starSystems)
             {
                 Assert.NotNull(starSystem.Planets);
                 Assert.NotEmpty(starSystem.Planets);
+            }
+        }
 
+        //Populate planets with randomly generated persistant moons
+        [Fact]
+        public void GenerateMoons()
+        {
+            //Act
+            var starSystems = _mapGenerator.GeneratePlanetMoons(_starSystems, new MoonGenerator());
+
+            //Assert
+            foreach (var starSystem in starSystems)
+            {
                 foreach (var planet in starSystem.Planets)
                 {
                     Assert.NotNull(planet.Moons);
                     Assert.NotEmpty(planet.Moons);
-
-                    Assert.NotNull(planet.Name);
-                    Assert.NotNull(planet.Atmosphere);
-                    
-                    Assert.NotEmpty(planet.Name);
-                    Assert.NotEmpty(planet.Atmosphere);
-                    
-                    Assert.NotEqual(double.Epsilon, planet.Mass);
-                    Assert.NotEqual(double.Epsilon, planet.Diameter);
                 }
             }
         }
-
-
     }
 }

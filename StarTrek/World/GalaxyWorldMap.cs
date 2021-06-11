@@ -6,6 +6,6 @@ namespace StarTrek.World
     public class GalaxyWorldMap
     {
         public char[,] World { get; set; }
-        public List<IStarSystems> StarSystems { get; set; }
+        public IEnumerable<IStarSystem> StarSystems { get; set; }
     }
 }

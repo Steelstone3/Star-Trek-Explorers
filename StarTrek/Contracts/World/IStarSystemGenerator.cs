@@ -1,9 +1,9 @@
 namespace StarTrek.Contracts.World
 {
-    public interface IPlanetGenerator
+    public interface IStarSystemGenerator
     {
         string GetName(int id);
-        string GetAtmoshere(int id);
+        string GetType(int id);
         double GetMass(int id);
         double GetDiameter(int id);
     }

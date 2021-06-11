@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using StarTrek.Contracts;
+using StarTrek.Contracts.World;
 using StarTrek.Controllers;
 
 namespace StarTrek.World.CelestialObjects
 {
     public class Planet : IPlanet
     {
-
         public Planet(int id, IPlanetGenerator planetGenerator)
         {
             Name = planetGenerator.GetName(id);
@@ -23,7 +23,7 @@ namespace StarTrek.World.CelestialObjects
             Diameter = diameter;
         }
 
-        public List<IMoon> Moons { get; set; }
+        public List<IMoon> Moons { get; set; } = new List<IMoon>();
         public string Name { get; private set; }
         public string Atmosphere {get;private set;}
         public double Mass { get; private set; }
