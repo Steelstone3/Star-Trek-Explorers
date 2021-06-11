@@ -1,5 +1,5 @@
 using StarTrek.Contracts.World;
-using StarTrek.World.CelestialObjects;
+using StarTrek.Controllers.Helpers;
 
 namespace StarTrek.Controllers
 {

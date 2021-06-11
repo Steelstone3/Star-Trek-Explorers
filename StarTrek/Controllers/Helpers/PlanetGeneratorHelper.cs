@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace StarTrek.Controllers
+namespace StarTrek.Controllers.Helpers
 {
     public class PlanetGeneratorHelper
     {
