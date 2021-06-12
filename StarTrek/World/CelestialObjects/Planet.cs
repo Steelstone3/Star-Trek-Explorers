@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using StarTrek.Contracts;
-using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.Builders;
+using StarTrek.Contracts.World.CelestialBodies;
 using StarTrek.Controllers;
 
 namespace StarTrek.World.CelestialObjects
 {
     public class Planet : IPlanet
     {
-        public Planet(int id, IPlanetGenerator planetGenerator)
+        public Planet(int id, IPlanetBuilder planetGenerator)
         {
             Name = planetGenerator.GetName(id);
             Atmosphere = planetGenerator.GetAtmoshere(id);

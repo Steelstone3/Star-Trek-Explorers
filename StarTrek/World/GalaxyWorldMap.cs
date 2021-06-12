@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using StarTrek.Contracts;
-using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.CelestialBodies;
 
 namespace StarTrek.World
 {

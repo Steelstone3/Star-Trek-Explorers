@@ -1,6 +1,6 @@
-namespace StarTrek.Contracts.World
+namespace StarTrek.Contracts.World.Builders
 {
-    public interface IStarSystemGenerator
+    public interface IStarSystemBuilder
     {
         string GetName(int id);
         string GetType(int id);

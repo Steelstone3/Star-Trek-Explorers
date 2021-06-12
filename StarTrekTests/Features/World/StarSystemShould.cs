@@ -1,6 +1,6 @@
 using Moq;
 using StarTrek.Contracts;
-using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.Builders;
 using StarTrek.World.CelestialObjects;
 using Xunit;
 
@@ -11,24 +11,24 @@ namespace StarTrekTests.Features
         [Fact]
         public void GenerateAStarSystemFromAnId()
         {
-            var starSystemGeneratorMock = GenerateMoonGeneratorMock();
-            var planet = new StarSystem(0, starSystemGeneratorMock.Object);
+            var starSystemBuilderMock = GenerateMoonGeneratorMock();
+            var planet = new StarSystem(0, starSystemBuilderMock.Object);
 
-            starSystemGeneratorMock.Verify(x => x.GetName(0));
-            starSystemGeneratorMock.Verify(x => x.GetType(0));
-            starSystemGeneratorMock.Verify(x => x.GetDiameter(0));
-            starSystemGeneratorMock.Verify(x => x.GetMass(0));
+            starSystemBuilderMock.Verify(x => x.GetName(0));
+            starSystemBuilderMock.Verify(x => x.GetType(0));
+            starSystemBuilderMock.Verify(x => x.GetDiameter(0));
+            starSystemBuilderMock.Verify(x => x.GetMass(0));
         }
 
-        private Mock<IStarSystemGenerator> GenerateMoonGeneratorMock()
+        private Mock<IStarSystemBuilder> GenerateMoonGeneratorMock()
         {
-            var starSystemGeneratorMock = new Mock<IStarSystemGenerator>();
-            starSystemGeneratorMock.Setup(x => x.GetName(0)).Returns("Moon");
-            starSystemGeneratorMock.Setup(x => x.GetType(0)).Returns("Yellow");
-            starSystemGeneratorMock.Setup(x => x.GetDiameter(0)).Returns(200);
-            starSystemGeneratorMock.Setup(x => x.GetMass(0)).Returns(100);
+            var starSystemBuilderMock = new Mock<IStarSystemBuilder>();
+            starSystemBuilderMock.Setup(x => x.GetName(0)).Returns("Moon");
+            starSystemBuilderMock.Setup(x => x.GetType(0)).Returns("Yellow");
+            starSystemBuilderMock.Setup(x => x.GetDiameter(0)).Returns(200);
+            starSystemBuilderMock.Setup(x => x.GetMass(0)).Returns(100);
 
-            return starSystemGeneratorMock;
+            return starSystemBuilderMock;
         }
     }
 }

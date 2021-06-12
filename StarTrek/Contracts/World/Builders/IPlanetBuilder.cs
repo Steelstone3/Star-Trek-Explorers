@@ -1,6 +1,6 @@
-namespace StarTrek.Contracts.World
+namespace StarTrek.Contracts.World.Builders
 {
-    public interface IPlanetGenerator
+    public interface IPlanetBuilder
     {
         string GetName(int id);
         string GetAtmoshere(int id);

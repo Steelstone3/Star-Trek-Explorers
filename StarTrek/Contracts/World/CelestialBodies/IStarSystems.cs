@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace StarTrek.Contracts
+namespace StarTrek.Contracts.World.CelestialBodies
 {
     public interface IStarSystem
     {

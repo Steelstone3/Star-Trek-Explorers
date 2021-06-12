@@ -1,4 +1,4 @@
-namespace StarTrek.Contracts
+namespace StarTrek.Contracts.World.CelestialBodies
 {
     public interface IMoon
     {

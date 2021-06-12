@@ -1,40 +1,41 @@
-using System;
 using Moq;
-using StarTrek;
-using StarTrek.Controllers;
-using StarTrek.World;
+using StarTrek.Contracts.Starships;
+using StarTrek.Contracts.Starships.Builders;
+using StarTrek.Starships;
 using Xunit;
 
 namespace StarTrekTests.Features
 {
     public class StarshipShould
     {
+        private Mock<IStarshipBuilder> _starshipBuilder = new Mock<IStarshipBuilder>();
+
         //Have a start location
-        /*[Fact]
-        public HaveAStartLocation()
+        [Fact(Skip ="Consider how this is being implemented")]
+        public void HaveAStartLocation()
         {
-            var mapGenerator = new MapGenerator();
-            var worldMap = mapGenerator.GenerateMap();
+            //var mapFactory = new MapFactory();
+            //var worldMap = mapFactory.GenerateMap();
             
-            var starship = new Starship();
+            var starship = new Starship(_starshipBuilder.Object);
             
-            Assert.NotNull(starship.Location);
-            Assert.NotEmpty(starship.Location);
+            Assert.Equal(0, starship.CoordinateLocationX);
+            Assert.Equal(0, starship.CoordinateLocationY);
         }
 
         //Generate a starship (player character)
         [Fact]
-        public CreateAStarShip()
+        public void CreateAStarShip()
         {
-            var starship = new Starship();
-            var starshipGenerator = new Mock<StarshipGenerator>();
+            //Act
+            IStarship starship = new Starship(_starshipBuilder.Object);
+            _starshipBuilder.Setup(x => x.BuildStarship()).Returns(starship);
 
-            starshipGenerator.Verify();
-        }*/
+            //Assert
+            _starshipBuilder.Verify(x => x.BuildStarship());
+        }
 
-       
-
-
+        
 
         //Is able to move around the galaxy on WASD and arrow keys
         //Is able to enter a star system on the enter key

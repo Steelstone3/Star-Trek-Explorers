@@ -1,14 +1,15 @@
-using StarTrek.Contracts;
 using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.Builders;
+using StarTrek.Contracts.World.CelestialBodies;
 
 namespace StarTrek.World
 {
     public class WorldMap
     {
-        public WorldMap(IMapGenerator mapGenerator, 
-        IStarSystemGenerator starSystemGenerator, 
-        IPlanetGenerator planetGenerator, 
-        IMoonGenerator moonGenerator)
+        public WorldMap(IMapFactory mapGenerator, 
+        IStarSystemBuilder starSystemGenerator, 
+        IPlanetBuilder planetGenerator, 
+        IMoonBuilder moonGenerator)
         {
             Galaxy = mapGenerator.GenerateGalaxyMap();
             Galaxy.StarSystems = mapGenerator.GenerateGalaxyStarSystems(10, starSystemGenerator);

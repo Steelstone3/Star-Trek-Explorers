@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 
-namespace StarTrek.Controllers.Helpers
+namespace StarTrek.Controllers.World.Helpers
 {
-    public class PlanetGeneratorHelper
+    public class PlanetBuilderHelper
     {
-        public PlanetGeneratorHelper()
+        public PlanetBuilderHelper()
         {
             Name = new Dictionary<int, string>{
                 {0, "Earth"},

@@ -1,11 +1,11 @@
-using StarTrek.Controllers;
+using StarTrek.Controllers.World.Builders;
 using Xunit;
 
 namespace StarTrekTests.Features
 {
-    public class MoonGeneratorShould
+    public class MoonBuilderShould
     {
-        private MoonGenerator _moonGenerator = new MoonGenerator();
+        private MoonBuilder _moonBuilder = new MoonBuilder();
 
         [Theory]
         [InlineData(0, "Luna")]
@@ -13,7 +13,7 @@ namespace StarTrekTests.Features
         [InlineData(50, "Luna")]
         public void GenerateAName(int id, string expectedName)
         {
-            var name = _moonGenerator.GetName(id);
+            var name = _moonBuilder.GetName(id);
 
             Assert.Equal(expectedName, name);
         }
@@ -24,7 +24,7 @@ namespace StarTrekTests.Features
         [InlineData(50, 26545.23)]
         public void GenerateAMass(int id, double expectedMass)
         {
-            var mass = _moonGenerator.GetMass(id);
+            var mass = _moonBuilder.GetMass(id);
 
             Assert.Equal(expectedMass, mass);
         }
@@ -35,7 +35,7 @@ namespace StarTrekTests.Features
         [InlineData(50, 56782.23)]
         public void GenerateADiameter(int id, double expectedDiameter)
         {
-            var diameter = _moonGenerator.GetDiameter(id);
+            var diameter = _moonBuilder.GetDiameter(id);
 
             Assert.Equal(expectedDiameter, diameter);
         }

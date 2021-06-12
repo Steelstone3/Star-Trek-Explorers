@@ -1,12 +1,16 @@
-namespace StarTrekTests.Features
+using StarTrek.Contracts.Starships;
+using StarTrek.Contracts.Starships.Builders;
+
+namespace StarTrek.Starships
 {
-    public class Starship
+    public class Starship : IStarship
     {
-        public Starship()
+        public Starship(IStarshipBuilder starshipBuilder)
         {
-            Location = null;
+            starshipBuilder.BuildStarship();
         }
 
-        public object Location { get; set; }
+        public int CoordinateLocationX { get; set; }
+        public int CoordinateLocationY { get; set; }
     }
 }

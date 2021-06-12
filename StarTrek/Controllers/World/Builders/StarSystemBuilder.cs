@@ -1,13 +1,13 @@
-using StarTrek.Contracts.World;
-using StarTrek.Controllers.Helpers;
+using StarTrek.Contracts.World.Builders;
+using StarTrek.Controllers.World.Helpers;
 
-namespace StarTrek.Controllers
+namespace StarTrek.Controllers.World.Builders
 {
-    public class StarSystemGenerator : IStarSystemGenerator
+    public class StarSystemBuilder : IStarSystemBuilder
     {
         public double GetDiameter(int id)
         {
-            var diameter = new StarSystemGeneratorHelper().Diameter;
+            var diameter = new StarSystemBuilderHelper().Diameter;
 
             if (diameter.ContainsKey(id))
             {
@@ -21,7 +21,7 @@ namespace StarTrek.Controllers
 
         public double GetMass(int id)
         {
-            var masses = new StarSystemGeneratorHelper().Mass;
+            var masses = new StarSystemBuilderHelper().Mass;
 
             if (masses.ContainsKey(id))
             {
@@ -35,7 +35,7 @@ namespace StarTrek.Controllers
 
         public string GetName(int id)
         {
-            var name = new StarSystemGeneratorHelper().Name;
+            var name = new StarSystemBuilderHelper().Name;
 
             if (name.ContainsKey(id))
             {
@@ -49,7 +49,7 @@ namespace StarTrek.Controllers
 
         public string GetType(int id)
         {
-            var type = new StarSystemGeneratorHelper().Type;
+            var type = new StarSystemBuilderHelper().Type;
 
             if (type.ContainsKey(id))
             {

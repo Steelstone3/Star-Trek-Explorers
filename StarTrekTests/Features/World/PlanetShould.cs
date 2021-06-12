@@ -1,5 +1,5 @@
 using Moq;
-using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.Builders;
 using StarTrek.World.CelestialObjects;
 using Xunit;
 
@@ -10,24 +10,24 @@ namespace StarTrekTests.Features
         [Fact]
         public void GenerateAPlanetFromAnId()
         {
-            var planetGeneratorMock = GeneratePlanetGeneratorMock();
-            var planet = new Planet(0, planetGeneratorMock.Object);
+            var planetBuilderMock = GeneratePlanetGeneratorMock();
+            var planet = new Planet(0, planetBuilderMock.Object);
 
-            planetGeneratorMock.Verify(x => x.GetAtmoshere(0));
-            planetGeneratorMock.Verify(x => x.GetName(0));
-            planetGeneratorMock.Verify(x => x.GetDiameter(0));
-            planetGeneratorMock.Verify(x => x.GetMass(0));
+            planetBuilderMock.Verify(x => x.GetAtmoshere(0));
+            planetBuilderMock.Verify(x => x.GetName(0));
+            planetBuilderMock.Verify(x => x.GetDiameter(0));
+            planetBuilderMock.Verify(x => x.GetMass(0));
         }
 
-        private Mock<IPlanetGenerator> GeneratePlanetGeneratorMock()
+        private Mock<IPlanetBuilder> GeneratePlanetGeneratorMock()
         {
-            var planetGeneratorMock = new Mock<IPlanetGenerator>();
-            planetGeneratorMock.Setup(x => x.GetAtmoshere(0)).Returns("Atmosphere");
-            planetGeneratorMock.Setup(x => x.GetName(0)).Returns("Earth");
-            planetGeneratorMock.Setup(x => x.GetDiameter(0)).Returns(200);
-            planetGeneratorMock.Setup(x => x.GetMass(0)).Returns(100);
+            var planetBuilderMock = new Mock<IPlanetBuilder>();
+            planetBuilderMock.Setup(x => x.GetAtmoshere(0)).Returns("Atmosphere");
+            planetBuilderMock.Setup(x => x.GetName(0)).Returns("Earth");
+            planetBuilderMock.Setup(x => x.GetDiameter(0)).Returns(200);
+            planetBuilderMock.Setup(x => x.GetMass(0)).Returns(100);
 
-            return planetGeneratorMock;
+            return planetBuilderMock;
         }
     }
 }

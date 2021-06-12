@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
-using StarTrek.Contracts;
-using StarTrek.Controllers;
+using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.CelestialBodies;
+using StarTrek.Controllers.World;
+using StarTrek.Controllers.World.Builders;
 using StarTrek.World.CelestialObjects;
 using Xunit;
 
 namespace StarTrekTests.Features
 {
-    public class WorldGeneratorShould
+    public class WorldBuilderShould
     {
         private List<IStarSystem> _starSystems;
 
-        private IMapGenerator _mapGenerator = new MapGenerator();
+        private IMapFactory _mapFactory = new MapFactory();
 
-        public WorldGeneratorShould()
+        public WorldBuilderShould()
         {
             _starSystems = new List<IStarSystem>()
             {
@@ -27,7 +29,7 @@ namespace StarTrekTests.Features
         public void GenerateAGalaxyMap()
         {
             //Act
-            var map = _mapGenerator.GenerateGalaxyMap();
+            var map = _mapFactory.GenerateGalaxyMap();
 
             //Assert
             Assert.NotNull(map);
@@ -40,7 +42,7 @@ namespace StarTrekTests.Features
         public void GenerateStarSystems()
         {
             //Act
-            var starSystems = _mapGenerator.GenerateGalaxyStarSystems(10, new StarSystemGenerator());
+            var starSystems = _mapFactory.GenerateGalaxyStarSystems(10, new StarSystemBuilder());
 
             //Assert
             Assert.NotNull(starSystems);
@@ -53,7 +55,7 @@ namespace StarTrekTests.Features
         public void GeneratePlanets()
         {
             //Act
-            var starSystems = _mapGenerator.GenerateStarSystemPlanets(_starSystems, new PlanetGenerator());
+            var starSystems = _mapFactory.GenerateStarSystemPlanets(_starSystems, new PlanetBuilder());
 
             //Assert
             foreach (var starSystem in starSystems)
@@ -68,7 +70,7 @@ namespace StarTrekTests.Features
         public void GenerateMoons()
         {
             //Act
-            var starSystems = _mapGenerator.GeneratePlanetMoons(_starSystems, new MoonGenerator());
+            var starSystems = _mapFactory.GeneratePlanetMoons(_starSystems, new MoonBuilder());
 
             //Assert
             foreach (var starSystem in starSystems)

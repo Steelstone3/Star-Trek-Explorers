@@ -1,11 +1,11 @@
-using StarTrek.Controllers;
+using StarTrek.Controllers.World.Builders;
 using Xunit;
 
 namespace StarTrekTests.Features
 {
-    public class PlanetGeneratorShould
+    public class PlanetBuilderShould
     {
-        private PlanetGenerator _planetGenerator = new PlanetGenerator();
+        private PlanetBuilder _planetBuilder = new PlanetBuilder();
 
         [Theory]
         [InlineData(0, "Earth")]
@@ -13,7 +13,7 @@ namespace StarTrekTests.Features
         [InlineData(50, "Earth")]
         public void GenerateAName(int id, string expectedName)
         {
-            var name = _planetGenerator.GetName(id);
+            var name = _planetBuilder.GetName(id);
 
             Assert.Equal(expectedName, name);
         }
@@ -24,7 +24,7 @@ namespace StarTrekTests.Features
         [InlineData(50, "0% O2, 0% N, 0% Other")]
         public void GenerateAnAtmosphere(int id, string expectedAtmosphere)
         {
-            var atmosphere = _planetGenerator.GetAtmoshere(id);
+            var atmosphere = _planetBuilder.GetAtmoshere(id);
 
             Assert.Equal(expectedAtmosphere, atmosphere);
         }
@@ -35,7 +35,7 @@ namespace StarTrekTests.Features
         [InlineData(50, 26545.23)]
         public void GenerateAMass(int id, double expectedMass)
         {
-            var mass = _planetGenerator.GetMass(id);
+            var mass = _planetBuilder.GetMass(id);
 
             Assert.Equal(expectedMass, mass);
         }
@@ -46,7 +46,7 @@ namespace StarTrekTests.Features
         [InlineData(50, 56782.23)]
         public void GenerateADiameter(int id, double expectedDiameter)
         {
-            var diameter = _planetGenerator.GetDiameter(id);
+            var diameter = _planetBuilder.GetDiameter(id);
 
             Assert.Equal(expectedDiameter, diameter);
         }

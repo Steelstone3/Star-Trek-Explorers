@@ -1,27 +1,13 @@
-using StarTrek.Contracts.World;
-using StarTrek.Controllers.Helpers;
+using StarTrek.Contracts.World.Builders;
+using StarTrek.Controllers.World.Helpers;
 
-namespace StarTrek.Controllers
+namespace StarTrek.Controllers.World.Builders
 {
-    public class PlanetGenerator : IPlanetGenerator
+    public class MoonBuilder : IMoonBuilder
     {
-        public string GetAtmoshere(int id)
-        {
-            var atmospheres = new PlanetGeneratorHelper().Atmosphere;
-
-            if (atmospheres.ContainsKey(id))
-            {
-                return atmospheres[id];
-            }
-            else
-            {
-                return atmospheres[0];
-            }
-        }
-
         public double GetDiameter(int id)
         {
-            var diameters = new PlanetGeneratorHelper().Diameter;
+            var diameters = new MoonBuilderHelper().Diameter;
 
             if (diameters.ContainsKey(id))
             {
@@ -35,7 +21,7 @@ namespace StarTrek.Controllers
 
         public double GetMass(int id)
         {
-            var masses = new PlanetGeneratorHelper().Mass;
+            var masses = new MoonBuilderHelper().Mass;
 
             if (masses.ContainsKey(id))
             {
@@ -49,7 +35,7 @@ namespace StarTrek.Controllers
 
         public string GetName(int id)
         {
-            var names = new PlanetGeneratorHelper().Name;
+            var names = new MoonBuilderHelper().Name;
 
             if (names.ContainsKey(id))
             {

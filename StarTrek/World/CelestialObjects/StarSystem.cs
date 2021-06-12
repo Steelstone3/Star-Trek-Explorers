@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using StarTrek.Contracts;
-using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.Builders;
+using StarTrek.Contracts.World.CelestialBodies;
 using StarTrek.Controllers;
 
 namespace StarTrek.World.CelestialObjects
@@ -8,7 +8,7 @@ namespace StarTrek.World.CelestialObjects
     public class StarSystem : IStarSystem
     {
 
-        public StarSystem(int id, IStarSystemGenerator starSystemGenerator)
+        public StarSystem(int id, IStarSystemBuilder starSystemGenerator)
         {
             Name = starSystemGenerator.GetName(id);
             Type = starSystemGenerator.GetType(id);

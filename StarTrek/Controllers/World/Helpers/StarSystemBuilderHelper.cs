@@ -1,14 +1,25 @@
 using System.Collections.Generic;
 
-namespace StarTrek.Controllers.Helpers
+namespace StarTrek.Controllers.World.Helpers
 {
-    public class MoonGeneratorHelper
+    public class StarSystemBuilderHelper
     {
-        public MoonGeneratorHelper()
+        public StarSystemBuilderHelper()
         {
             Name = new Dictionary<int, string>{
-                {0, "Luna"},
-                {1, "Titan"},
+                {0, "Earth"},
+                {1, "Mars"},
+                {2, "Venus"},
+                {3, "Mercury"},
+                {4, "Saturn"},
+                {5, "Kronos"},
+            };
+
+            Type = new Dictionary<int, string>{
+                {0, "Yellow"},
+                {1, "Red Dwarf"},
+                {2, "Red Giant"},
+                {3, "White"},
             };
 
             Mass = new Dictionary<int, double>{
@@ -27,6 +38,7 @@ namespace StarTrek.Controllers.Helpers
         }
 
         public Dictionary<int, string> Name { get; }
+        public Dictionary<int, string> Type { get; }
         public Dictionary<int, double> Mass { get; }
         public Dictionary<int, double> Diameter { get; }
     }

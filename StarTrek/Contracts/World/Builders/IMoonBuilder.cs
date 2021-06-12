@@ -1,6 +1,6 @@
-namespace StarTrek.Contracts.World
+namespace StarTrek.Contracts.World.Builders
 {
-    public interface IMoonGenerator
+    public interface IMoonBuilder
     {
         double GetDiameter(int id);
         double GetMass(int id);

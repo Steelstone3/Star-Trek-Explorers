@@ -1,11 +1,11 @@
-using StarTrek.Contracts;
-using StarTrek.Contracts.World;
+using StarTrek.Contracts.World.Builders;
+using StarTrek.Contracts.World.CelestialBodies;
 
 namespace StarTrek.World.CelestialObjects
 {
     public class Moon : IMoon
     {
-        public Moon(int id, IMoonGenerator moonGenerator)
+        public Moon(int id, IMoonBuilder moonGenerator)
         {
             Name = moonGenerator.GetName(id);
             Diameter = moonGenerator.GetDiameter(id);
