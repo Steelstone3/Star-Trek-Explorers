@@ -28,6 +28,6 @@ namespace StarTrek.World.CelestialObjects
         public string Type {get;private set;}
         public double Mass { get; private set; }
         public double Diameter { get; private set; }
-        public List<IPlanet> Planets { get; set; } = new List<IPlanet>();
+        public IEnumerable<IPlanet> Planets { get; set; } = new List<IPlanet>();
     }
 }

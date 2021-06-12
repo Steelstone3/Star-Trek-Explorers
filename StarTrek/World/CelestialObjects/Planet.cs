@@ -23,7 +23,7 @@ namespace StarTrek.World.CelestialObjects
             Diameter = diameter;
         }
 
-        public List<IMoon> Moons { get; set; } = new List<IMoon>();
+        public IEnumerable<IMoon> Moons { get; set; } = new List<IMoon>();
         public string Name { get; private set; }
         public string Atmosphere {get;private set;}
         public double Mass { get; private set; }

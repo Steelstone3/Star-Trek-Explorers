@@ -4,7 +4,7 @@ namespace StarTrek.Contracts
 {
     public interface IPlanet
     {
-        List<IMoon> Moons { get; set; }
+        IEnumerable<IMoon> Moons { get; set; }
         string Name { get; }
         string Atmosphere { get; }
         double Mass { get; }

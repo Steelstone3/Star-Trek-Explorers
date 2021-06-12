@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using StarTrek.Contracts;
 using StarTrek.Contracts.World;
 using StarTrek.World;
@@ -44,8 +45,8 @@ namespace StarTrek.Controllers
                 {
                     planets.Add(new Planet(new Random().Next(0, 5), planetGenerator));
                 }
-
-                starSystem.Planets.AddRange(planets);
+                
+                starSystem.Planets = planets;
             }
 
             return starSystems;
@@ -64,7 +65,7 @@ namespace StarTrek.Controllers
                         moons.Add(new Moon(new Random().Next(0, 5), moonGenerator));
                     }
 
-                    planet.Moons.AddRange(moons);
+                    planet.Moons = moons;
                 }
 
             }
