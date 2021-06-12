@@ -80,5 +80,12 @@ namespace StarTrekTests.Features
                 }
             }
         }
+        
+        //Distribute the star systems across the galaxy (world map)
+        [Fact(Skip="Implement this functionality")]
+        public void DistributeStarSystemsAcrossTheGalaxy()
+        {
+
+        }
     }
 }

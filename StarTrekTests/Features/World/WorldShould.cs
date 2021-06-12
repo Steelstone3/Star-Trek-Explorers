@@ -2,9 +2,7 @@ using System.Collections.Generic;
 using Moq;
 using StarTrek.Contracts;
 using StarTrek.Contracts.World;
-using StarTrek.Controllers;
 using StarTrek.World;
-using StarTrek.World.CelestialObjects;
 using Xunit;
 
 namespace StarTrekTests.Features
@@ -20,6 +18,7 @@ namespace StarTrekTests.Features
         //Populate the galaxy with randomly generated persistant star systems
         //Populate the star systems with randomly generated persisitant planets
         //Populate the planets with randomly generated persistant moons
+        //Distibute the star systems across the galaxy (world map)
         //Check world generation sequence
         [Fact]
         public void GenerateGalaxyInCorrectOrder()
@@ -40,6 +39,7 @@ namespace StarTrekTests.Features
             mapGeneratorMock.Verify(x => x.GenerateGalaxyStarSystems(10, _starSystemGeneratorMock.Object));
             mapGeneratorMock.Verify(x => x.GenerateStarSystemPlanets(_starSystemMock.Object, _planetGeneratorMock.Object));
             mapGeneratorMock.Verify(x => x.GeneratePlanetMoons(_starSystemMock.Object, _moonGeneratorMock.Object));
+            mapGeneratorMock.Verify(x => x.DistributeStarSystems());
         }
 
         private Mock<IMapGenerator> CreateMapGeneratorMock()
@@ -49,7 +49,7 @@ namespace StarTrekTests.Features
             mapGeneratorMock.Setup(x => x.GenerateGalaxyStarSystems(10, _starSystemGeneratorMock.Object)).Returns(_starSystemMock.Object);
             mapGeneratorMock.Setup(x => x.GenerateStarSystemPlanets(_starSystemMock.Object, _planetGeneratorMock.Object)).Returns(_starSystemMock.Object);
             mapGeneratorMock.Setup(x => x.GeneratePlanetMoons(_starSystemMock.Object, _moonGeneratorMock.Object)).Returns(_starSystemMock.Object);
-
+            mapGeneratorMock.Setup(x => x.DistributeStarSystems());
             return mapGeneratorMock;
         }
     }

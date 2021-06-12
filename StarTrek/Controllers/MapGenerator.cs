@@ -10,7 +10,7 @@ namespace StarTrek.Controllers
 {
     public class MapGenerator : IMapGenerator
     {
-        public GalaxyWorldMap GenerateGalaxyMap()
+        public IGalaxyWorldMap GenerateGalaxyMap()
         {
             var galaxyWorldMap = new GalaxyWorldMap();
 
@@ -71,6 +71,12 @@ namespace StarTrek.Controllers
             }
 
             return starSystems;
+        }
+
+        //TODO AH think about how you want this to be done
+        public void DistributeStarSystems()
+        {
+            Console.WriteLine("PLEASE IMPLEMENT ME!!!");
         }
     }
 }
