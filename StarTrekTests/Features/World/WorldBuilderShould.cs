@@ -29,7 +29,7 @@ namespace StarTrekTests.Features
         public void GenerateAGalaxyMap()
         {
             //Act
-            var map = _mapFactory.GenerateInitialGalaxyMap();
+            var map = _mapFactory.BuildInitialGalaxyMap();
 
             //Assert
             Assert.NotNull(map);
@@ -42,7 +42,7 @@ namespace StarTrekTests.Features
         public void GenerateStarSystems()
         {
             //Act
-            var starSystems = _mapFactory.GenerateGalaxyStarSystems(10, new StarSystemBuilder());
+            var starSystems = _mapFactory.BuildGalaxyStarSystems(10, new StarSystemBuilder(), new List<IStarSystem>());
 
             //Assert
             Assert.NotNull(starSystems);
@@ -55,7 +55,7 @@ namespace StarTrekTests.Features
         public void GeneratePlanets()
         {
             //Act
-            var starSystems = _mapFactory.GenerateStarSystemPlanets(_starSystems, new PlanetBuilder());
+            var starSystems = _mapFactory.BuildStarSystemPlanets(_starSystems, new PlanetBuilder());
 
             //Assert
             foreach (var starSystem in starSystems)
@@ -70,7 +70,7 @@ namespace StarTrekTests.Features
         public void GenerateMoons()
         {
             //Act
-            var starSystems = _mapFactory.GeneratePlanetMoons(_starSystems, new MoonBuilder());
+            var starSystems = _mapFactory.BuildPlanetMoons(_starSystems, new MoonBuilder());
 
             //Assert
             foreach (var starSystem in starSystems)
@@ -81,13 +81,6 @@ namespace StarTrekTests.Features
                     Assert.NotEmpty(planet.Moons);
                 }
             }
-        }
-        
-        //Distribute the star systems across the galaxy (world map)
-        [Fact(Skip="Implement this functionality")]
-        public void DistributeStarSystemsAcrossTheGalaxy()
-        {
-
         }
     }
 }

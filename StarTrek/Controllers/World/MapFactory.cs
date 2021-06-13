@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using StarTrek.Contracts.World;
 using StarTrek.Contracts.World.Builders;
 using StarTrek.Contracts.World.CelestialBodies;
@@ -10,7 +11,7 @@ namespace StarTrek.Controllers.World
 {
     public class MapFactory : IMapFactory
     {
-        public IGalaxyWorldMap GenerateInitialGalaxyMap()
+        public IGalaxyWorldMap BuildInitialGalaxyMap()
         {
             var galaxyWorldMap = new GalaxyWorldMap();
             galaxyWorldMap.World = new MapFactoryHelper().GalaxyMap;
@@ -18,19 +19,21 @@ namespace StarTrek.Controllers.World
             return galaxyWorldMap;
         }
 
-        public IEnumerable<IStarSystem> GenerateGalaxyStarSystems(int amount, IStarSystemBuilder starSystemGenerator)
+        public IEnumerable<IStarSystem> BuildGalaxyStarSystems(int amount, IStarSystemBuilder starSystemGenerator, IEnumerable<IStarSystem> starSystems)
         {
-            var starSystems = new List<IStarSystem>();
+            //var starSystems = new List<IStarSystem>();
+            var starSystemsList = starSystems.ToList();
 
             for (int i = 0; i < amount; i++)
             {
-                starSystems.Add(new StarSystem(new Random().Next(0, 5), starSystemGenerator));
+                var starSystem = new StarSystem(new Random().Next(0, 5), starSystemGenerator, starSystemsList);
+                starSystemsList.Add(starSystem);
             }
 
-            return starSystems;
+            return starSystemsList;
         }
 
-        public IEnumerable<IStarSystem> GenerateStarSystemPlanets(IEnumerable<IStarSystem> starSystems, IPlanetBuilder planetGenerator)
+        public IEnumerable<IStarSystem> BuildStarSystemPlanets(IEnumerable<IStarSystem> starSystems, IPlanetBuilder planetGenerator)
         {
             var planets = new List<IPlanet>();
 
@@ -47,7 +50,7 @@ namespace StarTrek.Controllers.World
             return starSystems;
         }
 
-        public IEnumerable<IStarSystem> GeneratePlanetMoons(IEnumerable<IStarSystem> starSystems, IMoonBuilder moonGenerator)
+        public IEnumerable<IStarSystem> BuildPlanetMoons(IEnumerable<IStarSystem> starSystems, IMoonBuilder moonGenerator)
         {
             var moons = new List<IMoon>();
 
@@ -66,12 +69,6 @@ namespace StarTrek.Controllers.World
             }
 
             return starSystems;
-        }
-
-        //TODO AH think about how you want this to be done
-        public void DistributeStarSystems()
-        {
-            Console.WriteLine("PLEASE IMPLEMENT ME!!!");
         }
     }
 }

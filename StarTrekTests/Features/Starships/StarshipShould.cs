@@ -11,12 +11,9 @@ namespace StarTrekTests.Features
         private Mock<IStarshipBuilder> _starshipBuilder = new Mock<IStarshipBuilder>();
 
         //Have a start location
-        [Fact(Skip ="Consider how this is being implemented")]
+        [Fact]
         public void HaveAStartLocation()
-        {
-            //var mapFactory = new MapFactory();
-            //var worldMap = mapFactory.GenerateMap();
-            
+        {          
             var starship = new Starship(_starshipBuilder.Object);
             
             Assert.Equal(0, starship.CoordinateLocationX);
@@ -34,8 +31,6 @@ namespace StarTrekTests.Features
             //Assert
             _starshipBuilder.Verify(x => x.BuildStarship());
         }
-
-        
 
         //Is able to move around the galaxy on WASD and arrow keys
         //Is able to enter a star system on the enter key
