@@ -19,8 +19,8 @@ namespace StarTrekTests.Features
         {
             _starSystems = new List<IStarSystem>()
             {
-                new StarSystem("Bob", "Red Dwarf", 3000, 200000),
-                new StarSystem("Dave", "Yellow", 7000, 10000),
+                new StarSystem("Bob", "Red Dwarf", 3000, 200000, 2, 3),
+                new StarSystem("Dave", "Yellow", 7000, 10000, 1, 4),
             };
         }
 
@@ -29,7 +29,7 @@ namespace StarTrekTests.Features
         public void GenerateAGalaxyMap()
         {
             //Act
-            var map = _mapFactory.GenerateGalaxyMap();
+            var map = _mapFactory.GenerateInitialGalaxyMap();
 
             //Assert
             Assert.NotNull(map);

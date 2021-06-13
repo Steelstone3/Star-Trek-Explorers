@@ -6,7 +6,7 @@ namespace StarTrek.Contracts.World
 {
     public interface IMapFactory
     {
-        IGalaxyWorldMap GenerateGalaxyMap();
+        IGalaxyWorldMap GenerateInitialGalaxyMap();
         IEnumerable<IStarSystem> GenerateGalaxyStarSystems(int amount, IStarSystemBuilder starSystemGenerator);
         IEnumerable<IStarSystem> GenerateStarSystemPlanets(IEnumerable<IStarSystem> starSystems, IPlanetBuilder planetGenerator);
         IEnumerable<IStarSystem> GeneratePlanetMoons(IEnumerable<IStarSystem> starSystems, IMoonBuilder moonGenerator);

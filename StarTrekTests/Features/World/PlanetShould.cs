@@ -10,7 +10,7 @@ namespace StarTrekTests.Features
         [Fact]
         public void GenerateAPlanetFromAnId()
         {
-            var planetBuilderMock = GeneratePlanetGeneratorMock();
+            var planetBuilderMock = GeneratePlanetBuilderMock();
             var planet = new Planet(0, planetBuilderMock.Object);
 
             planetBuilderMock.Verify(x => x.GetAtmoshere(0));
@@ -19,7 +19,7 @@ namespace StarTrekTests.Features
             planetBuilderMock.Verify(x => x.GetMass(0));
         }
 
-        private Mock<IPlanetBuilder> GeneratePlanetGeneratorMock()
+        private Mock<IPlanetBuilder> GeneratePlanetBuilderMock()
         {
             var planetBuilderMock = new Mock<IPlanetBuilder>();
             planetBuilderMock.Setup(x => x.GetAtmoshere(0)).Returns("Atmosphere");

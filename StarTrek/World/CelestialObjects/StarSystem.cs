@@ -1,11 +1,11 @@
 using System.Collections.Generic;
+using StarTrek.Contracts.World;
 using StarTrek.Contracts.World.Builders;
 using StarTrek.Contracts.World.CelestialBodies;
-using StarTrek.Controllers;
 
 namespace StarTrek.World.CelestialObjects
 {
-    public class StarSystem : IStarSystem
+    public class StarSystem : IStarSystem, ILocation
     {
 
         public StarSystem(int id, IStarSystemBuilder starSystemGenerator)
@@ -16,12 +16,14 @@ namespace StarTrek.World.CelestialObjects
             Diameter = starSystemGenerator.GetDiameter(id);
         }
 
-        public StarSystem(string name, string type, double mass, double diameter)
+        public StarSystem(string name, string type, double mass, double diameter, int coordinateLocationX, int coordinateLocationY)
         {
             Name = name;
             Type = type;
             Mass = mass;
             Diameter = diameter;
+            CoordinateLocationX = coordinateLocationX;
+            CoordinateLocationY = coordinateLocationY;
         }
 
         public string Name { get; private set; }
@@ -29,5 +31,7 @@ namespace StarTrek.World.CelestialObjects
         public double Mass { get; private set; }
         public double Diameter { get; private set; }
         public IEnumerable<IPlanet> Planets { get; set; } = new List<IPlanet>();
+        public int CoordinateLocationX { get; set; }
+        public int CoordinateLocationY { get; set; }
     }
 }

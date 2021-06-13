@@ -1,9 +1,10 @@
 using StarTrek.Contracts.Starships;
 using StarTrek.Contracts.Starships.Builders;
+using StarTrek.Contracts.World;
 
 namespace StarTrek.Starships
 {
-    public class Starship : IStarship
+    public class Starship : IStarship, ILocation
     {
         public Starship(IStarshipBuilder starshipBuilder)
         {

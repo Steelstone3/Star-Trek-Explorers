@@ -11,8 +11,8 @@ namespace StarTrek.World
         IPlanetBuilder planetGenerator, 
         IMoonBuilder moonGenerator)
         {
-            Galaxy = mapGenerator.GenerateGalaxyMap();
-            Galaxy.StarSystems = mapGenerator.GenerateGalaxyStarSystems(10, starSystemGenerator);
+            Galaxy = mapGenerator.GenerateInitialGalaxyMap();
+            Galaxy.StarSystems = mapGenerator.GenerateGalaxyStarSystems(250, starSystemGenerator);
             Galaxy.StarSystems = mapGenerator.GenerateStarSystemPlanets(Galaxy.StarSystems, planetGenerator);
             Galaxy.StarSystems = mapGenerator.GeneratePlanetMoons(Galaxy.StarSystems, moonGenerator);
             mapGenerator.DistributeStarSystems();

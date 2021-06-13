@@ -11,7 +11,7 @@ namespace StarTrekTests.Features
         [Fact]
         public void GenerateAStarSystemFromAnId()
         {
-            var starSystemBuilderMock = GenerateMoonGeneratorMock();
+            var starSystemBuilderMock = GenerateStarSystemBuilderMock();
             var planet = new StarSystem(0, starSystemBuilderMock.Object);
 
             starSystemBuilderMock.Verify(x => x.GetName(0));
@@ -20,7 +20,7 @@ namespace StarTrekTests.Features
             starSystemBuilderMock.Verify(x => x.GetMass(0));
         }
 
-        private Mock<IStarSystemBuilder> GenerateMoonGeneratorMock()
+        private Mock<IStarSystemBuilder> GenerateStarSystemBuilderMock()
         {
             var starSystemBuilderMock = new Mock<IStarSystemBuilder>();
             starSystemBuilderMock.Setup(x => x.GetName(0)).Returns("Moon");

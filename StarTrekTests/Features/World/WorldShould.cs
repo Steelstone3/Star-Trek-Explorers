@@ -36,8 +36,8 @@ namespace StarTrekTests.Features
             //Assert
             mapGeneratorMock.InSequence(new MockSequence());
 
-            mapGeneratorMock.Verify(x => x.GenerateGalaxyMap());
-            mapGeneratorMock.Verify(x => x.GenerateGalaxyStarSystems(10, _starSystemBuilderMock.Object));
+            mapGeneratorMock.Verify(x => x.GenerateInitialGalaxyMap());
+            mapGeneratorMock.Verify(x => x.GenerateGalaxyStarSystems(250, _starSystemBuilderMock.Object));
             mapGeneratorMock.Verify(x => x.GenerateStarSystemPlanets(_starSystemMock.Object, _planetBuilderMock.Object));
             mapGeneratorMock.Verify(x => x.GeneratePlanetMoons(_starSystemMock.Object, _moonBuilderMock.Object));
             mapGeneratorMock.Verify(x => x.DistributeStarSystems());
@@ -46,8 +46,8 @@ namespace StarTrekTests.Features
         private Mock<IMapFactory> CreateMapGeneratorMock()
         {
             var mapGeneratorMock = new Mock<IMapFactory>();
-            mapGeneratorMock.Setup(x => x.GenerateGalaxyMap()).Returns(new GalaxyWorldMap());
-            mapGeneratorMock.Setup(x => x.GenerateGalaxyStarSystems(10, _starSystemBuilderMock.Object)).Returns(_starSystemMock.Object);
+            mapGeneratorMock.Setup(x => x.GenerateInitialGalaxyMap()).Returns(new GalaxyWorldMap());
+            mapGeneratorMock.Setup(x => x.GenerateGalaxyStarSystems(250, _starSystemBuilderMock.Object)).Returns(_starSystemMock.Object);
             mapGeneratorMock.Setup(x => x.GenerateStarSystemPlanets(_starSystemMock.Object, _planetBuilderMock.Object)).Returns(_starSystemMock.Object);
             mapGeneratorMock.Setup(x => x.GeneratePlanetMoons(_starSystemMock.Object, _moonBuilderMock.Object)).Returns(_starSystemMock.Object);
             mapGeneratorMock.Setup(x => x.DistributeStarSystems());

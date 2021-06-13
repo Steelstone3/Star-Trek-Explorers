@@ -10,15 +10,10 @@ namespace StarTrek.Controllers.World
 {
     public class MapFactory : IMapFactory
     {
-        public IGalaxyWorldMap GenerateGalaxyMap()
+        public IGalaxyWorldMap GenerateInitialGalaxyMap()
         {
             var galaxyWorldMap = new GalaxyWorldMap();
-
-            galaxyWorldMap.World = new char[,]
-            {
-                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
-                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
-            };
+            galaxyWorldMap.World = new MapFactoryHelper().GalaxyMap;
 
             return galaxyWorldMap;
         }

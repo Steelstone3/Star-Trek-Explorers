@@ -10,7 +10,7 @@ namespace StarTrekTests.Features
         [Fact]
         public void GenerateAMoonFromAnId()
         {
-            var moonGeneratorMock = GenerateMoonGeneratorMock();
+            var moonGeneratorMock = GenerateMoonBuilderMock();
             var planet = new Moon(0, moonGeneratorMock.Object);
 
             moonGeneratorMock.Verify(x => x.GetName(0));
@@ -18,7 +18,7 @@ namespace StarTrekTests.Features
             moonGeneratorMock.Verify(x => x.GetMass(0));
         }
 
-        private Mock<IMoonBuilder> GenerateMoonGeneratorMock()
+        private Mock<IMoonBuilder> GenerateMoonBuilderMock()
         {
             var moonBuilderMock = new Mock<IMoonBuilder>();
             moonBuilderMock.Setup(x => x.GetName(0)).Returns("Moon");
