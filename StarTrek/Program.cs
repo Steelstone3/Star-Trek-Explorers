@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StarTrek.Controllers.Game;
+using StarTrek.Controllers.Starship;
+using StarTrek.States;
 
 namespace StarTrek
 {
@@ -6,7 +8,7 @@ namespace StarTrek
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new LaunchGame().StartTheGame(new GameController(), new StarshipController(), new LocationController());
         }
     }
 }

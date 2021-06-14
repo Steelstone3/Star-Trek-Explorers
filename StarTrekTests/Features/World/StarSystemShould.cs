@@ -6,7 +6,7 @@ using StarTrek.Contracts.World.CelestialBodies;
 using StarTrek.World.CelestialObjects;
 using Xunit;
 
-namespace StarTrekTests.Features
+namespace StarTrekTests.Features.World
 {
     public class StarSystemShould
     {

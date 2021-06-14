@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using StarTrek.Contracts.World.Builders;
 using StarTrek.Contracts.World.CelestialBodies;
-using StarTrek.Controllers;
 using StarTrek.Controllers.World.Builders;
 using StarTrek.World.CelestialObjects;
 using Xunit;
 
-namespace StarTrekTests.Features
+namespace StarTrekTests.Features.World
 {
     public class StarSystemBuilderShould
     {

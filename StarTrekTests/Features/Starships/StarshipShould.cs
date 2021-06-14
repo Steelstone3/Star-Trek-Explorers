@@ -4,7 +4,7 @@ using StarTrek.Contracts.Starships.Builders;
 using StarTrek.Starships;
 using Xunit;
 
-namespace StarTrekTests.Features
+namespace StarTrekTests.Features.Starships
 {
     public class StarshipShould
     {
@@ -13,9 +13,9 @@ namespace StarTrekTests.Features
         //Have a start location
         [Fact]
         public void HaveAStartLocation()
-        {          
+        {
             var starship = new Starship(_starshipBuilder.Object);
-            
+
             Assert.Equal(0, starship.CoordinateLocationX);
             Assert.Equal(0, starship.CoordinateLocationY);
         }
@@ -33,6 +33,8 @@ namespace StarTrekTests.Features
         }
 
         //Is able to move around the galaxy on WASD and arrow keys
+        
+
         //Is able to enter a star system on the enter key
         //Is able to leave a star system on the backspace key
         //Is able to move around a star system with the AD and left/ right arrow keys

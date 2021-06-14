@@ -6,7 +6,7 @@ using StarTrek.Contracts.World.CelestialBodies;
 using StarTrek.World;
 using Xunit;
 
-namespace StarTrekTests.Features
+namespace StarTrekTests.Features.World
 {
     public class WorldShould
     {
@@ -28,10 +28,10 @@ namespace StarTrekTests.Features
             var mapGeneratorMock = CreateMapGeneratorMock();
 
             //Act
-            var world = new WorldMap(mapGeneratorMock.Object, 
-            _starSystemBuilderMock.Object, 
+            var world = new WorldMap(mapGeneratorMock.Object,
+            _starSystemBuilderMock.Object,
             _starSystemMock.Object,
-            _planetBuilderMock.Object, 
+            _planetBuilderMock.Object,
             _moonBuilderMock.Object);
 
             //Assert

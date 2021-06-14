@@ -7,7 +7,7 @@ using StarTrek.Controllers.World.Builders;
 using StarTrek.World.CelestialObjects;
 using Xunit;
 
-namespace StarTrekTests.Features
+namespace StarTrekTests.Features.World
 {
     public class WorldBuilderShould
     {
