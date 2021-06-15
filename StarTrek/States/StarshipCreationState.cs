@@ -25,7 +25,7 @@ namespace StarTrek.States
 
         public override void StopState()
         {
-            
+            GoToState(new GenerateGalaxyState(_gameController,_starshipController,_locationController));
         }
     }
 }

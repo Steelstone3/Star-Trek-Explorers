@@ -1,4 +1,3 @@
-using Moq;
 using StarTrek.Controllers.Game;
 using StarTrek.Controllers.Starship;
 using StarTrek.States;
@@ -8,119 +7,119 @@ namespace StarTrekTests.Features.Game
 {
     public class GameStatesShould
     {
-        //TODO AH NOT SURE ABOUT THIS TEST SET
+        private GameController _gameController = new GameController();
+        private StarshipController _starshipController = new StarshipController();
+        private LocationController _locationController = new LocationController();
 
-        [Fact]
-        public void HaveADefaultState()
+        [Fact(Skip = "Test the output of the state")]
+        public void NewGameStatePerformsActions()
         {
             //Given
-            GameController gameController = new GameController();
-            var starshipController = new StarshipController();
-            var locationController = new LocationController();
-            gameController.CurrentGameState = new NewGameState(gameController, starshipController, locationController);
+            _gameController.CurrentGameState = new NewGameState(_gameController, _starshipController, _locationController);
 
             //When
-            gameController.CurrentGameState.StartState();
+            _gameController.CurrentGameState.StartState();
 
             //Then
-            Assert.NotNull(gameController.CurrentGameState);
+            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.Equal(something, locationController.Something); etc...
         }
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void StartStopAndGoToNextState()
+        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        public void CharacterCreationStatePerformsActions()
         {
             //Given
+            _gameController.CurrentGameState = new CharacterCreationState(_gameController, _starshipController, _locationController);
+
             //When
+            _gameController.CurrentGameState.StartState();
+
             //Then
+            Assert.NotNull(_gameController.CurrentGameState);
         }
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromNewGameStateToCharacterCreationState()
+        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        public void StarshipCreationStatePerformsActions()
         {
-            //Given
-            GameController gameController = new GameController();
-            var starshipController = new StarshipController();
-            var locationController = new LocationController();
-            gameController.CurrentGameState = new NewGameState(gameController, starshipController, locationController);
+              //Given
+            _gameController.CurrentGameState = new StarshipCreationState(_gameController, _starshipController, _locationController);
 
             //When
-            gameController.CurrentGameState.StartState();
+            _gameController.CurrentGameState.StartState();
 
             //Then
-            Assert.NotNull(gameController.CurrentGameState);
-            Assert.Equal(new CharacterCreationState(gameController, starshipController, locationController).GetType().ToString(), gameController.CurrentGameState.GetType().ToString());
+            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.Equal(something, locationController.Something); etc...
         }
 
-        [Fact(Skip = "Currently wizzes on to the next step needs implementing")]
-        public void MoveFromCharacterCreationStateToStarshipCreationState()
+        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        public void GenerateGalaxyStatePerformsActions()
         {
-            //Given
+             //Given
+            _gameController.CurrentGameState = new GenerateGalaxyState(_gameController, _starshipController, _locationController);
+
             //When
+            _gameController.CurrentGameState.StartState();
+
             //Then
+            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.Equal(something, locationController.Something); etc...
         }
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromStarshipCreationStateToNewGameState()
+        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        public void GalaxyMapStatePerformsActions()
         {
             //Given
+            _gameController.CurrentGameState = new GalaxyMapState(_gameController, _starshipController, _locationController);
+
             //When
+            _gameController.CurrentGameState.StartState();
+
             //Then
+            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.Equal(something, locationController.Something); etc...
         }
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromNewGameStateToGalaxyMapState()
+        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        public void StarsystemMapStatePerformsActions()
         {
             //Given
+            _gameController.CurrentGameState = new StarSystemMapState(_gameController, _starshipController, _locationController);
+
             //When
+            _gameController.CurrentGameState.StartState();
+
             //Then
+            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.Equal(something, locationController.Something); etc...
         }
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromGalaxyMapStateToStarSystemMapState()
+        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        public void PlanetaryMapStateStatePerformsActions()
         {
-            //Given
+             //Given
+            _gameController.CurrentGameState = new PlanetaryMapState(_gameController, _starshipController, _locationController);
+
             //When
+            _gameController.CurrentGameState.StartState();
+
             //Then
+            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.Equal(something, locationController.Something); etc...
         }
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromStarSystemMapStateToGalaxyMapState()
+        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        public void AwayMissionStatePerformsActions()
         {
             //Given
-            //When
-            //Then
-        }
+            _gameController.CurrentGameState = new AwayMissionState(_gameController, _starshipController, _locationController);
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromStarSystemMapSystemToPlanetaryMapState()
-        {
-            //Given
             //When
-            //Then
-        }
+            _gameController.CurrentGameState.StartState();
 
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromPlanetaryMapStateToStarSystemMapState()
-        {
-            //Given
-            //When
             //Then
-        }
-
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromPlanetaryMapStateToAwayMissionState()
-        {
-            //Given
-            //When
-            //Then
-        }
-
-        [Fact(Skip = "Test not implemented yet")]
-        public void MoveFromAwayMissionStateToPlanetaryMapState()
-        {
-            //Given
-            //When
-            //Then
+            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.Equal(something, locationController.Something); etc...
         }
     }
 }
