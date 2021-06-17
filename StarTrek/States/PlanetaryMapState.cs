@@ -23,8 +23,8 @@ namespace StarTrek.States
 
         public override void StopState()
         {
-            GoToState(new StarSystemMapState(_gameController,_starshipController, _locationController));
-            GoToState(new AwayMissionState(_gameController, _starshipController, _locationController));
+            //GoToState(new StarSystemMapState(_gameController,_starshipController, _locationController));
+            //GoToState(new AwayMissionState(_gameController, _starshipController, _locationController));
         }
     }
 }

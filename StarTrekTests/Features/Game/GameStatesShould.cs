@@ -1,36 +1,44 @@
+using Moq;
+using StarTrek.Contracts.Display;
 using StarTrek.Controllers.Game;
 using StarTrek.Controllers.Starship;
+using StarTrek.Contracts.Game;
+using StarTrek.Display;
 using StarTrek.States;
 using Xunit;
+using StarTrek.Contracts.Starships;
 
 namespace StarTrekTests.Features.Game
 {
     public class GameStatesShould
     {
         private GameController _gameController = new GameController();
-        private StarshipController _starshipController = new StarshipController();
-        private LocationController _locationController = new LocationController();
+        private Mock<IStarshipController> _starshipControllerMock = new Mock<IStarshipController>();
+        private Mock<ILocationController> _locationControllerMock = new Mock<ILocationController>();
 
-        [Fact(Skip = "Test the output of the state")]
+
+        [Fact]
         public void NewGameStatePerformsActions()
         {
             //Given
-            //_gameController.CurrentGameState = new NewGameState(_gameController, _starshipController, _locationController, MockedControllersToRunVerificationTests);
-            _gameController.CurrentGameState = new NewGameState(_gameController, _starshipController, _locationController);
+            var genericOutputHelperMock = new Mock<IGenericOutputHelper>();
+            genericOutputHelperMock.Setup(x => x.DisplayMessage("New Game Selected"));
+
+            _gameController.CurrentGameState = new NewGameState(_gameController, _starshipControllerMock.Object, _locationControllerMock.Object, genericOutputHelperMock.Object);
 
             //When
             _gameController.CurrentGameState.StartState();
 
             //Then
             Assert.NotNull(_gameController.CurrentGameState);
-            //Assert.Equal(something, locationController.Something); etc...
+            genericOutputHelperMock.Verify(x => x.DisplayMessage("New Game Selected"));
         }
 
         [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
         public void CharacterCreationStatePerformsActions()
         {
             //Given
-            _gameController.CurrentGameState = new CharacterCreationState(_gameController, _starshipController, _locationController);
+            _gameController.CurrentGameState = new CharacterCreationState(_gameController, _starshipControllerMock.Object, _locationControllerMock.Object);
 
             //When
             _gameController.CurrentGameState.StartState();
@@ -42,18 +50,18 @@ namespace StarTrekTests.Features.Game
         [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
         public void StarshipCreationStatePerformsActions()
         {
-              //Given
-            _gameController.CurrentGameState = new StarshipCreationState(_gameController, _starshipController, _locationController);
+            //Given
+            //_gameController.CurrentGameState = new StarshipCreationState(_gameController, _starshipController, _locationController);
 
             //When
-            _gameController.CurrentGameState.StartState();
+            //_gameController.CurrentGameState.StartState();
 
             //Then
-            Assert.NotNull(_gameController.CurrentGameState);
+            //Assert.NotNull(_gameController.CurrentGameState);
             //Assert.Equal(something, locationController.Something); etc...
         }
 
-        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        /*[Fact(Skip = "Functionality needs implementing. Test needs implementing")]
         public void GenerateGalaxyStatePerformsActions()
         {
              //Given
@@ -121,7 +129,7 @@ namespace StarTrekTests.Features.Game
             //Then
             Assert.NotNull(_gameController.CurrentGameState);
             //Assert.Equal(something, locationController.Something); etc...
-        }
+        }*/
     }
 }
 

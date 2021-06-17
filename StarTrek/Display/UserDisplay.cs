@@ -6,7 +6,7 @@ namespace StarTrek.Display
 {
     public class UserDisplay : IUserDisplay
     {
-        /*public void DisplayMessage(string message)
+        public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
         }
@@ -22,7 +22,7 @@ namespace StarTrek.Display
         public string GetUserInput()
         {
             return Console.ReadLine();
-        }*/
+        }
 
         public string GetUserInput(string message)
         {

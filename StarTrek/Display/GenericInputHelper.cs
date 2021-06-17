@@ -4,35 +4,47 @@ namespace StarTrek.Display
 {
     public class GenericInputHelper : IGenericInputHelper
     {
-        public int GetNumericUserInput(IUserDisplay userDisplay, string message, int lowerBound, int upperBound)
+        private IUserDisplay _userDisplay;
+
+        public GenericInputHelper(IUserDisplay userDisplay)
+        {
+            _userDisplay = userDisplay;
+        }
+
+        public int GetNumericUserInput(string message, int lowerBound, int upperBound)
         {
             string input;
             int validValue;
 
             do
             {
-                input = userDisplay.GetUserInput(message);
+                input = _userDisplay.GetUserInput(message);
             } while (!int.TryParse(input, out validValue) || validValue < lowerBound || validValue > upperBound);
 
             return validValue;
         }
 
-        public double GetNumericUserInput(IUserDisplay userDisplay, string message, double lowerBound, double upperBound)
+        public double GetNumericUserInput(string message, double lowerBound, double upperBound)
         {
             string input;
             double validValue;
 
             do
             {
-                input = userDisplay.GetUserInput(message);
+                input = _userDisplay.GetUserInput(message);
             } while (!double.TryParse(input, out validValue) || validValue < lowerBound || validValue > upperBound);
 
             return validValue;
         }
 
-        public string GetStringUserInput(IUserDisplay userDisplay, string message)
+        public string GetStringUserInput(string message)
         {
-            return userDisplay.GetUserInput(message);
+            return _userDisplay.GetUserInput(message);
+        }
+
+        public string GetStringUserInput()
+        {
+            return _userDisplay.GetUserInput();
         }
     }
 }

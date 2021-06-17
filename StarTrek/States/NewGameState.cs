@@ -1,4 +1,5 @@
 using System;
+using StarTrek.Contracts.Display;
 using StarTrek.Contracts.Game;
 using StarTrek.Contracts.Starships;
 
@@ -9,17 +10,20 @@ namespace StarTrek.States
         private IGameController _gameController;
         private IStarshipController _starshipController;
         private ILocationController _locationController;
+        private IGenericOutputHelper _genericOutputHelper;
 
-        public NewGameState(IGameController gameController, IStarshipController starshipController, ILocationController locationController) : base(gameController, starshipController, locationController)
+        public NewGameState(IGameController gameController, IStarshipController starshipController, ILocationController locationController, IGenericOutputHelper genericInputHelper) : base(gameController, starshipController, locationController)
         {
             _gameController = gameController;
             _starshipController = starshipController;
             _locationController = locationController;
+            _genericOutputHelper = genericInputHelper;
         }
 
         public override void StartState()
         {
-            Console.WriteLine("\nNew Game\n");
+           _genericOutputHelper.DisplayMessage("New Game Selected");
+
             StopState();
         }
 

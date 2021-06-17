@@ -14,7 +14,27 @@ namespace StarTrekTests.Features.Display
         //Then
         }
 
-        [Fact(Skip = "Not implemented")]
+         [Fact(Skip = "Not implemented")]
+        public void DisplayCharacterCreationMenu()
+        {
+        //Given
+        
+        //When
+        
+        //Then
+        }
+
+         [Fact(Skip = "Not implemented")]
+        public void DisplayStarshipCreationMenu()
+        {
+        //Given
+        
+        //When
+        
+        //Then
+        }
+
+        /*[Fact(Skip = "Not implemented")]
         public void DisplayGameWorldMap()
         {
         //Given
@@ -102,6 +122,6 @@ namespace StarTrekTests.Features.Display
         //When
         
         //Then
-        }
+        }*/
     }
 }

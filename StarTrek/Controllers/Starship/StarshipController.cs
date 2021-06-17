@@ -6,6 +6,7 @@ namespace StarTrek.Controllers.Starship
     {
         public StarshipController()
         {
+            
         }
     }
 }
