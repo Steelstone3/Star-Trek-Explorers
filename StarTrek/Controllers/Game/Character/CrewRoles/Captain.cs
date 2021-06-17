@@ -1,11 +1,11 @@
 namespace StarTrek.Controllers.Game.Character.CrewRoles
 {
-    public class CaptainRole : CrewRole
+    public class Captain : CrewRole
     {
-        public CaptainRole()
+        public Captain()
         {
             Rank = "Captain";
-            Role = "Captain";
+            Role = nameof(Captain);
         }
     }
 }

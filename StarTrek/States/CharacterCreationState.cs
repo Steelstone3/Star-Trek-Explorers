@@ -1,4 +1,5 @@
 using System;
+using StarTrek.Contracts.Character;
 using StarTrek.Contracts.Game;
 using StarTrek.Contracts.Starships;
 
@@ -9,23 +10,25 @@ namespace StarTrek.States
         private IGameController _gameController;
         private IStarshipController _starshipController;
         private ILocationController _locationController;
-
-        public CharacterCreationState(IGameController gameController, IStarshipController starshipController, ILocationController locationController) : base(gameController, starshipController, locationController)
+        private ICrewController _crewController;
+       
+        public CharacterCreationState(IGameController gameController, IStarshipController starshipController, ILocationController locationController, ICrewController crewController) : base(gameController, starshipController, locationController, crewController)
         {
             _gameController = gameController;
             _starshipController = starshipController;
             _locationController = locationController;
+            _crewController = crewController;
         }
 
         public override void StartState()
         {
-            Console.WriteLine("\nCharacter Creation\n");
+            _crewController.CreateCrew();
             StopState();
         }
 
         public override void StopState()
         {
-            GoToState(new StarshipCreationState(_gameController, _starshipController, _locationController));
+            GoToState(new StarshipCreationState(_gameController, _starshipController, _locationController, _crewController));
         }
     }
 }

@@ -1,3 +1,4 @@
+using StarTrek.Contracts.Character;
 using StarTrek.Contracts.Game;
 using StarTrek.Contracts.Starships;
 
@@ -7,15 +8,16 @@ namespace StarTrek.States
     {
         private readonly IGameController _gameController;
         private readonly ILocationController _locationController;
-
         private readonly IStarshipController _starshipController;
+        private readonly ICrewController _crewController;
         
 
-        public GameState(IGameController gameController, IStarshipController starshipController, ILocationController locationController )
+        public GameState(IGameController gameController, IStarshipController starshipController, ILocationController locationController, ICrewController crewController )
         {
             _gameController = gameController;
             _starshipController = starshipController;
             _locationController = locationController;
+            _crewController = crewController;
         }
 
         public void GoToState(IGameState theState)

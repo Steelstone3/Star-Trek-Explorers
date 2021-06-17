@@ -1,6 +1,8 @@
 ﻿using StarTrek.Controllers.Game;
+using StarTrek.Controllers.Game.Character;
+using StarTrek.Controllers.Game.Character.Factories;
 using StarTrek.Controllers.Starship;
-using StarTrek.States;
+using StarTrek.Display;
 
 namespace StarTrek
 {
@@ -8,7 +10,10 @@ namespace StarTrek
     {
         static void Main(string[] args)
         {
-            new LaunchGame().StartTheGame(new GameController(), new StarshipController(), new LocationController());
+            new LaunchGame().StartTheGame(new GameController(), 
+            new StarshipController(), new LocationController(), 
+            new CrewController(new GenericInputHelper(new UserDisplay()), 
+            new CharacterFactory()));
         }
     }
 }

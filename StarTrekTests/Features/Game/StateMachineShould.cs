@@ -1,4 +1,5 @@
 using Moq;
+using StarTrek.Contracts.Character;
 using StarTrek.Contracts.Display;
 using StarTrek.Contracts.Game;
 using StarTrek.Contracts.Starships;
@@ -16,12 +17,13 @@ namespace StarTrekTests.Features
         {
             //Arrange
             var starshipController = new Mock<IStarshipController>();
+            var crewController = new Mock<ICrewController>();
             var locationController = new Mock<ILocationController>();
             var genericOutputHelper = new Mock<IGenericOutputHelper>();
             var gameController = new GameController();
             
             //Act
-            gameController.CurrentGameState = new NewGameState(gameController, starshipController.Object, locationController.Object, genericOutputHelper.Object);
+            gameController.CurrentGameState = new NewGameState(gameController, starshipController.Object, locationController.Object, crewController.Object, genericOutputHelper.Object);
 
             //Assert
             Assert.NotNull(gameController.CurrentGameState);

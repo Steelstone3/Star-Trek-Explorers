@@ -1,4 +1,5 @@
 using System;
+using StarTrek.Contracts.Character;
 using StarTrek.Contracts.Display;
 using StarTrek.Contracts.Game;
 using StarTrek.Contracts.Starships;
@@ -10,13 +11,15 @@ namespace StarTrek.States
         private IGameController _gameController;
         private IStarshipController _starshipController;
         private ILocationController _locationController;
+        private ICrewController _crewController;
         private IGenericOutputHelper _genericOutputHelper;
 
-        public NewGameState(IGameController gameController, IStarshipController starshipController, ILocationController locationController, IGenericOutputHelper genericInputHelper) : base(gameController, starshipController, locationController)
+        public NewGameState(IGameController gameController, IStarshipController starshipController, ILocationController locationController, ICrewController crewController, IGenericOutputHelper genericInputHelper) : base(gameController, starshipController, locationController, crewController)
         {
             _gameController = gameController;
             _starshipController = starshipController;
             _locationController = locationController;
+            _crewController = crewController;
             _genericOutputHelper = genericInputHelper;
         }
 
@@ -30,7 +33,7 @@ namespace StarTrek.States
         public override void StopState()
         {
             Console.WriteLine("\nNew Game State Ended\n");
-            GoToState(new CharacterCreationState(_gameController, _starshipController, _locationController));
+            GoToState(new CharacterCreationState(_gameController, _starshipController, _locationController, _crewController));
         }
     }
 }

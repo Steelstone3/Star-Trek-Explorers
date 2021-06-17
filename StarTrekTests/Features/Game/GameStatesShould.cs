@@ -1,12 +1,11 @@
 using Moq;
 using StarTrek.Contracts.Display;
 using StarTrek.Controllers.Game;
-using StarTrek.Controllers.Starship;
 using StarTrek.Contracts.Game;
-using StarTrek.Display;
 using StarTrek.States;
 using Xunit;
 using StarTrek.Contracts.Starships;
+using StarTrek.Contracts.Character;
 
 namespace StarTrekTests.Features.Game
 {
@@ -14,6 +13,7 @@ namespace StarTrekTests.Features.Game
     {
         private GameController _gameController = new GameController();
         private Mock<IStarshipController> _starshipControllerMock = new Mock<IStarshipController>();
+        private Mock<ICrewController> _crewController = new Mock<ICrewController>();
         private Mock<ILocationController> _locationControllerMock = new Mock<ILocationController>();
 
 
@@ -24,7 +24,7 @@ namespace StarTrekTests.Features.Game
             var genericOutputHelperMock = new Mock<IGenericOutputHelper>();
             genericOutputHelperMock.Setup(x => x.DisplayMessage("New Game Selected"));
 
-            _gameController.CurrentGameState = new NewGameState(_gameController, _starshipControllerMock.Object, _locationControllerMock.Object, genericOutputHelperMock.Object);
+            _gameController.CurrentGameState = new NewGameState(_gameController, _starshipControllerMock.Object, _locationControllerMock.Object,_crewController.Object,genericOutputHelperMock.Object);
 
             //When
             _gameController.CurrentGameState.StartState();
@@ -34,17 +34,36 @@ namespace StarTrekTests.Features.Game
             genericOutputHelperMock.Verify(x => x.DisplayMessage("New Game Selected"));
         }
 
-        [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
+        [Fact(Skip ="Need to flesh this out not sure what I want yet")]
         public void CharacterCreationStatePerformsActions()
         {
             //Given
-            _gameController.CurrentGameState = new CharacterCreationState(_gameController, _starshipControllerMock.Object, _locationControllerMock.Object);
+            /*var crewRoleMock = new Mock<ICrewRole>();
+            crewRoleMock.SetupAllProperties();
+
+            var crewMemberMock = new Mock<ICrewMember>();
+            crewMemberMock.Name = "Jeff";
+
+            var crewComplimentMock = new Mock<ICrewCompliment>();
+            crewComplimentMock.Setup(x => x.Captain).Returns(crewMemberMock.Object);
+            crewComplimentMock.Setup(x => x.FirstOfficer).Returns(crewMemberMock.Object);
+            crewComplimentMock.Setup(x => x.HeadOfEngineering).Returns(crewMemberMock.Object);
+
+            var characterFactoryMock = new Mock<ICharacterFactory>();
+            characterFactoryMock.Setup(x => x.CreateCrewMember(crewRoleMock.Object, "Jeff")).Returns(crewMemberMock.Object);
+            characterFactoryMock.Setup(x => x.AddCrewMemberToCrewCompliment(crewComplimentMock.Object, crewMemberMock.Object)).Returns(crewComplimentMock.Object);
+
+            var starshipController = new StarshipController();
+
+            _gameController.CurrentGameState = new CharacterCreationState(_gameController, starshipController, _locationControllerMock.Object, characterFactoryMock.Object);
 
             //When
             _gameController.CurrentGameState.StartState();
 
             //Then
             Assert.NotNull(_gameController.CurrentGameState);
+            characterFactoryMock.Verify(x => x.CreateCrewMember(crewRoleMock.Object, "Jeff"));
+            characterFactoryMock.Verify(x => x.AddCrewMemberToCrewCompliment(crewComplimentMock.Object, crewMemberMock.Object));*/
         }
 
         [Fact(Skip = "Functionality needs implementing. Test needs implementing")]
