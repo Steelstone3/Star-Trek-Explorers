@@ -15,6 +15,7 @@ namespace StarTrekTests.Features.Game
         public void NewGameStatePerformsActions()
         {
             //Given
+            //_gameController.CurrentGameState = new NewGameState(_gameController, _starshipController, _locationController, MockedControllersToRunVerificationTests);
             _gameController.CurrentGameState = new NewGameState(_gameController, _starshipController, _locationController);
 
             //When
