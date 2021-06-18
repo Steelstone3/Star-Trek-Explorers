@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using StarTrek.Controllers.Game.Character;
+using StarTrek.Controllers.Game.Character.Factories;
 
 namespace StarTrek.Contracts.Character
 {
     public interface ICrewController
     {
         ICrewCompliment CrewCompliment { get; set; }
-        void CreateCrew();
+        void AddCrewMember(ICrewRole crewRole, string name);
+        void AddCrewMember(ICrewMember crewMember);
     }
 }

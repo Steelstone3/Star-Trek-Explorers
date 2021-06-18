@@ -19,7 +19,7 @@ namespace StarTrekTests.Features
             var starshipController = new Mock<IStarshipController>();
             var crewController = new Mock<ICrewController>();
             var locationController = new Mock<ILocationController>();
-            var genericOutputHelper = new Mock<IGenericOutputHelper>();
+            var genericOutputHelper = new Mock<IGenericDisplayHelper>();
             var gameController = new GameController();
             
             //Act

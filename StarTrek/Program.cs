@@ -11,9 +11,9 @@ namespace StarTrek
         static void Main(string[] args)
         {
             new LaunchGame().StartTheGame(new GameController(), 
-            new StarshipController(), new LocationController(), 
-            new CrewController(new GenericInputHelper(new UserDisplay()), 
-            new CharacterFactory()));
+            new StarshipController(), 
+            new LocationController(), 
+            new CrewController(new CharacterFactory()));
         }
     }
 }

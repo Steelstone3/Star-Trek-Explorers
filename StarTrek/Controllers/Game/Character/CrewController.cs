@@ -1,38 +1,29 @@
+using System;
 using StarTrek.Contracts.Character;
-using StarTrek.Contracts.Display;
-using StarTrek.Controllers.Game.Character.CrewRoles;
+using StarTrek.Controllers.Game.Character.Factories;
 
 namespace StarTrek.Controllers.Game.Character
 {
     public class CrewController : ICrewController
     {
-        private IGenericInputHelper _userInput;
         private ICharacterFactory _characterFactory;
 
-        public CrewController(IGenericInputHelper userInput, ICharacterFactory characterFactory)
+        public CrewController( ICharacterFactory characterFactory)
         {
-            _userInput = userInput;
             _characterFactory = characterFactory;
         }
 
-        public ICrewCompliment CrewCompliment { get; set; }
+        public ICrewCompliment CrewCompliment { get; set; } = new CrewCompliment();
 
-        public void CreateCrew()
+        public void AddCrewMember(ICrewRole crewRole, string name)
         {
-            string name = string.Empty;
+            var crewMember = _characterFactory.CreateCrewMember(crewRole, name);
+            CrewCompliment = _characterFactory.AddCrewMemberToCrewCompliment(CrewCompliment, crewMember);
+        }
 
-            _userInput.GetStringUserInput("Enter The Ship Captain's Name");
-
-            var captain = _characterFactory.CreateCrewMember(new Captain(), name);
-            CrewCompliment = _characterFactory.AddCrewMemberToCrewCompliment(CrewCompliment, captain);
-
-            _userInput.GetStringUserInput("Enter First Officer's Name");
-
-            _characterFactory.CreateCrewMember(new FirstOfficer(), name);
-
-            _userInput.GetStringUserInput("Enter Head Of Engineering's Name");
-
-            _characterFactory.CreateCrewMember(new HeadOfEngineering(), name);
+        public void AddCrewMember(ICrewMember crewMember)
+        {
+            CrewCompliment = _characterFactory.AddCrewMemberToCrewCompliment(CrewCompliment, crewMember);
         }
     }
 }

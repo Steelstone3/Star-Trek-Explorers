@@ -25,7 +25,6 @@ namespace StarTrek.States
 
         public override void StartState()
         {
-            Console.WriteLine("\nCharacter Creation\n");
             StopState();
         }
 

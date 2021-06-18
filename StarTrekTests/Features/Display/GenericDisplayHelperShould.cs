@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Moq;
 using StarTrek.Contracts.Display;
 using StarTrek.Display;
@@ -5,7 +6,7 @@ using Xunit;
 
 namespace StarTrekTests.Features
 {
-    public class GenericInputHelperShould
+    public class GenericDisplayHelperShould
     {
         [Theory]
         [InlineData("Select Character", 1, 5, "4", 4)]
@@ -14,7 +15,7 @@ namespace StarTrekTests.Features
         public void GetUsersNumericIntergerInputWithUserMessage(string message, int lowerBound, int upperBound, string fakeInput, int expectedOutput)
         {
             var userDisplayMock = CreateUserDisplayMock(message, fakeInput);
-            var genericInput = new GenericInputHelper(userDisplayMock.Object);
+            var genericInput = new GenericDisplayHelper(userDisplayMock.Object);
 
             var validUserValue = genericInput.GetNumericUserInput(message, lowerBound, upperBound);
 
@@ -30,7 +31,7 @@ namespace StarTrekTests.Features
         public void GetUsersNumericDoubleInputWithUserMessage(string message, double lowerBound, double upperBound, string fakeInput, double expectedOutput)
         {
             var userDisplayMock = CreateUserDisplayMock(message, fakeInput);
-            var genericInput = new GenericInputHelper(userDisplayMock.Object);
+            var genericInput = new GenericDisplayHelper(userDisplayMock.Object);
 
             var validUserValue = genericInput.GetNumericUserInput(message, lowerBound, upperBound);
 
@@ -45,7 +46,7 @@ namespace StarTrekTests.Features
         public void GetUsersStringInputWithUserMessage(string message, string fakeInput)
         {
             var userDisplayMock = CreateUserDisplayMock(message, fakeInput);
-            var genericInput = new GenericInputHelper(userDisplayMock.Object);
+            var genericInput = new GenericDisplayHelper(userDisplayMock.Object);
 
             var validUserValue = genericInput.GetStringUserInput(message);
 
@@ -63,7 +64,7 @@ namespace StarTrekTests.Features
              var userDisplayMock = new Mock<IUserDisplay>();
             userDisplayMock.Setup(x => x.GetUserInput()).Returns(fakeInput);
 
-            var genericInput = new GenericInputHelper(userDisplayMock.Object);
+            var genericInput = new GenericDisplayHelper(userDisplayMock.Object);
 
             var validUserValue = genericInput.GetStringUserInput();
 
@@ -71,6 +72,44 @@ namespace StarTrekTests.Features
             Assert.NotEmpty(validUserValue);
             Assert.Equal(fakeInput, validUserValue);
             userDisplayMock.Verify(x => x.GetUserInput());
+        }
+
+         [Theory]
+        [InlineData("a user message")]
+        [InlineData("grog is the best")]
+        public void DisplayUserMessage(string message)
+        {
+            //A
+            var userDisplayMock = new Mock<IUserDisplay>();
+            userDisplayMock.Setup(x => x.DisplayMessage(message));
+            var genericOutputHelper = new GenericDisplayHelper(userDisplayMock.Object);
+
+            //A
+            genericOutputHelper.DisplayMessage(message);
+
+            //A
+            userDisplayMock.Verify(x => x.DisplayMessage(message));
+        }
+
+        [Fact]
+        public void DisplayMenuItems()
+        {
+            //A
+            var menuItems = CreateMenu();
+            var userDisplayMock = new Mock<IUserDisplay>();
+            userDisplayMock.Setup(x => x.DisplayMenuItems(menuItems));
+            var genericOutputHelper = new GenericDisplayHelper(userDisplayMock.Object);
+
+            //A
+            genericOutputHelper.DisplayMenuItems(menuItems);
+
+            //A
+            userDisplayMock.Verify(x => x.DisplayMenuItems(menuItems));
+        }
+
+        private List<string> CreateMenu()
+        {
+            return new List<string>() { "1. Grog is the best", "2. Grog is the besterer", "3. No Grogging is bestest" };
         }
 
         private Mock<IUserDisplay> CreateUserDisplayMock(string message, string fakeInput)

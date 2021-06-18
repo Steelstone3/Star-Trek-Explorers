@@ -1,16 +1,18 @@
+using System.Collections.Generic;
 using StarTrek.Contracts.Display;
 
 namespace StarTrek.Display
 {
-    public class GenericInputHelper : IGenericInputHelper
+    public class GenericDisplayHelper : IGenericDisplayHelper
     {
         private IUserDisplay _userDisplay;
 
-        public GenericInputHelper(IUserDisplay userDisplay)
+        public GenericDisplayHelper(IUserDisplay userDisplay)
         {
             _userDisplay = userDisplay;
         }
 
+        //Input
         public int GetNumericUserInput(string message, int lowerBound, int upperBound)
         {
             string input;
@@ -45,6 +47,17 @@ namespace StarTrek.Display
         public string GetStringUserInput()
         {
             return _userDisplay.GetUserInput();
+        }
+
+        //Output
+        public void DisplayMessage(string message)
+        {
+            _userDisplay.DisplayMessage(message);
+        }
+
+        public void DisplayMenuItems(IEnumerable<string> menuItems)
+        {
+            _userDisplay.DisplayMenuItems(menuItems);
         }
     }
 }

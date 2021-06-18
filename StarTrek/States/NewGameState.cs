@@ -3,6 +3,7 @@ using StarTrek.Contracts.Character;
 using StarTrek.Contracts.Display;
 using StarTrek.Contracts.Game;
 using StarTrek.Contracts.Starships;
+using StarTrek.Display;
 
 namespace StarTrek.States
 {
@@ -12,28 +13,31 @@ namespace StarTrek.States
         private IStarshipController _starshipController;
         private ILocationController _locationController;
         private ICrewController _crewController;
-        private IGenericOutputHelper _genericOutputHelper;
+        private IGenericDisplayHelper _genericDisplayHelper;
 
-        public NewGameState(IGameController gameController, IStarshipController starshipController, ILocationController locationController, ICrewController crewController, IGenericOutputHelper genericInputHelper) : base(gameController, starshipController, locationController, crewController)
+        public NewGameState(IGameController gameController, 
+        IStarshipController starshipController, 
+        ILocationController locationController, 
+        ICrewController crewController, 
+        IGenericDisplayHelper genericDisplayHelper) : base(gameController, starshipController, locationController, crewController)
         {
             _gameController = gameController;
             _starshipController = starshipController;
             _locationController = locationController;
             _crewController = crewController;
-            _genericOutputHelper = genericInputHelper;
+            _genericDisplayHelper = genericDisplayHelper;
         }
 
         public override void StartState()
         {
-           _genericOutputHelper.DisplayMessage("New Game Selected");
+            _genericDisplayHelper.DisplayMessage("New Game Selected");
 
             StopState();
         }
 
         public override void StopState()
         {
-            Console.WriteLine("\nNew Game State Ended\n");
-            GoToState(new CharacterCreationState(_gameController, _starshipController, _locationController, _crewController));
+            GoToState(new CharacterCreationState(_gameController, _starshipController, _locationController, _crewController, new GenericDisplayHelper(new UserDisplay())));
         }
     }
 }

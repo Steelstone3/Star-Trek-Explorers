@@ -10,7 +10,9 @@ namespace StarTrek.Controllers.Game
     {
         public void StartTheGame(IGameController gameController, IStarshipController starshipController, ILocationController locationController, ICrewController crewController)
         {
-            gameController.CurrentGameState = new NewGameState(gameController, starshipController, locationController, crewController, new GenericOutputHelper(new UserDisplay()));
+            var genericDisplayHelper = new GenericDisplayHelper(new UserDisplay());
+
+            gameController.CurrentGameState = new NewGameState(gameController, starshipController, locationController, crewController, genericDisplayHelper);
             gameController.CurrentGameState.StartState();
         }
     }
