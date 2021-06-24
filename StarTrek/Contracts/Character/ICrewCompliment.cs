@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-using StarTrek.Controllers.Game.Character;
-using StarTrek.Controllers.Game.Character.CrewRoles;
+using System.ComponentModel.DataAnnotations;
 using StarTrek.Controllers.Game.Character.Factories;
 
 namespace StarTrek.Contracts.Character

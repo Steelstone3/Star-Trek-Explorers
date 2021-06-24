@@ -26,13 +26,13 @@ namespace StarTrek.Controllers.Game.Character.Factories
                 case nameof(HeadOfSecurity):
                     crewCompliment.HeadOfSecurity = crewMember;
                     return crewCompliment;
-                    case nameof(HeadOfMedical):
+                case nameof(HeadOfMedical):
                     crewCompliment.HeadOfMedical = crewMember;
                     return crewCompliment;
-                    case nameof(HeadOfScience):
+                case nameof(HeadOfScience):
                     crewCompliment.HeadOfScience = crewMember;
                     return crewCompliment;
-                    case nameof(HeadOfTactical):
+                case nameof(HeadOfTactical):
                     crewCompliment.HeadOfTactical = crewMember;
                     return crewCompliment;
                 default:

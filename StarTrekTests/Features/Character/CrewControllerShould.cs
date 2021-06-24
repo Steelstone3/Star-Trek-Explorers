@@ -1,10 +1,6 @@
-using Moq;
-using StarTrek.Contracts.Character;
-using StarTrek.Contracts.Display;
 using StarTrek.Controllers.Game.Character;
 using StarTrek.Controllers.Game.Character.CrewRoles;
 using StarTrek.Controllers.Game.Character.Factories;
-using StarTrek.Display;
 using Xunit;
 
 namespace StarTrekTests.Features
@@ -23,7 +19,7 @@ namespace StarTrekTests.Features
 
             Assert.NotNull(crewController.CrewCompliment);
             Assert.NotNull(crewController.CrewCompliment.FirstOfficer);
-            Assert.Equal(crewController.CrewCompliment.FirstOfficer.Name, "Bob The Slob");
+            Assert.Equal("Bob The Slob", crewController.CrewCompliment.FirstOfficer.Name);
             Assert.Equal(crewController.CrewCompliment.FirstOfficer.CrewRole, firstOfficer);
 
             Assert.Null(crewController.CrewCompliment.Captain);
@@ -46,7 +42,7 @@ namespace StarTrekTests.Features
 
             Assert.NotNull(crewController.CrewCompliment);
             Assert.NotNull(crewController.CrewCompliment.FirstOfficer);
-            Assert.Equal(crewController.CrewCompliment.FirstOfficer.Name, "Bob The Slob");
+            Assert.Equal("Bob The Slob", crewController.CrewCompliment.FirstOfficer.Name);
             Assert.Equal(crewController.CrewCompliment.FirstOfficer.CrewRole, firstOfficer);
 
             Assert.Null(crewController.CrewCompliment.Captain);

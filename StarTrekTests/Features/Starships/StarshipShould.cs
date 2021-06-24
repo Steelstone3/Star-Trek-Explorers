@@ -1,5 +1,4 @@
 using Moq;
-using StarTrek.Contracts.Starships;
 using StarTrek.Contracts.Starships.Builders;
 using StarTrek.Starships;
 using Xunit;
@@ -12,28 +11,41 @@ namespace StarTrekTests.Features.Starships
 
         //Have a start location
         [Fact]
-        public void HaveAStartLocation()
+        public void HaveADefaultStartLocation()
         {
-            var starship = new Starship(_starshipBuilder.Object);
+            var starship = new Starship();
 
             Assert.Equal(0, starship.CoordinateLocationX);
             Assert.Equal(0, starship.CoordinateLocationY);
         }
 
-        //Generate a starship (player character)
-        [Fact]
-        public void CreateAStarShip()
+        //Have a start location
+        [Theory]
+        [InlineData(4, 7)]
+        [InlineData(10, 15)]
+        [InlineData(2, 70)]
+        public void HaveASetStartLocation(int coordinateLocationX, int coordinateLocationY)
         {
-            //Act
-            IStarship starship = new Starship(_starshipBuilder.Object);
-            _starshipBuilder.Setup(x => x.BuildStarship()).Returns(starship);
+            var starship = new Starship(coordinateLocationX, coordinateLocationY);
 
-            //Assert
-            _starshipBuilder.Verify(x => x.BuildStarship());
+            Assert.Equal(coordinateLocationX, starship.CoordinateLocationX);
+            Assert.Equal(coordinateLocationY, starship.CoordinateLocationY);
         }
 
         //Is able to move around the galaxy on WASD and arrow keys
-        
+        [Theory(Skip ="Move to new location")]
+        [InlineData("M")]
+        public void WarpToNewLocation(string command)
+        {
+            
+        }
+
+        [Theory(Skip ="Move to new planet")]
+        [InlineData("L")]
+        public void MoveToNewPlanet(string command)
+        {
+
+        }
 
         //Is able to enter a star system on the enter key
         //Is able to leave a star system on the backspace key

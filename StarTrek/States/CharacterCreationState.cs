@@ -4,6 +4,7 @@ using StarTrek.Contracts.Display;
 using StarTrek.Contracts.Game;
 using StarTrek.Contracts.Starships;
 using StarTrek.Controllers.Game.Character.CrewRoles;
+using StarTrek.Services.Character;
 
 namespace StarTrek.States
 {
@@ -30,28 +31,7 @@ namespace StarTrek.States
 
         public override void StartState()
         {
-            string name = string.Empty;
-
-            name = _genericInputHelper.GetStringUserInput("Enter Captain's Name");
-            _crewController.AddCrewMember(new Captain(), name);
-
-            name = _genericInputHelper.GetStringUserInput("Enter First Officer's Name");
-            _crewController.AddCrewMember(new FirstOfficer(), name);
-
-            name = _genericInputHelper.GetStringUserInput("Enter Head Of Engineering's Name");
-            _crewController.AddCrewMember(new HeadOfEngineering(), name);
-
-            name = _genericInputHelper.GetStringUserInput("Enter Head Of Medical's Name");
-            _crewController.AddCrewMember(new HeadOfMedical(), name);
-
-            name = _genericInputHelper.GetStringUserInput("Enter Head Of Science's Name");
-            _crewController.AddCrewMember(new HeadOfScience(), name);
-
-            name = _genericInputHelper.GetStringUserInput("Enter Head Of Security's Name");
-            _crewController.AddCrewMember(new HeadOfSecurity(), name);
-
-            name = _genericInputHelper.GetStringUserInput("Enter Head Of Tactical's Name");
-            _crewController.AddCrewMember(new HeadOfTactical(), name);
+            _crewController = new CharacterCreatorService(_crewController, _genericInputHelper).CreatePlayerCrew();
 
             StopState();
         }
