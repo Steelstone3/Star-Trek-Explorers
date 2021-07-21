@@ -1,8 +1,11 @@
-package com.StarTrekExplorersTests.Game.Starship;
+package com.startrekexplorerstests.game.starship;
 
-import com.StarTrekExplorers.Contracts.IStarship;
-import com.StarTrekExplorers.Game.Starships.Starship;
-import org.junit.jupiter.api.*;
+import com.startrekexplorers.contracts.IStarship;
+import com.startrekexplorers.game.starships.Starship;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 public class StarshipShould {
 

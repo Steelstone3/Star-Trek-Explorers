@@ -1,6 +1,6 @@
-package com.StarTrekExplorers.Game.Starships;
+package com.startrekexplorers.game.starships;
 
-import com.StarTrekExplorers.Contracts.IStarship;
+import com.startrekexplorers.contracts.IStarship;
 
 public class Starship implements IStarship {
     private int xPosition = 1;

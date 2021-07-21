@@ -1,6 +1,6 @@
-package com.StarTrekExplorers.Game.GameMap;
+package com.startrekexplorers.game.gamemap;
 
-import com.StarTrekExplorers.Contracts.IGalaxyMap;
+import com.startrekexplorers.contracts.IGalaxyMap;
 
 public class GalaxyMap implements IGalaxyMap {
 

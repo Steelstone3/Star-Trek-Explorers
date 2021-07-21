@@ -1,7 +1,7 @@
-package com.StarTrekExplorersTests.Game.World;
+package com.startrekexplorerstests.game.gamemap;
 
-import com.StarTrekExplorers.Game.GameMap.GalaxyMap;
-import com.StarTrekExplorers.Contracts.IGalaxyMap;
+import com.startrekexplorers.game.gamemap.GalaxyMap;
+import com.startrekexplorers.contracts.IGalaxyMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;

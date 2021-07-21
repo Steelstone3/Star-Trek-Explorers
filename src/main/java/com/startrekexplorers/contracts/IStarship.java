@@ -1,4 +1,4 @@
-package com.StarTrekExplorers.Contracts;
+package com.startrekexplorers.contracts;
 
 public interface IStarship {
     int getXPosition();
