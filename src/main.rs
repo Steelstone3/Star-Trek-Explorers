@@ -1,9 +1,12 @@
+use crate::factories::starship::federation_starship::constitution_class::create_federation_constitution_class;
 use crate::models::character::CrewMember;
-use crate::models::starship::Starship;
+use models::ship::starship::Starship;
+use crate::factories::starship::klingon_starship::bird_of_prey::create_klingon_bird_of_prey;
 
 mod displayer;
 mod models;
 mod controllers;
+mod factories;
 
 fn main() {
     start_game();
@@ -15,25 +18,27 @@ fn start_game() {
     let enemy_starship = create_enemy_starship();
 
     displayer::write(player_character.details());
-    displayer::write(player_starship.details());
+    displayer::write(player_starship.meta_data.details());
+
+    //TODO pass the objects into the game loop and work out some game
+    displayer::write("enemy encountered!".to_string());
+    displayer::write(enemy_starship.meta_data.details());
 
     //run_game_loop();
 }
 
 fn create_enemy_starship() -> Starship {
-    return Starship::create("IKS".to_string(),
-                            "Chang".to_string(),
-                            "of house Targ".to_string(),
-                            "IKS-6773".to_string(),
-                            200);
+    return create_klingon_bird_of_prey()
 }
 
 // fn run_game_loop() {
+//TODO while loop with quit condition here
+//
 //     models::location::generate();
 //end_game();
 // }
 
-fn end_game() {}
+// fn end_game() {}
 
 fn create_character() -> CrewMember {
     let name = displayer::read_string("Enter crew member name:");
@@ -46,5 +51,5 @@ fn create_player_starship() -> Starship {
     let name = displayer::read_string("Enter starship name USS:");
     let suffix = displayer::read_string("Enter starship suffix:");
     let serial_number = displayer::read_string("Enter starship serial number:");
-    return Starship::create_default(name, suffix, serial_number);
+    return create_federation_constitution_class(name, suffix, serial_number);
 }
