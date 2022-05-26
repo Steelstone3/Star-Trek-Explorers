@@ -1,3 +1,13 @@
+pub struct Universe {
+
+}
+
+impl Universe{
+    pub fn generate() {
+
+    }
+}
+
 pub struct StarSystem {
 
 }
@@ -6,7 +16,7 @@ pub struct Planet {
 
 }
 
-pub fn generate() {
+pub struct Moon {
 
 }
 

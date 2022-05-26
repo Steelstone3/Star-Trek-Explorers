@@ -27,19 +27,55 @@ pub fn read_numeric_f32(message : &str, lower_bound: f32, upper_bound : f32) -> 
     let mut result= -1.0;
 
     while result == -1.0
-        || result > upper_bound
-        || result < lower_bound {
+    || result > upper_bound
+    || result < lower_bound {
 
         let input = read_string(message);
 
         result = match input.as_str().trim().parse::<f32>() {
-            Ok(result) => result,
-            Err(_e) => -1.0,
+                Ok(result) => result,
+                Err(_e) => -1.0,
         };
     }
 
     return result;
 }
+
+// pub fn read_numeric_u16(message : &str, lower_bound : u16, upper_bound : u16) -> u16 {
+//     let mut result= u16::MAX;
+//
+//     while result == u16::MAX
+//         || result > upper_bound
+//         || result < lower_bound {
+//
+//         let input = read_string(message);
+//
+//         result = match input.as_str().trim().parse::<u16>() {
+//             Ok(result) => result,
+//             Err(_e) => u16::MAX,
+//         };
+//     }
+//
+//     return result;
+// }
+//
+// pub fn read_numeric_u8(message : &str, lower_bound : u8, upper_bound : u8) -> u8 {
+//     let mut result= u8::MAX;
+//
+//     while result == u8::MAX
+//         || result > upper_bound
+//         || result < lower_bound {
+//
+//         let input = read_string(message);
+//
+//         result = match input.as_str().trim().parse::<u8>() {
+//             Ok(result) => result,
+//             Err(_e) => u8::MAX,
+//         };
+//     }
+//
+//     return result;
+// }
 
 pub fn read_string(message : &str) -> String {
     let mut input = String::new();
