@@ -1,11 +1,12 @@
-// let mut rng: Pcg64 = Seeder::from("stripy zebra").make_rng();
-// println!("{}", rng.gen::<char>());
-use super::ship_model;
+use crate::ship::ship_model::Ship;
 
 pub fn create(name: &str) -> Ship {
     return Ship {
-
-    }
+        display_symbol: 'S',
+        name: format!("USS {} NCC-{}", name, 62711),
+        faction: "Federation".to_string(),
+        class: "Sovereign Class".to_string(),
+    };
 }
 
 #[cfg(test)]
@@ -17,7 +18,7 @@ mod sovereign_class_factory_should {
         let starship = create("Enterprise");
 
         assert_eq!(starship.display_symbol, 'S');
-        assert_eq!(starship.name, "USS Enterprise-E NCC-6743523");
+        assert_eq!(starship.name, "USS Enterprise NCC-62711");
         assert_eq!(starship.faction, "Federation");
         assert_eq!(starship.class, "Sovereign Class");
     }
