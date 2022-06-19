@@ -29,9 +29,9 @@ mod ship_model_should {
             "Sovereign Class",
         );
 
-        assert_eq!(starship.display_symbol, 'S');
-        assert_eq!(starship.name, "USS Enterprise-E NCC-1701");
-        assert_eq!(starship.faction, "Federation");
-        assert_eq!(starship.class, "Sovereign Class");
+        assert_eq!('S', starship.display_symbol);
+        assert_eq!("USS Enterprise-E NCC-1701", starship.name);
+        assert_eq!("Federation", starship.faction);
+        assert_eq!("Sovereign Class", starship.class);
     }
 }

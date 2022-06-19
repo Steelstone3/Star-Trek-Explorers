@@ -15,11 +15,11 @@ mod sovereign_class_factory_should {
 
     #[test]
     fn create_a_galaxy_class_starship_with_fixed_defaults() {
-        let starship = create("Enterprise");
+         let starship = create("Enterprise");
 
-        assert_eq!(starship.display_symbol, 'S');
-        assert_eq!(starship.name, "USS Enterprise NCC-62711");
-        assert_eq!(starship.faction, "Federation");
-        assert_eq!(starship.class, "Sovereign Class");
+        assert_eq!( 'S', starship.display_symbol);
+        assert_eq!("USS Enterprise NCC-62711", starship.name);
+        assert_eq!("Federation", starship.faction);
+        assert_eq!("Sovereign Class", starship.class);
     }
 }
