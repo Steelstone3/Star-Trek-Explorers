@@ -1,4 +1,4 @@
-use rand::Rng;
+use rand::{Rng, SeedableRng, rngs::StdRng};
 
 pub fn get_unique_name(avaliable_names: &[&str], used_names: &[&str]) -> String {
     let mut names = avaliable_names.to_vec();
@@ -10,6 +10,11 @@ pub fn get_unique_name(avaliable_names: &[&str], used_names: &[&str]) -> String 
     }
 
     return String::from("Jerald");
+}
+
+pub fn get_seeded_random_number(seed: u64) -> u64 {
+    let mut rng = StdRng::seed_from_u64(seed);
+    return rng.gen_range(1000..999999);
 }
 
 #[cfg(test)]
@@ -32,5 +37,12 @@ mod federation_starship_names_should {
         let starship_name = get_unique_name(&AVALIABLE_NAMES.to_vec(), &used_names);
 
         assert_eq!("Jerald", starship_name);
+    }
+
+    #[test]
+    fn get_a_seeded_random_number() {
+        let value = get_seeded_random_number(6969);
+
+        assert_eq!(605599, value);
     }
 }
