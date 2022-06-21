@@ -1,35 +1,136 @@
-use rand::Rng;
-
-pub fn get_unique_name(used_names: &[&str]) -> String {
-    let mut federation_starship_names = vec!["Enterprise", "Challenger", "Discovery"];
-    
-    federation_starship_names.retain(|e| !used_names.contains(e));
-    if federation_starship_names.len() > 0  {
-        let ship_name = &federation_starship_names[rand::thread_rng().gen_range(0..federation_starship_names.len())];
-
-        return ship_name.to_string();
-    }
-
-    return String::from("Jerald");
-}
-
-#[cfg(test)]
-mod federation_starship_names_should {
-    use super::*;
-
-    #[test]
-    fn get_a_random_and_unique_name() {
-        let names = vec!["Challenger", "Discovery"];
-        let starship_name = get_unique_name(&names);
-
-        assert_eq!("Enterprise", starship_name);
-    }
-
-    #[test]
-    fn all_unique_names_taken() {
-        let names = vec!["Enterprise",  "Challenger", "Discovery"];
-        let starship_name = get_unique_name(&names);
-
-        assert_eq!("Jerald", starship_name);
-    }
-}
+pub const FEDERATION_STARSHIP_NAMES: [&str; 134] = [
+    "Aeon",
+    "Apollo",
+    "Ambassador",
+    "Rigel",
+    "Akira",
+    "Excelsior",
+    "Albert Einstein",
+    "Aleo",
+    "Al-Batani",
+    "Amber",
+    "Antares",
+    "Appalachia",
+    "Archer",
+    "Archon",
+    "Arcos",
+    "Aries",
+    "Armstrong",
+    "Atlantis",
+    "Aurora",
+    "Avenger",
+    "Baton Rouge",
+    "Beagle",
+    "Bellerophon",
+    "Berlin",
+    "Biko",
+    "Billings",
+    "Boneshell",
+    "Bozeman",
+    "Bradbury",
+    "Brattain",
+    "Budapest",
+    "Buran",
+    "Cario",
+    "Callisto",
+    "Carolina",
+    "Canopus",
+    "Centaur",
+    "Challenger",
+    "Charleston",
+    "Chekov",
+    "Cheyenne",
+    "Chicago",
+    "Chimera",
+    "Clavyn",
+    "Clayton",
+    "Clement",
+    "Cochrane",
+    "Columbia",
+    "Concorde",
+    "Constantinople",
+    "Constitution",
+    "Constellation",
+    "Copernicus",
+    "Crazy Horse",
+    "Crockett",
+    "Curry",
+    "Daedalus",
+    "Danube",
+    "Defiant",
+    "Deirdre",
+    "Deneva",
+    "Denver",
+    "Destiny",
+    "Discovery",
+    "Donovan",
+    "Drake",
+    "Eagle",
+    "Eagle Valley",
+    "Voyager",
+    "Elkins",
+    "Elmer Fudd",
+    "Elmira",
+    "Emden",
+    "Endeavour",
+    "Entente",
+    "Enterprise",
+    "Equicorn",
+    "Equinox",
+    "Erewhon",
+    "Essex",
+    "Excalibur",
+    "Excelsior",
+    "Exeter",
+    "Farragut",
+    "Farouk El-Baz",
+    "Fearless",
+    "Firebrand",
+    "Flemming",
+    "Franklin",
+    "Frederickson",
+    "Freedom",
+    "Gage",
+    "Galaxy",
+    "Ganymede",
+    "Gallico",
+    "Gander",
+    "Gandhi",
+    "Ganges",
+    "Gettysburg",
+    "Gihlan",
+    "Goddard",
+    "Gorkon",
+    "Gremlin",
+    "Grissom",
+    "Hathaway",
+    "Hatteras",
+    "Hauck",
+    "Havana",
+    "Heart of Gold",
+    "Helin",
+    "Hera",
+    "Hermes",
+    "Hiroshima",
+    "Hispaniola",
+    "Hokkaido",
+    "Hokule'a",
+    "Honshu",
+    "Hood",
+    "Horatio",
+    "Horizon",
+    "Hornet",
+    "Intrepid",
+    "Istanbul",
+    "Jenolan",
+    "James Fenimore Cooper",
+    "John F. Kennedy",
+    "John Muir",
+    "Kearsarge",
+    "Kelvin",
+    "Kobayashi Maru",
+    "Kogin",
+    "Kongo",
+    "Korolev",
+    "Kyushu"
+];
