@@ -5,6 +5,7 @@ use crate::names::random::get_unique_name;
 use crate::names::random::get_random_name;
 
 pub struct StarSystem {
+    display_symbol: char,
     name: String,
     pub(crate) classification: String,
     planets: Vec<Planet>,
@@ -13,6 +14,7 @@ pub struct StarSystem {
 impl StarSystem {
     pub(crate) fn generate(used_star_names:&[&str], used_planet_names: &[&str], seed:u64) -> StarSystem {
         return StarSystem {
+            display_symbol: '*',
             name: get_unique_name(&STAR_SYSTEM_NAMES, used_star_names, seed),
             classification: get_random_name(&STAR_CLASSIFICATION, seed),
             planets: vec![Planet::generate(&used_planet_names,seed)],
@@ -28,6 +30,7 @@ mod star_system_should {
     fn create_a_star_system() {
         let star_system = StarSystem::generate(&["Romulus"], &["Earth"], 45);
 
+        assert_eq!('*', star_system.display_symbol);
         assert_eq!("Sol", star_system.name);
         assert_eq!(
             "Class F: .".to_string(),

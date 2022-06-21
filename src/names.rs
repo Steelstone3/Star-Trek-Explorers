@@ -4,6 +4,4 @@ pub mod star_system_names;
 pub mod star_classification;
 pub mod planet_names;
 pub mod planet_classification;
-pub mod moon_names;
-pub mod moon_descriptions;
 pub mod random;
