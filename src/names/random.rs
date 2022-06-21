@@ -1,6 +1,6 @@
 use rand::{rngs::StdRng, Rng, SeedableRng};
 
-pub fn get_unique_name(avaliable_names: &[&str], used_names: &[&str], seed:u64) -> String {
+pub fn get_unique_name(avaliable_names: Vec<&str>, used_names: Vec<&str>, seed:u64) -> String {
     let mut names = avaliable_names.to_vec();
     names.retain(|e| !used_names.contains(e));
 
@@ -13,7 +13,7 @@ pub fn get_unique_name(avaliable_names: &[&str], used_names: &[&str], seed:u64) 
     return String::from("Jerald");
 }
 
-pub fn get_random_name(avaliable_names: &[&str], seed:u64) -> String {
+pub fn get_random_name(avaliable_names: Vec<&str>, seed:u64) -> String {
    let index = get_seeded_random_number(seed, 0, avaliable_names.len() as u64);
 
     return avaliable_names[index as usize].to_string();
@@ -28,20 +28,20 @@ pub fn get_seeded_random_number(seed: u64, lower_range:u64, upper_range:u64) -> 
 mod federation_starship_names_should {
     use super::*;
 
-    const AVALIABLE_NAMES: [&str; 3] = ["Enterprise", "Challenger", "Discovery"];
+    const AVALIABLE_NAMES: &[&str] = &["Enterprise", "Challenger", "Discovery"];
 
     #[test]
     fn get_a_random_and_unique_name() {
-        let used_names = vec!["Challenger", "Discovery"];
-        let starship_name = get_unique_name(&AVALIABLE_NAMES.to_vec(), &used_names, 32);
+        let used_names = vec!("Challenger", "Discovery");
+        let starship_name = get_unique_name(AVALIABLE_NAMES.to_vec(), used_names, 32);
 
         assert_eq!("Enterprise", starship_name);
     }
 
     #[test]
     fn get_a_seeded_random_and_unique_name() {
-        let used_names = vec![];
-        let starship_name = get_unique_name(&AVALIABLE_NAMES.to_vec(), &used_names, 32);
+        let used_names = vec!();
+        let starship_name = get_unique_name(AVALIABLE_NAMES.to_vec(), used_names, 32);
 
         assert_eq!("Enterprise", starship_name);
     }
@@ -49,7 +49,7 @@ mod federation_starship_names_should {
     #[test]
     fn all_unique_names_taken() {
         let used_names = vec!["Enterprise", "Challenger", "Discovery"];
-        let starship_name = get_unique_name(&AVALIABLE_NAMES.to_vec(), &used_names, 32);
+        let starship_name = get_unique_name(AVALIABLE_NAMES.to_vec(), used_names, 32);
 
         assert_eq!("Jerald", starship_name);
     }

@@ -4,17 +4,17 @@ use crate::names::random::get_unique_name;
 use crate::names::random::get_random_name;
 
 pub struct Planet {
-    display_symbol: char,
-    name: String,
+    pub(crate) display_symbol: char,
+    pub(crate) name: String,
     pub(crate) classification: String,
 }
 
 impl Planet {
-    pub(crate) fn generate(used_names: &[&str], seed:u64) -> Planet {
+    pub(crate) fn generate(used_names: Vec<&str>, seed:u64) -> Planet {
         return Planet {
             display_symbol: 'P',
-            name: get_unique_name(&PLANET_NAMES, &used_names, seed),
-            classification: get_random_name(&PLANET_CLASSIFICATION, seed),
+            name: get_unique_name(PLANET_NAMES.to_vec(), used_names, seed),
+            classification: get_random_name(PLANET_CLASSIFICATION.to_vec(), seed),
         };
     }
 }
@@ -25,7 +25,7 @@ mod planet_should {
 
     #[test]
     fn create_a_planet() {
-        let planet = Planet::generate(&["Earth"], 45);
+        let planet = Planet::generate(vec!("Earth"), 45);
 
         assert_eq!('P', planet.display_symbol);
         assert_eq!("Mercury", planet.name);
