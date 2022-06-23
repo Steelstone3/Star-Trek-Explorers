@@ -1,3 +1,4 @@
+use crate::names::random::get_random_number_from_range;
 use crate::world::star_system::StarSystem;
 
 pub struct Galaxy {
@@ -5,37 +6,49 @@ pub struct Galaxy {
 }
 
 impl Galaxy {
-    pub(crate) fn generate(seed: u64) -> Galaxy {
-        let mut star_systems = vec![];
-
-        // for i in 0..25 {
-            // let mut used_star_names: Vec<&str> = vec![];
-            // let mut used_planet_names: Vec<&str> = vec![];
-            // let star_system = StarSystem::generate(used_star_names, used_planet_names, seed);
-            // star_systems.push(star_system);
-
-            // for star_system in star_systems {
-            //     used_star_names.push(star_system.name.as_str());
-            // }
-
-            // for p in star_system.planets {
-            // used_planet_names.push(p.name.as_str());
-            // }
-        // }
-
-        return Galaxy { star_systems };
+    pub(crate) fn generate(size: u64) -> Galaxy {
+        return Galaxy {
+            star_systems: create_distinct_random_star_systems(size),
+        };
     }
+}
+
+fn create_distinct_random_star_systems(quantity: u64) -> Vec<StarSystem> {
+    let mut star_systems: Vec<StarSystem> = Vec::new();
+    for _ in 0..quantity {
+        let mut is_unique = true;
+        let new_star_system = StarSystem::generate(get_random_number_from_range(1, 1000000));
+
+        for star_system in &star_systems {
+            if star_system.name == new_star_system.name {
+                is_unique = false;
+            }
+        }
+
+        if is_unique {
+            star_systems.push(new_star_system);
+        }
+    }
+
+    return star_systems;
 }
 
 #[cfg(test)]
 mod galaxy_should {
     use super::*;
+    use crate::names::star_system_names::STAR_SYSTEM_NAMES;
 
     #[test]
-    #[ignore]
     fn create_a_galaxy() {
-        let galaxy = Galaxy::generate(45);
-        assert_eq!("Kronos", galaxy.star_systems[0].name);
-        assert_eq!("Mars", galaxy.star_systems[1].name);
+        let galaxy = Galaxy::generate(u64::MAX);
+        
+        assert_eq!(STAR_SYSTEM_NAMES.len(), galaxy.star_systems.len());
+    }
+
+    #[test]
+    fn create_random_star_systems_with_distinct_names() {
+        let star_systems = create_distinct_random_star_systems(u64::MAX);
+
+        assert_eq!(STAR_SYSTEM_NAMES.len(), star_systems.len());
     }
 }
