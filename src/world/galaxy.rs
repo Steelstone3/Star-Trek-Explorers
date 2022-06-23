@@ -40,14 +40,14 @@ mod galaxy_should {
 
     #[test]
     fn create_a_galaxy() {
-        let galaxy = Galaxy::generate(u64::MAX);
+        let galaxy = Galaxy::generate(2500);
         
         assert_eq!(STAR_SYSTEM_NAMES.len(), galaxy.star_systems.len());
     }
 
     #[test]
     fn create_random_star_systems_with_distinct_names() {
-        let star_systems = create_distinct_random_star_systems(u64::MAX);
+        let star_systems = create_distinct_random_star_systems(2500);
 
         assert_eq!(STAR_SYSTEM_NAMES.len(), star_systems.len());
     }

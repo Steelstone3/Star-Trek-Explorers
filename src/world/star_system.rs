@@ -52,7 +52,7 @@ mod star_system_should {
         let star_system = StarSystem::generate(45);
 
         assert_eq!('*', star_system.display_symbol);
-        assert_eq!("Sol", star_system.name);
+        assert_eq!("Beta Renner system", star_system.name);
         assert_eq!(
             "Class F: .".to_string(),
             star_system.classification.to_string()
@@ -62,7 +62,7 @@ mod star_system_should {
 
     #[test]
     fn create_random_planets_with_distinct_names() {
-        let planets = create_distinct_random_planets(u64::MAX);
+        let planets = create_distinct_random_planets(1000);
 
         assert_eq!(PLANET_NAMES.len(), planets.len());
     }
