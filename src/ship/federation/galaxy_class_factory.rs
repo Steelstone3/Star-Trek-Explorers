@@ -1,35 +1,37 @@
 use crate::names::federation_starship_names::FEDERATION_STARSHIP_NAMES;
-use crate::names::random::get_seeded_random_number;
 use crate::names::random::get_seeded_random_name;
+use crate::names::random::get_seeded_random_number;
 use crate::ship::ship_model::Ship;
 
 const SERIAL_NUMBER_LOWER_BOUND: u64 = 1000;
 const SERIAL_NUMBER_UPPER_BOUND: u64 = 999999;
 
 pub fn create_player(name: &str, seed: u64) -> Ship {
-    return Ship {
-        display_symbol: 'S',
-        name: format!(
+    return Ship::create(
+        'S',
+        format!(
             "USS {} NCC-{}",
             name,
             get_seeded_random_number(seed, SERIAL_NUMBER_LOWER_BOUND, SERIAL_NUMBER_UPPER_BOUND)
-        ),
-        faction: "Federation".to_string(),
-        class: "Galaxy Class".to_string(),
-    };
+        )
+        .as_str(),
+        "Federation",
+        "Galaxy Class",
+    );
 }
 
 pub fn create_npc(seed: u64) -> Ship {
-    return Ship {
-        display_symbol: 'F',
-        name: format!(
+    return Ship::create(
+        'F',
+        format!(
             "USS {} NCC-{}",
-            get_seeded_random_name(FEDERATION_STARSHIP_NAMES.to_vec(),seed),
+            get_seeded_random_name(FEDERATION_STARSHIP_NAMES.to_vec(), seed),
             get_seeded_random_number(seed, SERIAL_NUMBER_LOWER_BOUND, SERIAL_NUMBER_UPPER_BOUND)
-        ),
-        faction: "Federation".to_string(),
-        class: "Galaxy Class".to_string(),
-    };
+        )
+        .as_str(),
+        "Federation",
+        "Galaxy Class",
+    );
 }
 
 #[cfg(test)]

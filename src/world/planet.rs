@@ -3,13 +3,13 @@ use crate::names::planet_names::PLANET_NAMES;
 use crate::names::random::get_seeded_random_name;
 
 pub struct Planet {
-    pub(crate) display_symbol: char,
-    pub(crate) name: String,
-    pub(crate) classification: String,
+    pub display_symbol: char,
+    pub name: String,
+    pub classification: String,
 }
 
 impl Planet {
-    pub(crate) fn generate(seed:u64) -> Planet {
+    pub fn generate(seed:u64) -> Planet {
         return Planet {
             display_symbol: 'P',
             name: get_seeded_random_name(PLANET_NAMES.to_vec(), seed),

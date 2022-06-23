@@ -1,8 +1,8 @@
 pub struct Ship {
-    pub(crate) display_symbol: char,
-    pub(crate) name: String,
-    pub(crate) faction: String,
-    pub(crate) class: String,
+    pub display_symbol: char,
+    pub name: String,
+    pub faction: String,
+    pub class: String,
 }
 
 impl Ship {
@@ -13,6 +13,11 @@ impl Ship {
             faction: String::from(faction),
             class: String::from(class),
         };
+    }
+
+    pub fn scan_ship(ship: Ship){
+        println!("Scanning ship...");
+        println!("Ship ({}):\nName: {}\nFaction: {}\nClass: {}",ship.display_symbol, ship.name, ship.faction, ship.class)
     }
 }
 

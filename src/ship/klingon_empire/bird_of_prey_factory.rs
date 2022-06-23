@@ -1,26 +1,23 @@
+use crate::names::klingon_starship_names::KLINGON_STARSHIP_NAMES;
 use crate::names::random::get_seeded_random_name;
 use crate::names::random::get_seeded_random_number;
-use crate::names::klingon_starship_names::KLINGON_STARSHIP_NAMES;
 use crate::ship::ship_model::Ship;
 
 const SERIAL_NUMBER_LOWER_BOUND: u64 = 100;
 const SERIAL_NUMBER_UPPER_BOUND: u64 = 9999;
 
 pub fn create_npc(seed: u64) -> Ship {
-    return Ship {
-        display_symbol: 'K',
-        name: format!(
+    return Ship::create(
+        'K',
+        format!(
             "IKS-{} {}",
-            get_seeded_random_number(
-                seed,
-                SERIAL_NUMBER_LOWER_BOUND,
-                SERIAL_NUMBER_UPPER_BOUND
-            ),
+            get_seeded_random_number(seed, SERIAL_NUMBER_LOWER_BOUND, SERIAL_NUMBER_UPPER_BOUND),
             get_seeded_random_name(KLINGON_STARSHIP_NAMES.to_vec(), seed)
-        ),
-        faction: "Klingon Empire".to_string(),
-        class: "Bird of Prey".to_string(),
-    };
+        )
+        .as_str(),
+        "Klingon Empire",
+        "Bird of Prey",
+    );
 }
 
 #[cfg(test)]

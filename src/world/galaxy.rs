@@ -2,11 +2,11 @@ use crate::names::random::get_random_number_from_range;
 use crate::world::star_system::StarSystem;
 
 pub struct Galaxy {
-    star_systems: Vec<StarSystem>,
+    pub star_systems: Vec<StarSystem>,
 }
 
 impl Galaxy {
-    pub(crate) fn generate(size: u64) -> Galaxy {
+    pub fn generate(size: u64) -> Galaxy {
         return Galaxy {
             star_systems: create_distinct_random_star_systems(size),
         };
@@ -41,7 +41,6 @@ mod galaxy_should {
     #[test]
     fn create_a_galaxy() {
         let galaxy = Galaxy::generate(2500);
-        
         assert_eq!(STAR_SYSTEM_NAMES.len(), galaxy.star_systems.len());
     }
 
