@@ -1,9 +1,12 @@
 use rand::{rngs::StdRng, Rng, SeedableRng};
 
-pub fn get_seeded_random_name(avaliable_names: Vec<&str>, seed: u64) -> String {
-    let index = get_seeded_random_number(seed, 0, avaliable_names.len() as u64);
+pub const RANDOM_LOWER_RANGE: u64 = 1;
+pub const RANDOM_UPPER_RANGE: u64 = 999999;
 
-    return avaliable_names[index as usize].to_string();
+pub fn get_seeded_random_name(available_names: &[&str], seed: u64) -> String {
+    let index = get_seeded_random_number(seed, 0, available_names.len() as u64);
+
+    return available_names[index as usize].to_string();
 }
 
 pub fn get_seeded_random_number(seed: u64, lower_range: u64, upper_range: u64) -> u64 {
@@ -29,8 +32,10 @@ mod federation_starship_names_should {
 
     #[test]
     fn get_a_seeded_random_name() {
-        let avaliable_names = vec!["Challenger", "Discovery"];
-        let value = get_seeded_random_name(avaliable_names, 999999);
+        let available_names = ["Challenger", "Discovery"];
+        
+        let value = get_seeded_random_name(&available_names, 999999);
+
         assert_eq!("Challenger", value);
     }
 }

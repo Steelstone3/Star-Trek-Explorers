@@ -196,3 +196,12 @@ pub const STAR_SYSTEM_NAMES: [&str; 196] = [
     "System D43119",
     "11 Leonis Minoris"
 ];
+
+pub const STAR_CLASSIFICATION: [&str; 7] = [
+    "Class A: .",
+    "Class B: .",
+    "Class F: .",
+    "Class G: .",
+    "Class K: .",
+    "Class M: .",
+    "Class O: ."];

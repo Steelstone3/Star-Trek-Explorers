@@ -134,3 +134,12 @@ pub const FEDERATION_STARSHIP_NAMES: [&str; 134] = [
     "Korolev",
     "Kyushu"
 ];
+
+pub const FEDERATION_STARSHIP_CLASS: [&str; 4] = [
+    "Galaxy Class",
+    "Intrepid Class",
+    "Sovereign Class",
+    "Defiant Class"
+];
+
+pub const FACTION_FEDERATION: &str = "Federation";
