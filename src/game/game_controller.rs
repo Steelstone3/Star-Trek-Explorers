@@ -1,3 +1,4 @@
+use crate::ship::federation_ship_factory::create_player_federation_ship;
 use crate::game::displayer::{write, read_string};
 use crate::{Galaxy, Ship};
 use crate::game_randomiser::random_controller::{get_random_number_from_range, RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE};
@@ -6,7 +7,7 @@ pub fn player_create_character() -> Ship {
     write("Welcome to the United Federation of Planets Captain. This is your first command so I expect you to take good care of your ship out there.".to_string());
     let ship_name = read_string("Name your Federation of Planets starship:");
 
-    return Ship::create_player_federation_ship(
+    return create_player_federation_ship(
         ship_name.as_str(),
         get_random_number_from_range(RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE),
     );
