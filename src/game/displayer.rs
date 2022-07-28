@@ -32,7 +32,7 @@ pub fn read_numeric_f32(message: &str, lower_bound: f32, upper_bound: f32) -> f3
         };
     }
 
-    return result;
+    result
 }
 
 pub fn read_string(message: &str) -> String {
@@ -45,5 +45,5 @@ pub fn read_string(message: &str) -> String {
         Err(_e) => println!("{}", _e),
     };
 
-    return input;
+    input
 }

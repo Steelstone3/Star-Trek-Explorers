@@ -7,12 +7,12 @@ pub struct Ship {
 
 impl Ship {
     pub fn create_ship(display_symbol: char, name: String, faction: String, class: String) -> Ship {
-        return Ship {
+        Ship {
             display_symbol,
             name,
             faction,
             class,
-        };
+        }
     }
 
     pub fn scan_ship(ship: Ship) -> String {
@@ -21,7 +21,7 @@ impl Ship {
             ship.display_symbol, ship.name, ship.faction, ship.class
         );
 
-        return scanned_ship;
+        scanned_ship
     }
 }
 

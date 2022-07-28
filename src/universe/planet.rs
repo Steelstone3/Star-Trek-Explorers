@@ -15,15 +15,15 @@ impl Planet {
             planets.push(Planet::create_random_planet(get_random_number_from_range(RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE)))
         }
 
-        return planets;
+        planets
     }
 
     fn create_random_planet(seed: u64) -> Planet {
-        return Planet {
+        Planet {
             display_symbol: 'P',
             name: get_seeded_random_name(&PLANET_NAMES, seed),
             classification: get_seeded_random_name(&PLANET_CLASSIFICATION, seed),
-        };
+        }
     }
 }
 

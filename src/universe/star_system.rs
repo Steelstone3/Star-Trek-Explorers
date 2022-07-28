@@ -17,16 +17,16 @@ impl StarSystem {
             star_systems.push(StarSystem::create_random_star_system(get_random_number_from_range(RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE)))
         }
 
-        return star_systems;
+        star_systems
     }
 
     fn create_random_star_system(seed: u64) -> StarSystem {
-        return StarSystem{
+        StarSystem{
             display_symbol: '*',
             name: get_seeded_random_name(&STAR_SYSTEM_NAMES, seed),
             classification: get_seeded_random_name(&STAR_CLASSIFICATION, seed),
             planets: Planet::create_random_planets(get_random_number_from_range(1, 64) as usize),
-        };
+        }
     }
 }
 

@@ -6,9 +6,9 @@ pub struct Galaxy {
 
 impl Galaxy {
     pub fn create_galaxy(quantity_of_star_systems: usize) -> Galaxy {
-        return Galaxy {
+        Galaxy {
             star_systems: StarSystem::create_random_star_systems(quantity_of_star_systems)
-        };
+        }
     }
 }
 
