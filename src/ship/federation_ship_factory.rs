@@ -25,6 +25,7 @@ pub fn create_player_federation_ship(name: &str, seed: u64) -> Ship {
     );
 }
 
+#[allow(dead_code)]
 pub fn create_federation_ship(seed: u64) -> Ship {
     return Ship::create_ship(
         'F',

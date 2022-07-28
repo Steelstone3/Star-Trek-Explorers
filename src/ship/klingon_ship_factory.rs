@@ -8,6 +8,7 @@ use crate::Ship;
 const KLINGON_EMPIRE_SERIAL_NUMBER_LOWER_BOUND: u64 = 100;
 const KLINGON_EMPIRE_SERIAL_NUMBER_UPPER_BOUND: u64 = 9999;
 
+#[allow(dead_code)]
 pub fn create_klingon_ship(seed: u64) -> Ship {
     return Ship::create_ship(
         'K',

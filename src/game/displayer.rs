@@ -5,6 +5,7 @@ pub fn write(message: String) {
     println!("{}", message);
 }
 
+#[allow(dead_code)]
 pub fn read_numeric_i32(message: &str, lower_bound: i32, upper_bound: i32) -> i32 {
     let mut result = -1;
 
@@ -17,9 +18,10 @@ pub fn read_numeric_i32(message: &str, lower_bound: i32, upper_bound: i32) -> i3
         };
     }
 
-    return result;
+    result
 }
 
+#[allow(dead_code)]
 pub fn read_numeric_f32(message: &str, lower_bound: f32, upper_bound: f32) -> f32 {
     let mut result = -1.0;
 
