@@ -1,5 +1,9 @@
-use crate::names::universe::planet_classification::{PLANET_CLASSIFICATION, PLANET_NAMES};
-use crate::game_randomiser::random_controller::{get_random_number_from_range, get_seeded_random_name, RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE};
+use crate::controllers::game_randomiser::RANDOM_UPPER_RANGE;
+use crate::controllers::game_randomiser::RANDOM_LOWER_RANGE;
+use crate::assests::names::universe::planet_classification::PLANET_CLASSIFICATION;
+use crate::assests::names::universe::planet_classification::PLANET_NAMES;
+use crate::controllers::game_randomiser::get_seeded_random_name;
+use crate::controllers::game_randomiser::get_random_number_from_range;
 
 pub struct Planet {
     pub display_symbol: char,
