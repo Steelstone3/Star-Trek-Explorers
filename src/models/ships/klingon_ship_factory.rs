@@ -1,9 +1,9 @@
-use crate::names::factions::klingon_starship_classification::KLINGON_STARSHIP_CLASS;
-use crate::names::factions::klingon_starship_classification::FACTION_KLINGON_EMPIRE;
-use crate::names::factions::klingon_starship_classification::KLINGON_STARSHIP_NAMES;
-use crate::game_randomiser::random_controller::get_seeded_random_name;
-use crate::game_randomiser::random_controller::get_seeded_random_number;
-use crate::Ship;
+use crate::models::ships::ship::Ship;
+use crate::assests::names::factions::klingon_starship_classification::KLINGON_STARSHIP_CLASS;
+use crate::assests::names::factions::klingon_starship_classification::FACTION_KLINGON_EMPIRE;
+use crate::assests::names::factions::klingon_starship_classification::KLINGON_STARSHIP_NAMES;
+use crate::controllers::game_randomiser::get_seeded_random_name;
+use crate::controllers::game_randomiser::get_seeded_random_number;
 
 const KLINGON_EMPIRE_SERIAL_NUMBER_LOWER_BOUND: u64 = 100;
 const KLINGON_EMPIRE_SERIAL_NUMBER_UPPER_BOUND: u64 = 9999;

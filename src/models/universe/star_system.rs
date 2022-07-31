@@ -1,7 +1,12 @@
-use crate::names::universe::star_classification::{STAR_CLASSIFICATION, STAR_SYSTEM_NAMES};
-use crate::game_randomiser::random_controller::{get_seeded_random_name, get_random_number_from_range, RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE};
-use crate::universe::planet::Planet;
+use crate::assests::names::universe::star_classification::STAR_CLASSIFICATION;
+use crate::assests::names::universe::star_classification::STAR_SYSTEM_NAMES;
+use crate::controllers::game_randomiser::get_random_number_from_range;
+use crate::controllers::game_randomiser::get_seeded_random_name;
+use crate::controllers::game_randomiser::RANDOM_LOWER_RANGE;
+use crate::controllers::game_randomiser::RANDOM_UPPER_RANGE;
+use crate::models::universe::planet::Planet;
 
+#[derive(Clone)]
 pub struct StarSystem {
     pub display_symbol: char,
     pub name: String,
@@ -14,14 +19,16 @@ impl StarSystem {
         let mut star_systems: Vec<StarSystem> = Vec::new();
 
         for _ in 0..quantity {
-            star_systems.push(StarSystem::create_random_star_system(get_random_number_from_range(RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE)))
+            star_systems.push(StarSystem::create_random_star_system(
+                get_random_number_from_range(RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE),
+            ))
         }
 
         star_systems
     }
 
     fn create_random_star_system(seed: u64) -> StarSystem {
-        StarSystem{
+        StarSystem {
             display_symbol: '*',
             name: get_seeded_random_name(&STAR_SYSTEM_NAMES, seed),
             classification: get_seeded_random_name(&STAR_CLASSIFICATION, seed),
@@ -50,6 +57,6 @@ mod star_system_should {
         assert_eq!('*', star_system.display_symbol);
         assert_eq!("Beta Renner system", star_system.name);
         assert_eq!("Class F: .", star_system.classification);
-        assert!(1 <= star_system.planets.len());
+        assert!(!star_system.planets.is_empty());
     }
 }
