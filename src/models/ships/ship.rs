@@ -1,4 +1,3 @@
-#[derive(Clone)]
 pub struct Ship {
     pub display_symbol: char,
     pub name: String,

@@ -1,6 +1,5 @@
 use crate::models::universe::star_system::StarSystem;
 
-#[derive(Clone)]
 pub struct Galaxy {
     pub star_systems: Vec<StarSystem>,
 }

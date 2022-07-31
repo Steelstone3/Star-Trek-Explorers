@@ -6,7 +6,6 @@ use crate::controllers::game_randomiser::RANDOM_LOWER_RANGE;
 use crate::controllers::game_randomiser::RANDOM_UPPER_RANGE;
 use crate::models::universe::planet::Planet;
 
-#[derive(Clone)]
 pub struct StarSystem {
     pub display_symbol: char,
     pub name: String,

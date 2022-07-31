@@ -1,7 +1,6 @@
 use crate::models::universe::galaxy::Galaxy;
 use crate::models::ships::ship::Ship;
 
-#[derive(Clone)]
 pub struct Game {
     pub player_ship: Ship,
     pub galaxy: Galaxy,
