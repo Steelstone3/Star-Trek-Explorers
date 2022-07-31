@@ -1,5 +1,5 @@
-use crate::states::new_game::GameStateController;
-use crate::states::new_game::Game;
+use crate::models::game::Game;
+use crate::controllers::state_controller::NewGameStateController;
 
 mod assests;
 mod controllers;

@@ -5,6 +5,7 @@ use crate::assests::names::universe::planet_classification::PLANET_NAMES;
 use crate::controllers::game_randomiser::get_seeded_random_name;
 use crate::controllers::game_randomiser::get_random_number_from_range;
 
+#[derive(Clone)]
 pub struct Planet {
     pub display_symbol: char,
     pub name: String,
@@ -50,6 +51,6 @@ mod planet_should {
 
         assert_eq!('P', planet.display_symbol);
         assert_eq!("Saturn", planet.name);
-        assert_eq!("Class N: Classified.", planet.classification.to_string());
+        assert_eq!("Class N: Classified.", planet.classification);
     }
 }

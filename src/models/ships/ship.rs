@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct Ship {
     pub display_symbol: char,
     pub name: String,
@@ -15,7 +16,7 @@ impl Ship {
         }
     }
 
-    pub fn scan_ship(ship: Ship) -> String {
+    pub fn scan_ship(ship: &Ship) -> String {
         let scanned_ship = format!(
             "Scanning ship...\n Ship ({}):\nName: {}\nFaction: {}\nClass: {}",
             ship.display_symbol, ship.name, ship.faction, ship.class
@@ -53,7 +54,7 @@ mod ship_model_should {
             class: "D7 Battle Cruiser".to_string(),
         };
 
-        let scanned_ship = Ship::scan_ship(starship);
+        let scanned_ship = Ship::scan_ship(&starship);
 
         assert_eq!("Scanning ship...\n Ship (K):\nName: IKS-5176 Amak\nFaction: Klingon Empire\nClass: D7 Battle Cruiser", scanned_ship);
     }
