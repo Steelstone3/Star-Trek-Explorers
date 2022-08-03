@@ -1,22 +1,17 @@
-use crate::states::planet_exploration::PlanetExploration;
-use crate::controllers::state_controller::GameStateController;
-use crate::models::game::Game;
-use crate::presenters::galaxy_presenter::display_galaxy;
+use super::{new_game::NewGame, game::Game};
 
-pub struct GalaxyExploration {
-    game: Game,
-}
+pub struct GalaxyExploration;
 
-impl GameStateController for GalaxyExploration {
-    fn start_state(game: Game) {
-        let galaxy_exploration = GalaxyExploration { game };
-
-        display_galaxy(galaxy_exploration.game.galaxy);
-
-        // Self::next_state(galaxy_exploration.game);
-    }
-
-    fn next_state(game: Game) {
-        PlanetExploration::start_state(game);
+impl From<Game<NewGame>> for Game<GalaxyExploration> {
+    fn from(state: Game<NewGame>) -> Game<GalaxyExploration> {
+        Game {
+            state: GalaxyExploration,
+            player_ship: state.player_ship,
+            galaxy: state.galaxy,
+            ally_ships: state.ally_ships,
+            neutral_ships: state.neutral_ships,
+            hostile_ships: state.hostile_ships,
+            game_progress: state.game_progress,
+        }
     }
 }

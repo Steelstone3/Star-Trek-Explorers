@@ -1,7 +1,8 @@
 use crate::models::universe::galaxy::Galaxy;
 use crate::models::ships::ship::Ship;
 
-pub struct Game {
+pub struct Game <S>{
+    pub state: S,
     pub player_ship: Ship,
     pub galaxy: Galaxy,
     pub ally_ships: Vec<Ship>,
