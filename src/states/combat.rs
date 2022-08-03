@@ -1,14 +1,12 @@
-use crate::states::combat::Combat;
-use crate::states::galaxy_exploration::GalaxyExploration;
+use crate::states::planet_exploration::PlanetExploration;
+use super::{galaxy_exploration::GalaxyExploration, game::Game};
 
-use super::game::Game;
+pub struct Combat;
 
-pub struct PlanetExploration;
-
-impl From<Game<GalaxyExploration>> for Game<PlanetExploration> {
-    fn from(state: Game<GalaxyExploration>) -> Game<PlanetExploration> {
+impl From<Game<GalaxyExploration>> for Game<Combat> {
+    fn from(state: Game<GalaxyExploration>) -> Game<Combat> {
         Game {
-            state: PlanetExploration,
+            state: Combat,
             player_ship: state.player_ship,
             galaxy: state.galaxy,
             ally_ships: state.ally_ships,
@@ -19,10 +17,10 @@ impl From<Game<GalaxyExploration>> for Game<PlanetExploration> {
     }
 }
 
-impl From<Game<Combat>> for Game<PlanetExploration> {
-    fn from(state: Game<Combat>) -> Game<PlanetExploration> {
+impl From<Game<PlanetExploration>> for Game<Combat> {
+    fn from(state: Game<PlanetExploration>) -> Game<Combat> {
         Game {
-            state: PlanetExploration,
+            state: Combat,
             player_ship: state.player_ship,
             galaxy: state.galaxy,
             ally_ships: state.ally_ships,

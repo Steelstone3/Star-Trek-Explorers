@@ -9,6 +9,8 @@ pub struct NewGame;
 
 impl Game<NewGame> {
     pub fn new() -> Self {
+        println!("New game started...");
+        
         let game = Game {
             state: NewGame,
             player_ship: player_create_character(),
