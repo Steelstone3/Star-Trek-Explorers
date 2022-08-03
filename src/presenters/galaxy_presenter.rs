@@ -2,6 +2,7 @@ use crate::models::universe::galaxy::Galaxy;
 use crate::models::universe::star_system::StarSystem;
 use crate::presenters::presenter::write;
 
+#[allow(dead_code)]
 pub fn display_galaxy(galaxy: Galaxy) {
     for star_system in galaxy.star_systems {
         write(star_system.display_symbol.to_string());

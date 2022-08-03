@@ -1,5 +1,4 @@
-use crate::models::game::Game;
-use crate::controllers::state_controller::NewGameStateController;
+use controllers::state_game_controller::start_state;
 
 mod assests;
 mod controllers;
@@ -8,5 +7,5 @@ mod presenters;
 mod states;
 
 fn main() {
-    Game::start_state();
+    start_state()
 }

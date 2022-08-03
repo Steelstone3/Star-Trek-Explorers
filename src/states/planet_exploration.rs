@@ -1,24 +1,19 @@
 use crate::states::galaxy_exploration::GalaxyExploration;
-use crate::controllers::state_controller::GameStateController;
 
-use crate::Game;
+use super::game::Game;
 
-pub struct PlanetExploration {
-    game: Game,
-}
+pub struct PlanetExploration;
 
-impl GameStateController for PlanetExploration {
-    fn start_state(game: Game) {
-        let planet_exploration = PlanetExploration { game };
-
-        let _star_system = planet_exploration.game.galaxy.star_systems.get(planet_exploration.game.game_progress).expect("Index out of bounds");
-        
-        // display_next_scanned_star_system(star_system);
-
-        // Self::next_state(galaxy_exploration.game);
-    }
-
-    fn next_state(game: Game) {
-        GalaxyExploration::start_state(game);
+impl From<Game<GalaxyExploration>> for Game<PlanetExploration> {
+    fn from(state: Game<GalaxyExploration>) -> Game<PlanetExploration> {
+        Game {
+            state: PlanetExploration,
+            player_ship: state.player_ship,
+            galaxy: state.galaxy,
+            ally_ships: state.ally_ships,
+            neutral_ships: state.neutral_ships,
+            hostile_ships: state.hostile_ships,
+            game_progress: state.game_progress,
+        }
     }
 }
