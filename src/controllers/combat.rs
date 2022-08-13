@@ -1,26 +1,29 @@
 use crate::models::ships::ship::Ship;
+use crate::presenters::combat_presenter::choose_hostile_target;
 
 #[allow(dead_code)]
-const SHIELD_DAMAGE_MODIFIER_MAX:u32 = 5;
+const SHIELD_DAMAGE_MODIFIER_MAX: u32 = 5;
 
 #[allow(dead_code)]
-const SHIELD_DAMAGE_MODIFIER_MIN:u32 = 1;
+const SHIELD_DAMAGE_MODIFIER_MIN: u32 = 1;
 
 #[allow(dead_code)]
-const HULL_DAMAGE_MODIFIER_MAX:u32 = 20;
+const HULL_DAMAGE_MODIFIER_MAX: u32 = 20;
 
 #[allow(dead_code)]
-const HULL_DAMAGE_MODIFIER_MIN:u32 = 1;
+const HULL_DAMAGE_MODIFIER_MIN: u32 = 1;
 
 #[allow(dead_code)]
 pub fn fight(player: &Ship, allies: &[Ship], hostiles: &[Ship]) {
-    player_turn(player, hostiles);
-    allies_turn(allies, hostiles);
-    hostiles_turn(hostiles, allies, player);
+    // if hostiles.len() > 0 {
+        player_turn(player, hostiles);
+        allies_turn(allies, hostiles);
+        hostiles_turn(hostiles, allies, player);
+    // }
 }
 
-fn player_turn(_player: &Ship, _hostiles: &[Ship]) {
-
+fn player_turn(_player: &Ship, hostiles: &[Ship]) {
+    let _ship = choose_hostile_target(hostiles);
 }
 
 fn allies_turn(_allies: &[Ship], _player_damaged_hostiles: &[Ship]) {}
@@ -30,10 +33,6 @@ fn hostiles_turn(_hostiles: &[Ship], _allies: &[Ship], _player: &Ship) {}
 #[allow(dead_code)]
 fn check_fight_over() -> bool {
     false
-}
-
-#[allow(dead_code)]
-fn calculate_damage(_attacking_ship: &Ship, _defending_ship: &Ship) {
 }
 
 #[cfg(test)]
@@ -112,7 +111,6 @@ mod combat_should {
         let _player = player_ship_fixture();
         let _allies = allies_ships_fixture();
         let _hostiles: Vec<Ship> = vec![];
-        
         let is_combat_concluded = check_fight_over();
 
         assert_eq!(true, is_combat_concluded);
@@ -125,14 +123,13 @@ mod combat_should {
         player.shield_strength = 0;
         player.hull_integrity = 0;
         let _allies = allies_ships_fixture();
-        let _hostiles= hostile_ships_fixture();
-        
+        let _hostiles = hostile_ships_fixture();
         let is_combat_concluded = check_fight_over();
 
         assert_eq!(true, is_combat_concluded);
     }
 
-    fn player_ship_fixture () -> Ship {
+    fn player_ship_fixture() -> Ship {
         Ship::create_ship(
             'S',
             "USS Enterprise".to_string(),
@@ -142,7 +139,7 @@ mod combat_should {
     }
 
     #[allow(dead_code)]
-    fn allies_ships_fixture () -> Vec<Ship> {
+    fn allies_ships_fixture() -> Vec<Ship> {
         vec![Ship::create_ship(
             'F',
             "USS Defiant".to_string(),
@@ -151,7 +148,7 @@ mod combat_should {
         )]
     }
 
-    fn hostile_ships_fixture () -> Vec<Ship> {
+    fn hostile_ships_fixture() -> Vec<Ship> {
         vec![Ship::create_ship(
             'K',
             "IKS Kang".to_string(),
