@@ -1,8 +1,21 @@
+const SHIELD_STRENGTH: u32 = 100;
+const HULL_INTEGRITY: u32 = 100;
+const PHASER_MAX_DAMAGE: u32 = 100;
+const PHASER_MIN_DAMAGE: u32 = 100;
+const TORPEDO_MAX_DAMAGE: u32 = 100;
+const TORPEDO_MIN_DAMAGE: u32 = 100;
+
 pub struct Ship {
     pub display_symbol: char,
     pub name: String,
     pub faction: String,
     pub class: String,
+    pub shield_strength: u32,
+    pub hull_integrity: u32,
+    pub phaser_max_damage: u32,
+    pub phaser_min_damage: u32,
+    pub torpedo_max_damage: u32,
+    pub torpedo_min_damage: u32,
 }
 
 impl Ship {
@@ -12,6 +25,12 @@ impl Ship {
             name,
             faction,
             class,
+            shield_strength: SHIELD_STRENGTH,
+            hull_integrity: HULL_INTEGRITY,
+            phaser_max_damage: PHASER_MAX_DAMAGE,
+            phaser_min_damage: PHASER_MIN_DAMAGE,
+            torpedo_max_damage: TORPEDO_MAX_DAMAGE,
+            torpedo_min_damage: TORPEDO_MIN_DAMAGE,
         }
     }
 
@@ -42,6 +61,8 @@ mod ship_model_should {
         assert_eq!("USS Enterprise NCC-474661", starship.name);
         assert_eq!("Federation", starship.faction);
         assert_eq!("Defiant Class", starship.class);
+        assert_eq!(SHIELD_STRENGTH, starship.shield_strength);
+        assert_eq!(HULL_INTEGRITY, starship.hull_integrity);
     }
 
     #[test]
@@ -51,6 +72,12 @@ mod ship_model_should {
             name: "IKS-5176 Amak".to_string(),
             faction: "Klingon Empire".to_string(),
             class: "D7 Battle Cruiser".to_string(),
+            shield_strength: SHIELD_STRENGTH,
+            hull_integrity: HULL_INTEGRITY,
+            phaser_max_damage: PHASER_MAX_DAMAGE,
+            phaser_min_damage: PHASER_MIN_DAMAGE,
+            torpedo_max_damage: TORPEDO_MAX_DAMAGE,
+            torpedo_min_damage: TORPEDO_MIN_DAMAGE,
         };
 
         let scanned_ship = Ship::scan_ship(&starship);

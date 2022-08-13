@@ -9,7 +9,7 @@ const FEDERATION_SERIAL_NUMBER_LOWER_BOUND: u64 = 1000;
 const FEDERATION_SERIAL_NUMBER_UPPER_BOUND: u64 = 999999;
 
 pub fn create_player_federation_ship(name: &str, seed: u64) -> Ship {
-    return Ship::create_ship(
+    Ship::create_ship(
         'S',
         format!(
             "USS {} NCC-{}",
@@ -22,12 +22,12 @@ pub fn create_player_federation_ship(name: &str, seed: u64) -> Ship {
         ),
         String::from(FACTION_FEDERATION),
         get_seeded_random_name(&FEDERATION_STARSHIP_CLASS, seed),
-    );
+    )
 }
 
 #[allow(dead_code)]
 pub fn create_federation_ship(seed: u64) -> Ship {
-    return Ship::create_ship(
+    Ship::create_ship(
         'F',
         format!(
             "USS {} NCC-{}",
@@ -40,7 +40,7 @@ pub fn create_federation_ship(seed: u64) -> Ship {
         ),
         String::from(FACTION_FEDERATION),
         get_seeded_random_name(&FEDERATION_STARSHIP_CLASS, seed),
-    );
+    )
 }
 
 #[cfg(test)]
