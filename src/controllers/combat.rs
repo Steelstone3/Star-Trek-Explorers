@@ -1,19 +1,6 @@
 use crate::models::ships::ship::Ship;
 use crate::presenters::combat_presenter::choose_hostile_target;
 
-#[allow(dead_code)]
-const SHIELD_DAMAGE_MODIFIER_MAX: u32 = 5;
-
-#[allow(dead_code)]
-const SHIELD_DAMAGE_MODIFIER_MIN: u32 = 1;
-
-#[allow(dead_code)]
-const HULL_DAMAGE_MODIFIER_MAX: u32 = 20;
-
-#[allow(dead_code)]
-const HULL_DAMAGE_MODIFIER_MIN: u32 = 1;
-
-#[allow(dead_code)]
 pub fn fight(player: &Ship, allies: &[Ship], hostiles: &[Ship]) {
     // if hostiles.len() > 0 {
         player_turn(player, hostiles);
