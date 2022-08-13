@@ -1,4 +1,4 @@
-use controllers::state_game_controller::start_state;
+use controllers::game_state::start_state;
 
 mod assests;
 mod controllers;
