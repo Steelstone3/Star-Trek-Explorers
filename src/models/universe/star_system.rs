@@ -1,5 +1,11 @@
-use crate::assests::names::universe::star_classification::{STAR_CLASSIFICATION, STAR_SYSTEM_NAMES};
-use crate::{controllers::game_randomiser::{generate_seed, get_seeded_random_name}, models::universe::planet::Planet};
+use crate::assests::names::universe::star_classification::{
+    STAR_CLASSIFICATION, STAR_SYSTEM_NAMES,
+};
+use crate::controllers::game_randomiser::get_random_number;
+use crate::{
+    controllers::game_randomiser::{generate_seed, get_seeded_random_name},
+    models::universe::planet::Planet,
+};
 
 pub struct StarSystem {
     pub display_symbol: char,
@@ -13,9 +19,7 @@ impl StarSystem {
         let mut star_systems: Vec<StarSystem> = Vec::new();
 
         for _ in 0..quantity {
-            star_systems.push(StarSystem::create_random_star_system(
-                generate_seed(),
-            ))
+            star_systems.push(StarSystem::create_random_star_system(generate_seed()))
         }
 
         star_systems
@@ -26,7 +30,7 @@ impl StarSystem {
             display_symbol: '*',
             name: get_seeded_random_name(&STAR_SYSTEM_NAMES, seed),
             classification: get_seeded_random_name(&STAR_CLASSIFICATION, seed),
-            planets: Planet::create_random_planets(generate_seed() as usize),
+            planets: Planet::create_random_planets(get_random_number(1, 64) as usize),
         }
     }
 }
