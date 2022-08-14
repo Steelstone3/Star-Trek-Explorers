@@ -2,19 +2,8 @@ use crate::models::ships::ship::Ship;
 use crate::presenters::presenter::read_numeric_u32;
 use crate::presenters::presenter::write;
 
-use super::presenter::read_string;
-
 pub fn choose_hostile_target(hostiles: &mut [Ship]) -> &mut Ship {
-    let mut index = 0;
-
-    write("Captain hostile ships detected!".to_string());
-    hostiles.iter_mut().for_each(|hostile| {
-        let hostile_list_element: String = format!("{}, {}", index, hostile.name);
-        write(hostile_list_element);
-
-        index += 1;
-    });
-
+    display_target_ships(hostiles);
     select_target_ship(hostiles)
 }
 
@@ -24,17 +13,24 @@ pub fn choose_weapon_system() -> u32 {
     read_numeric_u32("Captain fire torpedoes?", 0, 1)
 }
 
+fn display_target_ships(hostiles: &mut [Ship]) {
+    let mut index = 0;
+
+    write("Captain hostile ships detected!".to_string());
+    hostiles.iter_mut().for_each(|hostile| {
+        let hostile_list_element: String = format!("{}, {}", index, hostile.name);
+        write(hostile_list_element);
+
+        index += 1;
+    });
+}
+
 fn select_target_ship(hostiles: &mut [Ship]) -> &mut Ship {
-    let mut result = u32::MAX;
+    let selection = read_numeric_u32(
+        "Captain select target hostile ship",
+        0,
+        hostiles.len() as u32,
+    );
 
-    while result == u32::MAX || result > hostiles.len() as u32 {
-        let input = read_string("Captain select target hostile ship");
-
-        result = match input.as_str().trim().parse::<u32>() {
-            Ok(result) => result,
-            Err(_e) => u32::MAX,
-        };
-    }
-
-    hostiles.get_mut(result as usize).unwrap()
+    hostiles.get_mut(selection as usize).unwrap()
 }
