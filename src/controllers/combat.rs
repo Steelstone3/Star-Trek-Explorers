@@ -1,19 +1,17 @@
 use crate::models::ships::ship::Ship;
 use crate::presenters::combat_presenter::{choose_hostile_target, choose_weapon_system};
 
-pub fn fight(player: &Ship, allies: &[Ship], hostiles: &mut[Ship]) {
-    // if hostiles.len() > 0 {
-        player_turn(player, hostiles);
-        allies_turn(allies, hostiles);
-        hostiles_turn(hostiles, allies, player);
-    // }
+pub fn enter_combat(player: &Ship, allies: &[Ship], hostiles: &mut [Ship]) {
+    player_turn(player, hostiles);
+    allies_turn(allies, hostiles);
+    hostiles_turn(hostiles, allies, player);
 }
 
-fn player_turn(player: &Ship, hostiles: &mut[Ship]) {
+fn player_turn(player: &Ship, hostiles: &mut [Ship]) {
     let target_ship = choose_hostile_target(hostiles);
     match choose_weapon_system() {
         0 => player.fire_phasers(target_ship),
-        1 => player.fire_torpedoes( target_ship),
+        1 => player.fire_torpedoes(target_ship),
         u32::MAX => panic!(),
         2_u32..=4294967294_u32 => panic!(),
     };

@@ -27,10 +27,10 @@ fn display_target_ships(hostiles: &mut [Ship]) {
 
 fn select_target_ship(hostiles: &mut [Ship]) -> &mut Ship {
     let selection = read_numeric_u32(
-        "Captain select target hostile ship",
+        "Sir which ship should we target?",
         0,
         hostiles.len() as u32,
     );
 
-    hostiles.get_mut(selection as usize).unwrap()
+    hostiles.get_mut(selection as usize).expect("No hostile ships")
 }

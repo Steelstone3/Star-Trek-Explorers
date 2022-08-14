@@ -1,5 +1,5 @@
 use super::{galaxy_exploration::GalaxyExploration, game::Game};
-use crate::controllers::combat::fight;
+use crate::controllers::combat::enter_combat;
 use crate::states::planet_exploration::PlanetExploration;
 
 pub struct Combat;
@@ -16,7 +16,9 @@ impl From<Game<GalaxyExploration>> for Game<Combat> {
             game_progress: state.game_progress,
         };
 
-        fight(&game.player_ship, &game.ally_ships, &mut game.hostile_ships);
+        if &game.hostile_ships.len() > &0 {
+            enter_combat(&game.player_ship, &game.ally_ships, &mut game.hostile_ships);
+        }
 
         game
     }
@@ -34,7 +36,9 @@ impl From<Game<PlanetExploration>> for Game<Combat> {
             game_progress: state.game_progress,
         };
 
-        fight(&game.player_ship, &game.ally_ships, &mut game.hostile_ships);
+        if &game.hostile_ships.len() > &0 {
+            enter_combat(&game.player_ship, &game.ally_ships, &mut game.hostile_ships);
+        }
 
         game
     }
