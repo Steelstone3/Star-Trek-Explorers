@@ -2,6 +2,14 @@ use crate::models::ships::ship::Ship;
 use crate::presenters::presenter::read_numeric_u32;
 use crate::presenters::presenter::write;
 
+pub fn display_ship_status(ship: &Ship) {
+    write(Ship::aggressive_ship_scan(ship));
+}
+
+pub fn display_fleet_status(fleet: &[Ship]) {
+    write(Ship::aggressive_ships_scan(&fleet));
+}
+
 pub fn choose_hostile_target(hostiles: &mut [Ship]) -> &mut Ship {
     display_target_ships(hostiles);
     select_target_ship(hostiles)

@@ -15,6 +15,6 @@ pub fn player_create_character() -> Ship {
 }
 
 pub fn scan_ship(ship: &Ship) {
-    let scanned_ship = Ship::scan_ship(ship);
+    let scanned_ship = Ship::passive_ship_scan(ship);
     write(scanned_ship);
 }

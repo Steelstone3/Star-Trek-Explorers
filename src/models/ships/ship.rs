@@ -38,16 +38,34 @@ impl Ship {
         }
     }
 
-    pub fn scan_ship(ship: &Ship) -> String {
+    pub fn passive_ship_scan(ship: &Ship) -> String {
         let scanned_ship = format!(
-            "Scanning ship...\n Ship ({}):\nName: {}\nFaction: {}\nClass: {}",
+            "Scanning ship...\nShip ({}):\nName: {}\nFaction: {}\nClass: {}\n",
             ship.display_symbol, ship.name, ship.faction, ship.class
         );
 
         scanned_ship
     }
 
-    #[allow(dead_code)]
+    pub fn aggressive_ship_scan(ship: &Ship) -> String {
+        let scanned_ship = format!(
+            "Scanning ship...\nShip ({}):\nName: {}\nFaction: {}\nClass: {}\nShield strength: {}\nHull integrity: {}\n",
+            ship.display_symbol, ship.name, ship.faction, ship.class, ship.shield_strength, ship.hull_integrity
+        );
+
+        scanned_ship
+    }
+
+    pub fn aggressive_ships_scan(ships: &[Ship]) -> String {
+        let mut scanned_ships: String = "".to_string();
+
+        for ship in ships {
+            scanned_ships += &Ship::aggressive_ship_scan(ship);
+        }
+
+        scanned_ships
+    }
+
     pub fn fire_phasers(&self, defending_ship: &mut Ship) {
         let phaser_shield_damage = self.phaser_max_damage * SHIELD_DAMAGE_MODIFIER_MAX;
         let phaser_hull_damage = self.phaser_min_damage * HULL_DAMAGE_MODIFIER_MIN;
@@ -65,7 +83,6 @@ impl Ship {
         }
     }
 
-    #[allow(dead_code)]
     pub fn fire_torpedoes(&self, defending_ship: &mut Ship) {
         let torpedo_shield_damage = self.torpedo_min_damage * SHIELD_DAMAGE_MODIFIER_MIN;
         let torpedo_hull_damage = self.torpedo_max_damage * HULL_DAMAGE_MODIFIER_MAX;
@@ -105,23 +122,30 @@ mod ship_model_should {
     }
 
     #[test]
-    fn scan_ship() {
-        let starship = Ship {
-            display_symbol: 'K',
-            name: "IKS-5176 Amak".to_string(),
-            faction: "Klingon Empire".to_string(),
-            class: "D7 Battle Cruiser".to_string(),
-            shield_strength: SHIELD_STRENGTH,
-            hull_integrity: HULL_INTEGRITY,
-            phaser_max_damage: PHASER_MAX_DAMAGE,
-            phaser_min_damage: PHASER_MIN_DAMAGE,
-            torpedo_max_damage: TORPEDO_MAX_DAMAGE,
-            torpedo_min_damage: TORPEDO_MIN_DAMAGE,
-        };
+    fn be_able_to_perform_a_passive_ship_scan() {
+        let starship = create_starship_fixture();
 
-        let scanned_ship = Ship::scan_ship(&starship);
+        let scanned_ship = Ship::passive_ship_scan(&starship);
 
-        assert_eq!("Scanning ship...\n Ship (K):\nName: IKS-5176 Amak\nFaction: Klingon Empire\nClass: D7 Battle Cruiser", scanned_ship);
+        assert_eq!("Scanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\n", scanned_ship);
+    }
+
+    #[test]
+    fn be_able_to_perform_an_aggressive_ship_scan() {
+        let starship = create_starship_fixture();
+
+        let scanned_ship = Ship::aggressive_ship_scan(&starship);
+
+        assert_eq!("Scanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\nShield strength: 100\nHull integrity: 100\n", scanned_ship);
+    }
+
+    #[test]
+    fn be_able_to_perform_an_aggressive_ships_scan() {
+        let starship = vec![create_starship_fixture(), create_starship_fixture()];
+
+        let scanned_ship = Ship::aggressive_ships_scan(&starship);
+
+        assert_eq!("Scanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\nShield strength: 100\nHull integrity: 100\nScanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\nShield strength: 100\nHull integrity: 100\n", scanned_ship);
     }
 
     #[test]

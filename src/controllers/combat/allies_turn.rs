@@ -1,9 +1,11 @@
 use super::combat_controller::{attack_hostile_target_ai, choose_hostile_target_ai};
-use crate::models::ships::ship::Ship;
+use crate::{models::ships::ship::Ship, presenters::combat_presenter::display_fleet_status};
 
 pub fn run_allies_turn(seed:u64, allies: &[Ship], hostiles: &mut [Ship]) {
+    display_fleet_status(&allies);
     let target_ship = choose_hostile_target_ai(seed, hostiles);
     attack_hostile_target_ai(seed, allies, target_ship);
+    display_fleet_status(&hostiles);
 }
 
 #[cfg(test)]

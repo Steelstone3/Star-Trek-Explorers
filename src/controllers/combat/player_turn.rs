@@ -1,11 +1,16 @@
-use crate::{models::ships::ship::Ship, presenters::combat_presenter::{choose_hostile_target, choose_weapon_system}};
+use crate::{
+    models::ships::ship::Ship,
+    presenters::combat_presenter::{choose_hostile_target, choose_weapon_system, display_fleet_status, display_ship_status},
+};
 
 use super::combat_controller::attack_hostile_target;
 
 pub fn run_player_turn(player: &Ship, hostiles: &mut [Ship]) {
+    display_ship_status(&player);
     let target_ship = choose_hostile_target(hostiles);
     let weapon_selection = choose_weapon_system();
     attack_hostile_target(weapon_selection, player, target_ship);
+    display_fleet_status(&hostiles);
 }
 
 #[cfg(test)]
