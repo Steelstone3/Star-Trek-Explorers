@@ -1,9 +1,4 @@
-use crate::controllers::game_randomiser::RANDOM_UPPER_RANGE;
-use crate::controllers::game_randomiser::RANDOM_LOWER_RANGE;
-use crate::assests::names::universe::planet_classification::PLANET_CLASSIFICATION;
-use crate::assests::names::universe::planet_classification::PLANET_NAMES;
-use crate::controllers::game_randomiser::get_seeded_random_name;
-use crate::controllers::game_randomiser::get_random_number_from_range;
+use crate::{assests::names::universe::planet_classification::{PLANET_CLASSIFICATION, PLANET_NAMES}, controllers::game_randomiser::{get_seeded_random_name, generate_seed}};
 
 pub struct Planet {
     pub display_symbol: char,
@@ -16,7 +11,7 @@ impl Planet {
         let mut planets: Vec<Planet> = Vec::new();
 
         for _ in 0..quantity {
-            planets.push(Planet::create_random_planet(get_random_number_from_range(RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE)))
+            planets.push(Planet::create_random_planet(generate_seed()))
         }
 
         planets

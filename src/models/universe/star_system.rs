@@ -1,10 +1,5 @@
-use crate::assests::names::universe::star_classification::STAR_CLASSIFICATION;
-use crate::assests::names::universe::star_classification::STAR_SYSTEM_NAMES;
-use crate::controllers::game_randomiser::get_random_number_from_range;
-use crate::controllers::game_randomiser::get_seeded_random_name;
-use crate::controllers::game_randomiser::RANDOM_LOWER_RANGE;
-use crate::controllers::game_randomiser::RANDOM_UPPER_RANGE;
-use crate::models::universe::planet::Planet;
+use crate::assests::names::universe::star_classification::{STAR_CLASSIFICATION, STAR_SYSTEM_NAMES};
+use crate::{controllers::game_randomiser::{generate_seed, get_seeded_random_name}, models::universe::planet::Planet};
 
 pub struct StarSystem {
     pub display_symbol: char,
@@ -19,7 +14,7 @@ impl StarSystem {
 
         for _ in 0..quantity {
             star_systems.push(StarSystem::create_random_star_system(
-                get_random_number_from_range(RANDOM_LOWER_RANGE, RANDOM_UPPER_RANGE),
+                generate_seed(),
             ))
         }
 
@@ -31,7 +26,7 @@ impl StarSystem {
             display_symbol: '*',
             name: get_seeded_random_name(&STAR_SYSTEM_NAMES, seed),
             classification: get_seeded_random_name(&STAR_CLASSIFICATION, seed),
-            planets: Planet::create_random_planets(get_random_number_from_range(1, 64) as usize),
+            planets: Planet::create_random_planets(generate_seed() as usize),
         }
     }
 }

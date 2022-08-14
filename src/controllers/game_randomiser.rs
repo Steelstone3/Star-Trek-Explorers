@@ -1,8 +1,5 @@
 use rand::{rngs::StdRng, Rng, SeedableRng};
 
-pub const RANDOM_LOWER_RANGE: u64 = 1;
-pub const RANDOM_UPPER_RANGE: u64 = 999999;
-
 pub fn get_seeded_random_name(available_names: &[&str], seed: u64) -> String {
     let index = get_seeded_random_number(seed, 0, available_names.len() as u64);
 
@@ -14,14 +11,9 @@ pub fn get_seeded_random_number(seed: u64, lower_range: u64, upper_range: u64) -
     rng.gen_range(lower_range..upper_range)
 }
 
-pub fn get_random_number_from_range(lower_range: u64, upper_range: u64) -> u64 {
-    let mut rng = rand::thread_rng();
-    rng.gen_range(lower_range..upper_range)
-}
-
 pub fn generate_seed() -> u64 {
     let mut rng = rand::thread_rng();
-    rng.gen_range(1..u64::MAX)
+    rng.gen_range(1..10000)
 }
 
 #[cfg(test)]
