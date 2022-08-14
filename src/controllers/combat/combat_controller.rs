@@ -1,4 +1,4 @@
-use crate::controllers::game_randomiser::get_random_number_from_range;
+use crate::controllers::game_randomiser::{get_seeded_random_number, generate_seed};
 use crate::models::ships::ship::Ship;
 use super::allies_turn::run_allies_turn;
 use super::hostiles_turn::run_hostiles_turn;
@@ -6,18 +6,18 @@ use super::player_turn::run_player_turn;
 
 pub fn enter_combat(player: &mut Ship, allies: &mut [Ship], hostiles: &mut [Ship]) {
     run_player_turn(player, hostiles);
-    run_allies_turn(allies, hostiles);
-    run_hostiles_turn(hostiles, allies, player);
+    run_allies_turn(generate_seed(), allies, hostiles);
+    run_hostiles_turn(generate_seed(), hostiles, allies, player);
 }
 
-pub fn choose_hostile_target_ai(ships: &mut [Ship]) -> &mut Ship{
-    let selection = get_random_number_from_range(0, ships.len() as u64);
+pub fn choose_hostile_target_ai(seed:u64, ships: &mut [Ship]) -> &mut Ship{
+    let selection = get_seeded_random_number(seed, 0, ships.len() as u64);
     ships.get_mut(selection as usize).expect("No hostile ships")
 }
 
-pub fn attack_hostile_target_ai(attacking_ships: &[Ship], defending_ship: &mut Ship) {
+pub fn attack_hostile_target_ai(seed:u64, attacking_ships: &[Ship], defending_ship: &mut Ship) {
     for ship in attacking_ships {
-        let random_weapon_selection = get_random_number_from_range(0, 1);
+        let random_weapon_selection = get_seeded_random_number(seed, 0, 2);
         attack_hostile_target(random_weapon_selection as u32, ship, defending_ship)
     }
 }
