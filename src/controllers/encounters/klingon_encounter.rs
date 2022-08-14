@@ -1,6 +1,5 @@
 use crate::{models::ships::{ship::Ship, klingon_ship_factory}, controllers::game::game_randomiser::generate_seed};
 
-#[allow(dead_code)]
 pub fn generate_klingon_ships(quantity: u32) -> Vec<Ship>{
     let mut klingon_ships = vec![];
 
