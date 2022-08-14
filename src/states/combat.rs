@@ -6,7 +6,7 @@ pub struct Combat;
 
 impl From<Game<GalaxyExploration>> for Game<Combat> {
     fn from(state: Game<GalaxyExploration>) -> Game<Combat> {
-        let game = Game {
+        let mut game = Game {
             state: Combat,
             player_ship: state.player_ship,
             galaxy: state.galaxy,
@@ -16,7 +16,7 @@ impl From<Game<GalaxyExploration>> for Game<Combat> {
             game_progress: state.game_progress,
         };
 
-        fight(&game.player_ship, &game.ally_ships, &game.hostile_ships);
+        fight(&game.player_ship, &game.ally_ships, &mut game.hostile_ships);
 
         game
     }
@@ -24,7 +24,7 @@ impl From<Game<GalaxyExploration>> for Game<Combat> {
 
 impl From<Game<PlanetExploration>> for Game<Combat> {
     fn from(state: Game<PlanetExploration>) -> Game<Combat> {
-        let game = Game {
+        let mut game = Game {
             state: Combat,
             player_ship: state.player_ship,
             galaxy: state.galaxy,
@@ -34,7 +34,7 @@ impl From<Game<PlanetExploration>> for Game<Combat> {
             game_progress: state.game_progress,
         };
 
-        fight(&game.player_ship, &game.ally_ships, &game.hostile_ships);
+        fight(&game.player_ship, &game.ally_ships, &mut game.hostile_ships);
 
         game
     }

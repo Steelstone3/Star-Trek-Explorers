@@ -1,7 +1,7 @@
 use crate::models::ships::ship::Ship;
-use crate::presenters::combat_presenter::choose_hostile_target;
+use crate::presenters::combat_presenter::{choose_hostile_target, choose_weapon_system};
 
-pub fn fight(player: &Ship, allies: &[Ship], hostiles: &[Ship]) {
+pub fn fight(player: &Ship, allies: &[Ship], hostiles: &mut[Ship]) {
     // if hostiles.len() > 0 {
         player_turn(player, hostiles);
         allies_turn(allies, hostiles);
@@ -9,8 +9,14 @@ pub fn fight(player: &Ship, allies: &[Ship], hostiles: &[Ship]) {
     // }
 }
 
-fn player_turn(_player: &Ship, hostiles: &[Ship]) {
-    let _ship = choose_hostile_target(hostiles);
+fn player_turn(player: &Ship, hostiles: &mut[Ship]) {
+    let target_ship = choose_hostile_target(hostiles);
+    match choose_weapon_system() {
+        0 => player.fire_phasers(target_ship),
+        1 => player.fire_torpedoes( target_ship),
+        u32::MAX => panic!(),
+        2_u32..=4294967294_u32 => panic!(),
+    };
 }
 
 fn allies_turn(_allies: &[Ship], _player_damaged_hostiles: &[Ship]) {}
@@ -30,9 +36,9 @@ mod combat_should {
     #[ignore]
     fn allow_player_to_damage_hostiles() {
         let player = player_ship_fixture();
-        let hostiles = hostile_ships_fixture();
+        let mut hostiles = hostile_ships_fixture();
 
-        player_turn(&player, &hostiles);
+        player_turn(&player, &mut hostiles);
 
         assert_eq!('K', hostiles[0].display_symbol);
         assert_eq!("IKS Kang".to_string(), hostiles[0].name);

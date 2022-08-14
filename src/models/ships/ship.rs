@@ -48,7 +48,7 @@ impl Ship {
     }
 
     #[allow(dead_code)]
-    pub fn fire_phasers(&mut self, mut defending_ship: Ship) -> Ship {
+    pub fn fire_phasers(&self, defending_ship: &mut Ship) {
         let phaser_shield_damage = self.phaser_max_damage * SHIELD_DAMAGE_MODIFIER_MAX;
         let phaser_hull_damage = self.phaser_min_damage * HULL_DAMAGE_MODIFIER_MIN;
         let has_shield_depleted = defending_ship.shield_strength == 0;
@@ -63,12 +63,10 @@ impl Ship {
         } else if has_shield_depleted && defending_ship.hull_integrity > 0 {
             defending_ship.hull_integrity -= phaser_hull_damage;
         }
-
-        defending_ship
     }
 
     #[allow(dead_code)]
-    pub fn fire_torpedoes(&mut self, mut defending_ship: Ship) -> Ship {
+    pub fn fire_torpedoes(&self, defending_ship: &mut Ship) {
         let torpedo_shield_damage = self.torpedo_min_damage * SHIELD_DAMAGE_MODIFIER_MIN;
         let torpedo_hull_damage = self.torpedo_max_damage * HULL_DAMAGE_MODIFIER_MAX;
         let has_shield_depleted = defending_ship.shield_strength == 0;
@@ -83,8 +81,6 @@ impl Ship {
         } else if has_shield_depleted && defending_ship.hull_integrity > 0 {
             defending_ship.hull_integrity -= torpedo_hull_damage;
         }
-
-        defending_ship
     }
 }
 
@@ -130,53 +126,53 @@ mod ship_model_should {
 
     #[test]
     fn fire_phasers_at_hostile_ship() {
-        let mut player_ship = create_starship_fixture();
-        let hostile_ship = create_starship_fixture();
+        let player_ship = create_starship_fixture();
+        let mut hostile_ship = create_starship_fixture();
 
-        let damaged_ship = player_ship.fire_phasers(hostile_ship);
+        player_ship.fire_phasers(&mut hostile_ship);
 
-        assert_eq!(75, damaged_ship.shield_strength);
-        assert_eq!(100, damaged_ship.hull_integrity);
+        assert_eq!(75, hostile_ship.shield_strength);
+        assert_eq!(100, hostile_ship.hull_integrity);
     }
 
     #[test]
     fn fire_phasers_at_hostile_ship_no_shields() {
-        let mut player_ship = create_starship_fixture();
-        let hostile_ship = create_starship_fixture();
+        let player_ship = create_starship_fixture();
+        let mut hostile_ship = create_starship_fixture();
 
-        let damaged_ship_round_1 = player_ship.fire_phasers(hostile_ship);
-        let damaged_ship_round_2 = player_ship.fire_phasers(damaged_ship_round_1);
-        let damaged_ship_round_3 = player_ship.fire_phasers(damaged_ship_round_2);
-        let damaged_ship_round_4 = player_ship.fire_phasers(damaged_ship_round_3);
-        let damaged_ship_round_5 = player_ship.fire_phasers(damaged_ship_round_4);
-        let damaged_ship_round_6 = player_ship.fire_phasers(damaged_ship_round_5);
+        player_ship.fire_phasers(&mut hostile_ship);
+        player_ship.fire_phasers(&mut hostile_ship);
+        player_ship.fire_phasers(&mut hostile_ship);
+        player_ship.fire_phasers(&mut hostile_ship);
+        player_ship.fire_phasers(&mut hostile_ship);
+        player_ship.fire_phasers(&mut hostile_ship);
 
-        assert_eq!(0, damaged_ship_round_6.shield_strength);
-        assert_eq!(98, damaged_ship_round_6.hull_integrity);
+        assert_eq!(0, hostile_ship.shield_strength);
+        assert_eq!(98, hostile_ship.hull_integrity);
     }
 
     #[test]
     fn fire_torpedoes_at_hostile_ship() {
-        let mut player_ship = create_starship_fixture();
-        let hostile_ship = create_starship_fixture();
+        let player_ship = create_starship_fixture();
+        let mut hostile_ship = create_starship_fixture();
 
-        let damaged_ship_round_1 = player_ship.fire_torpedoes(hostile_ship);
-        let damaged_ship_round_2 = player_ship.fire_torpedoes(damaged_ship_round_1);
+        player_ship.fire_torpedoes(&mut hostile_ship);
+        player_ship.fire_torpedoes(&mut hostile_ship);
 
-        assert_eq!(98, damaged_ship_round_2.shield_strength);
-        assert_eq!(100, damaged_ship_round_2.hull_integrity);
+        assert_eq!(98, hostile_ship.shield_strength);
+        assert_eq!(100, hostile_ship.hull_integrity);
     }
 
     #[test]
     fn fire_torpedoes_at_hostile_ship_no_shields() {
-        let mut player_ship = create_starship_fixture();
+        let player_ship = create_starship_fixture();
         let mut hostile_ship = create_starship_fixture();
         hostile_ship.shield_strength = 0;
 
-        let damaged_ship = player_ship.fire_torpedoes(hostile_ship);
+        player_ship.fire_torpedoes(&mut hostile_ship);
 
-        assert_eq!(0, damaged_ship.shield_strength);
-        assert_eq!(50, damaged_ship.hull_integrity);
+        assert_eq!(0, hostile_ship.shield_strength);
+        assert_eq!(50, hostile_ship.hull_integrity);
     }
 
     fn create_starship_fixture() -> Ship {
