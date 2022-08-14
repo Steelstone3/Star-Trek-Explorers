@@ -1,4 +1,4 @@
-use crate::controllers::game_randomiser::generate_seed;
+use crate::controllers::game::game_randomiser::generate_seed;
 use crate::models::ships::ship::Ship;
 use crate::models::ships::federation_ship_factory::create_player_federation_ship;
 use crate::presenters::presenter::read_string;

@@ -1,9 +1,8 @@
-use crate::assests::names::universe::star_classification::{
-    STAR_CLASSIFICATION, STAR_SYSTEM_NAMES,
-};
-use crate::controllers::game_randomiser::get_random_number;
 use crate::{
-    controllers::game_randomiser::{generate_seed, get_seeded_random_name},
+    assests::names::universe::star_classification::{STAR_CLASSIFICATION, STAR_SYSTEM_NAMES},
+    controllers::game::game_randomiser::{
+        generate_seed, get_random_number, get_seeded_random_name,
+    },
     models::universe::planet::Planet,
 };
 

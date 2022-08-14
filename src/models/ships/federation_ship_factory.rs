@@ -1,9 +1,10 @@
-use crate::models::ships::ship::Ship;
-use crate::assests::names::factions::federation_starship_classification::FEDERATION_STARSHIP_NAMES;
-use crate::assests::names::factions::federation_starship_classification::FEDERATION_STARSHIP_CLASS;
-use crate::controllers::game_randomiser::get_seeded_random_name;
-use crate::assests::names::factions::federation_starship_classification::FACTION_FEDERATION;
-use crate::controllers::game_randomiser::get_seeded_random_number;
+use crate::{
+    assests::names::factions::federation_starship_classification::{
+        FACTION_FEDERATION, FEDERATION_STARSHIP_CLASS, FEDERATION_STARSHIP_NAMES,
+    },
+    controllers::game::game_randomiser::{get_seeded_random_name, get_seeded_random_number},
+    models::ships::ship::Ship,
+};
 
 const FEDERATION_SERIAL_NUMBER_LOWER_BOUND: u64 = 1000;
 const FEDERATION_SERIAL_NUMBER_UPPER_BOUND: u64 = 999999;

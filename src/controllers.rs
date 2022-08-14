@@ -1,4 +1,4 @@
-pub mod game_randomiser;
-pub mod game_state;
+pub mod game;
 pub mod combat;
+pub mod encounters;
 pub mod movement;

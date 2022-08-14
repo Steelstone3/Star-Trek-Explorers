@@ -1,6 +1,6 @@
 use crate::{
     assests::names::universe::planet_classification::{PLANET_CLASSIFICATION, PLANET_NAMES},
-    controllers::game_randomiser::{generate_seed, get_seeded_random_name},
+    controllers::game::game_randomiser::{generate_seed, get_seeded_random_name},
 };
 
 pub struct Planet {
