@@ -1,7 +1,7 @@
 use crate::{
     models::ships::ship::Ship,
     presenters::combat_presenter::{
-        choose_hostile_target, choose_weapon_system, display_fleet_status, display_ship_status,
+        choose_hostile_target, choose_weapon_system, display_fleet_status, display_ship_status, defeat_message_hostiles,
     },
 };
 
@@ -14,14 +14,18 @@ pub fn run_player_turn(player: &Ship, hostiles: &mut [Ship]) {
         let weapon_selection = choose_weapon_system();
         attack_hostile_target(weapon_selection, player, target_ship);
         display_fleet_status(hostiles);
+    } else {
+        defeat_message_hostiles();
     }
-
-    
 }
 
 #[cfg(test)]
 mod player_turn_should {
     use super::*;
+
+    #[test]
+    #[ignore = "Need to implement mocking for the presenter"]
+    fn not_allow_player_to_fight_if_there_are_no_hostiles() { }
 
     #[test]
     #[ignore = "Need to mock user inputs"]

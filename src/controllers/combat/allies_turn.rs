@@ -26,6 +26,14 @@ mod allies_turn_should {
     use super::*;
 
     #[test]
+    #[ignore = "Need to implement mocking for the presenter"]
+    fn not_allow_allies_to_fight_if_there_are_none() { }
+
+    #[test]
+    #[ignore = "Need to implement mocking for the presenter"]
+    fn not_allow_allies_to_damage_hostiles_if_there_are_none() { }
+
+    #[test]
     fn allow_allies_to_damage_hostiles() {
         let allies = allies_ships_fixture();
         let mut hostiles = hostile_ships_fixture();
