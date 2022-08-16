@@ -127,7 +127,7 @@ mod ship_model_should {
 
         let scanned_ship = Ship::passive_ship_scan(&starship);
 
-        assert_eq!("Scanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\n", scanned_ship);
+        assert_eq!("\nScanning Ship...\nS Name: USS Enterprise NCC-474661 Faction: Federation Class: Defiant Class\n", scanned_ship);
     }
 
     #[test]
@@ -136,7 +136,7 @@ mod ship_model_should {
 
         let scanned_ship = Ship::aggressive_ship_scan(&starship);
 
-        assert_eq!("Scanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\nShield strength: 100\nHull integrity: 100\n", scanned_ship);
+        assert_eq!("\nS. Name: USS Enterprise NCC-474661 Faction: Federation Class: Defiant Class\nShield strength: 100 Hull integrity: 100\n", scanned_ship);
     }
 
     #[test]
@@ -145,7 +145,7 @@ mod ship_model_should {
 
         let scanned_ship = Ship::aggressive_ships_scan(&starship);
 
-        assert_eq!("Scanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\nShield strength: 100\nHull integrity: 100\nScanning ship...\nShip (S):\nName: USS Enterprise NCC-474661\nFaction: Federation\nClass: Defiant Class\nShield strength: 100\nHull integrity: 100\n", scanned_ship);
+        assert_eq!("\nS. Name: USS Enterprise NCC-474661 Faction: Federation Class: Defiant Class\nShield strength: 100 Hull integrity: 100\n\nS. Name: USS Enterprise NCC-474661 Faction: Federation Class: Defiant Class\nShield strength: 100 Hull integrity: 100\n", scanned_ship);
     }
 
     #[test]
