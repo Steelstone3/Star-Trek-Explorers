@@ -38,6 +38,8 @@ impl From<Game<PlanetExploration>> for Game<Combat> {
             game_progress: state.game_progress,
         };
 
+        game.ally_ships = generate_federation_ships(get_random_number(0, 5) as u32);
+        game.hostile_ships = generate_klingon_ships(get_random_number(1, 10) as u32);
         start_combat(&mut game);
 
         game

@@ -1,10 +1,22 @@
-use crate::models::ships::ship::Ship;
+use crate::{
+    models::ships::ship::Ship,
+    presenters::combat_presenter::{defeat_message_allies, defeat_message_hostiles},
+};
 
 use super::combat_controller::{attack_hostile_target_ai, choose_hostile_target_ai};
 
-pub fn run_hostiles_turn(seed:u64, hostiles: &[Ship], allies: &mut [Ship], player: &mut Ship) {
-    let target_ship = choose_hostile_target_ai(seed, allies);
-    attack_hostile_target_ai(seed, hostiles, target_ship);
+pub fn run_hostiles_turn(seed: u64, hostiles: &[Ship], allies: &mut [Ship], player: &mut Ship) {
+    if hostiles.is_empty() {
+        defeat_message_hostiles()
+    }
+
+    if !allies.is_empty() {
+        let target_ship = choose_hostile_target_ai(seed, allies);
+        attack_hostile_target_ai(seed, hostiles, target_ship);
+    } else {
+        defeat_message_allies();
+    }
+    
     attack_hostile_target_ai(seed, hostiles, player);
 }
 

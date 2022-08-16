@@ -8,9 +8,7 @@ pub fn start_state() {
     let galaxy_exploration_2 = Game::<GalaxyExploration>::from(galaxy_combat);
     
     let planet_exploration_1 = Game::<PlanetExploration>::from(galaxy_exploration_2);
-    let planet_combat_1 = Game::<Combat>::from(planet_exploration_1);
-    let planet_exploration_2 = Game::<PlanetExploration>::from(planet_combat_1);
-    let planet_combat_2 = Game::<Combat>::from(planet_exploration_2);
+    let planet_combat = Game::<Combat>::from(planet_exploration_1);
     
-    let _game_over = Game::<GameOver>::from(planet_combat_2);
+    let _game_over = Game::<GameOver>::from(planet_combat);
 }

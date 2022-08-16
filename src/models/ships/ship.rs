@@ -40,7 +40,7 @@ impl Ship {
 
     pub fn passive_ship_scan(ship: &Ship) -> String {
         let scanned_ship = format!(
-            "Scanning ship...\nShip ({}):\nName: {}\nFaction: {}\nClass: {}\n",
+            "\nScanning Ship...\n{} Name: {} Faction: {} Class: {}\n",
             ship.display_symbol, ship.name, ship.faction, ship.class
         );
 
@@ -49,7 +49,7 @@ impl Ship {
 
     pub fn aggressive_ship_scan(ship: &Ship) -> String {
         let scanned_ship = format!(
-            "Scanning ship...\nShip ({}):\nName: {}\nFaction: {}\nClass: {}\nShield strength: {}\nHull integrity: {}\n",
+            "\n{}. Name: {} Faction: {} Class: {}\nShield strength: {} Hull integrity: {}\n",
             ship.display_symbol, ship.name, ship.faction, ship.class, ship.shield_strength, ship.hull_integrity
         );
 

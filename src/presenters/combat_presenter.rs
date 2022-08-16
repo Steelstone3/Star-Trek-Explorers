@@ -7,7 +7,7 @@ pub fn display_ship_status(ship: &Ship) {
 }
 
 pub fn display_fleet_status(fleet: &[Ship]) {
-    write(Ship::aggressive_ships_scan(&fleet));
+    write(Ship::aggressive_ships_scan(fleet));
 }
 
 pub fn choose_hostile_target(hostiles: &mut [Ship]) -> &mut Ship {
@@ -21,13 +21,21 @@ pub fn choose_weapon_system() -> u32 {
     read_numeric_u32("Captain fire torpedoes?", 0, 1)
 }
 
+pub fn defeat_message_hostiles() {
+    write("No hostile threats detected".to_string());
+}
+
+pub fn defeat_message_allies() {
+    write("No help from your allies".to_string());
+}
+
 fn display_target_ships(hostiles: &mut [Ship]) {
     let mut index = 0;
 
-    write("Captain hostile ships detected!".to_string());
+    write("Captain hostile ships detected!\n".to_string());
     hostiles.iter_mut().for_each(|hostile| {
-        let hostile_list_element: String = format!("{}, {}", index, hostile.name);
-        write(hostile_list_element);
+        let hostile_ship: String = format!("{}. {} Shield strength: {} Hull integrity: {}", index, hostile.name, hostile.shield_strength, hostile.hull_integrity);
+        write(hostile_ship);
 
         index += 1;
     });
@@ -35,7 +43,7 @@ fn display_target_ships(hostiles: &mut [Ship]) {
 
 fn select_target_ship(hostiles: &mut [Ship]) -> &mut Ship {
     let selection = read_numeric_u32(
-        "Sir which ship should we target?",
+        "\nSir which ship should we target?",
         0,
         hostiles.len() as u32,
     );
