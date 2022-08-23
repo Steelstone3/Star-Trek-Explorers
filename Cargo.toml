@@ -2,7 +2,7 @@
 name = "star_trek_explorers"
 version = "0.1.0"
 authors = ["Skippy <steelstone3@gmail.com>"]
-edition = "2018"
+edition = "2021"
 homepage = "https://github.com/Steelstone3/Star-Trek-Explorers"
 repository = "https://github.com/Steelstone3/Star-Trek-Explorers"
 license = "GPLv3"
