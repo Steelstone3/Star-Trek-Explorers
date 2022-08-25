@@ -1,4 +1,4 @@
-use crate::models::federation_ship::FederationShip;
+use controllers::game_state::start_state;
 
 mod assests;
 mod controllers;
@@ -7,7 +7,5 @@ mod presenters;
 mod states;
 
 fn main() {
-    // start_state()
-
-    FederationShip::new();
+    start_state();
 }

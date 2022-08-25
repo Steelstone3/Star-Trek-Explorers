@@ -1,4 +1,4 @@
-use super::ship_status::ShipStatus;
+use super::ship_status::ShipSystems;
 use crate::assests::{
     faction_names::Faction, federation_ship_classification_names::FederationShipClassification,
     federation_ship_names::FederationShipName,
@@ -11,7 +11,7 @@ pub struct FederationShip {
     pub name: FederationShipName,
     pub faction: Faction,
     pub class: FederationShipClassification,
-    pub systems: ShipStatus,
+    pub systems: ShipSystems,
 }
 
 impl FederationShip {
@@ -20,8 +20,23 @@ impl FederationShip {
             name: random(),
             class: random(),
             faction: Faction::FederationOfPlanets,
-            systems: random(),
+            systems: ShipSystems::default(),
         }
+    }
+
+    pub fn status(&self) {
+        println!(
+            "Scanning Ship...\nName: {} Faction: {} Class: {}",
+            self.name, self.faction, self.class
+        );
+    }
+
+    pub fn defensive_status(&self) {
+        Self::status(self);
+        println!(
+            "Shield strength: {} Hull integrity: {}\n",
+            self.systems.shield_strength, self.systems.hull_integrity
+        )
     }
 }
 
@@ -41,5 +56,18 @@ mod federation_ship_should {
             Faction::FederationOfPlanets,
             FederationShip::default().faction
         );
+    }
+
+    #[test]
+    fn have_default_ship_systems() {
+        let ship_systems = FederationShip::default().systems;
+        let default = ShipSystems::default();
+
+        assert_eq!(ship_systems.shield_strength, default.shield_strength);
+        assert_eq!(ship_systems.hull_integrity, default.hull_integrity);
+        assert_eq!(ship_systems.phaser_max_damage, default.phaser_max_damage);
+        assert_eq!(ship_systems.phaser_min_damage, default.phaser_min_damage);
+        assert_eq!(ship_systems.torpedo_max_damage, default.torpedo_max_damage);
+        assert_eq!(ship_systems.torpedo_min_damage, default.torpedo_min_damage);
     }
 }
