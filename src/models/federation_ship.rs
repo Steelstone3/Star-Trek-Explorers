@@ -1,7 +1,8 @@
-use crate::assests::faction_names::Faction;
-use crate::assests::federation_ship_classification_names::FederationShipClassification;
-use crate::assests::federation_ship_names::FederationShipName;
-use crate::models::ship_systems::ShipSystems;
+use super::ship_status::ShipStatus;
+use crate::assests::{
+    faction_names::Faction, federation_ship_classification_names::FederationShipClassification,
+    federation_ship_names::FederationShipName,
+};
 use rand::random;
 use rand_derive2::RandGen;
 
@@ -10,7 +11,7 @@ pub struct FederationShip {
     pub name: FederationShipName,
     pub faction: Faction,
     pub class: FederationShipClassification,
-    pub systems: ShipSystems,
+    pub systems: ShipStatus,
 }
 
 impl FederationShip {
@@ -33,8 +34,12 @@ impl Default for FederationShip {
 #[cfg(test)]
 mod federation_ship_should {
     use super::*;
+
     #[test]
     fn be_part_of_the_federation_of_planets_faction() {
-        assert_eq!(Faction::FederationOfPlanets, FederationShip::new().faction);
+        assert_eq!(
+            Faction::FederationOfPlanets,
+            FederationShip::default().faction
+        );
     }
 }
