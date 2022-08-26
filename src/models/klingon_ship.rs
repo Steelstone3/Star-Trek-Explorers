@@ -1,6 +1,9 @@
+use std::fmt::Display;
+
 use super::ship_status::ShipSystems;
 use crate::assests::{
-    faction_names::Faction, klingon_ship_names::KlingonShipName, klingon_ship_classification::KlingonShipClassification
+    faction_names::Faction, klingon_ship_classification::KlingonShipClassification,
+    klingon_ship_names::KlingonShipName,
 };
 use rand::random;
 use rand_derive2::RandGen;
@@ -22,6 +25,13 @@ impl KlingonShip {
             systems: ShipSystems::default(),
         }
     }
+
+    pub fn credentials(&self) -> String {
+        format!(
+            "Scanning Ship...\n  | Name: {} | Faction: {} | Class: {} |",
+            self.name, self.faction, self.class
+        )
+    }
 }
 
 impl Default for KlingonShip {
@@ -36,10 +46,7 @@ mod federation_ship_should {
 
     #[test]
     fn be_part_of_the_klingon_empire_faction() {
-        assert_eq!(
-            Faction::KlingonEmpire,
-            KlingonShip::default().faction
-        );
+        assert_eq!(Faction::KlingonEmpire, KlingonShip::default().faction);
     }
 
     #[test]
