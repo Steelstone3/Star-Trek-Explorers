@@ -17,7 +17,7 @@ impl Display for Faction {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             Faction::FederationOfPlanets => {
-                write!(formatter, "Federation Of Planets",)
+                write!(formatter, "United Federation Of Planets",)
             }
 
             Faction::FerengiAlliance => {

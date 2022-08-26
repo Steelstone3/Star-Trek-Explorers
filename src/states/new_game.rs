@@ -1,13 +1,13 @@
-use crate::models::federation_ship::FederationShip;
-
 use super::game::Game;
+use crate::models::federation_ship::FederationShip;
 
 pub struct NewGame;
 
 impl Game<NewGame> {
     pub fn new() -> Self {
         println!("New game started...\n");
-        
+        println!("Welcome to the United Federation of Planets Captain. This is your first command so I expect you to take good care of your ship out there.\n");
+
         let game = Game {
             state: NewGame,
             player_ship: FederationShip::default(),
@@ -15,7 +15,7 @@ impl Game<NewGame> {
             klingon_ships: vec![],
         };
 
-        game.player_ship.defensive_status();
+        game.player_ship.overall_capabilities();
 
         game
     }

@@ -24,17 +24,29 @@ impl FederationShip {
         }
     }
 
-    pub fn status(&self) {
+    pub fn credentials(&self) {
         println!(
-            "Scanning Ship...\nName: {} Faction: {} Class: {}",
+            "Displaying Ship Credentials...\n  | Name: {} | Faction: {} | Class: {} |",
             self.name, self.faction, self.class
         );
     }
 
-    pub fn defensive_status(&self) {
-        Self::status(self);
+    pub fn overall_capabilities(&self) {
+        Self::credentials(self);
+        Self::offensive_capabilities(self);
+        Self::defensive_capabilities(self);
+    }
+    
+    pub fn offensive_capabilities(&self) {
         println!(
-            "Shield strength: {} Hull integrity: {}\n",
+            "Displaying Ship's Offensive Capabilities...\n  | Phaser damage (max): {} | Torpedo damage (max): {} |",
+            self.systems.phaser_max_damage, self.systems.torpedo_max_damage
+        )
+    }
+
+    pub fn defensive_capabilities(&self) {
+        println!(
+            "Displaying Ship's Defensive Capabilities...\n  | Shield strength: {} | Hull integrity: {} |",
             self.systems.shield_strength, self.systems.hull_integrity
         )
     }
