@@ -4,7 +4,7 @@ pub struct GameOver;
 
 impl From<Game<Combat>> for Game<GameOver> {
     fn from(state: Game<Combat>) -> Game<GameOver> {
-        println!("Game over!");
+        println!("\nGame over!");
         Game {
             state: GameOver,
             player_ship: state.player_ship,

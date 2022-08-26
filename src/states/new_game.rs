@@ -1,12 +1,12 @@
 use super::game::Game;
-use crate::models::federation_ship::FederationShip;
+use crate::{models::federation_ship::FederationShip};
 
 pub struct NewGame;
 
 impl Game<NewGame> {
     pub fn new() -> Self {
-        println!("New game started...\n");
-        println!("Welcome to the United Federation of Planets Captain. This is your first command so I expect you to take good care of your ship out there.\n");
+        println!("\nNew game started...");
+        println!("\nWelcome to the United Federation of Planets Captain. This is your first command so I expect you to take good care of your ship out there.\n");
 
         let game = Game {
             state: NewGame,
