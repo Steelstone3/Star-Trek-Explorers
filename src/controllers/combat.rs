@@ -6,15 +6,15 @@ use crate::{
 };
 
 pub fn enter_combat(player: &mut FederationShip) {
-    let mut federation_ships = generate_federation_ships(get_random_number_from_range(0, 5) as u32);
-    let mut klingon_ships = generate_klingon_ships(get_random_number_from_range(1, 10) as u32);
+    let _federation_ships = generate_federation_ships(get_random_number_from_range(0, 5) as u32);
+    let klingon_ships = generate_klingon_ships(get_random_number_from_range(1, 10) as u32);
 
     player_turn(player, klingon_ships);
     federation_turn();
     klingon_turn();
 }
 
-fn player_turn(player: &FederationShip, klingon_ships: Vec<KlingonShip>) {
+fn player_turn(_player: &FederationShip, klingon_ships: Vec<KlingonShip>) {
     
     let mut klingon_ship_names=Vec::new();
 

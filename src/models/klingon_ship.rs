@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 use super::ship_status::ShipSystems;
 use crate::assests::{
     faction_names::Faction, klingon_ship_classification::KlingonShipClassification,

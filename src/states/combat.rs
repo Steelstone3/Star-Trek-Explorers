@@ -1,14 +1,13 @@
-use crate::controllers::{encounters::{federation_encounter::generate_federation_ships, klingon_encounter::generate_klingon_ships}, random_number::get_random_number_from_range, combat::enter_combat};
-
 use super::{
     galaxy_exploration::GalaxyExploration, game::Game, planet_exploration::PlanetExploration,
 };
+use crate::controllers::combat::enter_combat;
 
 pub struct Combat;
 
 impl From<Game<GalaxyExploration>> for Game<Combat> {
     fn from(state: Game<GalaxyExploration>) -> Game<Combat> {
-        let mut game =Game {
+        let mut game = Game {
             state: Combat,
             player_ship: state.player_ship,
             federation_ships: state.federation_ships,
@@ -38,9 +37,7 @@ impl From<Game<PlanetExploration>> for Game<Combat> {
 
 fn start_combat(game: &mut Game<Combat>) {
     if !game.klingon_ships.is_empty() {
-        enter_combat(
-            &mut game.player_ship,
-        );
+        enter_combat(&mut game.player_ship);
     }
 }
 
