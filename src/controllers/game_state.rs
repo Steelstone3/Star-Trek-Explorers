@@ -1,9 +1,8 @@
-use crate::states::game::Game;
+use crate::states::{game::Game, galaxy_exploration::{GalaxyExploration}, combat::Combat, game_over::GameOver};
 
 pub fn start_state() {
-    let _new_game = Game::new();
-    
-    // let planet_combat = Game::<Combat>::from(planet_exploration_1);
-    
-    // let _game_over = Game::<GameOver>::from(planet_combat);
+    let new_game = Game::new();
+    let galaxy_exploration = Game::<GalaxyExploration>::from(new_game);
+    let combat = Game::<Combat>::from(galaxy_exploration);
+    let _game_over = Game::<GameOver>::from(combat);
 }
