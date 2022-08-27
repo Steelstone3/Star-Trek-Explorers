@@ -1,5 +1,12 @@
 use rand_derive2::RandGen;
 
+const SHIELD_STRENGTH: u32 = 100;
+const HULL_INTEGRITY: u32 = 100;
+const PHASER_MAX_DAMAGE: u32 = 5;
+const PHASER_MIN_DAMAGE: u32 = 1;
+const TORPEDO_MAX_DAMAGE: u32 = 5;
+const TORPEDO_MIN_DAMAGE: u32 = 1;
+
 #[derive(RandGen)]
 pub struct ShipSystems {
     pub shield_strength: u32,
@@ -13,12 +20,12 @@ pub struct ShipSystems {
 impl ShipSystems {
     pub fn new() -> Self {
         ShipSystems {
-            shield_strength: 100,
-            hull_integrity: 100,
-            phaser_max_damage: 10,
-            phaser_min_damage: 1,
-            torpedo_max_damage: 10,
-            torpedo_min_damage: 1,
+            shield_strength: SHIELD_STRENGTH,
+            hull_integrity: HULL_INTEGRITY,
+            phaser_max_damage: PHASER_MAX_DAMAGE,
+            phaser_min_damage: PHASER_MIN_DAMAGE,
+            torpedo_max_damage: TORPEDO_MAX_DAMAGE,
+            torpedo_min_damage: TORPEDO_MIN_DAMAGE,
         }
     }
 }
@@ -45,7 +52,7 @@ mod ship_systems_should {
 
     #[test]
     fn have_a_maximum_default_phaser_damage() {
-        assert_eq!(10, ShipSystems::default().phaser_max_damage);
+        assert_eq!(5, ShipSystems::default().phaser_max_damage);
     }
 
     #[test]
@@ -55,7 +62,7 @@ mod ship_systems_should {
 
     #[test]
     fn have_a_maximum_default_torpedo_damage() {
-        assert_eq!(10, ShipSystems::default().torpedo_max_damage);
+        assert_eq!(5, ShipSystems::default().torpedo_max_damage);
     }
 
     #[test]

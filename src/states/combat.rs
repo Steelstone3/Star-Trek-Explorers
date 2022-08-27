@@ -12,7 +12,7 @@ impl From<Game<GalaxyExploration>> for Game<Combat> {
             player_ship: state.player_ship,
             ally_ships: state.ally_ships,
             neutral_ships: state.neutral_ships,
-            hostile_ships: state.hostile_ships
+            hostile_ships: state.hostile_ships,
         };
 
         start_combat(&mut game);
@@ -28,7 +28,7 @@ impl From<Game<PlanetExploration>> for Game<Combat> {
             player_ship: state.player_ship,
             ally_ships: state.ally_ships,
             neutral_ships: state.neutral_ships,
-            hostile_ships: state.hostile_ships
+            hostile_ships: state.hostile_ships,
         };
 
         start_combat(&mut game);

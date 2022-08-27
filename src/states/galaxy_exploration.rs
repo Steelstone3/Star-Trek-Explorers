@@ -10,7 +10,7 @@ impl From<Game<NewGame>> for Game<GalaxyExploration> {
             player_ship: state.player_ship,
             ally_ships: state.ally_ships,
             neutral_ships: state.neutral_ships,
-            hostile_ships: state.hostile_ships
+            hostile_ships: state.hostile_ships,
         }
     }
 }
@@ -22,7 +22,7 @@ impl From<Game<Combat>> for Game<GalaxyExploration> {
             player_ship: state.player_ship,
             ally_ships: state.ally_ships,
             neutral_ships: state.neutral_ships,
-            hostile_ships: state.hostile_ships
+            hostile_ships: state.hostile_ships,
         }
     }
 }
