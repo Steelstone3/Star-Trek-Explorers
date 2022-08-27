@@ -1,10 +1,10 @@
-use crate::models::{klingon_ship::KlingonShip};
+use crate::models::ship::Ship;
 
-pub fn generate_klingon_ships(quantity: u32) -> Vec<KlingonShip>{
+pub fn generate_klingon_ships(quantity: u32) -> Vec<Ship> {
     let mut klingon_ships = vec![];
 
     for _ in 0..quantity {
-        klingon_ships.push(KlingonShip::default());
+        klingon_ships.push(Ship::create_klingon_ship());
     }
 
     klingon_ships

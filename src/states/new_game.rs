@@ -1,5 +1,5 @@
 use super::game::Game;
-use crate::{models::federation_ship::FederationShip};
+use crate::models::ship::Ship;
 
 pub struct NewGame;
 
@@ -10,9 +10,10 @@ impl Game<NewGame> {
 
         let game = Game {
             state: NewGame,
-            player_ship: FederationShip::default(),
-            federation_ships: vec![],
-            klingon_ships: vec![],
+            player_ship: Ship::create_federation_ship(),
+            ally_ships: vec![],
+            neutral_ships: vec![],
+            hostile_ships: vec![],
         };
 
         game.player_ship.overall_capabilities();

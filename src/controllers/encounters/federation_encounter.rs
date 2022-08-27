@@ -1,10 +1,10 @@
-use crate::models::federation_ship::FederationShip;
+use crate::models::ship::Ship;
 
-pub fn generate_federation_ships(quantity: u32) -> Vec<FederationShip>{
+pub fn generate_federation_ships(quantity: u32) -> Vec<Ship> {
     let mut federation_ships = vec![];
 
     for _ in 0..quantity {
-        federation_ships.push(FederationShip::default());
+        federation_ships.push(Ship::create_federation_ship());
     }
 
     federation_ships
