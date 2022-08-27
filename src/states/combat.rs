@@ -36,9 +36,7 @@ impl From<Game<PlanetExploration>> for Game<Combat> {
 }
 
 fn start_combat(game: &mut Game<Combat>) {
-    if !game.klingon_ships.is_empty() {
-        enter_combat(&mut game.player_ship);
-    }
+    enter_combat(&mut game.player_ship);
 }
 
 // fn enter_combat(player_ship: &mut FederationShip, federation_ships: &[FederationShip], klingon_ships: &[KlingonShip]) -> _ {

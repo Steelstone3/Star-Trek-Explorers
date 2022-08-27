@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use super::ship_status::ShipSystems;
 use crate::assests::{
     faction_names::Faction, klingon_ship_classification::KlingonShipClassification,
@@ -30,11 +32,24 @@ impl KlingonShip {
             self.name, self.faction, self.class
         )
     }
+
+    pub fn defensive_capabilities(&self) -> String {
+        format!(
+            "| Name: {} | Faction: {} | Class: {} | Shield strength: {} | Hull integrity: {} |",
+            self.name, self.faction, self.class, self.systems.shield_strength, self.systems.hull_integrity
+        )
+    }
 }
 
 impl Default for KlingonShip {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+impl Display for KlingonShip {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.defensive_capabilities() )
     }
 }
 
