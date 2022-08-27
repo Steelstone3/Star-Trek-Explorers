@@ -1,5 +1,4 @@
 use std::fmt::Display;
-
 use super::ship_status::ShipSystems;
 use crate::assests::{
     faction_names::Faction, klingon_ship_classification::KlingonShipClassification,
@@ -54,7 +53,7 @@ impl Display for KlingonShip {
 }
 
 #[cfg(test)]
-mod federation_ship_should {
+mod klingon_ship_should {
     use super::*;
 
     #[test]
