@@ -16,45 +16,27 @@ impl Display for FederationShipClassification {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             FederationShipClassification::Defiant => {
-                write!(
-                    formatter,
-                    "{}", display_ship_class("Defiant")
-                )
+                write!(formatter, "{}", display_ship_class("Defiant"))
             }
 
             FederationShipClassification::Intrepid => {
-                write!(
-                    formatter,
-                    "{}", display_ship_class("Intrepid")
-                )
+                write!(formatter, "{}", display_ship_class("Intrepid"))
             }
 
             FederationShipClassification::Consitution => {
-                write!(
-                    formatter,
-                    "{}", display_ship_class("Consitution")
-                )
+                write!(formatter, "{}", display_ship_class("Consitution"))
             }
 
             FederationShipClassification::Ambassador => {
-                write!(
-                    formatter,
-                    "{}", display_ship_class("Ambassador")
-                )
+                write!(formatter, "{}", display_ship_class("Ambassador"))
             }
 
             FederationShipClassification::Galaxy => {
-                write!(
-                    formatter,
-                    "{}", display_ship_class("Galaxy")
-                )
+                write!(formatter, "{}", display_ship_class("Galaxy"))
             }
 
             FederationShipClassification::Sovereign => {
-                write!(
-                    formatter,
-                    "{}", display_ship_class("Sovereign")
-                )
+                write!(formatter, "{}", display_ship_class("Sovereign"))
             }
         }
     }

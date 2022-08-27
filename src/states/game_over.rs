@@ -8,8 +8,9 @@ impl From<Game<Combat>> for Game<GameOver> {
         Game {
             state: GameOver,
             player_ship: state.player_ship,
-            federation_ships: state.federation_ships,
-            klingon_ships: state.klingon_ships,
+            ally_ships: state.ally_ships,
+            neutral_ships: state.neutral_ships,
+            hostile_ships: state.hostile_ships,
         }
     }
 }

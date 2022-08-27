@@ -1,5 +1,5 @@
 use crate::{
-    presenters::presenter::{menu_of, confirmation},
+    presenters::presenter::{confirmation, menu_of},
     states::{
         combat::Combat, galaxy_exploration::GalaxyExploration, game::Game, game_over::GameOver,
     },

@@ -1,8 +1,9 @@
-use crate::models::{federation_ship::FederationShip, klingon_ship::KlingonShip};
+use crate::models::ship::Ship;
 
-pub struct Game <State>{
+pub struct Game<State> {
     pub state: State,
-    pub player_ship: FederationShip,
-    pub federation_ships: Vec<FederationShip>,
-    pub klingon_ships: Vec<KlingonShip>,
+    pub player_ship: Ship,
+    pub ally_ships: Vec<Ship>,
+    pub neutral_ships: Vec<Ship>,
+    pub hostile_ships: Vec<Ship>,
 }

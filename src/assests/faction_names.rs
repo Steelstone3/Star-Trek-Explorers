@@ -2,8 +2,7 @@ use rand_derive2::RandGen;
 use std::fmt::Display;
 use std::fmt::Formatter;
 
-#[derive(RandGen)]
-#[derive(PartialEq, Debug)]
+#[derive(RandGen, PartialEq, Debug)]
 pub enum Faction {
     FederationOfPlanets,
     FerengiAlliance,

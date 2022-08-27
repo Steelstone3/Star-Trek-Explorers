@@ -10,8 +10,9 @@ impl From<Game<GalaxyExploration>> for Game<Combat> {
         let mut game = Game {
             state: Combat,
             player_ship: state.player_ship,
-            federation_ships: state.federation_ships,
-            klingon_ships: state.klingon_ships,
+            ally_ships: state.ally_ships,
+            neutral_ships: state.neutral_ships,
+            hostile_ships: state.hostile_ships,
         };
 
         start_combat(&mut game);
@@ -25,8 +26,9 @@ impl From<Game<PlanetExploration>> for Game<Combat> {
         let mut game = Game {
             state: Combat,
             player_ship: state.player_ship,
-            federation_ships: state.federation_ships,
-            klingon_ships: state.klingon_ships,
+            ally_ships: state.ally_ships,
+            neutral_ships: state.neutral_ships,
+            hostile_ships: state.hostile_ships,
         };
 
         start_combat(&mut game);
