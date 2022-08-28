@@ -1,7 +1,7 @@
 use super::{
     galaxy_exploration::GalaxyExploration, game::Game, planet_exploration::PlanetExploration,
 };
-use crate::controllers::combat::enter_combat;
+use crate::controllers::combat::shared::enter_combat;
 
 pub struct Combat;
 

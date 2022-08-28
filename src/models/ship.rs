@@ -14,7 +14,7 @@ const SHIELD_DAMAGE_MODIFIER_MIN: u32 = 1;
 const HULL_DAMAGE_MODIFIER_MAX: u32 = 5;
 const HULL_DAMAGE_MODIFIER_MIN: u32 = 1;
 
-#[derive(RandGen)]
+#[derive(RandGen, PartialEq, Clone)]
 pub struct Ship {
     pub name: String,
     pub faction: Faction,
