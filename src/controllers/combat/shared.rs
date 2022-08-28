@@ -34,12 +34,19 @@ pub fn damage_ship(weapon_selection: &str, attacking_ship: &Ship, defending_ship
     println!("{}", defending_ship.defensive_capabilities())
 }
 
+pub fn remove_critically_damaged_ships(ship: &Ship, ships: &mut Vec<Ship>) {
+    if ship.systems.hull_integrity == 0 {
+        ships.retain(|x| x != ship);
+    }
+}
+
 // pub fn federation_turn() {}
 
 // pub fn klingon_turn() {}
 
 #[cfg(test)]
 mod combat_should {
+    use crate::{assests::faction_names::Faction, models::ship_status::ShipSystems};
     use super::*;
 
     #[test]
@@ -60,5 +67,27 @@ mod combat_should {
 
         assert_eq!(74, defending_ship.systems.shield_strength);
         assert_eq!(100, defending_ship.systems.hull_integrity);
+    }
+
+    #[test]
+    fn remove_ship_when_it_is_critically_damaged() {
+        let mut ships = generate_federation_ships(3);
+        let critically_damaged_ship = Ship{
+            name: "Nimitz".to_string(),
+            faction: Faction::FederationOfPlanets,
+            class: "Galaxy Class".to_string(),
+            systems: ShipSystems{
+                shield_strength: 0,
+                hull_integrity: 0,
+                phaser_max_damage: 0,
+                phaser_min_damage: 0,
+                torpedo_max_damage: 0,
+                torpedo_min_damage: 0,
+            },
+        };
+        
+        remove_critically_damaged_ships(&critically_damaged_ship, &mut ships);
+
+        assert_eq!(3, ships.len());
     }
 }

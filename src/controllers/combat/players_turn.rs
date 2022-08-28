@@ -3,20 +3,13 @@ use crate::{
     presenters::presenter::{menu_of, select_ship},
 };
 
-use super::shared::{damage_ship, PHASERS_WEAPON_SELECTION, TORPEDOS_WEAPON_SELECTION};
+use super::shared::{damage_ship, PHASERS_WEAPON_SELECTION, TORPEDOS_WEAPON_SELECTION, remove_critically_damaged_ships};
 
 pub fn player_turn(player: &mut Ship, hostile_ships: &mut Vec<Ship>) {
     player.overall_capabilities();
     let mut hostile_ship_target = select_hostile_target(hostile_ships.to_vec());
     select_weapon_system(player, &mut hostile_ship_target);
-
-    if hostile_ship_target.systems.hull_integrity == 0 {
-       
-        // let mut xs = vec![1, 2, 3];
-        // let some_x = 2;
-        hostile_ships.retain(|x| x != &hostile_ship_target);
-        // println!("{:?}", hostile_ships); // prints [1, 3]
-    }
+    remove_critically_damaged_ships(&hostile_ship_target, hostile_ships);
 }
 
 fn select_hostile_target(hostile_ships: Vec<Ship>) -> Ship {
