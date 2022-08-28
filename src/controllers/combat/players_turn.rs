@@ -3,7 +3,10 @@ use crate::{
     presenters::presenter::{menu_of, select_ship},
 };
 
-use super::shared::{damage_ship, PHASERS_WEAPON_SELECTION, TORPEDOS_WEAPON_SELECTION, remove_critically_damaged_ships};
+use super::shared::{
+    damage_ship, remove_critically_damaged_ships, PHASERS_WEAPON_SELECTION,
+    TORPEDOS_WEAPON_SELECTION,
+};
 
 pub fn player_turn(player: &mut Ship, hostile_ships: &mut Vec<Ship>) {
     player.overall_capabilities();

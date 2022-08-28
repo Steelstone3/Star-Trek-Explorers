@@ -17,7 +17,7 @@ pub fn enter_combat(player: &mut Ship) {
     let _federation_ships = generate_federation_ships(get_random_number_from_range(0, 5) as u32);
     let mut hostile_ships = generate_klingon_ships(get_random_number_from_range(1, 10) as u32);
 
-    while player.systems.hull_integrity != 0  {
+    while player.systems.hull_integrity != 0 {
         player_turn(player, &mut hostile_ships);
         // federation_turn();
         // klingon_turn();
@@ -46,8 +46,14 @@ pub fn remove_critically_damaged_ships(ship: &Ship, ships: &mut Vec<Ship>) {
 
 #[cfg(test)]
 mod combat_should {
-    use crate::{assests::{faction_names::Faction, ship_names::ShipName, ship_classification_names::ShipClassification}, models::ship_status::ShipSystems};
     use super::*;
+    use crate::{
+        assests::{
+            faction_names::Faction, ship_classification_names::ShipClassification,
+            ship_names::ShipName,
+        },
+        models::ship_status::ShipSystems,
+    };
 
     #[test]
     fn allowing_attacking_ship_to_damage_defending_ship() {
@@ -72,11 +78,11 @@ mod combat_should {
     #[test]
     fn remove_ship_when_it_is_critically_damaged() {
         let mut ships = generate_federation_ships(3);
-        let critically_damaged_ship = Ship{
+        let critically_damaged_ship = Ship {
             name: ShipName::generate_random(),
             faction: Faction::FederationOfPlanets,
             class: ShipClassification::generate_random(),
-            systems: ShipSystems{
+            systems: ShipSystems {
                 shield_strength: 0,
                 hull_integrity: 0,
                 phaser_max_damage: 0,
@@ -85,7 +91,7 @@ mod combat_should {
                 torpedo_min_damage: 0,
             },
         };
-        
+
         remove_critically_damaged_ships(&critically_damaged_ship, &mut ships);
 
         assert_eq!(3, ships.len());

@@ -33,7 +33,7 @@ impl Display for ShipClassification {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             ShipClassification::Defiant => {
-                write!(formatter, "{}", "Defiant Class")
+                write!(formatter, "Defiant Class")
             }
 
             ShipClassification::Intrepid => {
@@ -41,19 +41,19 @@ impl Display for ShipClassification {
             }
 
             ShipClassification::Consitution => {
-                write!(formatter, "{}", "Consitution Class")
+                write!(formatter, "Consitution Class")
             }
 
             ShipClassification::Ambassador => {
-                write!(formatter, "{}", "Ambassador Class")
+                write!(formatter, "Ambassador Class")
             }
 
             ShipClassification::Galaxy => {
-                write!(formatter, "{}", "Galaxy Class")
+                write!(formatter, "Galaxy Class")
             }
 
             ShipClassification::Sovereign => {
-                write!(formatter, "{}", "Sovereign Class")
+                write!(formatter, "Sovereign Class")
             }
 
             ShipClassification::BirdOfPrey => {

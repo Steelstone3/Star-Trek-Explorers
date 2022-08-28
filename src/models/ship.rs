@@ -1,8 +1,10 @@
 use super::ship_status::ShipSystems;
 use crate::assests::{
     faction_names::Faction,
-    ship_classification_names::{ShipClassification, FEDERATION_SHIP_CLASSIFICATIONS, KLINGON_SHIP_CLASSIFICATIONS},
-    ship_names::{ShipName, KLINGON_SHIP_NAMES, FEDERATION_SHIP_NAMES},
+    ship_classification_names::{
+        ShipClassification, FEDERATION_SHIP_CLASSIFICATIONS, KLINGON_SHIP_CLASSIFICATIONS,
+    },
+    ship_names::{ShipName, FEDERATION_SHIP_NAMES, KLINGON_SHIP_NAMES},
 };
 use rand_derive2::RandGen;
 use std::fmt::Display;
@@ -25,7 +27,9 @@ impl Ship {
         Ship {
             name: generate_random_faction_specific_ship_name(&FEDERATION_SHIP_NAMES),
             faction: Faction::FederationOfPlanets,
-            class: generate_random_faction_specific_ship_classifiation(&FEDERATION_SHIP_CLASSIFICATIONS),
+            class: generate_random_faction_specific_ship_classifiation(
+                &FEDERATION_SHIP_CLASSIFICATIONS,
+            ),
             systems: ShipSystems::default(),
         }
     }
@@ -34,7 +38,9 @@ impl Ship {
         Ship {
             name: generate_random_faction_specific_ship_name(&KLINGON_SHIP_NAMES),
             faction: Faction::KlingonEmpire,
-            class: generate_random_faction_specific_ship_classifiation(&KLINGON_SHIP_CLASSIFICATIONS),
+            class: generate_random_faction_specific_ship_classifiation(
+                &KLINGON_SHIP_CLASSIFICATIONS,
+            ),
             systems: ShipSystems::default(),
         }
     }
@@ -132,7 +138,9 @@ fn generate_random_faction_specific_ship_name(names: &[ShipName]) -> ShipName {
     ship_name
 }
 
-fn generate_random_faction_specific_ship_classifiation(classifications: &[ShipClassification]) -> ShipClassification {
+fn generate_random_faction_specific_ship_classifiation(
+    classifications: &[ShipClassification],
+) -> ShipClassification {
     let mut ship_classification = ShipClassification::generate_random();
 
     while !classifications.contains(&ship_classification) {
