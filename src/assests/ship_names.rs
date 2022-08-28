@@ -1,4 +1,3 @@
-use crate::controllers::random_number::get_random_number_from_range;
 use rand_derive2::RandGen;
 use std::fmt::Display;
 use std::fmt::Formatter;
@@ -16,9 +15,6 @@ const FEDERATION_FACTION_PREFIX: &str = "USS";
 
 pub const KLINGON_SHIP_NAMES: [ShipName; 3] = [ShipName::Amak, ShipName::Chang, ShipName::BaHwil];
 const KLINGON_FACTION_PREFIX: &str = "IKS";
-
-const LOWEST_SERIAL_NUMBER: u64 = 1000;
-const HIGHEST_SERIAL_NUMBER: u64 = 999999;
 
 #[derive(RandGen, PartialEq, Clone, Copy)]
 pub enum ShipName {
@@ -123,10 +119,5 @@ impl Display for ShipName {
 }
 
 fn display_ship_name(prefix: &str, name: &str) -> String {
-    format!(
-        "{} {} {}",
-        prefix,
-        name,
-        get_random_number_from_range(LOWEST_SERIAL_NUMBER, HIGHEST_SERIAL_NUMBER)
-    )
+    format!("{} {}", prefix, name,)
 }

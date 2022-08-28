@@ -1,14 +1,16 @@
 use super::ship_status::ShipSystems;
-use crate::assests::{
+use crate::{assests::{
     faction_names::Faction,
     ship_classification_names::{
         ShipClassification, FEDERATION_SHIP_CLASSIFICATIONS, KLINGON_SHIP_CLASSIFICATIONS,
     },
     ship_names::{ShipName, FEDERATION_SHIP_NAMES, KLINGON_SHIP_NAMES},
-};
+}, controllers::random_number::get_random_number_from_range};
 use rand_derive2::RandGen;
 use std::fmt::Display;
 
+const LOWEST_SERIAL_NUMBER: u64 = 1000;
+const HIGHEST_SERIAL_NUMBER: u64 = 999999;
 const SHIELD_DAMAGE_MODIFIER_MAX: u32 = 5;
 const SHIELD_DAMAGE_MODIFIER_MIN: u32 = 1;
 const HULL_DAMAGE_MODIFIER_MAX: u32 = 5;
@@ -18,8 +20,10 @@ const HULL_DAMAGE_MODIFIER_MIN: u32 = 1;
 pub struct Ship {
     pub name: ShipName,
     pub faction: Faction,
+    pub serial_number: u64,
     pub class: ShipClassification,
     pub systems: ShipSystems,
+    pub critically_damaged: bool,
 }
 
 impl Ship {
@@ -27,10 +31,12 @@ impl Ship {
         Ship {
             name: generate_random_faction_specific_ship_name(&FEDERATION_SHIP_NAMES),
             faction: Faction::FederationOfPlanets,
+            serial_number: get_random_number_from_range(LOWEST_SERIAL_NUMBER, HIGHEST_SERIAL_NUMBER),
             class: generate_random_faction_specific_ship_classifiation(
                 &FEDERATION_SHIP_CLASSIFICATIONS,
             ),
             systems: ShipSystems::default(),
+            critically_damaged: false,
         }
     }
 
@@ -38,23 +44,26 @@ impl Ship {
         Ship {
             name: generate_random_faction_specific_ship_name(&KLINGON_SHIP_NAMES),
             faction: Faction::KlingonEmpire,
+            serial_number: get_random_number_from_range(LOWEST_SERIAL_NUMBER, HIGHEST_SERIAL_NUMBER),
             class: generate_random_faction_specific_ship_classifiation(
                 &KLINGON_SHIP_CLASSIFICATIONS,
             ),
             systems: ShipSystems::default(),
+            critically_damaged: false,
         }
     }
 
     pub fn credentials(&self) {
         println!(
-            "Scanning Ship...\n  | Name: {} | Faction: {} | Class: {} |",
-            self.name, self.faction, self.class
+            "Scanning Ship...\n  | Name: {} {} | Faction: {} | Class: {} |",
+            self.name, self.serial_number, self.faction, self.class
         );
     }
 
     pub fn overall_capabilities(&self) {
-        println!("Ship Capabilities:\n  | Name: {} | Faction: {} | Class: {} |\nOffensive:\n  Phaser Damage: {} | Torpedo Damage {} |\nDefensive:\n  Shield Strength: {} | Hull Integrity: {} |",
+        println!("Ship Capabilities:\n  | Name: {} {} | Faction: {} | Class: {} |\nOffensive:\n  Phaser Damage: {} | Torpedo Damage {} |\nDefensive:\n  Shield Strength: {} | Hull Integrity: {} |",
             self.name,
+            self.serial_number,
             self.faction,
             self.class,
             self.systems.phaser_max_damage,
@@ -66,8 +75,9 @@ impl Ship {
 
     pub fn offensive_capabilities(&self) -> String {
         format!(
-            "| Name: {} | Faction: {} | Class: {} | Phaser Damage: {} | Torpedo Damage: {} |",
+            "| Name: {} {} | Faction: {} | Class: {} | Phaser Damage: {} | Torpedo Damage: {} |",
             self.name,
+            self.serial_number,
             self.faction,
             self.class,
             self.systems.phaser_max_damage,
@@ -77,8 +87,9 @@ impl Ship {
 
     pub fn defensive_capabilities(&self) -> String {
         format!(
-            "| Name: {} | Faction: {} | Class: {} | Shield Strength: {} | Hull Integrity: {} |",
+            "| Name: {} {} | Faction: {} | Class: {} | Shield Strength: {} | Hull Integrity: {} |",
             self.name,
+            self.serial_number,
             self.faction,
             self.class,
             self.systems.shield_strength,

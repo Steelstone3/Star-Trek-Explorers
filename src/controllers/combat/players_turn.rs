@@ -12,14 +12,14 @@ pub fn player_turn(player: &mut Ship, hostile_ships: &mut Vec<Ship>) {
     player.overall_capabilities();
     let mut hostile_ship_target = select_hostile_target(hostile_ships.to_owned());
     select_weapon_system(player, &mut hostile_ship_target);
-    remove_critically_damaged_ships(&hostile_ship_target, hostile_ships);
+    remove_critically_damaged_ships(&mut hostile_ship_target);
 }
 
 fn select_hostile_target(hostile_ships: Vec<Ship>) -> Ship {
     select_ship("\nSelect Hostile:", hostile_ships)
 }
 
-fn select_weapon_system(player: &mut Ship, hostile_ship_target: &mut Ship) {
+fn select_weapon_system(player: &Ship, hostile_ship_target: &mut Ship) {
     damage_ship(
         menu_of(
             "Select Weapon:",

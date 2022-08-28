@@ -25,18 +25,25 @@ pub fn enter_combat(player: &mut Ship) {
 }
 
 pub fn damage_ship(weapon_selection: &str, attacking_ship: &Ship, defending_ship: &mut Ship) {
-    match weapon_selection {
-        PHASERS_WEAPON_SELECTION => attacking_ship.fire_phasers(defending_ship),
-        TORPEDOS_WEAPON_SELECTION => attacking_ship.fire_torpedoes(defending_ship),
-        _ => panic!("Invalid option"),
-    }
+    if !attacking_ship.critically_damaged {
+        match weapon_selection {
+            PHASERS_WEAPON_SELECTION => attacking_ship.fire_phasers(defending_ship),
+            TORPEDOS_WEAPON_SELECTION => attacking_ship.fire_torpedoes(defending_ship),
+            _ => panic!("Invalid option"),
+        }
 
-    println!("{}", defending_ship.defensive_capabilities())
+        println!("{}", defending_ship.defensive_capabilities())
+    } else {
+        println!(
+            "{} is critically damaged...",
+            attacking_ship.defensive_capabilities()
+        )
+    }
 }
 
-pub fn remove_critically_damaged_ships(ship: &Ship, ships: &mut Vec<Ship>) {
+pub fn remove_critically_damaged_ships(ship: &mut Ship) {
     if ship.systems.hull_integrity == 0 {
-        ships.retain(|x| x != ship);
+        ship.critically_damaged = true;
     }
 }
 
@@ -47,13 +54,6 @@ pub fn remove_critically_damaged_ships(ship: &Ship, ships: &mut Vec<Ship>) {
 #[cfg(test)]
 mod combat_should {
     use super::*;
-    use crate::{
-        assests::{
-            faction_names::Faction, ship_classification_names::ShipClassification,
-            ship_names::ShipName,
-        },
-        models::ship_status::ShipSystems,
-    };
 
     #[test]
     fn allowing_attacking_ship_to_damage_defending_ship() {
@@ -76,24 +76,35 @@ mod combat_should {
     }
 
     #[test]
+    fn do_not_allow_attacking_ship_to_damage_defending_ship_when_critically_damaged() {
+        let mut attacking_ship = Ship::create_federation_ship();
+        attacking_ship.critically_damaged = true;
+        let mut defending_ship = Ship::create_klingon_ship();
+
+        damage_ship(
+            PHASERS_WEAPON_SELECTION,
+            &attacking_ship,
+            &mut defending_ship,
+        );
+        damage_ship(
+            TORPEDOS_WEAPON_SELECTION,
+            &attacking_ship,
+            &mut defending_ship,
+        );
+
+        assert_eq!(100, defending_ship.systems.shield_strength);
+        assert_eq!(100, defending_ship.systems.hull_integrity);
+    }
+
+    #[test]
     fn remove_ship_when_it_is_critically_damaged() {
-        let mut ships = generate_federation_ships(3);
-        let critically_damaged_ship = Ship {
-            name: ShipName::generate_random(),
-            faction: Faction::FederationOfPlanets,
-            class: ShipClassification::generate_random(),
-            systems: ShipSystems {
-                shield_strength: 0,
-                hull_integrity: 0,
-                phaser_max_damage: 0,
-                phaser_min_damage: 0,
-                torpedo_max_damage: 0,
-                torpedo_min_damage: 0,
-            },
-        };
+        let mut critically_damaged_ship = Ship::create_federation_ship();
+        critically_damaged_ship.systems.shield_strength = 0;
+        critically_damaged_ship.systems.hull_integrity = 0;
+        critically_damaged_ship.critically_damaged = false;
 
-        remove_critically_damaged_ships(&critically_damaged_ship, &mut ships);
+        remove_critically_damaged_ships(&mut critically_damaged_ship);
 
-        assert_eq!(3, ships.len());
+        assert_eq!(true, critically_damaged_ship.critically_damaged);
     }
 }
