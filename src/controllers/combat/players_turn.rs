@@ -7,7 +7,7 @@ use super::shared::{damage_ship, PHASERS_WEAPON_SELECTION, TORPEDOS_WEAPON_SELEC
 
 pub fn player_turn(player: &mut Ship, hostile_ships: &mut Vec<Ship>) {
     player.overall_capabilities();
-    let mut hostile_ship_target = select_hostile_target(hostile_ships.to_vec());
+    let mut hostile_ship_target = select_hostile_target(hostile_ships.to_owned());
     select_weapon_system(player, &mut hostile_ship_target);
     remove_critically_damaged_ships(&hostile_ship_target, hostile_ships);
 }

@@ -1,42 +1,40 @@
-use std::fmt::Display;
-
 use super::ship_status::ShipSystems;
 use crate::assests::{
-    faction_names::Faction, federation_ship_classification_names::FederationShipClassification,
-    federation_ship_names::FederationShipName,
-    klingon_ship_classification_names::KlingonShipClassification,
-    klingon_ship_names::KlingonShipName,
+    faction_names::Faction,
+    ship_classification_names::{ShipClassification, FEDERATION_SHIP_CLASSIFICATIONS, KLINGON_SHIP_CLASSIFICATIONS},
+    ship_names::{ShipName, KLINGON_SHIP_NAMES, FEDERATION_SHIP_NAMES},
 };
 use rand_derive2::RandGen;
+use std::fmt::Display;
 
 const SHIELD_DAMAGE_MODIFIER_MAX: u32 = 5;
 const SHIELD_DAMAGE_MODIFIER_MIN: u32 = 1;
 const HULL_DAMAGE_MODIFIER_MAX: u32 = 5;
 const HULL_DAMAGE_MODIFIER_MIN: u32 = 1;
 
-#[derive(RandGen, PartialEq, Clone)]
+#[derive(RandGen, PartialEq, Clone, Copy)]
 pub struct Ship {
-    pub name: String,
+    pub name: ShipName,
     pub faction: Faction,
-    pub class: String,
+    pub class: ShipClassification,
     pub systems: ShipSystems,
 }
 
 impl Ship {
     pub fn create_federation_ship() -> Self {
         Ship {
-            name: FederationShipName::generate_random().to_string(),
+            name: generate_random_faction_specific_ship_name(&FEDERATION_SHIP_NAMES),
             faction: Faction::FederationOfPlanets,
-            class: FederationShipClassification::generate_random().to_string(),
+            class: generate_random_faction_specific_ship_classifiation(&FEDERATION_SHIP_CLASSIFICATIONS),
             systems: ShipSystems::default(),
         }
     }
 
     pub fn create_klingon_ship() -> Self {
         Ship {
-            name: KlingonShipName::generate_random().to_string(),
+            name: generate_random_faction_specific_ship_name(&KLINGON_SHIP_NAMES),
             faction: Faction::KlingonEmpire,
-            class: KlingonShipClassification::generate_random().to_string(),
+            class: generate_random_faction_specific_ship_classifiation(&KLINGON_SHIP_CLASSIFICATIONS),
             systems: ShipSystems::default(),
         }
     }
@@ -122,6 +120,26 @@ impl Display for Ship {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(formatter, "{}", self.defensive_capabilities())
     }
+}
+
+fn generate_random_faction_specific_ship_name(names: &[ShipName]) -> ShipName {
+    let mut ship_name = ShipName::generate_random();
+
+    while !names.contains(&ship_name) {
+        ship_name = ShipName::generate_random();
+    }
+
+    ship_name
+}
+
+fn generate_random_faction_specific_ship_classifiation(classifications: &[ShipClassification]) -> ShipClassification {
+    let mut ship_classification = ShipClassification::generate_random();
+
+    while !classifications.contains(&ship_classification) {
+        ship_classification = ShipClassification::generate_random();
+    }
+
+    ship_classification
 }
 
 #[cfg(test)]

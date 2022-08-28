@@ -7,7 +7,7 @@ const PHASER_MIN_DAMAGE: u32 = 1;
 const TORPEDO_MAX_DAMAGE: u32 = 5;
 const TORPEDO_MIN_DAMAGE: u32 = 1;
 
-#[derive(RandGen, Clone, PartialEq)]
+#[derive(RandGen, Clone, Copy, PartialEq)]
 pub struct ShipSystems {
     pub shield_strength: u32,
     pub hull_integrity: u32,
