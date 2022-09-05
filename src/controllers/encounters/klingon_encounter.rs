@@ -12,6 +12,7 @@ pub fn generate_klingon_ships(quantity: u32) -> Vec<Ship> {
 
 #[cfg(test)]
 mod federation_encounter_should {
+    use std::time::{Duration, Instant};
     use super::*;
 
     #[test]
@@ -20,5 +21,15 @@ mod federation_encounter_should {
         let federation_ships = generate_klingon_ships(quantity);
 
         assert_eq!(quantity as usize, federation_ships.len());
+    }
+
+    #[test]
+    fn performance_of_klingon_ship_generation() {
+        let stopwatch = Instant::now();
+
+        let quantity = 1000;
+        generate_klingon_ships(quantity);
+
+        assert!(stopwatch.elapsed() < Duration::from_millis(100))
     }
 }

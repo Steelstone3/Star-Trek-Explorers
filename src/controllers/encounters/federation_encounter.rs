@@ -12,6 +12,8 @@ pub fn generate_federation_ships(quantity: u32) -> Vec<Ship> {
 
 #[cfg(test)]
 mod federation_encounter_should {
+    use std::time::{Instant, Duration};
+
     use super::*;
 
     #[test]
@@ -20,5 +22,15 @@ mod federation_encounter_should {
         let federation_ships = generate_federation_ships(quantity);
 
         assert_eq!(quantity as usize, federation_ships.len());
+    }
+
+    #[test]
+    fn performance_of_federation_ship_generation() {
+        let stopwatch = Instant::now();
+
+        let quantity = 1000;
+        generate_federation_ships(quantity);
+
+        assert!(stopwatch.elapsed() < Duration::from_millis(100))
     }
 }
