@@ -2,7 +2,7 @@ use crate::models::ship::Ship;
 use inquire::{Confirm, Select};
 
 pub fn confirmation(message: &str) -> bool {
-    Confirm::new(message).with_default(true).prompt().is_ok()
+    Confirm::new(message).with_default(true).prompt().unwrap_or_default()
 }
 
 pub fn menu_of(message: &str, menu_items: Vec<String>) -> String {
