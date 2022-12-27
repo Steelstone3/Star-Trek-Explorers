@@ -3,18 +3,11 @@ mod entities;
 mod systems;
 
 use bevy::prelude::*;
+use systems::game_setup::setup_game_sprites;
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(setup)
+        .add_startup_system(setup_game_sprites)
         .run();
-}
-
-fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands.spawn(Camera2dBundle::default());
-    commands.spawn(SpriteBundle {
-        texture: asset_server.load("starship_enterprise_e.png"),
-        ..default()
-    });
 }
