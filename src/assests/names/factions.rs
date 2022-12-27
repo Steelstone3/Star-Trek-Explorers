@@ -1,2 +1,0 @@
-pub mod federation_starship_classification;
-pub mod klingon_starship_classification;
