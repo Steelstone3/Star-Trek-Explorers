@@ -14,5 +14,5 @@ pub fn setup_game_sprites(mut commands: Commands, asset_server: Res<AssetServer>
 }
 
 fn spawn_starship() -> String {
-    Starship::default().sprite.path
+    Starship::new("starship_enterprise_e".to_owned()).sprite.path
 }

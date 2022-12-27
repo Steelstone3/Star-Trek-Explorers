@@ -6,14 +6,14 @@ pub struct Starship {
     hull: Hull,
 }
 
-impl Default for Starship {
-    fn default() -> Self {
+impl Starship {
+    pub fn new(sprite_name: String) -> Self {
         Self {
             sprite: Sprite {
-                path: "starship_enterprise_e.png".to_owned(),
+                path: sprite_name + ".png",
             },
-            shield: Shield {},
-            hull: Hull {},
+            shield: Shield::default(),
+            hull: Hull::default(),
         }
     }
 }
