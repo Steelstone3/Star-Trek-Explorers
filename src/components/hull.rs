@@ -1,3 +1,1 @@
-pub struct Hull {
-    
-}
+pub struct Hull {}
