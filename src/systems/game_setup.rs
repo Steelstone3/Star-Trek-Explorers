@@ -8,11 +8,11 @@ use crate::entities::starship::Starship;
 pub fn setup_game_sprites(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn(Camera2dBundle::default());
     commands.spawn(SpriteBundle {
-        texture: asset_server.load(spawn_starship()),
+        texture: asset_server.load(spawn_player_starship()),
         ..default()
     });
 }
 
-fn spawn_starship() -> String {
-    Starship::new("starship_enterprise_e".to_owned()).sprite.path
+fn spawn_player_starship() -> String {
+    Starship::new(String::from("starship_enterprise_e")).sprite.path
 }
