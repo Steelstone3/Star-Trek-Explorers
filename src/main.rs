@@ -1,11 +1,6 @@
-use controllers::game_state::start_state;
-
-mod assests;
-mod controllers;
-mod models;
+mod components;
+mod entities;
 mod presenters;
-mod states;
+mod systems;
 
-fn main() {
-    start_state();
-}
+fn main() {}
