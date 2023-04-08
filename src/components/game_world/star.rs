@@ -6,7 +6,7 @@ pub struct Star {
 
 impl Default for Star {
     fn default() -> Self {
-        Self { planets: todo!() }
+        Self { planets: vec![Planet::default()] }
     }
 }
 
