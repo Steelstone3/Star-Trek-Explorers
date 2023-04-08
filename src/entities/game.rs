@@ -3,22 +3,12 @@ use super::{
     world::World,
 };
 
+#[derive(Default)]
 pub struct Game {
     pub player_ship: FederationShip,
     pub federation_ships: Vec<FederationShip>,
     pub klingon_ships: Vec<KlingonShip>,
     pub world: World,
-}
-
-impl Default for Game {
-    fn default() -> Self {
-        Self {
-            player_ship: FederationShip::default(),
-            federation_ships: Default::default(),
-            klingon_ships: Default::default(),
-            world: World::default(),
-        }
-    }
 }
 
 #[cfg(test)]

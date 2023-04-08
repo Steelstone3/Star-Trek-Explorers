@@ -7,7 +7,9 @@ pub struct Universe {
 
 impl Default for Universe {
     fn default() -> Self {
-        Self { stars: vec![Star::default()] }
+        Self {
+            stars: vec![Star::default()],
+        }
     }
 }
 

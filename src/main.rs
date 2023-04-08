@@ -3,7 +3,7 @@ use entities::{
     game::Game,
     ships::{federation_ship::FederationShip, ship::Ship},
 };
-use systems::{ship_generation::generate_ships, random_generation::generate_seed};
+use systems::{random_generation::generate_seed, ship_generation::generate_ships};
 
 mod components;
 mod entities;

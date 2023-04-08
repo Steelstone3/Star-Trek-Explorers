@@ -2,14 +2,14 @@ use rand::{rngs::StdRng, Rng, SeedableRng};
 
 pub fn generate_random_value_from_range_u8(seed: u64, min: u8, max: u8) -> u8 {
     let mut rng = StdRng::seed_from_u64(seed);
-    let quantity = rng.gen_range(min..max);
-    quantity
+
+    rng.gen_range(min..max)
 }
 
 pub fn generate_random_value_from_range_u16(seed: u64, min: u16, max: u16) -> u16 {
     let mut rng = StdRng::seed_from_u64(seed);
-    let quantity = rng.gen_range(min..max);
-    quantity
+
+    rng.gen_range(min..max)
 }
 
 pub fn generate_seed() -> u64 {

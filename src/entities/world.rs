@@ -1,14 +1,9 @@
 use crate::components::game_world::universe::Universe;
 
 #[allow(dead_code)]
+#[derive(Default)]
 pub struct World {
     universe: Universe,
-}
-
-impl Default for World {
-    fn default() -> Self {
-        Self { universe: Universe::default() }
-    }
 }
 
 #[cfg(test)]
