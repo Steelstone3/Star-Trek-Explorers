@@ -1,4 +1,4 @@
-use entities::{federation_ship::FederationShip, ship::Ship};
+use entities::ships::{federation_ship::FederationShip, ship::Ship};
 
 mod components;
 mod entities;

@@ -7,11 +7,12 @@ use crate::{
         shield::Shield,
         torpedo::Torpedo,
     },
-    entities::ship::Ship,
     systems::ship_identifier_generation::{generate_random_identifier, generate_seed},
 };
 use rand::random;
 use rand_derive2::RandGen;
+
+use super::ship::Ship;
 
 #[derive(RandGen)]
 pub struct FederationShip {

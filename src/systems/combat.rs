@@ -1,6 +1,12 @@
+pub fn start_combat() {
+    todo!()
+}
+
 #[cfg(test)]
 mod combat_should {
-    #[test]
+    use rstest::rstest;
+
+    #[rstest]
     #[ignore = "not implemented"]
-    fn do_something() {}
+    fn be_able_to_start_combat() {}
 }
