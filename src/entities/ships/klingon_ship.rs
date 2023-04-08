@@ -7,7 +7,7 @@ use crate::{
         shield::Shield,
         torpedo::Torpedo,
     },
-    systems::ship_identifier_generation::{generate_random_identifier, generate_seed},
+    systems::{ship_identifier_generation::{generate_random_identifier}, random_generation::generate_seed},
 };
 use rand::random;
 use rand_derive2::RandGen;

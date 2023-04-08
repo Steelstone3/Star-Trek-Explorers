@@ -1,6 +1,9 @@
 use components::ship::name::faction_name::FactionName;
-use entities::{ships::{federation_ship::FederationShip, ship::Ship}, game::Game};
-use systems::ship_generation::{self, generate_ships};
+use entities::{
+    game::Game,
+    ships::{federation_ship::FederationShip, ship::Ship},
+};
+use systems::{ship_generation::generate_ships, random_generation::generate_seed};
 
 mod components;
 mod entities;
@@ -13,9 +16,9 @@ fn main() {
     game.player_ship = FederationShip::default();
 
     game.player_ship.display_ship_name();
-    
-    generate_ships(&mut game, FactionName::Federation, u8::MAX);
-    generate_ships(&mut game, FactionName::KlingonEmpire, u8::MAX);
+
+    generate_ships(&mut game, FactionName::Federation, generate_seed());
+    generate_ships(&mut game, FactionName::KlingonEmpire, generate_seed());
 
     for ship in game.federation_ships {
         ship.display_ship_name();

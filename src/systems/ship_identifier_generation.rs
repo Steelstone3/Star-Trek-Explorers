@@ -1,9 +1,9 @@
 use crate::components::ship::name::faction_name::FactionName;
-use rand::{rngs::StdRng, Rng, SeedableRng};
+
+use super::random_generation::generate_random_value_from_range_u16;
 
 pub fn generate_random_identifier(seed: u64, faction_name: FactionName) -> String {
-    let mut rng = StdRng::seed_from_u64(seed);
-    let identifier = rng.gen_range(1000..u16::MAX);
+    let identifier = generate_random_value_from_range_u16(seed, 1000, u16::MAX);
 
     match faction_name {
         FactionName::Federation => {
@@ -13,11 +13,6 @@ pub fn generate_random_identifier(seed: u64, faction_name: FactionName) -> Strin
             format!("IKS-{identifier}")
         }
     }
-}
-
-pub fn generate_seed() -> u64 {
-    let mut rng = rand::thread_rng();
-    rng.gen_range(1..u64::MAX)
 }
 
 #[cfg(test)]
