@@ -1,3 +1,5 @@
+// TODO Add name and class
+
 #[derive(Default)]
 pub struct Planet {}
 
