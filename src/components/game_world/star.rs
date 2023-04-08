@@ -12,3 +12,10 @@ impl Default for Star {
         }
     }
 }
+
+#[cfg(test)]
+mod star_should {
+    #[test]
+    #[ignore = "not implemented"]
+    fn do_something() {}
+}

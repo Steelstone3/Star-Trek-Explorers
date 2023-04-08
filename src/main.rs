@@ -1,7 +1,7 @@
 use components::ship::name::faction_name::FactionName;
 use entities::{
     game::Game,
-    ships::{federation_ship::FederationShip, ship::Ship},
+    ships::ship::Ship,
 };
 use systems::{random_generation::generate_seed, ship_generation::generate_ships};
 

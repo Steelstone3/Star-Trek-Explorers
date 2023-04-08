@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn start_combat() {
     todo!()
 }

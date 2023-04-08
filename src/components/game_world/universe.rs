@@ -14,4 +14,8 @@ impl Default for Universe {
 }
 
 #[cfg(test)]
-mod universe_should {}
+mod universe_should {
+    #[test]
+    #[ignore = "not implemented"]
+    fn do_something() {}
+}
