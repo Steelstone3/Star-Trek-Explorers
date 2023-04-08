@@ -52,7 +52,7 @@ impl Ship for KlingonShip {
 }
 
 impl DamageTaker for KlingonShip {
-    fn take_damage(&mut self) {
+    fn take_damage(&mut self, damage: u8) {
         todo!()
     }
 }

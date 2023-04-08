@@ -1,5 +1,5 @@
 pub trait DamageTaker {
-    fn take_damage(&mut self);
+    fn take_damage(&mut self, damage: u8);
 }
 
 pub trait DamageDealer {
