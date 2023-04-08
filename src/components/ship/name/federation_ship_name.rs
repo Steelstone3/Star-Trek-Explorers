@@ -2,7 +2,7 @@ use std::fmt::Display;
 
 use rand_derive2::RandGen;
 
-#[derive(RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub enum FederationShipName {
     Enterprise,
     Defiant,

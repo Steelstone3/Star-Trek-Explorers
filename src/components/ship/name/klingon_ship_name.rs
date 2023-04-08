@@ -1,7 +1,7 @@
 use rand_derive2::RandGen;
 use std::fmt::Display;
 
-#[derive(RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub enum KlingonShipName {
     Amar,
     BMoth,

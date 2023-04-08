@@ -14,7 +14,7 @@ use rand_derive2::RandGen;
 
 use super::ship::Ship;
 
-#[derive(RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub struct FederationShip {
     ship_identifier: String,
     name: FederationShipName,

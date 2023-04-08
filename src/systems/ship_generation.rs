@@ -10,8 +10,8 @@ pub fn generate_ships(faction_name: FactionName) {
 
 #[cfg(test)]
 mod ship_generation_should {
-    use super::*;
-    use rstest::rstest;
+    // use super::*;
+    // use rstest::rstest;
 
     // #[rstest]
     // #[case(FactionName::Federation)]
