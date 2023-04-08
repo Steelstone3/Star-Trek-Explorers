@@ -1,15 +1,26 @@
+use crate::{
+    components::ship::{
+        hull::Hull,
+        name::{faction_name::FactionName, federation_ship_name::FederationShipName},
+        phaser::Phaser,
+        shield::Shield,
+        torpedo::Torpedo,
+    },
+    entities::ship::Ship,
+    systems::ship_identifier_generation::{generate_random_identifier, generate_seed},
+};
 use rand::random;
 use rand_derive2::RandGen;
-use crate::{
-    components::ship::name::{faction_name::FactionName, federation_ship_name::FederationShipName},
-    entities::ship::Ship, systems::ship_identifier_generation::{generate_random_identifier, generate_seed},
-};
 
 #[derive(RandGen)]
 pub struct FederationShip {
     ship_identifier: String,
     name: FederationShipName,
     faction: FactionName,
+    shield: Shield,
+    hull: Hull,
+    phaser: Phaser,
+    torpedo: Torpedo,
 }
 
 impl Default for FederationShip {
@@ -18,6 +29,10 @@ impl Default for FederationShip {
             ship_identifier: generate_random_identifier(generate_seed(), FactionName::Federation),
             name: random(),
             faction: FactionName::Federation,
+            shield: Default::default(),
+            hull: Default::default(),
+            phaser: Default::default(),
+            torpedo: Default::default(),
         }
     }
 }
@@ -43,5 +58,9 @@ mod federation_ship_should {
         // Then
         assert_ne!(String::default(), ship.ship_identifier);
         assert_eq!(FactionName::Federation, ship.faction);
+        assert_eq!(Shield::default(), ship.shield);
+        assert_eq!(Hull::default(), ship.hull);
+        assert_eq!(Phaser::default(), ship.phaser);
+        assert_eq!(Torpedo::default(), ship.torpedo);
     }
 }

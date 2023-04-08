@@ -6,7 +6,7 @@ use rand_derive2::RandGen;
 pub enum FederationShipName {
     Enterprise,
     Defiant,
-    Challenger
+    Challenger,
 }
 
 impl Display for FederationShipName {
