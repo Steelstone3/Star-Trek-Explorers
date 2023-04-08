@@ -1,6 +1,6 @@
 use crate::{
     components::ship::{
-        damage::{self, DamageTaker},
+        damage::DamageTaker,
         hull::Hull,
         name::{faction_name::FactionName, federation_ship_name::FederationShipName},
         phaser::Phaser,
