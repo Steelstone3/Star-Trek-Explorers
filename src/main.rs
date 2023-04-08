@@ -13,8 +13,6 @@ mod systems;
 fn main() {
     let mut game = Game::default();
 
-    game.player_ship = FederationShip::default();
-
     game.player_ship.display_ship_name();
 
     generate_ships(&mut game, FactionName::Federation, generate_seed());
