@@ -3,5 +3,5 @@ pub trait DamageTaker {
 }
 
 pub trait DamageDealer {
-    fn calculate_damage(&self) -> u8;
+    fn calculate_damage(&self, seed: u64) -> u8;
 }
