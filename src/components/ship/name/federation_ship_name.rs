@@ -6,6 +6,7 @@ use rand_derive2::RandGen;
 pub enum FederationShipName {
     Enterprise,
     Defiant,
+    Challenger
 }
 
 impl Display for FederationShipName {
@@ -16,6 +17,9 @@ impl Display for FederationShipName {
             }
             FederationShipName::Defiant => {
                 write!(f, "Defiant")
+            }
+            FederationShipName::Challenger => {
+                write!(f, "Challenger")
             }
         }
     }

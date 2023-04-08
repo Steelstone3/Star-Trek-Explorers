@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(RandGen)]
-struct FederationShip {
+pub struct FederationShip {
     ship_identifier: String,
     name: FederationShipName,
     faction: FactionName,
@@ -25,7 +25,7 @@ impl Default for FederationShip {
 impl Ship for FederationShip {
     fn display_ship_name(&self) {
         println!(
-            "{} - {} | {}",
+            "| Name: {} {} | Faction: {} |",
             self.ship_identifier, self.name, self.faction
         )
     }
