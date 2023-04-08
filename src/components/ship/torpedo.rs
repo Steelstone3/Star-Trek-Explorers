@@ -1,11 +1,15 @@
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen)]
+use super::damage::DamageDealer;
+
+#[derive(PartialEq, Debug, RandGen, Default)]
 pub struct Torpedo {}
 
-impl Default for Torpedo {
-    fn default() -> Self {
-        Self {}
+
+
+impl DamageDealer for Torpedo {
+    fn calculate_damage(&self) -> u8 {
+        todo!()
     }
 }
 

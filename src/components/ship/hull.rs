@@ -1,11 +1,15 @@
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen)]
+use super::damage::DamageTaker;
+
+#[derive(PartialEq, Debug, RandGen, Default)]
 pub struct Hull {}
 
-impl Default for Hull {
-    fn default() -> Self {
-        Self {}
+
+
+impl DamageTaker for Hull {
+    fn take_damage(&mut self) {
+        todo!()
     }
 }
 

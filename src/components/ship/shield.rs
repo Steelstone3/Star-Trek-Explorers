@@ -1,12 +1,14 @@
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen)]
+use super::damage::DamageTaker;
+
+#[derive(PartialEq, Debug, RandGen, Default)]
 pub struct Shield {}
 
-impl Default for Shield {
-    fn default() -> Self {
-        Self {}
-    }
+
+
+impl DamageTaker for Shield {
+    fn take_damage(&mut self) {}
 }
 
 #[cfg(test)]

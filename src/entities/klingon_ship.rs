@@ -1,14 +1,22 @@
 use crate::{
     components::ship::{
-        hull::Hull, name::faction_name::FactionName, phaser::Phaser, shield::Shield,
+        damage::DamageTaker,
+        hull::Hull,
+        name::{faction_name::FactionName, klingon_ship_name::KlingonShipName},
+        phaser::Phaser,
+        shield::Shield,
         torpedo::Torpedo,
     },
     systems::ship_identifier_generation::{generate_random_identifier, generate_seed},
 };
+use rand::random;
 use rand_derive2::RandGen;
+
+use super::ship::Ship;
 
 #[derive(RandGen)]
 pub struct KlingonShip {
+    name: KlingonShipName,
     ship_identifier: String,
     faction: FactionName,
     shield: Shield,
@@ -20,6 +28,7 @@ pub struct KlingonShip {
 impl Default for KlingonShip {
     fn default() -> Self {
         Self {
+            name: random(),
             ship_identifier: generate_random_identifier(
                 generate_seed(),
                 FactionName::KlingonEmpire,
@@ -30,6 +39,21 @@ impl Default for KlingonShip {
             phaser: Phaser::default(),
             torpedo: Torpedo::default(),
         }
+    }
+}
+
+impl Ship for KlingonShip {
+    fn display_ship_name(&self) {
+        println!(
+            "| Name: {} {} | Faction: {} |",
+            self.ship_identifier, self.name, self.faction
+        )
+    }
+}
+
+impl DamageTaker for KlingonShip {
+    fn take_damage(&mut self) {
+        todo!()
     }
 }
 

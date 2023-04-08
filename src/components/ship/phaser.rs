@@ -1,11 +1,15 @@
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen)]
+use super::damage::DamageDealer;
+
+#[derive(PartialEq, Debug, RandGen, Default)]
 pub struct Phaser {}
 
-impl Default for Phaser {
-    fn default() -> Self {
-        Self {}
+
+
+impl DamageDealer for Phaser {
+    fn calculate_damage(&self) -> u8 {
+        todo!()
     }
 }
 

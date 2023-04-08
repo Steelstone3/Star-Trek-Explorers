@@ -1,5 +1,6 @@
 use crate::{
     components::ship::{
+        damage::DamageTaker,
         hull::Hull,
         name::{faction_name::FactionName, federation_ship_name::FederationShipName},
         phaser::Phaser,
@@ -43,6 +44,12 @@ impl Ship for FederationShip {
             "| Name: {} {} | Faction: {} |",
             self.ship_identifier, self.name, self.faction
         )
+    }
+}
+
+impl DamageTaker for FederationShip {
+    fn take_damage(&mut self) {
+        todo!()
     }
 }
 

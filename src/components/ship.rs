@@ -1,3 +1,4 @@
+pub mod damage;
 pub mod hull;
 pub mod name;
 pub mod phaser;
