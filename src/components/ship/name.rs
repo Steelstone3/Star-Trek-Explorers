@@ -1,6 +1,2 @@
-#[cfg(test)]
-mod name_should {
-    #[test]
-    #[ignore = "not implemented"]
-    fn do_something() {}
-}
+pub mod federation_ship_name;
+pub mod klingon_ship_name;
