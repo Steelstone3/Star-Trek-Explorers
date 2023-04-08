@@ -4,9 +4,9 @@ use super::damage::DamageTaker;
 
 #[derive(PartialEq, Debug, RandGen)]
 pub struct Shield {
+    pub current: u8,
     maximum: u8,
     regeneration: u8,
-    current: u8,
 }
 
 impl Default for Shield {

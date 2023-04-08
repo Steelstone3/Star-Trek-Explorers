@@ -49,13 +49,20 @@ impl Ship for FederationShip {
 
 impl DamageTaker for FederationShip {
     fn take_damage(&mut self, damage: u8) {
-        todo!()
+        let current_shield = self.shield.current;
+        self.shield.take_damage(damage);
+
+        if self.shield.current == 0 {
+            let damage_remainder = damage - current_shield;
+            self.hull.take_damage(damage_remainder);
+        }
     }
 }
 
 #[cfg(test)]
 mod federation_ship_should {
     use super::*;
+    use rstest::rstest;
 
     #[test]
     fn create_a_default_ship() {
@@ -69,5 +76,28 @@ mod federation_ship_should {
         assert_eq!(Hull::default(), ship.hull);
         assert_eq!(Phaser::default(), ship.phaser);
         assert_eq!(Torpedo::default(), ship.torpedo);
+    }
+
+    #[rstest]
+    #[case(10, 90, 100)]
+    #[case(100, 0, 100)]
+    #[case(101, 0, 99)]
+    #[case(120, 0, 80)]
+    #[case(200, 0, 0)]
+    #[case(201, 0, 0)]
+    fn take_damage_to_federation_ship(
+        #[case] damage: u8,
+        #[case] current_shields: u8,
+        #[case] current_hull: u8,
+    ) {
+        // Given
+        let mut ship = FederationShip::default();
+
+        // When
+        ship.take_damage(damage);
+
+        // Then
+        assert_eq!(current_shields, ship.shield.current);
+        assert_eq!(current_hull, ship.hull.current);
     }
 }

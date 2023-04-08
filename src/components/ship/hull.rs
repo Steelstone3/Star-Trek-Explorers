@@ -4,7 +4,7 @@ use super::damage::DamageTaker;
 
 #[derive(PartialEq, Debug, RandGen)]
 pub struct Hull {
-    current: u8,
+    pub current: u8,
     maximum: u8,
     repair_rate: u8,
 }
