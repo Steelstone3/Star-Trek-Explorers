@@ -1,3 +1,4 @@
+use super::random_generation::generate_random_value_from_range_u8;
 use crate::{
     components::ship::name::faction_name::FactionName,
     entities::{
@@ -6,11 +7,9 @@ use crate::{
     },
 };
 
-use super::random_generation::generate_random_value_from_range_u8;
-
 pub fn generate_ships(game: &mut Game, faction_name: FactionName, seed: u64) {
-    let mut index = 0;
     let quantity = generate_random_value_from_range_u8(seed, 1, 15);
+    let mut index = 0;
 
     match faction_name {
         FactionName::Federation => {
