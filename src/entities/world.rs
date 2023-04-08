@@ -1,5 +1,6 @@
 use crate::components::game_world::universe::Universe;
 
+#[allow(dead_code)]
 pub struct World {
     universe: Universe,
 }

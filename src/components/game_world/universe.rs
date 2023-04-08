@@ -1,5 +1,6 @@
 use super::star::Star;
 
+#[allow(dead_code)]
 pub struct Universe {
     stars: Vec<Star>,
 }
