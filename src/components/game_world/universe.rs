@@ -1,6 +1,7 @@
 use super::star::Star;
 use crate::systems::{random_generation::generate_seed, star_generation::generate_stars};
 
+// TODO add display universe
 pub struct Universe {
     stars: Vec<Star>,
 }

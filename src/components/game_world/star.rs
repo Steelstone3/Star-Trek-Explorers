@@ -3,6 +3,7 @@ use crate::systems::{planet_generation::generate_planets, random_generation::gen
 use super::planet::Planet;
 
 // TODO add star name and star class
+// TODO add display star
 pub struct Star {
     planets: Vec<Planet>,
 }
