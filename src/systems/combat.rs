@@ -1,6 +1,5 @@
-use crate::entities::ships::ship::Ship;
-
 use super::random_generation::generate_seed;
+use crate::entities::ships::ship::Ship;
 
 pub fn start_combat(player_ship: &mut dyn Ship, hostile_ship: &mut dyn Ship) {
     turn(
@@ -19,9 +18,9 @@ pub fn start_combat(player_ship: &mut dyn Ship, hostile_ship: &mut dyn Ship) {
 
 fn turn(seed: u64, weapon_name: String, attacking_ship: &dyn Ship, defending_ship: &mut dyn Ship) {
     let damage = attacking_ship.calculate_damage_from_weapon(seed, weapon_name);
-    // println!("Damage: {}", damage);
+    println!("Damage: {}", damage);
     defending_ship.take_damage_from_hostile_ship(damage);
-    // defending_ship.display_defensive_capabilities();
+    defending_ship.display_defensive_capabilities();
 }
 
 #[cfg(test)]

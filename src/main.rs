@@ -28,6 +28,5 @@ fn main() {
     println!("{}", game.world.universe);
 
     let mut hostile = KlingonShip::default();
-
     start_combat(&mut game.player_ship, &mut hostile);
 }
