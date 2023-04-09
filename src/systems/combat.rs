@@ -8,6 +8,12 @@
 //     todo!()
 // }
 
+
+// let weapon_name = game.player_ship.select_ship_weapon_type();
+// let damage = game.player_ship.calculate_damage_from_weapon(generate_seed(), weapon_name);
+
+// println!("{}", damage)
+
 #[cfg(test)]
 mod combat_should {
     use rstest::rstest;

@@ -10,6 +10,7 @@ use crate::{
             ship_systems::ShipSystems,
         },
     },
+    presenters::ship_presenter::select_weapon,
     systems::{
         random_generation::generate_seed, ship_identifier_generation::generate_random_identifier,
     },
@@ -80,8 +81,12 @@ impl Ship for KlingonShip {
         )
     }
 
-    fn take_damage_from_hostile_ship(&mut self, damage: u8) {
-        DamageTaker::take_damage(self, damage)
+    fn select_ship_weapon_type(&self) -> String {
+        let weapon_types = vec![
+            self.ship_systems.phaser.to_string(),
+            self.ship_systems.torpedo.to_string(),
+        ];
+        select_weapon(weapon_types)
     }
 
     fn calculate_damage_from_weapon(&self, seed: u64, weapon_name: String) -> u8 {
@@ -90,6 +95,10 @@ impl Ship for KlingonShip {
         } else {
             self.ship_systems.torpedo.calculate_damage(seed)
         }
+    }
+
+    fn take_damage_from_hostile_ship(&mut self, damage: u8) {
+        DamageTaker::take_damage(self, damage)
     }
 }
 
