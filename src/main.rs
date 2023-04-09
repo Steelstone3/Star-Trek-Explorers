@@ -10,17 +10,17 @@ mod systems;
 fn main() {
     let mut game = Game::default();
 
-    game.player_ship.display_ship_name();
+    game.player_ship.display_ship_name_and_faction();
 
     generate_ships(&mut game, FactionName::Federation, generate_seed());
     generate_ships(&mut game, FactionName::KlingonEmpire, generate_seed());
 
     for ship in game.federation_ships {
-        ship.display_ship_name();
+        ship.display_ship_name_and_faction();
     }
 
     for ship in game.klingon_ships {
-        ship.display_ship_name();
+        ship.display_ship_name_and_faction();
     }
 
     println!("{}", game.world.universe);
