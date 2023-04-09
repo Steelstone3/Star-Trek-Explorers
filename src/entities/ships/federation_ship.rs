@@ -1,11 +1,11 @@
+use super::ship::Ship;
 use crate::{
     components::ship::{
-        damage::DamageTaker,
-        hull::Hull,
-        names::{faction_name::FactionName, federation_ship_name::FederationShipName},
-        phaser::Phaser,
-        shield::Shield,
-        torpedo::Torpedo,
+        names::{
+            faction_name::FactionName, federation_ship_name::FederationShipName,
+            ship_identification::ShipIdentification,
+        },
+        ship_systems::{damage::DamageTaker, ship_systems::ShipSystems},
     },
     systems::{
         random_generation::generate_seed, ship_identifier_generation::generate_random_identifier,
@@ -14,29 +14,28 @@ use crate::{
 use rand::random;
 use rand_derive2::RandGen;
 
-use super::ship::Ship;
-
 #[derive(PartialEq, Debug, RandGen)]
 pub struct FederationShip {
-    serial_number: String,
     name: FederationShipName,
-    faction: FactionName,
-    shield: Shield,
-    hull: Hull,
-    phaser: Phaser,
-    torpedo: Torpedo,
+    ship_identification: ShipIdentification,
+    ship_systems: ShipSystems,
 }
 
 impl Default for FederationShip {
     fn default() -> Self {
         Self {
-            serial_number: generate_random_identifier(generate_seed(), FactionName::Federation),
             name: random(),
-            faction: FactionName::Federation,
-            shield: Default::default(),
-            hull: Default::default(),
-            phaser: Default::default(),
-            torpedo: Default::default(),
+            ship_identification: ShipIdentification {
+                serial_number: generate_random_identifier(generate_seed(), FactionName::Federation),
+                faction: FactionName::Federation,
+            },
+
+            ship_systems: ShipSystems {
+                shield: Default::default(),
+                hull: Default::default(),
+                phaser: Default::default(),
+                torpedo: Default::default(),
+            },
         }
     }
 }
@@ -44,51 +43,57 @@ impl Default for FederationShip {
 impl Ship for FederationShip {
     fn display_ship_name(&self) {
         // TODO add ship class
-        println!("| Name: {} {} | Class:  |", self.serial_number, self.name)
+        println!(
+            "| Name: {} {} | Class:  |",
+            self.ship_identification.serial_number, self.name
+        )
     }
 
     fn display_ship_name_and_faction(&self) {
         println!(
             // TODO add ship class
             "| Name: {} {} | Class:  | Faction: {} |",
-            self.serial_number, self.name, self.faction
+            self.ship_identification.serial_number, self.name, self.ship_identification.faction
         )
     }
- 
+
     fn display_offensive_capabilities(&self) {
         println!(
             "| Phaser Damage: {} | Torpedo Damage: {} |",
-            self.phaser.maximum_damage, self.torpedo.maximum_damage
+            self.ship_systems.phaser.maximum_damage, self.ship_systems.torpedo.maximum_damage
         )
     }
 
     fn display_defensive_capabilities(&self) {
         println!(
             "| Shield Strength: {} | Hull Integrity: {} |",
-            self.shield.maximum, self.hull.maximum
+            self.ship_systems.shield.maximum, self.ship_systems.hull.maximum
         )
     }
 
     fn take_damage_from_hostile_ship(&mut self, damage: u8) {
         DamageTaker::take_damage(self, damage)
     }
-
 }
 
 impl DamageTaker for FederationShip {
     fn take_damage(&mut self, damage: u8) {
-        let current_shield = self.shield.current;
-        self.shield.take_damage(damage);
+        let current_shield = self.ship_systems.shield.current;
+        self.ship_systems.shield.take_damage(damage);
 
-        if self.shield.current == 0 {
+        if self.ship_systems.shield.current == 0 {
             let damage_remainder = damage - current_shield;
-            self.hull.take_damage(damage_remainder);
+            self.ship_systems.hull.take_damage(damage_remainder);
         }
     }
 }
 
 #[cfg(test)]
 mod federation_ship_should {
+    use crate::components::ship::ship_systems::{
+        hull::Hull, phaser::Phaser, shield::Shield, torpedo::Torpedo,
+    };
+
     use super::*;
     use rstest::rstest;
 
@@ -99,12 +104,12 @@ mod federation_ship_should {
 
         // Then
         assert_ne!(String::default(), ship.name.to_string());
-        assert_ne!(String::default(), ship.serial_number);
-        assert_eq!(FactionName::Federation, ship.faction);
-        assert_eq!(Shield::default(), ship.shield);
-        assert_eq!(Hull::default(), ship.hull);
-        assert_eq!(Phaser::default(), ship.phaser);
-        assert_eq!(Torpedo::default(), ship.torpedo);
+        assert_ne!(String::default(), ship.ship_identification.serial_number);
+        assert_eq!(FactionName::Federation, ship.ship_identification.faction);
+        assert_eq!(Shield::default(), ship.ship_systems.shield);
+        assert_eq!(Hull::default(), ship.ship_systems.hull);
+        assert_eq!(Phaser::default(), ship.ship_systems.phaser);
+        assert_eq!(Torpedo::default(), ship.ship_systems.torpedo);
     }
 
     #[rstest]
@@ -126,7 +131,7 @@ mod federation_ship_should {
         ship.take_damage_from_hostile_ship(damage);
 
         // Then
-        assert_eq!(current_shields, ship.shield.current);
-        assert_eq!(current_hull, ship.hull.current);
+        assert_eq!(current_shields, ship.ship_systems.shield.current);
+        assert_eq!(current_hull, ship.ship_systems.hull.current);
     }
 }

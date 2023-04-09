@@ -1,12 +1,11 @@
 use super::ship::Ship;
 use crate::{
     components::ship::{
-        damage::DamageTaker,
-        hull::Hull,
-        names::{faction_name::FactionName, klingon_ship_name::KlingonShipName},
-        phaser::Phaser,
-        shield::Shield,
-        torpedo::Torpedo,
+        names::{
+            faction_name::FactionName, klingon_ship_name::KlingonShipName,
+            ship_identification::ShipIdentification,
+        },
+        ship_systems::{damage::DamageTaker, ship_systems::ShipSystems},
     },
     systems::{
         random_generation::generate_seed, ship_identifier_generation::generate_random_identifier,
@@ -18,71 +17,81 @@ use rand_derive2::RandGen;
 #[derive(PartialEq, Debug, RandGen)]
 pub struct KlingonShip {
     name: KlingonShipName,
-    serial_number: String,
-    faction: FactionName,
-    shield: Shield,
-    hull: Hull,
-    phaser: Phaser,
-    torpedo: Torpedo,
+    ship_identification: ShipIdentification,
+    ship_systems: ShipSystems,
 }
 
 impl Default for KlingonShip {
     fn default() -> Self {
         Self {
             name: random(),
-            serial_number: generate_random_identifier(generate_seed(), FactionName::KlingonEmpire),
-            faction: FactionName::KlingonEmpire,
-            shield: Shield::default(),
-            hull: Hull::default(),
-            phaser: Phaser::default(),
-            torpedo: Torpedo::default(),
+            ship_identification: ShipIdentification {
+                serial_number: generate_random_identifier(
+                    generate_seed(),
+                    FactionName::KlingonEmpire,
+                ),
+                faction: FactionName::KlingonEmpire,
+            },
+
+            ship_systems: ShipSystems {
+                shield: Default::default(),
+                hull: Default::default(),
+                phaser: Default::default(),
+                torpedo: Default::default(),
+            },
         }
     }
 }
 
 impl Ship for KlingonShip {
     fn display_ship_name(&self) {
-        println!("| Name: {} {} |", self.serial_number, self.name)
+        println!(
+            "| Name: {} {} |",
+            self.ship_identification.serial_number, self.name
+        )
     }
 
     fn display_ship_name_and_faction(&self) {
         println!(
             "| Name: {} {} | Faction {} |",
-            self.serial_number, self.name, self.faction
+            self.ship_identification.serial_number, self.name, self.ship_identification.faction
         )
     }
 
     fn display_offensive_capabilities(&self) {
         println!(
             "| Phaser Damage: {} | Torpedo Damage {} |",
-            self.phaser.maximum_damage, self.torpedo.maximum_damage
+            self.ship_systems.phaser.maximum_damage, self.ship_systems.torpedo.maximum_damage
         )
     }
 
     fn display_defensive_capabilities(&self) {
         todo!()
     }
-    
+
     fn take_damage_from_hostile_ship(&mut self, damage: u8) {
         DamageTaker::take_damage(self, damage)
     }
-
 }
 
 impl DamageTaker for KlingonShip {
     fn take_damage(&mut self, damage: u8) {
-        let current_shield = self.shield.current;
-        self.shield.take_damage(damage);
+        let current_shield = self.ship_systems.shield.current;
+        self.ship_systems.shield.take_damage(damage);
 
-        if self.shield.current == 0 {
+        if self.ship_systems.shield.current == 0 {
             let damage_remainder = damage - current_shield;
-            self.hull.take_damage(damage_remainder);
+            self.ship_systems.hull.take_damage(damage_remainder);
         }
     }
 }
 
 #[cfg(test)]
 mod klingon_ship_should {
+    use crate::components::ship::ship_systems::{
+        hull::Hull, phaser::Phaser, shield::Shield, torpedo::Torpedo,
+    };
+
     use super::*;
     use rstest::rstest;
 
@@ -93,12 +102,12 @@ mod klingon_ship_should {
 
         // Then
         assert_ne!(String::default(), ship.name.to_string());
-        assert_ne!(String::default(), ship.serial_number);
-        assert_eq!(FactionName::KlingonEmpire, ship.faction);
-        assert_eq!(Shield::default(), ship.shield);
-        assert_eq!(Hull::default(), ship.hull);
-        assert_eq!(Phaser::default(), ship.phaser);
-        assert_eq!(Torpedo::default(), ship.torpedo);
+        assert_ne!(String::default(), ship.ship_identification.serial_number);
+        assert_eq!(FactionName::KlingonEmpire, ship.ship_identification.faction);
+        assert_eq!(Shield::default(), ship.ship_systems.shield);
+        assert_eq!(Hull::default(), ship.ship_systems.hull);
+        assert_eq!(Phaser::default(), ship.ship_systems.phaser);
+        assert_eq!(Torpedo::default(), ship.ship_systems.torpedo);
     }
 
     #[rstest]
@@ -120,7 +129,7 @@ mod klingon_ship_should {
         ship.take_damage_from_hostile_ship(damage);
 
         // Then
-        assert_eq!(current_shields, ship.shield.current);
-        assert_eq!(current_hull, ship.hull.current);
+        assert_eq!(current_shields, ship.ship_systems.shield.current);
+        assert_eq!(current_hull, ship.ship_systems.hull.current);
     }
 }
