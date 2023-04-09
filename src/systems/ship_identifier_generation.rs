@@ -1,4 +1,4 @@
-use crate::components::ship::name::faction_name::FactionName;
+use crate::components::ship::names::faction_name::FactionName;
 
 use super::random_generation::generate_random_value_from_range_u16;
 

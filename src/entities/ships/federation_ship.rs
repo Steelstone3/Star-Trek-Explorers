@@ -2,7 +2,7 @@ use crate::{
     components::ship::{
         damage::DamageTaker,
         hull::Hull,
-        name::{faction_name::FactionName, federation_ship_name::FederationShipName},
+        names::{faction_name::FactionName, federation_ship_name::FederationShipName},
         phaser::Phaser,
         shield::Shield,
         torpedo::Torpedo,
@@ -13,6 +13,7 @@ use crate::{
 };
 use rand::random;
 use rand_derive2::RandGen;
+use std::fmt::Display;
 
 use super::ship::Ship;
 
@@ -41,12 +42,19 @@ impl Default for FederationShip {
     }
 }
 
-impl Ship for FederationShip {
-    fn display_ship_name(&self) {
-        println!(
+impl Display for FederationShip {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
             "| Name: {} {} | Faction: {} |",
             self.ship_identifier, self.name, self.faction
         )
+    }
+}
+
+impl Ship for FederationShip {
+    fn display_ship_name(&self) {
+        println!("{}", self.to_string())
     }
 }
 
@@ -70,6 +78,7 @@ mod federation_ship_should {
     #[test]
     fn create_a_default_ship() {
         // Given
+        let seed = 0;
         let ship = FederationShip::default();
 
         // Then
@@ -79,6 +88,18 @@ mod federation_ship_should {
         assert_eq!(Hull::default(), ship.hull);
         assert_eq!(Phaser::default(), ship.phaser);
         assert_eq!(Torpedo::default(), ship.torpedo);
+    }
+
+    #[test]
+    fn display_a_ship() {
+        // Given
+        let ship = FederationShip::default();
+
+        // When
+        let result = ship.to_string();
+
+        // Then
+        assert!(result.contains("USS"));
     }
 
     #[rstest]

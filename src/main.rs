@@ -1,4 +1,4 @@
-use components::ship::name::faction_name::FactionName;
+use components::ship::names::faction_name::FactionName;
 use entities::{
     game::Game,
     ships::ship::Ship,

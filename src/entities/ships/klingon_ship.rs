@@ -1,8 +1,10 @@
+use std::fmt::Display;
+
 use crate::{
     components::ship::{
         damage::DamageTaker,
         hull::Hull,
-        name::{faction_name::FactionName, klingon_ship_name::KlingonShipName},
+        names::{faction_name::FactionName, klingon_ship_name::KlingonShipName},
         phaser::Phaser,
         shield::Shield,
         torpedo::Torpedo,
@@ -44,12 +46,19 @@ impl Default for KlingonShip {
     }
 }
 
-impl Ship for KlingonShip {
-    fn display_ship_name(&self) {
-        println!(
+impl Display for KlingonShip {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
             "| Name: {} {} | Faction: {} |",
             self.ship_identifier, self.name, self.faction
         )
+    }
+}
+
+impl Ship for KlingonShip {
+    fn display_ship_name(&self) {
+        println!("{}", self.to_string())
     }
 }
 

@@ -1,11 +1,31 @@
-// TODO Add name and class
+use rand::random;
+
+use super::names::{planet_class::PlanetClass, planet_name::PlanetName};
+
 // TODO Add display planet
-#[derive(Default)]
-pub struct Planet {}
+pub struct Planet {
+    name: PlanetName,
+    class: PlanetClass,
+}
+
+impl Default for Planet {
+    fn default() -> Self {
+        Self {
+            name: random(),
+            class: random(),
+        }
+    }
+}
 
 #[cfg(test)]
 mod planet_should {
+    use super::*;
+
     #[test]
-    #[ignore = "not implemented"]
-    fn do_something() {}
+    fn display() {
+        // Given
+        let planet = Planet::default();
+
+        // Then
+    }
 }

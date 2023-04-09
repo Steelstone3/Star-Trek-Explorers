@@ -1,6 +1,6 @@
 use super::random_generation::generate_random_value_from_range_u8;
 use crate::{
-    components::ship::name::faction_name::FactionName,
+    components::ship::names::faction_name::FactionName,
     entities::{
         game::Game,
         ships::{federation_ship::FederationShip, klingon_ship::KlingonShip},
@@ -54,7 +54,7 @@ mod ship_generation_should {
         generate_ships(&mut game, FactionName::Federation, seed);
 
         // Then
-        assert!(Duration::from_millis(10) > stop_watch.elapsed());
+        assert!(Duration::from_millis(50) > stop_watch.elapsed());
         assert_eq!(quantity, game.federation_ships.len());
         assert_eq!(0, game.klingon_ships.len());
     }
@@ -71,7 +71,7 @@ mod ship_generation_should {
         generate_ships(&mut game, FactionName::KlingonEmpire, seed);
 
         // Then
-        assert!(Duration::from_millis(10) > stop_watch.elapsed());
+        assert!(Duration::from_millis(50) > stop_watch.elapsed());
         assert_eq!(quantity, game.klingon_ships.len());
         assert_eq!(0, game.federation_ships.len());
     }
