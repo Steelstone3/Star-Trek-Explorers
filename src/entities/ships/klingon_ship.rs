@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 use crate::{
     components::ship::{
         damage::DamageTaker,
@@ -15,6 +13,7 @@ use crate::{
 };
 use rand::random;
 use rand_derive2::RandGen;
+use std::fmt::Display;
 
 use super::ship::Ship;
 
@@ -57,8 +56,8 @@ impl Display for KlingonShip {
 }
 
 impl Ship for KlingonShip {
-    fn display_ship_name(&self) {
-        println!("{}", self.to_string())
+    fn display_ship(&self) {
+        println!("{}", self)
     }
 }
 
@@ -85,6 +84,7 @@ mod klingon_ship_should {
         let ship = KlingonShip::default();
 
         // Then
+        assert_ne!(String::default(), ship.name.to_string());
         assert_ne!(String::default(), ship.ship_identifier);
         assert_eq!(FactionName::KlingonEmpire, ship.faction);
         assert_eq!(Shield::default(), ship.shield);

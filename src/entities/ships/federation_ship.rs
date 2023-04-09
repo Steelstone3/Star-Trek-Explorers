@@ -53,8 +53,8 @@ impl Display for FederationShip {
 }
 
 impl Ship for FederationShip {
-    fn display_ship_name(&self) {
-        println!("{}", self.to_string())
+    fn display_ship(&self) {
+        println!("{}", self)
     }
 }
 
@@ -78,10 +78,10 @@ mod federation_ship_should {
     #[test]
     fn create_a_default_ship() {
         // Given
-        let seed = 0;
         let ship = FederationShip::default();
 
         // Then
+        assert_ne!(String::default(), ship.name.to_string());
         assert_ne!(String::default(), ship.ship_identifier);
         assert_eq!(FactionName::Federation, ship.faction);
         assert_eq!(Shield::default(), ship.shield);
