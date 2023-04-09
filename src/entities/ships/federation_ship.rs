@@ -5,7 +5,10 @@ use crate::{
             faction_name::FactionName, federation_ship_class::FederationShipClass,
             federation_ship_name::FederationShipName, ship_identification::ShipIdentification,
         },
-        ship_capabilities::{damage::DamageTaker, ship_systems::ShipSystems},
+        ship_capabilities::{
+            damage::{DamageDealer, DamageTaker},
+            ship_systems::ShipSystems,
+        },
     },
     systems::{
         random_generation::generate_seed, ship_identifier_generation::generate_random_identifier,
@@ -18,8 +21,8 @@ use rand_derive2::RandGen;
 pub struct FederationShip {
     name: FederationShipName,
     class: FederationShipClass,
-    ship_identification: ShipIdentification,
-    ship_systems: ShipSystems,
+    pub ship_identification: ShipIdentification,
+    pub ship_systems: ShipSystems,
 }
 
 impl Default for FederationShip {
@@ -77,6 +80,14 @@ impl Ship for FederationShip {
     fn take_damage_from_hostile_ship(&mut self, damage: u8) {
         DamageTaker::take_damage(self, damage)
     }
+
+    fn calculate_damage_from_weapon(&self, seed: u64, weapon_name: String) -> u8 {
+        if weapon_name == self.ship_systems.phaser.to_string() {
+            self.ship_systems.phaser.calculate_damage(seed)
+        } else {
+            self.ship_systems.torpedo.calculate_damage(seed)
+        }
+    }
 }
 
 impl DamageTaker for FederationShip {
@@ -113,6 +124,28 @@ mod federation_ship_should {
         assert_eq!(Hull::default(), ship.ship_systems.hull);
         assert_eq!(Phaser::default(), ship.ship_systems.phaser);
         assert_eq!(Torpedo::default(), ship.ship_systems.torpedo);
+    }
+
+    #[rstest]
+    #[case("Phaser", 0, 9)]
+    #[case("Phaser", 4545, 7)]
+    #[case("Phaser", 7001, 5)]
+    #[case("Torpedo", 0, 9)]
+    #[case("Torpedo", 4545, 7)]
+    #[case("Torpedo", 7001, 5)]
+    fn calculate_damage_for_weapon(
+        #[case] weapon_name: String,
+        #[case] seed: u64,
+        #[case] expected_damage: u8,
+    ) {
+        // Given
+        let ship = FederationShip::default();
+
+        // When
+        let damage = ship.calculate_damage_from_weapon(seed, weapon_name);
+
+        // Then
+        assert_eq!(expected_damage, damage);
     }
 
     #[rstest]

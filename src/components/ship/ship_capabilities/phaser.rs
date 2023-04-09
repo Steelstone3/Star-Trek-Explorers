@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use rand::{rngs::StdRng, Rng, SeedableRng};
 use rand_derive2::RandGen;
 
@@ -15,6 +17,12 @@ impl Default for Phaser {
             minimum_damage: 5,
             maximum_damage: 10,
         }
+    }
+}
+
+impl Display for Phaser {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Phaser")
     }
 }
 
@@ -38,6 +46,18 @@ mod phaser_should {
         // Then
         assert_eq!(5, phaser.minimum_damage);
         assert_eq!(10, phaser.maximum_damage);
+    }
+
+    #[test]
+    fn display_a_phaser() {
+        // Given
+        let phaser = Phaser::default();
+
+        // When
+        let result = phaser.to_string();
+
+        // Then
+        assert_eq!("Phaser", result);
     }
 
     #[rstest]
