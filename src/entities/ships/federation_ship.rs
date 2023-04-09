@@ -13,13 +13,12 @@ use crate::{
 };
 use rand::random;
 use rand_derive2::RandGen;
-use std::fmt::Display;
 
 use super::ship::Ship;
 
 #[derive(PartialEq, Debug, RandGen)]
 pub struct FederationShip {
-    ship_identifier: String,
+    serial_number: String,
     name: FederationShipName,
     faction: FactionName,
     shield: Shield,
@@ -31,7 +30,7 @@ pub struct FederationShip {
 impl Default for FederationShip {
     fn default() -> Self {
         Self {
-            ship_identifier: generate_random_identifier(generate_seed(), FactionName::Federation),
+            serial_number: generate_random_identifier(generate_seed(), FactionName::Federation),
             name: random(),
             faction: FactionName::Federation,
             shield: Default::default(),
@@ -42,20 +41,38 @@ impl Default for FederationShip {
     }
 }
 
-impl Display for FederationShip {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "| Name: {} {} | Faction: {} |",
-            self.ship_identifier, self.name, self.faction
+impl Ship for FederationShip {
+    fn display_ship_name(&self) {
+        // TODO add ship class
+        println!("| Name: {} {} | Class:  |", self.serial_number, self.name)
+    }
+
+    fn display_ship_name_and_faction(&self) {
+        println!(
+            // TODO add ship class
+            "| Name: {} {} | Class:  | Faction: {} |",
+            self.serial_number, self.name, self.faction
         )
     }
-}
-
-impl Ship for FederationShip {
-    fn display_ship(&self) {
-        println!("{}", self)
+ 
+    fn display_offensive_capabilities(&self) {
+        println!(
+            "| Phaser Damage: {} | Torpedo Damage: {} |",
+            self.phaser.maximum_damage, self.torpedo.maximum_damage
+        )
     }
+
+    fn display_defensive_capabilities(&self) {
+        println!(
+            "| Shield Strength: {} | Hull Integrity: {} |",
+            self.shield.maximum, self.hull.maximum
+        )
+    }
+
+    fn take_damage_from_hostile_ship(&mut self, damage: u8) {
+        DamageTaker::take_damage(self, damage)
+    }
+
 }
 
 impl DamageTaker for FederationShip {
@@ -82,24 +99,12 @@ mod federation_ship_should {
 
         // Then
         assert_ne!(String::default(), ship.name.to_string());
-        assert_ne!(String::default(), ship.ship_identifier);
+        assert_ne!(String::default(), ship.serial_number);
         assert_eq!(FactionName::Federation, ship.faction);
         assert_eq!(Shield::default(), ship.shield);
         assert_eq!(Hull::default(), ship.hull);
         assert_eq!(Phaser::default(), ship.phaser);
         assert_eq!(Torpedo::default(), ship.torpedo);
-    }
-
-    #[test]
-    fn display_a_ship() {
-        // Given
-        let ship = FederationShip::default();
-
-        // When
-        let result = ship.to_string();
-
-        // Then
-        assert!(result.contains("USS"));
     }
 
     #[rstest]
@@ -118,7 +123,7 @@ mod federation_ship_should {
         let mut ship = FederationShip::default();
 
         // When
-        ship.take_damage(damage);
+        ship.take_damage_from_hostile_ship(damage);
 
         // Then
         assert_eq!(current_shields, ship.shield.current);

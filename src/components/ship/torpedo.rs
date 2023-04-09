@@ -6,7 +6,7 @@ use super::damage::DamageDealer;
 #[derive(PartialEq, Debug, RandGen)]
 pub struct Torpedo {
     minimum_damage: u8,
-    maximum_damage: u8,
+    pub maximum_damage: u8,
 }
 
 impl Default for Torpedo {

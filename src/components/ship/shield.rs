@@ -5,7 +5,7 @@ use super::damage::DamageTaker;
 #[derive(PartialEq, Debug, RandGen)]
 pub struct Shield {
     pub current: u8,
-    maximum: u8,
+    pub maximum: u8,
     regeneration: u8,
 }
 

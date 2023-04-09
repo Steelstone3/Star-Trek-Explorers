@@ -1,3 +1,4 @@
+use super::ship::Ship;
 use crate::{
     components::ship::{
         damage::DamageTaker,
@@ -13,14 +14,11 @@ use crate::{
 };
 use rand::random;
 use rand_derive2::RandGen;
-use std::fmt::Display;
-
-use super::ship::Ship;
 
 #[derive(PartialEq, Debug, RandGen)]
 pub struct KlingonShip {
     name: KlingonShipName,
-    ship_identifier: String,
+    serial_number: String,
     faction: FactionName,
     shield: Shield,
     hull: Hull,
@@ -32,10 +30,7 @@ impl Default for KlingonShip {
     fn default() -> Self {
         Self {
             name: random(),
-            ship_identifier: generate_random_identifier(
-                generate_seed(),
-                FactionName::KlingonEmpire,
-            ),
+            serial_number: generate_random_identifier(generate_seed(), FactionName::KlingonEmpire),
             faction: FactionName::KlingonEmpire,
             shield: Shield::default(),
             hull: Hull::default(),
@@ -45,20 +40,33 @@ impl Default for KlingonShip {
     }
 }
 
-impl Display for KlingonShip {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "| Name: {} {} | Faction: {} |",
-            self.ship_identifier, self.name, self.faction
+impl Ship for KlingonShip {
+    fn display_ship_name(&self) {
+        println!("| Name: {} {} |", self.serial_number, self.name)
+    }
+
+    fn display_ship_name_and_faction(&self) {
+        println!(
+            "| Name: {} {} | Faction {} |",
+            self.serial_number, self.name, self.faction
         )
     }
-}
 
-impl Ship for KlingonShip {
-    fn display_ship(&self) {
-        println!("{}", self)
+    fn display_offensive_capabilities(&self) {
+        println!(
+            "| Phaser Damage: {} | Torpedo Damage {} |",
+            self.phaser.maximum_damage, self.torpedo.maximum_damage
+        )
     }
+
+    fn display_defensive_capabilities(&self) {
+        todo!()
+    }
+    
+    fn take_damage_from_hostile_ship(&mut self, damage: u8) {
+        DamageTaker::take_damage(self, damage)
+    }
+
 }
 
 impl DamageTaker for KlingonShip {
@@ -85,7 +93,7 @@ mod klingon_ship_should {
 
         // Then
         assert_ne!(String::default(), ship.name.to_string());
-        assert_ne!(String::default(), ship.ship_identifier);
+        assert_ne!(String::default(), ship.serial_number);
         assert_eq!(FactionName::KlingonEmpire, ship.faction);
         assert_eq!(Shield::default(), ship.shield);
         assert_eq!(Hull::default(), ship.hull);
@@ -109,7 +117,7 @@ mod klingon_ship_should {
         let mut ship = KlingonShip::default();
 
         // When
-        ship.take_damage(damage);
+        ship.take_damage_from_hostile_ship(damage);
 
         // Then
         assert_eq!(current_shields, ship.shield.current);

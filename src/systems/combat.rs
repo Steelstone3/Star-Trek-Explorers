@@ -1,7 +1,12 @@
-#[allow(dead_code)]
-pub fn start_combat() {
-    todo!()
-}
+// use crate::entities::ships::ship::Ship;
+
+// pub fn start_combat(player_ship: &Ship, hostile_ship: &Ship) {
+//     todo!()
+// }
+
+// fn turn(attacking_ship: &Ship, defending_ship: &Ship) {
+//     todo!()
+// }
 
 #[cfg(test)]
 mod combat_should {
