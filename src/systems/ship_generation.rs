@@ -37,7 +37,7 @@ pub fn generate_ships(game: &mut Game, faction_name: FactionName, seed: u64) {
 
 #[cfg(test)]
 mod ship_generation_should {
-    use std::time::{Instant, Duration};
+    use std::time::{Duration, Instant};
 
     use super::*;
     use crate::entities::game::Game;
@@ -47,12 +47,14 @@ mod ship_generation_should {
         // Given
         let seed = 0;
         let quantity = 12;
+        let stop_watch = Instant::now();
         let mut game = Game::default();
 
         // When
         generate_ships(&mut game, FactionName::Federation, seed);
 
         // Then
+        assert!(Duration::from_millis(10) > stop_watch.elapsed());
         assert_eq!(quantity, game.federation_ships.len());
         assert_eq!(0, game.klingon_ships.len());
     }
