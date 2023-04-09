@@ -24,10 +24,10 @@ impl Default for Star {
 
 impl Display for Star {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        writeln!(f, "\n| Star: {} {} |", self.name, self.class);
+        writeln!(f, "\n| Star: {} {} |", self.name, self.class).unwrap();
 
         for planet in &self.planets {
-            writeln!(f, "{}", planet);
+            writeln!(f, "{}", planet).expect("planets collection empty");
         }
 
         Ok(())

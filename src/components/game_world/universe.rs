@@ -1,7 +1,6 @@
-use std::fmt::Display;
-
 use super::star::Star;
 use crate::systems::{random_generation::generate_seed, star_generation::generate_stars};
+use std::fmt::Display;
 
 pub struct Universe {
     stars: Vec<Star>,
@@ -18,7 +17,7 @@ impl Default for Universe {
 impl Display for Universe {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for star in &self.stars {
-            write!(f, "{}", star);
+            write!(f, "{}", star).expect("stars collection empty");
         }
 
         Ok(())
