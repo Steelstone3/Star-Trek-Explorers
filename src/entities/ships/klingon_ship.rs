@@ -2,8 +2,8 @@ use super::ship::Ship;
 use crate::{
     components::ship::{
         names::{
-            faction_name::FactionName, klingon_ship_name::KlingonShipName,
-            ship_identification::ShipIdentification,
+            faction_name::FactionName, klingon_ship_class::KlingonShipClass,
+            klingon_ship_name::KlingonShipName, ship_identification::ShipIdentification,
         },
         ship_capabilities::{damage::DamageTaker, ship_systems::ShipSystems},
     },
@@ -17,6 +17,7 @@ use rand_derive2::RandGen;
 #[derive(PartialEq, Debug, RandGen)]
 pub struct KlingonShip {
     name: KlingonShipName,
+    class: KlingonShipClass,
     ship_identification: ShipIdentification,
     ship_systems: ShipSystems,
 }
@@ -25,6 +26,7 @@ impl Default for KlingonShip {
     fn default() -> Self {
         Self {
             name: random(),
+            class: random(),
             ship_identification: ShipIdentification {
                 serial_number: generate_random_identifier(
                     generate_seed(),
@@ -46,15 +48,18 @@ impl Default for KlingonShip {
 impl Ship for KlingonShip {
     fn display_ship_name(&self) {
         println!(
-            "| Name: {} {} |",
-            self.ship_identification.serial_number, self.name
+            "| Name: {} {} | Class: {} |",
+            self.ship_identification.serial_number, self.name, self.class
         )
     }
 
     fn display_ship_name_and_faction(&self) {
         println!(
-            "| Name: {} {} | Faction {} |",
-            self.ship_identification.serial_number, self.name, self.ship_identification.faction
+            "| Name: {} {} | Class: {} | Faction {} |",
+            self.ship_identification.serial_number,
+            self.name,
+            self.class,
+            self.ship_identification.faction
         )
     }
 
