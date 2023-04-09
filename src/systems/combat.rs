@@ -1,11 +1,47 @@
-// pub fn calculate_damage(seed: u64, weapon_name: String, attacking_ship: Ship) -> u8 {
-//     attacking_ship.calculate_damage_from_weapon(seed, weapon_name)
-// }
+use crate::components::ship::{
+    names::ship_identification::ShipIdentification, ship_capabilities::ship_systems::ShipSystems,
+};
 
-// pub fn apply_damage (damage: u8, defending_ship: &mut dyn Ship) { //-> dyn Ship {
-//     defending_ship.take_damage_from_hostile_ship(damage);
-//     // defending_ship
-// }
+pub fn turn(
+    seed: u64,
+    weapon_name: String,
+    attacking_ship_name: String,
+    attacking_ship_class: String,
+    attacking_ship_identification: ShipIdentification,
+    attacking_ship_systems: ShipSystems,
+    defending_ship_name: String,
+    defending_ship_class: String,
+    defending_ship_identification: ShipIdentification,
+    mut defending_ship_systems: ShipSystems,
+) -> ShipSystems {
+    print_turn(
+        attacking_ship_identification,
+        attacking_ship_name,
+        attacking_ship_class,
+        defending_ship_identification,
+        defending_ship_name,
+        defending_ship_class,
+    );
+    let damage = attacking_ship_systems.calculate_damage_from_weapon(seed, weapon_name);
+    println!("{}", damage);
+    defending_ship_systems.take_damage_from_hostile_ship(damage);
+
+    defending_ship_systems
+}
+
+fn print_turn(
+    attacking_ship_identification: ShipIdentification,
+    attacking_ship_name: String,
+    attacking_ship_class: String,
+    defending_ship_identification: ShipIdentification,
+    defending_ship_name: String,
+    defending_ship_class: String,
+) {
+    print!("Attacking Ship: ");
+    attacking_ship_identification.display_ship_name(attacking_ship_name, attacking_ship_class);
+    print!("Defending Ship: ");
+    defending_ship_identification.display_ship_name(defending_ship_name, defending_ship_class)
+}
 
 #[cfg(test)]
 mod combat_should {
