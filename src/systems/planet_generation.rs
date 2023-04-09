@@ -20,16 +20,21 @@ pub fn generate_planets(seed: u64) -> Vec<Planet> {
 mod planet_generation_should {
     use super::*;
     use rstest::rstest;
+    use std::time::{Duration, Instant};
 
     #[rstest]
     #[case(0, 8)]
     #[case(4545, 5)]
     #[case(7000, 9)]
     fn be_able_to_generate_planets(#[case] seed: u64, #[case] size: usize) {
+        // Given
+        let stop_watch = Instant::now();
+
         // When
         let planets = generate_planets(seed);
 
         // Then
+        assert!(Duration::from_millis(10) > stop_watch.elapsed());
         assert_eq!(size, planets.len())
     }
 }
