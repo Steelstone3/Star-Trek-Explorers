@@ -10,9 +10,9 @@ use crate::{
             ship_systems::ShipSystems,
         },
     },
-    presenters::ship_presenter::select_weapon,
     systems::{
-        random_generation::generate_seed, ship_identifier_generation::generate_random_identifier,
+        random_generation::{generate_random_value_from_range_u8, generate_seed},
+        ship_identifier_generation::generate_random_identifier,
     },
 };
 use rand::random;
@@ -22,8 +22,8 @@ use rand_derive2::RandGen;
 pub struct KlingonShip {
     name: KlingonShipName,
     class: KlingonShipClass,
-    ship_identification: ShipIdentification,
-    ship_systems: ShipSystems,
+    pub ship_identification: ShipIdentification,
+    pub ship_systems: ShipSystems,
 }
 
 impl Default for KlingonShip {
@@ -82,11 +82,13 @@ impl Ship for KlingonShip {
     }
 
     fn select_ship_weapon_type(&self) -> String {
-        let weapon_types = vec![
-            self.ship_systems.phaser.to_string(),
-            self.ship_systems.torpedo.to_string(),
-        ];
-        select_weapon(weapon_types)
+        let value = generate_random_value_from_range_u8(generate_seed(), 0, 1);
+
+        if value == 1 {
+            self.ship_systems.phaser.to_string()
+        } else {
+            self.ship_systems.torpedo.to_string()
+        }
     }
 
     fn calculate_damage_from_weapon(&self, seed: u64, weapon_name: String) -> u8 {

@@ -2,6 +2,8 @@ use components::ship::names::faction_name::FactionName;
 use entities::{game::Game, ships::ship::Ship};
 use systems::{random_generation::generate_seed, ship_generation::generate_ships};
 
+use crate::{systems::combat::start_combat, entities::ships::klingon_ship::KlingonShip};
+
 mod components;
 mod entities;
 mod presenters;
@@ -24,4 +26,8 @@ fn main() {
     }
 
     println!("{}", game.world.universe);
+
+    let mut hostile = KlingonShip::default();
+
+    start_combat(&mut game.player_ship, &mut hostile);
 }
