@@ -5,7 +5,7 @@ use crate::{
             faction_name::FactionName, klingon_ship_name::KlingonShipName,
             ship_identification::ShipIdentification,
         },
-        ship_systems::{damage::DamageTaker, ship_systems::ShipSystems},
+        ship_capabilities::{damage::DamageTaker, ship_systems::ShipSystems},
     },
     systems::{
         random_generation::generate_seed, ship_identifier_generation::generate_random_identifier,
@@ -88,7 +88,7 @@ impl DamageTaker for KlingonShip {
 
 #[cfg(test)]
 mod klingon_ship_should {
-    use crate::components::ship::ship_systems::{
+    use crate::components::ship::ship_capabilities::{
         hull::Hull, phaser::Phaser, shield::Shield, torpedo::Torpedo,
     };
 
