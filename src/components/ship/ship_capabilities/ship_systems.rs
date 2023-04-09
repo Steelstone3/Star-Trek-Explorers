@@ -1,5 +1,5 @@
+use super::{hull::Hull, phaser::Phaser, shield::Shield, torpedo::Torpedo};
 use rand_derive2::RandGen;
-use super::{shield::Shield, hull::Hull, phaser::Phaser, torpedo::Torpedo};
 
 #[derive(PartialEq, Debug, RandGen)]
 pub struct ShipSystems {

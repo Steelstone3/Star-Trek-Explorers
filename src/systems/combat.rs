@@ -3,8 +3,18 @@ use crate::entities::ships::ship::Ship;
 use super::random_generation::generate_seed;
 
 pub fn start_combat(player_ship: &mut dyn Ship, hostile_ship: &mut dyn Ship) {
-    turn(generate_seed(), player_ship.select_ship_weapon_type(), player_ship, hostile_ship);
-    turn(generate_seed(), hostile_ship.select_ship_weapon_type(), player_ship, hostile_ship);
+    turn(
+        generate_seed(),
+        player_ship.select_ship_weapon_type(),
+        player_ship,
+        hostile_ship,
+    );
+    turn(
+        generate_seed(),
+        hostile_ship.select_ship_weapon_type(),
+        player_ship,
+        hostile_ship,
+    );
 }
 
 fn turn(seed: u64, weapon_name: String, attacking_ship: &dyn Ship, defending_ship: &mut dyn Ship) {
@@ -48,7 +58,12 @@ mod combat_should {
 
         // When
         for _ in 0..20 {
-            turn(seed, weapon_name.to_string(), &attacking_ship, &mut defending_ship);
+            turn(
+                seed,
+                weapon_name.to_string(),
+                &attacking_ship,
+                &mut defending_ship,
+            );
         }
 
         // Then

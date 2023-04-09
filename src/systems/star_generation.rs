@@ -17,9 +17,9 @@ pub fn generate_stars(seed: u64) -> Vec<Star> {
 
 #[cfg(test)]
 mod star_generation_should {
-    use std::time::{Duration, Instant};
     use super::*;
     use rstest::rstest;
+    use std::time::{Duration, Instant};
 
     #[rstest]
     #[case(0, 420)]

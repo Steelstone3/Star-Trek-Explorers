@@ -2,7 +2,7 @@ use components::ship::names::faction_name::FactionName;
 use entities::{game::Game, ships::ship::Ship};
 use systems::{random_generation::generate_seed, ship_generation::generate_ships};
 
-use crate::{systems::combat::start_combat, entities::ships::klingon_ship::KlingonShip};
+use crate::{entities::ships::klingon_ship::KlingonShip, systems::combat::start_combat};
 
 mod components;
 mod entities;
