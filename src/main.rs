@@ -1,8 +1,5 @@
 use components::ship::names::faction_name::FactionName;
-use entities::{
-    game::Game,
-    ships::ship::Ship,
-};
+use entities::{game::Game, ships::ship::Ship};
 use systems::{random_generation::generate_seed, ship_generation::generate_ships};
 
 mod components;
@@ -25,4 +22,6 @@ fn main() {
     for ship in game.klingon_ships {
         ship.display_ship();
     }
+
+    println!("{}", game.world.universe);
 }
