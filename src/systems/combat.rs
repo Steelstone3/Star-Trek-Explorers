@@ -2,7 +2,14 @@ use crate::components::ship::{
     names::ship_identification::ShipIdentification, ship_capabilities::ship_systems::ShipSystems,
 };
 
-pub fn turn(
+// TODO this takes too many arguements
+// It is basically two ships,
+// Ship can be converged with the original design
+// For this we will require ship name and class refactoring
+// This will use one type and have comments to seperate the races in the enum
+// We will then likely have to use arrays or something like that in the original design
+// From here hopefully everything should just "work"
+pub fn combat_turn(
     seed: u64,
     weapon_name: String,
     attacking_ship_name: String,
@@ -24,8 +31,8 @@ pub fn turn(
     );
     let damage = attacking_ship_systems.calculate_damage_from_weapon(seed, weapon_name);
     println!("{}", damage);
+    // TODO this isn't updating as expected
     defending_ship_systems.take_damage_from_hostile_ship(damage);
-
     defending_ship_systems
 }
 

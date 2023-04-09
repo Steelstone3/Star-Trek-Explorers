@@ -2,7 +2,7 @@ use components::ship::names::faction_name::FactionName;
 use entities::game::Game;
 use systems::{random_generation::generate_seed, ship_generation::generate_ships};
 
-use crate::{entities::ships::klingon_ship::KlingonShip, systems::combat::turn};
+use crate::{entities::ships::klingon_ship::KlingonShip, systems::combat::combat_turn};
 
 mod components;
 mod entities;
@@ -36,7 +36,7 @@ fn main() {
 
     let mut hostile = KlingonShip::default();
 
-    hostile.ship_systems = turn(
+    hostile.ship_systems = combat_turn(
         generate_seed(),
         game.player_ship.ship_systems.select_ship_weapon_type(),
         game.player_ship.name.to_string(),
