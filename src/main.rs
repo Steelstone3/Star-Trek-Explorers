@@ -1,8 +1,6 @@
 use components::ship::names::faction_name::FactionName;
-use entities::{game::Game, ships::ship::Ship};
+use entities::game::Game;
 use systems::{random_generation::generate_seed, ship_generation::generate_ships};
-
-use crate::{entities::ships::klingon_ship::KlingonShip, systems::combat::start_combat};
 
 mod components;
 mod entities;
@@ -12,21 +10,25 @@ mod systems;
 fn main() {
     let mut game = Game::default();
 
-    game.player_ship.display_ship_name_and_faction();
+    game.player_ship
+        .ship_identification
+        .display_ship_name_and_faction(
+            game.player_ship.name.to_string(),
+            game.player_ship.class.to_string(),
+        );
 
     generate_ships(&mut game, FactionName::Federation, generate_seed());
     generate_ships(&mut game, FactionName::KlingonEmpire, generate_seed());
 
     for ship in game.federation_ships {
-        ship.display_ship_name_and_faction();
+        ship.ship_identification
+            .display_ship_name_and_faction(ship.name.to_string(), ship.class.to_string());
     }
 
     for ship in game.klingon_ships {
-        ship.display_ship_name_and_faction();
+        ship.ship_identification
+            .display_ship_name_and_faction(ship.name.to_string(), ship.class.to_string());
     }
 
     println!("{}", game.world.universe);
-
-    let mut hostile = KlingonShip::default();
-    start_combat(&mut game.player_ship, &mut hostile);
 }

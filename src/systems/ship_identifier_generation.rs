@@ -2,7 +2,7 @@ use crate::components::ship::names::faction_name::FactionName;
 
 use super::random_generation::generate_random_value_from_range_u16;
 
-pub fn generate_random_identifier(seed: u64, faction_name: FactionName) -> String {
+pub fn generate_random_identifier(seed: u64, faction_name: &FactionName) -> String {
     let identifier = generate_random_value_from_range_u16(seed, 1000, u16::MAX);
 
     match faction_name {
@@ -26,7 +26,7 @@ mod ship_identifier_generation_should {
         let faction = FactionName::Federation;
 
         // When
-        let identifier = generate_random_identifier(seed, faction);
+        let identifier = generate_random_identifier(seed, &faction);
 
         // Then
         assert_eq!("USS-52722".to_string(), identifier);
@@ -39,7 +39,7 @@ mod ship_identifier_generation_should {
         let faction = FactionName::KlingonEmpire;
 
         // When
-        let identifier = generate_random_identifier(seed, faction);
+        let identifier = generate_random_identifier(seed, &faction);
 
         // Then
         assert_eq!("IKS-52722".to_string(), identifier);
