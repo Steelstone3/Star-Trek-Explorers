@@ -17,14 +17,14 @@ impl ShipIdentification {
         }
     }
 
-    pub fn display_ship_name(&self, ship_name: String, ship_class: String) {
+    pub fn display_ship_name(&self, ship_name: &String, ship_class: &String) {
         println!(
             "| Name: {} {} | Class: {} |",
             self.serial_number, ship_name, ship_class
         )
     }
 
-    pub fn display_ship_name_and_faction(&self, ship_name: String, ship_class: String) {
+    pub fn display_ship_name_and_faction(&self, ship_name: &String, ship_class: &String) {
         println!(
             "| Name: {} {} | Class: {} | Faction {} |",
             self.serial_number, ship_name, ship_class, self.faction
