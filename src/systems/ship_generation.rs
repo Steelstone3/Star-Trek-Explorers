@@ -1,10 +1,7 @@
 use super::random_generation::generate_random_value_from_range_u8;
 use crate::{
     components::ship::names::faction_name::FactionName,
-    entities::{
-        game::Game,
-        ships::{federation_ship::FederationShip, klingon_ship::KlingonShip},
-    },
+    entities::{game::Game, ship::Ship},
 };
 
 pub fn generate_ships(game: &mut Game, faction_name: FactionName, seed: u64) {
@@ -16,7 +13,7 @@ pub fn generate_ships(game: &mut Game, faction_name: FactionName, seed: u64) {
             let mut ships = Vec::new();
 
             while quantity > index {
-                ships.push(FederationShip::default());
+                ships.push(Ship::new_federation_ship());
                 index += 1;
             }
 
@@ -26,7 +23,7 @@ pub fn generate_ships(game: &mut Game, faction_name: FactionName, seed: u64) {
             let mut ships = Vec::new();
 
             while quantity > index {
-                ships.push(KlingonShip::default());
+                ships.push(Ship::new_klingon_ship());
                 index += 1;
             }
 

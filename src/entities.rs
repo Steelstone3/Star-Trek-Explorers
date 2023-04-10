@@ -1,3 +1,3 @@
 pub mod game;
-pub mod ships;
+pub mod ship;
 pub mod world;

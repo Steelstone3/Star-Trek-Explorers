@@ -1,14 +1,21 @@
-use super::{
-    ships::{federation_ship::FederationShip, klingon_ship::KlingonShip},
-    world::World,
-};
+use super::{ship::Ship, world::World};
 
-#[derive(Default)]
 pub struct Game {
-    pub player_ship: FederationShip,
-    pub federation_ships: Vec<FederationShip>,
-    pub klingon_ships: Vec<KlingonShip>,
+    pub player_ship: Ship,
+    pub federation_ships: Vec<Ship>,
+    pub klingon_ships: Vec<Ship>,
     pub world: World,
+}
+
+impl Default for Game {
+    fn default() -> Self {
+        Self {
+            player_ship: Ship::new_federation_ship(),
+            federation_ships: Default::default(),
+            klingon_ships: Default::default(),
+            world: Default::default(),
+        }
+    }
 }
 
 #[cfg(test)]
