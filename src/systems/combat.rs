@@ -55,4 +55,27 @@ mod combat_should {
         // Then
         assert_eq!(remaining_shield, defending_ship.ship_systems.shield.current)
     }
+
+    #[rstest]
+    #[case(0, 20)]
+    #[case(4545, 60)]
+    fn be_able_to_let_plater_damage_hull(#[case] seed: u64, #[case] remaining_hull: u8) {
+        // Given
+        let attacking_ship = Ship::new_federation_ship();
+        let mut defending_ship = Ship::new_klingon_ship();
+
+        // When
+        for _ in 0..20 {
+            apply_damage(
+                seed,
+                attacking_ship.ship_systems.phaser.to_string(),
+                &attacking_ship,
+                &mut defending_ship,
+            );
+        }
+
+        // Then
+        assert_eq!(0, defending_ship.ship_systems.shield.current);
+        assert_eq!(remaining_hull, defending_ship.ship_systems.hull.current);
+    }
 }
