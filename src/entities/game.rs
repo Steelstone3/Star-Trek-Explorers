@@ -1,4 +1,9 @@
-use super::{world::World, ship::Ship};
+use crate::{
+    components::ship::names::faction_name::FactionName,
+    systems::{random_generation::generate_seed, ship_generation::generate_ships},
+};
+
+use super::{ship::Ship, world::World};
 
 pub struct Game {
     pub player_ship: Ship,
@@ -19,12 +24,29 @@ impl Default for Game {
 }
 
 impl Game {
-    pub fn print_all_ships_in_world(&self) {
-        self.player_ship.ship_identification.display_ship_name_and_faction();
-        
-        // for ship in self.federation_ships {
+    pub fn print_player_ship(&self) {
+        self.player_ship
+            .ship_identification
+            .display_ship_name_and_faction();
+    }
 
-        // }
+    pub fn print_all_ai_ships(&self) {
+        for ship in &self.federation_ships {
+            ship.ship_identification.display_ship_name_and_faction();
+        }
+
+        for ship in &self.klingon_ships {
+            ship.ship_identification.display_ship_name_and_faction();
+        }
+    }
+
+    pub fn print_universe(&self) {
+        println!("{}", self.world.universe);
+    }
+
+    pub fn generate_games_ships(&mut self) {
+        generate_ships(self, FactionName::Federation, generate_seed());
+        generate_ships(self, FactionName::KlingonEmpire, generate_seed());
     }
 }
 

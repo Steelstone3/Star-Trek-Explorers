@@ -1,8 +1,6 @@
-use components::ship::names::faction_name::FactionName;
-use entities::game::Game;
-use systems::{random_generation::generate_seed, ship_generation::generate_ships};
-
 use crate::{entities::ship::Ship, systems::combat::combat_turn};
+use entities::game::Game;
+use systems::random_generation::generate_seed;
 
 mod components;
 mod entities;
@@ -12,22 +10,10 @@ mod systems;
 fn main() {
     let mut game = Game::default();
 
-    game.player_ship
-        .ship_identification
-        .display_ship_name_and_faction();
-
-    generate_ships(&mut game, FactionName::Federation, generate_seed());
-    generate_ships(&mut game, FactionName::KlingonEmpire, generate_seed());
-
-    for ship in game.federation_ships {
-        ship.ship_identification.display_ship_name_and_faction();
-    }
-
-    for ship in game.klingon_ships {
-        ship.ship_identification.display_ship_name_and_faction();
-    }
-
-    println!("{}", game.world.universe);
+    game.generate_games_ships();
+    game.print_player_ship();
+    game.print_all_ai_ships();
+    game.print_universe();
 
     let mut hostile = Ship::new_klingon_ship();
 
