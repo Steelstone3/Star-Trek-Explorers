@@ -18,8 +18,19 @@ impl Default for Game {
     }
 }
 
+impl Game {
+    pub fn print_all_ships_in_world(&self) {
+        self.player_ship.ship_identification.display_ship_name_and_faction();
+        
+        // for ship in self.federation_ships {
+
+        // }
+    }
+}
+
 #[cfg(test)]
 mod game_should {
     #[test]
+    #[ignore = "hard to test"]
     fn create_a_default_game() {}
 }

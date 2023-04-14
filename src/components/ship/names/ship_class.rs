@@ -1,7 +1,7 @@
 use rand_derive2::RandGen;
 use std::fmt::Display;
 
-use crate::systems::random_generation::{generate_random_value_from_range_u8, generate_seed};
+use crate::systems::random_generation::generate_random_value_from_range_u8;
 
 const FEDERATION_SHIP_CLASSES: [ShipClass; 18] = [
     ShipClass::Galaxy,
@@ -314,38 +314,45 @@ impl Display for ShipClass {
     }
 }
 
-pub fn get_random_federation_class() -> ShipClass {
-    FEDERATION_SHIP_CLASSES[get_index((FEDERATION_SHIP_CLASSES.len() - 1) as u8)]
+pub fn get_random_federation_class(seed: u64) -> ShipClass {
+    FEDERATION_SHIP_CLASSES[get_index(seed, (FEDERATION_SHIP_CLASSES.len() - 1) as u8)]
 }
 
-pub fn get_random_klingon_class() -> ShipClass {
-    KLINGON_SHIP_CLASSES[get_index((KLINGON_SHIP_CLASSES.len() - 1) as u8)]
+pub fn get_random_klingon_class(seed: u64) -> ShipClass {
+    KLINGON_SHIP_CLASSES[get_index(seed, (KLINGON_SHIP_CLASSES.len() - 1) as u8)]
 }
 
-fn get_index(name_length: u8) -> usize {
-    generate_random_value_from_range_u8(generate_seed(), 0, name_length) as usize
+fn get_index(seed: u64, name_length: u8) -> usize {
+    generate_random_value_from_range_u8(seed, 0, name_length) as usize
 }
 
 #[cfg(test)]
 mod ship_class_should {
     use super::*;
+    use rstest::rstest;
 
-    #[test]
-    fn be_able_to_get_random_federation_class() {
+    #[rstest]
+    #[case(0, ShipClass::Luna)]
+    #[case(1000, ShipClass::Ambassador)]
+    fn be_able_to_get_random_federation_class(#[case] seed: u64, #[case] ship_class: ShipClass) {
         // When
-        let class = get_random_federation_class();
+        let class = get_random_federation_class(seed);
 
         // Then
+        assert_eq!(ship_class.to_string(), class.to_string());
         assert!(FEDERATION_SHIP_CLASSES.contains(&class));
         assert!(!KLINGON_SHIP_CLASSES.contains(&class));
     }
 
-    #[test]
-    fn be_able_to_get_random_klingon_class() {
+    #[rstest]
+    #[case(0, ShipClass::Pogach)]
+    #[case(1000, ShipClass::Veltas)]
+    fn be_able_to_get_random_klingon_class(#[case] seed: u64, #[case] ship_class: ShipClass) {
         // When
-        let class = get_random_klingon_class();
+        let class = get_random_klingon_class(seed);
 
         // Then
+        assert_eq!(ship_class.to_string(), class.to_string());
         assert!(KLINGON_SHIP_CLASSES.contains(&class));
         assert!(!FEDERATION_SHIP_CLASSES.contains(&class));
     }

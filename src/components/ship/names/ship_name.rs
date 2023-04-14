@@ -1,4 +1,4 @@
-use crate::systems::random_generation::{generate_random_value_from_range_u8, generate_seed};
+use crate::systems::random_generation::generate_random_value_from_range_u8;
 use rand_derive2::RandGen;
 use std::fmt::Display;
 
@@ -403,39 +403,47 @@ impl Display for ShipName {
     }
 }
 
-pub fn get_random_federation_name() -> ShipName {
-    FEDERATION_SHIP_NAMES[get_index((FEDERATION_SHIP_NAMES.len() - 1) as u8)]
+pub fn get_random_federation_name(seed: u64) -> ShipName {
+    FEDERATION_SHIP_NAMES[get_index(seed, (FEDERATION_SHIP_NAMES.len() - 1) as u8)]
 }
 
-pub fn get_random_klingon_name() -> ShipName {
-    KLINGON_SHIP_NAMES[get_index((KLINGON_SHIP_NAMES.len() - 1) as u8)]
+pub fn get_random_klingon_name(seed: u64) -> ShipName {
+    KLINGON_SHIP_NAMES[get_index(seed, (KLINGON_SHIP_NAMES.len() - 1) as u8)]
 }
 
-fn get_index(name_length: u8) -> usize {
-    generate_random_value_from_range_u8(generate_seed(), 0, name_length) as usize
+fn get_index(seed: u64, name_length: u8) -> usize {
+    generate_random_value_from_range_u8(seed, 0, name_length) as usize
 }
 
 #[cfg(test)]
 mod ship_name_should {
+    use rstest::rstest;
+
     use super::*;
 
-    #[test]
-    fn be_able_to_get_random_federation_name() {
+    #[rstest]
+    #[case(0, ShipName::Prometheus)]
+    #[case(1000, ShipName::Voyager)]
+    fn be_able_to_get_random_federation_name(#[case] seed: u64, #[case] ship_name: ShipName) {
         // When
-        let class = get_random_federation_name();
+        let name = get_random_federation_name(seed);
 
         // Then
-        assert!(FEDERATION_SHIP_NAMES.contains(&class));
-        assert!(!KLINGON_SHIP_NAMES.contains(&class));
+        assert_eq!(ship_name.to_string(), name.to_string());
+        assert!(FEDERATION_SHIP_NAMES.contains(&name));
+        assert!(!KLINGON_SHIP_NAMES.contains(&name));
     }
 
-    #[test]
-    fn be_able_to_get_random_klingon_name() {
+    #[rstest]
+    #[case(0, ShipName::TAcog)]
+    #[case(1000, ShipName::Vorcha)]
+    fn be_able_to_get_random_klingon_name(#[case] seed: u64, #[case] ship_name: ShipName) {
         // When
-        let class = get_random_klingon_name();
+        let name = get_random_klingon_name(seed);
 
         // Then
-        assert!(KLINGON_SHIP_NAMES.contains(&class));
-        assert!(!FEDERATION_SHIP_NAMES.contains(&class));
+        assert_eq!(ship_name.to_string(), name.to_string());
+        assert!(KLINGON_SHIP_NAMES.contains(&name));
+        assert!(!FEDERATION_SHIP_NAMES.contains(&name));
     }
 }

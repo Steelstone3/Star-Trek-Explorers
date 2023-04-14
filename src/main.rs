@@ -14,22 +14,17 @@ fn main() {
 
     game.player_ship
         .ship_identification
-        .display_ship_name_and_faction(
-            &game.player_ship.name.to_string(),
-            &game.player_ship.class.to_string(),
-        );
+        .display_ship_name_and_faction();
 
     generate_ships(&mut game, FactionName::Federation, generate_seed());
     generate_ships(&mut game, FactionName::KlingonEmpire, generate_seed());
 
     for ship in game.federation_ships {
-        ship.ship_identification
-            .display_ship_name_and_faction(&ship.name.to_string(), &ship.class.to_string());
+        ship.ship_identification.display_ship_name_and_faction();
     }
 
     for ship in game.klingon_ships {
-        ship.ship_identification
-            .display_ship_name_and_faction(&ship.name.to_string(), &ship.class.to_string());
+        ship.ship_identification.display_ship_name_and_faction();
     }
 
     println!("{}", game.world.universe);

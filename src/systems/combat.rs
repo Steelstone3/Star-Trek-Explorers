@@ -13,15 +13,9 @@ pub fn combat_turn(
 
 fn print_turn(attacking_ship: &Ship, defending_ship: &Ship) {
     print!("Attacking Ship: ");
-    attacking_ship.ship_identification.display_ship_name(
-        &attacking_ship.name.to_string(),
-        &attacking_ship.class.to_string(),
-    );
+    attacking_ship.ship_identification.display_ship_name();
     print!("Defending Ship: ");
-    defending_ship.ship_identification.display_ship_name(
-        &defending_ship.name.to_string(),
-        &defending_ship.class.to_string(),
-    )
+    defending_ship.ship_identification.display_ship_name()
 }
 
 fn apply_damage(seed: u64, weapon_name: String, attacking_ship: &Ship, defending_ship: &mut Ship) {

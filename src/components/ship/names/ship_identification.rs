@@ -1,33 +1,51 @@
-use crate::systems::ship_identifier_generation::generate_random_identifier;
+use crate::{
+    components::ship::names::{
+        ship_class::{get_random_federation_class, get_random_klingon_class},
+        ship_name::{get_random_federation_name, get_random_klingon_name},
+    },
+    systems::ship_identifier_generation::generate_random_identifier,
+};
 
-use super::faction_name::FactionName;
+use super::{faction_name::FactionName, ship_class::ShipClass, ship_name::ShipName};
 use rand_derive2::RandGen;
 
 #[derive(PartialEq, Debug, RandGen)]
 pub struct ShipIdentification {
+    pub name: ShipName,
+    pub class: ShipClass,
     pub serial_number: String,
     pub faction: FactionName,
 }
 
 impl ShipIdentification {
     pub fn new(seed: u64, faction: FactionName) -> Self {
-        Self {
-            serial_number: generate_random_identifier(seed, &faction),
-            faction,
+        match faction {
+            FactionName::Federation => Self {
+                serial_number: generate_random_identifier(seed, &faction),
+                faction,
+                name: get_random_federation_name(seed),
+                class: get_random_federation_class(seed),
+            },
+            FactionName::KlingonEmpire => Self {
+                serial_number: generate_random_identifier(seed, &faction),
+                faction,
+                name: get_random_klingon_name(seed),
+                class: get_random_klingon_class(seed),
+            },
         }
     }
 
-    pub fn display_ship_name(&self, ship_name: &String, ship_class: &String) {
+    pub fn display_ship_name(&self) {
         println!(
             "| Name: {} {} | Class: {} |",
-            self.serial_number, ship_name, ship_class
+            self.serial_number, self.name, self.class
         )
     }
 
-    pub fn display_ship_name_and_faction(&self, ship_name: &String, ship_class: &String) {
+    pub fn display_ship_name_and_faction(&self) {
         println!(
             "| Name: {} {} | Class: {} | Faction {} |",
-            self.serial_number, ship_name, ship_class, self.faction
+            self.serial_number, self.name, self.class, self.faction
         )
     }
 }
@@ -43,6 +61,8 @@ mod ship_identification_should {
         let ship_identification = ShipIdentification::new(0, FactionName::Federation);
 
         // Then
+        assert_eq!(ShipName::Prometheus, ship_identification.name);
+        assert_eq!(ShipClass::Luna, ship_identification.class);
         assert_eq!(FactionName::Federation, ship_identification.faction);
         assert_eq!("USS-52722", ship_identification.serial_number);
     }
