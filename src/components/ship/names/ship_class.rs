@@ -3,6 +3,8 @@ use std::fmt::Display;
 
 use crate::systems::random_generation::generate_random_value_from_range_u8;
 
+use super::faction_name::FactionName;
+
 const FEDERATION_SHIP_CLASSES: [ShipClass; 18] = [
     ShipClass::Galaxy,
     ShipClass::Intrepid,
@@ -67,7 +69,7 @@ const KLINGON_SHIP_CLASSES: [ShipClass; 40] = [
     ShipClass::Vergrah,
 ];
 
-#[derive(PartialEq, Debug, Copy, Clone, RandGen)]
+#[derive(PartialEq, Debug, Clone, Copy, RandGen)]
 pub enum ShipClass {
     // Federation Ship Classes
     Galaxy,
@@ -314,12 +316,19 @@ impl Display for ShipClass {
     }
 }
 
-pub fn get_random_federation_class(seed: u64) -> ShipClass {
-    FEDERATION_SHIP_CLASSES[get_index(seed, (FEDERATION_SHIP_CLASSES.len() - 1) as u8)]
-}
-
-pub fn get_random_klingon_class(seed: u64) -> ShipClass {
-    KLINGON_SHIP_CLASSES[get_index(seed, (KLINGON_SHIP_CLASSES.len() - 1) as u8)]
+pub fn get_random_class(seed: u64, faction: FactionName) -> ShipClass {
+    match faction {
+        FactionName::Federation => {
+            let length = (FEDERATION_SHIP_CLASSES.len() - 1) as u8;
+            let index = get_index(seed, length);
+            FEDERATION_SHIP_CLASSES[index]
+        }
+        FactionName::KlingonEmpire => {
+            let length = (KLINGON_SHIP_CLASSES.len() - 1) as u8;
+            let index = get_index(seed, length);
+            KLINGON_SHIP_CLASSES[index]
+        }
+    }
 }
 
 fn get_index(seed: u64, name_length: u8) -> usize {
@@ -336,7 +345,7 @@ mod ship_class_should {
     #[case(1000, ShipClass::Ambassador)]
     fn be_able_to_get_random_federation_class(#[case] seed: u64, #[case] ship_class: ShipClass) {
         // When
-        let class = get_random_federation_class(seed);
+        let class = get_random_class(seed, FactionName::Federation);
 
         // Then
         assert_eq!(ship_class.to_string(), class.to_string());
@@ -349,7 +358,7 @@ mod ship_class_should {
     #[case(1000, ShipClass::Veltas)]
     fn be_able_to_get_random_klingon_class(#[case] seed: u64, #[case] ship_class: ShipClass) {
         // When
-        let class = get_random_klingon_class(seed);
+        let class = get_random_class(seed, FactionName::KlingonEmpire);
 
         // Then
         assert_eq!(ship_class.to_string(), class.to_string());

@@ -5,7 +5,7 @@ use rand_derive2::RandGen;
 
 use super::damage::DamageDealer;
 
-#[derive(PartialEq, Debug, Copy, Clone,RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub struct Phaser {
     minimum_damage: u8,
     pub maximum_damage: u8,

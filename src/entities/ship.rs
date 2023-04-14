@@ -10,7 +10,7 @@ use crate::{
 };
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, Clone, Copy, RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub struct Ship {
     pub ship_identification: ShipIdentification,
     pub ship_systems: ShipSystems,

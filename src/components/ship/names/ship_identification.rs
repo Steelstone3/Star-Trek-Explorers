@@ -1,14 +1,10 @@
-use crate::{
-    components::ship::names::{
-        ship_class::{get_random_federation_class, get_random_klingon_class},
-        ship_name::{get_random_federation_name, get_random_klingon_name},
-    },
+use super::{
+    faction_name::FactionName, ship_class::ShipClass, ship_id::SerialNumber, ship_name::ShipName,
 };
-
-use super::{faction_name::FactionName, ship_class::ShipClass, ship_name::ShipName, ship_id::SerialNumber};
+use crate::components::ship::names::{ship_class::get_random_class, ship_name::get_random_name};
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, Copy, Clone,RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub struct ShipIdentification {
     pub name: ShipName,
     pub class: ShipClass,
@@ -22,14 +18,14 @@ impl ShipIdentification {
             FactionName::Federation => Self {
                 serial_number: SerialNumber::FederationId,
                 faction,
-                name: get_random_federation_name(seed),
-                class: get_random_federation_class(seed),
+                name: get_random_name(seed, FactionName::Federation),
+                class: get_random_class(seed, FactionName::Federation),
             },
             FactionName::KlingonEmpire => Self {
                 serial_number: SerialNumber::KlingonId,
                 faction,
-                name: get_random_klingon_name(seed),
-                class: get_random_klingon_class(seed),
+                name: get_random_name(seed, FactionName::KlingonEmpire),
+                class: get_random_class(seed, FactionName::KlingonEmpire),
             },
         }
     }
@@ -63,7 +59,10 @@ mod ship_identification_should {
         assert_eq!(ShipName::Prometheus, ship_identification.name);
         assert_eq!(ShipClass::Luna, ship_identification.class);
         assert_eq!(FactionName::Federation, ship_identification.faction);
-        assert_ne!(String::default(), ship_identification.serial_number.to_string());
+        assert_ne!(
+            String::default(),
+            ship_identification.serial_number.to_string()
+        );
         // assert_eq!("USS-52722", ship_identification.serial_number.to_string());
     }
 }

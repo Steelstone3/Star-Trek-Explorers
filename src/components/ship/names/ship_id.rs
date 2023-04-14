@@ -1,13 +1,13 @@
-use std::fmt::Display;
-use rand_derive2::RandGen;
 use crate::{
     components::ship::names::faction_name::FactionName,
     systems::{
         random_generation::generate_seed, ship_identifier_generation::generate_random_identifier,
     },
 };
+use rand_derive2::RandGen;
+use std::fmt::Display;
 
-#[derive(PartialEq, Debug, Copy, Clone, RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub enum SerialNumber {
     FederationId,
     KlingonId,

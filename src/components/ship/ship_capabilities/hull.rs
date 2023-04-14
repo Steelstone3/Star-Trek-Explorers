@@ -2,7 +2,7 @@ use rand_derive2::RandGen;
 
 use super::damage::DamageTaker;
 
-#[derive(PartialEq, Debug, Copy, Clone,RandGen)]
+#[derive(PartialEq, Debug, RandGen)]
 pub struct Hull {
     pub current: u8,
     pub maximum: u8,
