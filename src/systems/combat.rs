@@ -22,7 +22,7 @@ fn apply_damage(seed: u64, weapon_name: String, attacking_ship: &Ship, defending
     let damage = attacking_ship
         .ship_systems
         .calculate_damage_from_weapon(seed, weapon_name);
-    println!("{}", damage);
+    println!("| Damage: {} |", damage);
     // TODO is this updating as expected? No
     defending_ship
         .ship_systems
