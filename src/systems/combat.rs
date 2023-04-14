@@ -43,7 +43,7 @@ mod combat_should {
     #[rstest]
     #[case(0, 91)]
     #[case(4545, 93)]
-    fn be_able_to_let_plater_damage_shields(#[case] seed: u64, #[case] remaining_shield: u8) {
+    fn be_able_to_let_player_damage_shields(#[case] seed: u64, #[case] remaining_shield: u8) {
         // Given
         let attacking_ship = Ship::new_federation_ship();
         let mut defending_ship = Ship::new_klingon_ship();
@@ -60,7 +60,7 @@ mod combat_should {
     #[rstest]
     #[case(0, 20)]
     #[case(4545, 60)]
-    fn be_able_to_let_plater_damage_hull(#[case] seed: u64, #[case] remaining_hull: u8) {
+    fn be_able_to_let_player_damage_hull(#[case] seed: u64, #[case] remaining_hull: u8) {
         // Given
         let attacking_ship = Ship::new_federation_ship();
         let mut defending_ship = Ship::new_klingon_ship();
