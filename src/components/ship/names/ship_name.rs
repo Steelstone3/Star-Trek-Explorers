@@ -414,3 +414,28 @@ pub fn get_random_klingon_name() -> ShipName {
 fn get_index(name_length: u8) -> usize {
     generate_random_value_from_range_u8(generate_seed(), 0, name_length) as usize
 }
+
+#[cfg(test)]
+mod ship_name_should {
+    use super::*;
+
+    #[test]
+    fn be_able_to_get_random_federation_name() {
+        // When
+        let class = get_random_federation_name();
+
+        // Then
+        assert!(FEDERATION_SHIP_NAMES.contains(&class));
+        assert!(!KLINGON_SHIP_NAMES.contains(&class));
+    }
+
+    #[test]
+    fn be_able_to_get_random_klingon_name() {
+        // When
+        let class = get_random_klingon_name();
+
+        // Then
+        assert!(KLINGON_SHIP_NAMES.contains(&class));
+        assert!(!FEDERATION_SHIP_NAMES.contains(&class));
+    }
+}
