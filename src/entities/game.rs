@@ -1,6 +1,8 @@
 use crate::{
     components::ship::names::faction_name::FactionName,
-    systems::{random_generation::generate_seed, ship_generation::generate_ships},
+    systems::{
+        combat::combat_turn, random_generation::generate_seed, ship_generation::generate_ships,
+    },
 };
 
 use super::{ship::Ship, world::World};
@@ -47,6 +49,22 @@ impl Game {
     pub fn generate_games_ships(&mut self) {
         generate_ships(self, FactionName::Federation, generate_seed());
         generate_ships(self, FactionName::KlingonEmpire, generate_seed());
+    }
+
+    pub fn start_combat(&mut self) {
+        combat_turn(
+            generate_seed(),
+            self.player_ship.ship_systems.select_ship_weapon_type(),
+            &self.player_ship,
+            &mut self.klingon_ships[0],
+        );
+
+        combat_turn(
+            generate_seed(),
+            self.klingon_ships[0].ship_systems.select_ship_weapon_type_ai(),
+            &self.klingon_ships[0],
+            &mut self.player_ship,
+        );
     }
 }
 
