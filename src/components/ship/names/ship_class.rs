@@ -325,3 +325,28 @@ pub fn get_random_klingon_class() -> ShipClass {
 fn get_index(name_length: u8) -> usize {
     generate_random_value_from_range_u8(generate_seed(), 0, name_length) as usize
 }
+
+#[cfg(test)]
+mod ship_class_should {
+    use super::*;
+
+    #[test]
+    fn be_able_to_get_random_federation_class() {
+        // When
+        let class = get_random_federation_class();
+
+        // Then
+        assert!(FEDERATION_SHIP_CLASSES.contains(&class));
+        assert!(!KLINGON_SHIP_CLASSES.contains(&class));
+    }
+
+    #[test]
+    fn be_able_to_get_random_klingon_class() {
+        // When
+        let class = get_random_klingon_class();
+
+        // Then
+        assert!(KLINGON_SHIP_CLASSES.contains(&class));
+        assert!(!FEDERATION_SHIP_CLASSES.contains(&class));
+    }
+}
