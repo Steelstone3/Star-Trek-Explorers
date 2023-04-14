@@ -53,7 +53,8 @@ mod combat_should {
         apply_damage(seed, weapon_name, &attacking_ship, &mut defending_ship);
 
         // Then
-        assert_eq!(remaining_shield, defending_ship.ship_systems.shield.current)
+        assert_eq!(remaining_shield, defending_ship.ship_systems.shield.current);
+        assert_eq!(100, defending_ship.ship_systems.hull.current);
     }
 
     #[rstest]
