@@ -1,4 +1,4 @@
-use super::{ship::Ship, world::World};
+use super::{world::World, ship::Ship};
 
 pub struct Game {
     pub player_ship: Ship,

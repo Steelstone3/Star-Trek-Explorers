@@ -2,7 +2,7 @@ use std::fmt::Display;
 
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen)]
+#[derive(PartialEq, Debug, Copy, Clone, RandGen)]
 pub enum FactionName {
     Federation,
     KlingonEmpire,

@@ -12,7 +12,7 @@ use super::{
 };
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen, Default)]
+#[derive(PartialEq, Debug, RandGen, Copy, Clone, Default)]
 pub struct ShipSystems {
     pub shield: Shield,
     pub hull: Hull,

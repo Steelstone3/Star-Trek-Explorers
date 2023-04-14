@@ -2,7 +2,7 @@ use rand_derive2::RandGen;
 
 use super::damage::DamageTaker;
 
-#[derive(PartialEq, Debug, RandGen)]
+#[derive(PartialEq, Debug, Copy, Clone, RandGen)]
 pub struct Shield {
     pub current: u8,
     pub maximum: u8,
