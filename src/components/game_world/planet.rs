@@ -30,11 +30,11 @@ impl Planet {
 
 impl Display for Planet {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        if !self.is_visible {
-            return Ok(());
+        if self.is_visible {
+            write!(f, "| Planet: {} | {} |", self.name, self.class).unwrap()
         }
 
-        write!(f, "| Planet: {} | {} |", self.name, self.class)
+        Ok(())
     }
 }
 
