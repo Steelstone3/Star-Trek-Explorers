@@ -17,7 +17,9 @@ impl Default for Universe {
 impl Display for Universe {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for star in &self.stars {
-            write!(f, "{}", star).expect("stars collection empty");
+            if star.is_visible {
+                write!(f, "{}", star).expect("stars collection empty");
+            }
         }
 
         Ok(())
