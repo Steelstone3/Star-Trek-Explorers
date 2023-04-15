@@ -5,6 +5,7 @@ use std::fmt::Display;
 pub struct Planet {
     name: PlanetName,
     class: PlanetClass,
+    pub is_visible: bool
 }
 
 impl Default for Planet {
@@ -12,6 +13,17 @@ impl Default for Planet {
         Self {
             name: random(),
             class: random(),
+            is_visible: random(),
+        }
+    }
+}
+
+impl Planet {
+    pub fn default_visible_planet() -> Self {
+        Self {
+            name: random(),
+            class: random(),
+            is_visible: true,
         }
     }
 }
@@ -34,6 +46,17 @@ mod planet_should {
         // Then
         assert_ne!(String::default(), planet.name.to_string());
         assert_ne!(String::default(), planet.class.to_string());
+    }
+
+    #[test]
+    fn create_a_visible_default_planet() {
+        // Given
+        let planet = Planet::default_visible_planet();
+
+        // Then
+        assert_ne!(String::default(), planet.name.to_string());
+        assert_ne!(String::default(), planet.class.to_string());
+        assert!(planet.is_visible);
     }
 
     #[test]

@@ -2,22 +2,35 @@ use super::{
     names::{star_class::StarClass, star_name::StarName},
     planet::Planet,
 };
-use crate::systems::{planet_generation::generate_planets, random_generation::generate_seed};
+use crate::systems::planet_generation::generate_planets;
 use rand::random;
 use std::fmt::Display;
 
 pub struct Star {
     name: StarName,
     class: StarClass,
-    planets: Vec<Planet>,
+    planets: [Planet; 10],
+    pub is_visible: bool,
 }
 
 impl Default for Star {
     fn default() -> Self {
         Self {
-            planets: generate_planets(generate_seed()),
+            planets: generate_planets(),
             name: random(),
             class: random(),
+            is_visible: random(),
+        }
+    }
+}
+
+impl Star {
+    pub fn default_visible_star() -> Self {
+        Self {
+            planets: generate_planets(),
+            name: random(),
+            class: random(),
+            is_visible: true,
         }
     }
 }
@@ -47,6 +60,18 @@ mod star_should {
         assert_ne!(0, star.planets.len());
         assert_ne!(String::default(), star.name.to_string());
         assert_ne!(String::default(), star.class.to_string());
+    }
+
+    #[test]
+    fn create_a_visible_default_star() {
+        // Given
+        let star = Star::default_visible_star();
+
+        // Then
+        assert_ne!(0, star.planets.len());
+        assert_ne!(String::default(), star.name.to_string());
+        assert_ne!(String::default(), star.class.to_string());
+        assert!(star.is_visible);
     }
 
     #[test]

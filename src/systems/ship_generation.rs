@@ -54,6 +54,23 @@ mod ship_generation_should {
     }
 
     #[test]
+    fn are_federation_ships_in_play() {
+        // Given
+        let mut ships_in_play: Vec<bool> = Vec::new();
+        let ships = generate_ships(FactionName::Federation);
+
+        // When
+        for star in ships {
+            if star.is_in_play {
+                ships_in_play.push(true);
+            }
+        }
+
+        // Then
+        assert!(0 < ships_in_play.len())
+    }
+
+    #[test]
     fn be_able_to_generate_klingon_ships() {
         // Given
         let quantity = 10;
@@ -65,5 +82,22 @@ mod ship_generation_should {
         // Then
         assert!(Duration::from_millis(50) > stop_watch.elapsed());
         assert_eq!(quantity, ships.len());
+    }
+
+    #[test]
+    fn are_klingon_ships_in_play() {
+        // Given
+        let mut ships_in_play: Vec<bool> = Vec::new();
+        let ships = generate_ships(FactionName::KlingonEmpire);
+
+        // When
+        for star in ships {
+            if star.is_in_play {
+                ships_in_play.push(true);
+            }
+        }
+
+        // Then
+        assert!(0 < ships_in_play.len())
     }
 }

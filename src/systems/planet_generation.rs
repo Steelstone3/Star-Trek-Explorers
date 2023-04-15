@@ -1,17 +1,20 @@
 use crate::{
     components::game_world::planet::Planet,
-    systems::random_generation::generate_random_value_from_range_u8,
 };
 
-pub fn generate_planets(seed: u64) -> Vec<Planet> {
-    let quantity = generate_random_value_from_range_u8(seed, 1, 10);
-    let mut index = 0;
-    let mut planets = Vec::new();
-
-    while quantity > index {
-        planets.push(Planet::default());
-        index += 1;
-    }
+pub fn generate_planets() -> [Planet; 10] {
+    let planets: [Planet; 10] = [
+        Planet::default_visible_planet(),
+        Planet::default(),
+        Planet::default(),
+        Planet::default(),
+        Planet::default(),
+        Planet::default(),
+        Planet::default(),
+        Planet::default(),
+        Planet::default(),
+        Planet::default(),
+    ];
 
     planets
 }
@@ -19,22 +22,35 @@ pub fn generate_planets(seed: u64) -> Vec<Planet> {
 #[cfg(test)]
 mod planet_generation_should {
     use super::*;
-    use rstest::rstest;
     use std::time::{Duration, Instant};
 
-    #[rstest]
-    #[case(0, 8)]
-    #[case(4545, 5)]
-    #[case(7000, 9)]
-    fn be_able_to_generate_planets(#[case] seed: u64, #[case] size: usize) {
+    #[test]
+    fn be_able_to_generate_planets() {
         // Given
         let stop_watch = Instant::now();
 
         // When
-        let planets = generate_planets(seed);
+        let planets = generate_planets();
 
         // Then
         assert!(Duration::from_millis(10) > stop_watch.elapsed());
-        assert_eq!(size, planets.len())
+        assert_eq!(10, planets.len())
+    }
+
+    #[test]
+    fn are_planets_visible() {
+        // Given
+        let mut visible_planets: Vec<bool> = Vec::new();
+        let stars = generate_planets();
+
+        // When
+        for star in stars {
+            if star.is_visible {
+                visible_planets.push(true);
+            }
+        }
+
+        // Then
+        assert!(0 < visible_planets.len())
     }
 }

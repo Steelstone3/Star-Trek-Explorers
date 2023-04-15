@@ -1,15 +1,15 @@
 use super::star::Star;
-use crate::systems::{random_generation::generate_seed, star_generation::generate_stars};
+use crate::systems::star_generation::generate_stars;
 use std::fmt::Display;
 
 pub struct Universe {
-    stars: Vec<Star>,
+    stars: [Star; 100],
 }
 
 impl Default for Universe {
     fn default() -> Self {
         Self {
-            stars: generate_stars(generate_seed()),
+            stars: generate_stars(),
         }
     }
 }

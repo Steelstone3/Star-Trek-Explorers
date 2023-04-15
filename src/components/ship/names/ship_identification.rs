@@ -64,9 +64,9 @@ mod ship_identification_should {
         assert_eq!(FactionName::Federation, ship_identification.faction);
         assert_ne!(
             String::default(),
-            ship_identification.serial_number.to_string()
+            ship_identification.serial_number
         );
-        assert_eq!("USS-52722", ship_identification.serial_number.to_string());
+        assert_eq!("USS-52722", ship_identification.serial_number);
     }
 
     #[test]
@@ -80,8 +80,8 @@ mod ship_identification_should {
         assert_eq!(FactionName::KlingonEmpire, ship_identification.faction);
         assert_ne!(
             String::default(),
-            ship_identification.serial_number.to_string()
+            ship_identification.serial_number
         );
-        assert_eq!("IKS-52722", ship_identification.serial_number.to_string());
+        assert_eq!("IKS-52722", ship_identification.serial_number);
     }
 }

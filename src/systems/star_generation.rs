@@ -1,39 +1,144 @@
 use crate::components::game_world::star::Star;
 
-use super::random_generation::generate_random_value_from_range_u16;
+pub fn generate_stars() -> [Star; 100] {
+    let stars: [Star; 100] = [
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default_visible_star(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+        Star::default(),
+    ];
 
-pub fn generate_stars(seed: u64) -> Vec<Star> {
-    let quantity = generate_random_value_from_range_u16(seed, 100, 500);
-    let mut index = 0;
-    let mut planets = Vec::new();
-
-    while quantity > index {
-        planets.push(Star::default());
-        index += 1;
-    }
-
-    planets
+    stars
 }
 
 #[cfg(test)]
 mod star_generation_should {
     use super::*;
-    use rstest::rstest;
     use std::time::{Duration, Instant};
 
-    #[rstest]
-    #[case(0, 420)]
-    #[case(4545, 305)]
-    #[case(7000, 464)]
-    fn be_able_to_generate_star(#[case] seed: u64, #[case] size: usize) {
+    #[test]
+    fn be_able_to_generate_star() {
         // Given
         let stop_watch = Instant::now();
 
         // When
-        let stars = generate_stars(seed);
+        let stars = generate_stars();
 
         // Then
         assert!(Duration::from_millis(50) > stop_watch.elapsed());
-        assert_eq!(size, stars.len())
+        assert_eq!(100, stars.len())
+    }
+
+    #[test]
+    fn are_stars_visible() {
+        // Given
+        let mut visible_stars: Vec<bool> = Vec::new();
+        let stars = generate_stars();
+
+        // When
+        for star in stars {
+            if star.is_visible {
+                visible_stars.push(true);
+            }
+        }
+
+        // Then
+        assert!(24 < visible_stars.len())
     }
 }

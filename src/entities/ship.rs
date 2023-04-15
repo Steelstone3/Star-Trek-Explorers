@@ -88,7 +88,7 @@ mod ship_should {
         );
         assert_ne!(
             String::default(),
-            ship.ship_identification.serial_number.to_string()
+            ship.ship_identification.serial_number
         );
         assert_eq!(FactionName::Federation, ship.ship_identification.faction);
         assert_eq!(Shield::default(), ship.ship_systems.shield);
@@ -110,7 +110,7 @@ mod ship_should {
         );
         assert_ne!(
             String::default(),
-            ship.ship_identification.serial_number.to_string()
+            ship.ship_identification.serial_number
         );
         assert_eq!(FactionName::KlingonEmpire, ship.ship_identification.faction);
         assert_eq!(Shield::default(), ship.ship_systems.shield);
