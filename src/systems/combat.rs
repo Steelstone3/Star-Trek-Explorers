@@ -6,6 +6,10 @@ pub fn combat_turn(
     attacking_ship: &Ship,
     defending_ship: &mut Ship,
 ) {
+    if !attacking_ship.is_in_play {
+        return;
+    }
+
     print_turn(attacking_ship, defending_ship);
     apply_damage(seed, weapon_name, attacking_ship, defending_ship);
     defending_ship.ship_systems.display_defensive_capabilities();
