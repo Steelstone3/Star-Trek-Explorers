@@ -2,7 +2,7 @@ use crate::{components::ship::names::faction_name::FactionName, entities::ship::
 
 pub fn generate_ships(faction_name: FactionName) -> [Ship; 10] {
     let federation_ships: [Ship; 10] = [
-        Ship::new_federation_ship(),
+        Ship::new_federation_ship_in_play(),
         Ship::new_federation_ship(),
         Ship::new_federation_ship(),
         Ship::new_federation_ship(),
@@ -15,7 +15,7 @@ pub fn generate_ships(faction_name: FactionName) -> [Ship; 10] {
     ];
 
     let klingon_ships: [Ship; 10] = [
-        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship_in_play(),
         Ship::new_klingon_ship(),
         Ship::new_klingon_ship(),
         Ship::new_klingon_ship(),

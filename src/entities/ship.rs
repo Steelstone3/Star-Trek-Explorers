@@ -1,27 +1,41 @@
 use crate::{
     components::ship::{
-        names::{
-            faction_name::FactionName,
-            ship_identification::ShipIdentification,
-        },
+        names::{faction_name::FactionName, ship_identification::ShipIdentification},
         ship_capabilities::ship_systems::ShipSystems,
     },
     systems::random_generation::generate_seed,
 };
+use rand::random;
 use rand_derive2::RandGen;
 
 #[derive(PartialEq, Debug, RandGen)]
 pub struct Ship {
     pub ship_identification: ShipIdentification,
     pub ship_systems: ShipSystems,
+    pub is_in_play: bool,
 }
 
 impl Ship {
+    pub fn new_federation_ship_in_play() -> Self {
+        let mut ship = Ship::new_federation_ship();
+        ship.is_in_play = true;
+        
+        ship
+    }
+
     pub fn new_federation_ship() -> Self {
         Self {
             ship_identification: ShipIdentification::new(generate_seed(), FactionName::Federation),
             ship_systems: ShipSystems::default(),
+            is_in_play: random(),
         }
+    }
+
+    pub fn new_klingon_ship_in_play() -> Self {
+        let mut ship = Ship::new_klingon_ship();
+        ship.is_in_play = true;
+        
+        ship
     }
 
     pub fn new_klingon_ship() -> Self {
@@ -31,6 +45,7 @@ impl Ship {
                 FactionName::KlingonEmpire,
             ),
             ship_systems: ShipSystems::default(),
+            is_in_play: random(),
         }
     }
 }
@@ -43,14 +58,38 @@ mod ship_should {
     };
 
     #[test]
+    fn create_a_default_federation_ship_in_play() {
+        // Given
+        let ship = Ship::new_federation_ship_in_play();
+
+        // Then
+        assert!(ship.is_in_play)
+    }
+
+    #[test]
+    fn create_a_default_klingon_ship_in_play() {
+        // Given
+        let ship = Ship::new_klingon_ship_in_play();
+
+        // Then
+        assert!(ship.is_in_play)
+    }
+
+    #[test]
     fn create_a_default_federation_ship() {
         // Given
         let ship = Ship::new_federation_ship();
 
         // Then
         assert_ne!(String::default(), ship.ship_identification.name.to_string());
-        assert_ne!(String::default(), ship.ship_identification.class.to_string());
-        assert_ne!(String::default(), ship.ship_identification.serial_number.to_string());
+        assert_ne!(
+            String::default(),
+            ship.ship_identification.class.to_string()
+        );
+        assert_ne!(
+            String::default(),
+            ship.ship_identification.serial_number.to_string()
+        );
         assert_eq!(FactionName::Federation, ship.ship_identification.faction);
         assert_eq!(Shield::default(), ship.ship_systems.shield);
         assert_eq!(Hull::default(), ship.ship_systems.hull);
@@ -65,8 +104,14 @@ mod ship_should {
 
         // Then
         assert_ne!(String::default(), ship.ship_identification.name.to_string());
-        assert_ne!(String::default(), ship.ship_identification.class.to_string());
-        assert_ne!(String::default(), ship.ship_identification.serial_number.to_string());
+        assert_ne!(
+            String::default(),
+            ship.ship_identification.class.to_string()
+        );
+        assert_ne!(
+            String::default(),
+            ship.ship_identification.serial_number.to_string()
+        );
         assert_eq!(FactionName::KlingonEmpire, ship.ship_identification.faction);
         assert_eq!(Shield::default(), ship.ship_systems.shield);
         assert_eq!(Hull::default(), ship.ship_systems.hull);
