@@ -37,6 +37,10 @@ impl Star {
 
 impl Display for Star {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        if !self.is_visible {
+            return Ok(());
+        }
+        
         writeln!(f, "\n| Star: {} {} |", self.name, self.class).unwrap();
 
         for planet in &self.planets {

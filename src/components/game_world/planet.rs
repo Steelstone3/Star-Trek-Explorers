@@ -5,7 +5,7 @@ use std::fmt::Display;
 pub struct Planet {
     name: PlanetName,
     class: PlanetClass,
-    pub is_visible: bool
+    pub is_visible: bool,
 }
 
 impl Default for Planet {
@@ -30,6 +30,10 @@ impl Planet {
 
 impl Display for Planet {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        if !self.is_visible {
+            return Ok(());
+        }
+
         write!(f, "| Planet: {} | {} |", self.name, self.class)
     }
 }
