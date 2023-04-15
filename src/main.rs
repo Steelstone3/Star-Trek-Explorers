@@ -8,7 +8,6 @@ mod systems;
 fn main() {
     let mut game = Game::default();
 
-    game.generate_games_ships();
     game.print_player_ship();
     game.print_all_ai_ships();
     game.print_universe();

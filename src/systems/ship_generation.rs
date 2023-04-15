@@ -1,34 +1,35 @@
-use super::random_generation::generate_random_value_from_range_u8;
-use crate::{
-    components::ship::names::faction_name::FactionName,
-    entities::{game::Game, ship::Ship},
-};
+use crate::{components::ship::names::faction_name::FactionName, entities::ship::Ship};
 
-pub fn generate_ships(game: &mut Game, faction_name: FactionName, seed: u64) {
-    let quantity = generate_random_value_from_range_u8(seed, 1, 15);
-    let mut index = 0;
+pub fn generate_ships(faction_name: FactionName) -> [Ship; 10] {
+    let federation_ships: [Ship; 10] = [
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+        Ship::new_federation_ship(),
+    ];
+
+    let klingon_ships: [Ship; 10] = [
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+        Ship::new_klingon_ship(),
+    ];
 
     match faction_name {
-        FactionName::Federation => {
-            let mut ships = Vec::new();
-
-            while quantity > index {
-                ships.push(Ship::new_federation_ship());
-                index += 1;
-            }
-
-            game.federation_ships = ships;
-        }
-        FactionName::KlingonEmpire => {
-            let mut ships = Vec::new();
-
-            while quantity > index {
-                ships.push(Ship::new_klingon_ship());
-                index += 1;
-            }
-
-            game.klingon_ships = ships;
-        }
+        FactionName::Federation => federation_ships,
+        FactionName::KlingonEmpire => klingon_ships,
     }
 }
 
@@ -37,39 +38,32 @@ mod ship_generation_should {
     use std::time::{Duration, Instant};
 
     use super::*;
-    use crate::entities::game::Game;
 
     #[test]
     fn be_able_to_generate_federation_ships() {
         // Given
-        let seed = 0;
-        let quantity = 12;
+        let quantity = 10;
         let stop_watch = Instant::now();
-        let mut game = Game::default();
 
         // When
-        generate_ships(&mut game, FactionName::Federation, seed);
+        let ships = generate_ships(FactionName::Federation);
 
         // Then
         assert!(Duration::from_millis(50) > stop_watch.elapsed());
-        assert_eq!(quantity, game.federation_ships.len());
-        assert_eq!(0, game.klingon_ships.len());
+        assert_eq!(quantity, ships.len());
     }
 
     #[test]
     fn be_able_to_generate_klingon_ships() {
         // Given
-        let seed = 0;
-        let quantity = 12;
+        let quantity = 10;
         let stop_watch = Instant::now();
-        let mut game = Game::default();
 
         // When
-        generate_ships(&mut game, FactionName::KlingonEmpire, seed);
+        let ships = generate_ships(FactionName::KlingonEmpire);
 
         // Then
         assert!(Duration::from_millis(50) > stop_watch.elapsed());
-        assert_eq!(quantity, game.klingon_ships.len());
-        assert_eq!(0, game.federation_ships.len());
+        assert_eq!(quantity, ships.len());
     }
 }

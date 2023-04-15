@@ -9,8 +9,8 @@ use super::{ship::Ship, world::World};
 
 pub struct Game {
     pub player_ship: Ship,
-    pub federation_ships: Vec<Ship>,
-    pub klingon_ships: Vec<Ship>,
+    pub federation_ships: [Ship; 10],
+    pub klingon_ships: [Ship; 10],
     pub world: World,
 }
 
@@ -18,8 +18,8 @@ impl Default for Game {
     fn default() -> Self {
         Self {
             player_ship: Ship::new_federation_ship(),
-            federation_ships: Default::default(),
-            klingon_ships: Default::default(),
+            federation_ships: generate_ships(FactionName::Federation),
+            klingon_ships: generate_ships(FactionName::KlingonEmpire),
             world: Default::default(),
         }
     }
@@ -46,11 +46,6 @@ impl Game {
         println!("{}", self.world.universe);
     }
 
-    pub fn generate_games_ships(&mut self) {
-        generate_ships(self, FactionName::Federation, generate_seed());
-        generate_ships(self, FactionName::KlingonEmpire, generate_seed());
-    }
-
     pub fn start_combat(&mut self) {
         combat_turn(
             generate_seed(),
@@ -59,12 +54,14 @@ impl Game {
             &mut self.klingon_ships[0],
         );
 
-        combat_turn(
-            generate_seed(),
-            self.klingon_ships[0].ship_systems.select_ship_weapon_type_ai(),
-            &self.klingon_ships[0],
-            &mut self.player_ship,
-        );
+        for ship in &self.klingon_ships {
+            combat_turn(
+                generate_seed(),
+                ship.ship_systems.select_ship_weapon_type_ai(),
+                ship,
+                &mut self.player_ship,
+            );
+        }
     }
 }
 
