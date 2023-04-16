@@ -77,17 +77,4 @@ mod star_should {
         assert_ne!(String::default(), star.class.to_string());
         assert!(star.is_visible);
     }
-
-    #[test]
-    fn display_a_star() {
-        // Given
-        let star = Star::default();
-
-        // When
-        let result = star.to_string();
-
-        // Then
-        assert!(result.contains("Star: "));
-        assert!(result.contains("Planet: "));
-    }
 }

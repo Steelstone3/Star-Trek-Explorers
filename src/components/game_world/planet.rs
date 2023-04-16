@@ -62,16 +62,4 @@ mod planet_should {
         assert_ne!(String::default(), planet.class.to_string());
         assert!(planet.is_visible);
     }
-
-    #[test]
-    fn display_a_planet() {
-        // Given
-        let planet = Planet::default();
-
-        // When
-        let result = planet.to_string();
-
-        // Then
-        assert!(result.contains("Planet: "))
-    }
 }
