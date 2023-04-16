@@ -28,7 +28,13 @@ namespace StarTrekExplorersTests.Entities
 
         public void TakeDamage(int damage)
         {
-            throw new System.NotImplementedException();
+            int remainderOfDamage = damage - ShipSystems.Shield.Current;
+            ShipSystems.Shield.TakeDamage(damage);
+
+            if (remainderOfDamage > 0)
+            {
+                ShipSystems.Hull.TakeDamage(remainderOfDamage);
+            }
         }
     }
 }

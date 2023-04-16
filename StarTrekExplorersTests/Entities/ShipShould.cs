@@ -42,15 +42,22 @@ namespace StarTrekExplorersTests.Entities
             shipPresenter.VerifyAll();
         }
 
-        // [Theory(Skip = "reason")]
-        // [InlineData()]
-        // public void TakeDamage()
-        // {
-        //     // Given
+        [Theory]
+        [InlineData( 10, 90, 100)]
+        [InlineData(25, 75, 100)]
+        [InlineData(100, 0, 100)]
+        [InlineData(110, 0, 90)]
+        [InlineData(190, 0, 10)]
+        [InlineData(200, 0, 0)]
+        [InlineData(210, 0, 0)]
+        public void TakeDamage(int damage, int remainingShield, int remainingHull)
+        {
+            // When
+            ship.TakeDamage(damage);
 
-        //     // When
-
-        //     // Then
-        // }
+            // Then
+            Assert.Equal(remainingShield, ship.ShipSystems.Shield.Current);
+            Assert.Equal(remainingHull, ship.ShipSystems.Hull.Current);
+        }
     }
 }
