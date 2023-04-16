@@ -5,8 +5,9 @@ namespace StarTrekExplorersTests.Entities
 {
     public class Phaser : IWeapon
     {
-        public int Maximum { get; } = 10;
-        public int Minimum { get; } = 5;
+        public string Name => "Phaser";
+        public int Maximum => 10;
+        public int Minimum => 5;
 
         public int DealDamage(int seed)
         {

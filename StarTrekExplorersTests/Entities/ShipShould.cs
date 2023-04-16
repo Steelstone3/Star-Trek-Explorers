@@ -15,5 +15,26 @@ namespace StarTrekExplorersTests.Entities
             Assert.NotNull(ship.Identification);
             Assert.NotNull(ship.ShipSystems);
         }
+
+        [Theory(Skip="reason")]
+        [InlineData()]
+        public void DealDamage()
+        {
+            // Given
+        
+            // When
+        
+            // Then
+        }
+
+        [Theory(Skip="reason")]
+        [InlineData()]
+        public void TakeDamage(){
+            // Given
+
+            // When
+
+            // Then
+        }
     }
 }

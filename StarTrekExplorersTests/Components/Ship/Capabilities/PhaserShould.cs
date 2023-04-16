@@ -12,6 +12,7 @@ namespace StarTrekExplorersTests.Components.Ship.Capabilities
         public void Construct()
         {
             // Then
+            Assert.Equal("Phaser", phaser.Name);
             Assert.Equal(10, phaser.Maximum);
             Assert.Equal(5, phaser.Minimum);
         }

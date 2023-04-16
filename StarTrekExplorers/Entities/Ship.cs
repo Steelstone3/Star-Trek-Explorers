@@ -13,5 +13,15 @@ namespace StarTrekExplorersTests.Entities
 
         public IIdentification Identification { get; }
         public IShipSystems ShipSystems { get; } = new ShipSystems();
+
+        public int DealDamage(int seed)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void TakeDamage(int damage)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

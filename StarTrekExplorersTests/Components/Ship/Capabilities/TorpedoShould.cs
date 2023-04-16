@@ -12,6 +12,7 @@ namespace StarTrekExplorersTests.Components.Ship.Capabilities
         public void Construct()
         {
             // Then
+            Assert.Equal("Torpedo", torpedo.Name);
             Assert.Equal(10, torpedo.Maximum);
             Assert.Equal(5, torpedo.Minimum);
         }
