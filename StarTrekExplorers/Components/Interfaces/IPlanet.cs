@@ -1,6 +1,6 @@
 namespace StarTrekExplorersTests.Entities
 {
-    public class WorldShould
+    public interface IPlanet
     {
     }
 }
