@@ -1,0 +1,39 @@
+name: .NET Core
+
+on:
+  push:
+    branches: 
+    - '**'
+  pull_request:
+    branches: 
+    - '**'
+
+jobs:
+  build:
+    name: TestApplication
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        include:
+        - os: macos-latest
+        - os: ubuntu-latest
+        - os: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7
+    - name: Install app dependencies
+      working-directory: ./StarTrekExplorers
+      run: dotnet restore
+    - name: Build
+      working-directory: ./StarTrekExplorers
+      run: dotnet build --configuration Release --no-restore
+    - name: Install test dependencies
+      working-directory: ./StarTrekExplorersTests
+      run: dotnet restore
+    - name: Test
+      working-directory: ./StarTrekExplorersTests
+      run: dotnet test --no-restore --verbosity normal

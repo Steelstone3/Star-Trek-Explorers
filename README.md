@@ -4,26 +4,34 @@ A test driven Rust version based on the original 1970s console game in the genre
 
 ## Running Star Trek Explorers
 
-> cd ~/Star-Trek-Explorers
+> cd ~/StarTrekExplorers/StarTrekExplorers
 >
-> cargo build
+> dotnet restore
 >
-> cargo run
-
-Or launch project from your IDE.
-
-This application has been tested to run on debain derived Linux, Windows 10 and Mac OS 10 beyond this scope your expierences may vary.
-
-## Testing Star Trek Explorers
+> dotnet build
 >
-> cd ~/Star-Trek-Explorers
+> dotnet run
+
+This application has been tested to run on debain derived Linux, Windows 10 and Mac OS 10 beyond this scope your experiences may vary.
+
+### Tests
+
+> cd ~/StarTrekExplorers/StarTrekExplorersTests
 >
-> cargo test
+> dotnet restore
+>
+> dotnet build
+>
+> dotnet test
 
-Or run the tests from your IDE of choice.
+### Dependencies
 
-## Star Trek Explorers Dependencies
+Follow the steps for installing dotnet runtime for your given operating system.
 
-Please go to the Rust website to install Rust for your given operating system.
+> <https://dotnet.microsoft.com/en-us/download/dotnet/7.0>
 
-> <https://www.rust-lang.org/>
+Install the following .net tool and use its upgrade feature to keep 3rd party packages updated
+
+> dotnet tool install --global dotnet-outdated-tool
+>
+> dotnet outdated --upgrade
