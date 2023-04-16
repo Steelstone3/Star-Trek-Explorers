@@ -1,5 +1,6 @@
-using StarTrekExplorers.Components.Ship.Capabilities;
+using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorers.Components.Ship.Names;
+using StarTrekExplorers.Entities.Interfaces;
 
 namespace StarTrekExplorersTests.Entities
 {
@@ -11,6 +12,6 @@ namespace StarTrekExplorersTests.Entities
         }
 
         public IIdentification Identification { get; }
-        public ISystems Systems { get; } = new Systems();
+        public IShipSystems ShipSystems { get; } = new ShipSystems();
     }
 }

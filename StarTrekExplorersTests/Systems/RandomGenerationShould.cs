@@ -1,3 +1,4 @@
+using StarTrekExplorers.Systems.Interfaces;
 using Xunit;
 
 namespace StarTrekExplorersTests.Systems

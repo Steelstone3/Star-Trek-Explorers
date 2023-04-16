@@ -1,4 +1,5 @@
 using System;
+using StarTrekExplorers.Systems.Interfaces;
 
 namespace StarTrekExplorersTests.Systems
 {

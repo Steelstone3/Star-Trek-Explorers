@@ -1,4 +1,5 @@
 using StarTrekExplorers.Components.Ship.Names;
+using StarTrekExplorers.Entities.Interfaces;
 using Xunit;
 
 namespace StarTrekExplorersTests.Entities
@@ -12,7 +13,7 @@ namespace StarTrekExplorersTests.Entities
         {
             // Then
             Assert.NotNull(ship.Identification);
-            Assert.NotNull(ship.Systems);
+            Assert.NotNull(ship.ShipSystems);
         }
     }
 }

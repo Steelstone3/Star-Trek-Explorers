@@ -1,6 +1,6 @@
-using System;
+using StarTrekExplorers.Components.Ship.Names;
 
-namespace StarTrekExplorers.Components.Ship.Names
+namespace StarTrekExplorers.Components.Interfaces
 {
     public interface IShipNames
     {

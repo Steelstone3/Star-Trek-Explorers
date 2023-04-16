@@ -1,6 +1,6 @@
 using StarTrekExplorers.Components.Ship.Names;
 
-namespace StarTrekExplorersTests.Systems
+namespace StarTrekExplorers.Systems.Interfaces
 {
     public interface ISerialNumberGeneration
     {

@@ -1,3 +1,4 @@
+using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorersTests.Systems;
 

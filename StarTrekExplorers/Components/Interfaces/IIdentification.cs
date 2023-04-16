@@ -1,6 +1,6 @@
 using StarTrekExplorers.Components.Ship.Names;
 
-namespace StarTrekExplorersTests.Entities
+namespace StarTrekExplorers.Components.Interfaces
 {
     public interface IIdentification
     {

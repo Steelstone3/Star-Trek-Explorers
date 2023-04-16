@@ -1,4 +1,5 @@
 using StarTrekExplorers.Components.Ship.Names;
+using StarTrekExplorers.Systems.Interfaces;
 using Xunit;
 
 namespace StarTrekExplorersTests.Systems

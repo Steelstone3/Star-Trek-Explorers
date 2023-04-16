@@ -1,4 +1,4 @@
-namespace StarTrekExplorersTests.Systems
+namespace StarTrekExplorers.Systems.Interfaces
 {
     public interface IRandomGeneration
     {

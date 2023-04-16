@@ -1,4 +1,5 @@
 using System;
+using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorers.Components.Ship.Names
