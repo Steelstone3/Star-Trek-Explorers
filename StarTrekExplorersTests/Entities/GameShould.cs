@@ -1,4 +1,3 @@
-using System.Runtime.Serialization;
 using Moq;
 using StarTrekExplorers.Entities.Interfaces;
 using StarTrekExplorers.Presenters;
