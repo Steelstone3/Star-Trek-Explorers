@@ -6,7 +6,7 @@ namespace StarTrekExplorersTests.Entities
     {
         public IPhaser Phaser { get; } = new Phaser();
         public ITorpedo Torpedo { get; } = new Torpedo();
-        public IShield Shield { get; } = new Shield();
-        public IHull Hull { get; } = new Hull();
+        public IDefense Shield { get; } = new Shield();
+        public IDefense Hull { get; } = new Hull();
     }
 }
