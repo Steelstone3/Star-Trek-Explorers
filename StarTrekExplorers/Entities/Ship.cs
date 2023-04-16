@@ -1,9 +1,7 @@
-using Spectre.Console.Rendering;
 using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
 using StarTrekExplorers.Presenters;
-using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorersTests.Entities
 {
