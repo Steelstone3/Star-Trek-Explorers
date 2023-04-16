@@ -6,16 +6,18 @@ namespace StarTrekExplorersTests.Components.Ship.Names
 {
     public class IdentificationShould
     {
+        const int SEED = 1234;
+
         [Fact]
         public void ConstructFederation()
         {
             // Given
             const Faction faction = Faction.Federation;
-            IIdentification identification = new Identification(1234, faction);
+            IIdentification identification = new Identification(SEED, faction);
 
             // Then
             Assert.Equal(faction, identification.Faction);
-            Assert.Equal("", identification.SerialNumber);
+            Assert.Equal("USS-45917", identification.SerialNumber);
             Assert.Equal("", identification.Name);
             Assert.Equal("", identification.Class);
         }
@@ -25,11 +27,11 @@ namespace StarTrekExplorersTests.Components.Ship.Names
         {
             // Given
             const Faction faction = Faction.KlingonEmpire;
-            IIdentification identification = new Identification(1234, faction);
+            IIdentification identification = new Identification(SEED, faction);
 
             // Then
             Assert.Equal(faction, identification.Faction);
-            Assert.Equal("", identification.SerialNumber);
+            Assert.Equal("IKS-45917", identification.SerialNumber);
             Assert.Equal("", identification.Name);
             Assert.Equal("", identification.Class);
         }

@@ -1,5 +1,6 @@
 using System;
 using StarTrekExplorers.Components.Ship.Names;
+using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorersTests.Entities
 {
@@ -8,7 +9,7 @@ namespace StarTrekExplorersTests.Entities
         public Identification(int seed, Faction faction)
         {
             Faction = faction;
-            SerialNumber = "";
+            SerialNumber = new SerialNumberGeneration().GenerateSerialNumber(seed, faction);
             Name = "";
             Class = "";
         }
