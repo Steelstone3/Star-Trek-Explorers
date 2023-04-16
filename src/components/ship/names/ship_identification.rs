@@ -1,17 +1,16 @@
 use super::{
-    faction_name::FactionName, ship_class::ShipClass, ship_name::ShipName,
+    faction_name::FactionName, ship_class::ShipClass, ship_name::ShipName, serial_number::SerialNumber,
 };
 use crate::{
     components::ship::names::{ship_class::get_random_class, ship_name::get_random_name},
-    systems::ship_identifier_generation::generate_random_identifier,
 };
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen)]
+#[derive(PartialEq, Debug, Clone, Copy, RandGen)]
 pub struct ShipIdentification {
     pub name: ShipName,
     pub class: ShipClass,
-    pub serial_number: String,
+    pub serial_number: SerialNumber,
     pub faction: FactionName,
 }
 
@@ -19,13 +18,13 @@ impl ShipIdentification {
     pub fn new(seed: u64, faction: FactionName) -> Self {
         match faction {
             FactionName::Federation => Self {
-                serial_number: generate_random_identifier(seed, &FactionName::Federation),
+                serial_number: SerialNumber::new(seed, &faction),
                 faction,
                 name: get_random_name(seed, FactionName::Federation),
                 class: get_random_class(seed, FactionName::Federation),
             },
             FactionName::KlingonEmpire => Self {
-                serial_number: generate_random_identifier(seed, &FactionName::KlingonEmpire),
+                serial_number: SerialNumber::new(seed, &faction),
                 faction,
                 name: get_random_name(seed, FactionName::KlingonEmpire),
                 class: get_random_class(seed, FactionName::KlingonEmpire),
@@ -64,9 +63,9 @@ mod ship_identification_should {
         assert_eq!(FactionName::Federation, ship_identification.faction);
         assert_ne!(
             String::default(),
-            ship_identification.serial_number
+            ship_identification.serial_number.to_string()
         );
-        assert_eq!("USS-52722", ship_identification.serial_number);
+        assert_eq!("USS-52722", ship_identification.serial_number.to_string());
     }
 
     #[test]
@@ -80,8 +79,8 @@ mod ship_identification_should {
         assert_eq!(FactionName::KlingonEmpire, ship_identification.faction);
         assert_ne!(
             String::default(),
-            ship_identification.serial_number
+            ship_identification.serial_number.to_string()
         );
-        assert_eq!("IKS-52722", ship_identification.serial_number);
+        assert_eq!("IKS-52722", ship_identification.serial_number.to_string());
     }
 }

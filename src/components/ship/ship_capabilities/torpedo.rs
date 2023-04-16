@@ -5,7 +5,7 @@ use rand_derive2::RandGen;
 
 use super::damage::DamageDealer;
 
-#[derive(PartialEq, Debug,  RandGen)]
+#[derive(PartialEq, Debug, Clone, Copy, RandGen)]
 pub struct Torpedo {
     minimum_damage: u8,
     pub maximum_damage: u8,

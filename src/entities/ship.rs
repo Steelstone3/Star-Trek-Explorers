@@ -8,7 +8,7 @@ use crate::{
 use rand::random;
 use rand_derive2::RandGen;
 
-#[derive(PartialEq, Debug, RandGen)]
+#[derive(PartialEq, Debug, Clone, Copy, RandGen)]
 pub struct Ship {
     pub ship_identification: ShipIdentification,
     pub ship_systems: ShipSystems,
@@ -88,7 +88,7 @@ mod ship_should {
         );
         assert_ne!(
             String::default(),
-            ship.ship_identification.serial_number
+            ship.ship_identification.serial_number.to_string()
         );
         assert_eq!(FactionName::Federation, ship.ship_identification.faction);
         assert_eq!(Shield::default(), ship.ship_systems.shield);
@@ -110,7 +110,7 @@ mod ship_should {
         );
         assert_ne!(
             String::default(),
-            ship.ship_identification.serial_number
+            ship.ship_identification.serial_number.to_string()
         );
         assert_eq!(FactionName::KlingonEmpire, ship.ship_identification.faction);
         assert_eq!(Shield::default(), ship.ship_systems.shield);
