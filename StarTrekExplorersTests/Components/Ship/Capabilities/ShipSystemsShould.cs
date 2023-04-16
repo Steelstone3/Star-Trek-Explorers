@@ -4,7 +4,7 @@ using Xunit;
 
 namespace StarTrekExplorersTests.Components.Ship.Capabilities
 {
-    public class SystemsShould
+    public class ShipSystemsShould
     {
         private readonly IShipSystems shipSystems = new ShipSystems();
 
