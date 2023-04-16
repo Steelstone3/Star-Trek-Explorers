@@ -9,7 +9,7 @@ namespace StarTrekExplorersTests.Entities
         {
             Faction = faction;
             SerialNumber = new SerialNumberGeneration().GenerateSerialNumber(seed, faction);
-            Name = "";
+            Name = new ShipNames().GetShipName(seed, faction);
             Class = "";
         }
 
