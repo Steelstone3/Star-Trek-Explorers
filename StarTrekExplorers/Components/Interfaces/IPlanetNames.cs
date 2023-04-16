@@ -1,7 +1,6 @@
 namespace StarTrekExplorers.Components.Interfaces
 {
-    public interface IStarClasses
+    public interface IPlanetNames
     {
-        string GetClass();
     }
 }
