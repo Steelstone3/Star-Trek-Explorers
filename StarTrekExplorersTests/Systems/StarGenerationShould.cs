@@ -5,7 +5,7 @@ using StarTrekExplorers.Systems.Interfaces;
 using StarTrekExplorersTests.Entities;
 using Xunit;
 
-namespace Name
+namespace StarTrekExplorersTests.Systems
 {
     public class StarGenerationShould
     {
