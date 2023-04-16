@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using StarTrekExplorersTests.Entities;
 
@@ -8,6 +7,6 @@ namespace StarTrekExplorers.Systems
     {
         public string Name { get; } = "";
         public string Class { get; } = "";
-        public IEnumerable<IPlanet> Planets { get; } = new List<IPlanet>() { new Planet() };
+        public IEnumerable<IPlanet> Planets { get; } = new PlanetGeneration().GeneratePlanets();
     }
 }
