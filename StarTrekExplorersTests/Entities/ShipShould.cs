@@ -43,7 +43,7 @@ namespace StarTrekExplorersTests.Entities
         }
 
         [Theory]
-        [InlineData( 10, 90, 100)]
+        [InlineData(10, 90, 100)]
         [InlineData(25, 75, 100)]
         [InlineData(100, 0, 100)]
         [InlineData(110, 0, 90)]

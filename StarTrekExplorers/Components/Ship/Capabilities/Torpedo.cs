@@ -5,7 +5,7 @@ namespace StarTrekExplorersTests.Entities
 {
     public class Torpedo : IWeapon
     {
-        public string Name =>"Torpedo";
+        public string Name => "Torpedo";
         public int Maximum => 10;
         public int Minimum => 5;
 
