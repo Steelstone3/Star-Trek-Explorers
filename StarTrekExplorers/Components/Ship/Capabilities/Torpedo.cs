@@ -9,7 +9,6 @@ namespace StarTrekExplorersTests.Entities
         public int Maximum => 10;
         public int Minimum => 5;
 
-
         public int DealDamage(int seed)
         {
             RandomGeneration randomGeneration = new();
