@@ -2,8 +2,8 @@ namespace StarTrekExplorers.Components.Interfaces
 {
     public interface IShipSystems
     {
-        IPhaser Phaser { get; }
-        ITorpedo Torpedo { get; }
+        IDamageDealer Phaser { get; }
+        IDamageDealer Torpedo { get; }
         IDamageTaker Shield { get; }
         IDamageTaker Hull { get; }
     }

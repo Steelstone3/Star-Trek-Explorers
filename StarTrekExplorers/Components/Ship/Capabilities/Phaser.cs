@@ -2,7 +2,7 @@ using StarTrekExplorers.Components.Interfaces;
 
 namespace StarTrekExplorersTests.Entities
 {
-    public class Phaser : IPhaser
+    public class Phaser : IDamageDealer
     {
     }
 }

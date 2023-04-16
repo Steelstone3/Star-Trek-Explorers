@@ -2,7 +2,7 @@ using StarTrekExplorers.Components.Interfaces;
 
 namespace StarTrekExplorersTests.Entities
 {
-    public class Torpedo : ITorpedo
+    public class Torpedo : IDamageDealer
     {
     }
 }
