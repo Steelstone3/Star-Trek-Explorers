@@ -5,7 +5,7 @@ namespace StarTrekExplorersTests.Entities
 {
     public class ShipShould
     {
-        private readonly IShip ship = new Ship(Faction.Federation);
+        private readonly IShip ship = new Ship(1234, Faction.Federation);
 
         [Fact]
         public void Construct()

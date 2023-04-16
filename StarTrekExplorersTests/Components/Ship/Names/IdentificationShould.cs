@@ -11,7 +11,7 @@ namespace StarTrekExplorersTests.Components.Ship.Names
         {
             // Given
             const Faction faction = Faction.Federation;
-            IIdentification identification = new Identification(faction);
+            IIdentification identification = new Identification(1234, faction);
 
             // Then
             Assert.Equal(faction, identification.Faction);
@@ -25,7 +25,7 @@ namespace StarTrekExplorersTests.Components.Ship.Names
         {
             // Given
             const Faction faction = Faction.KlingonEmpire;
-            IIdentification identification = new Identification(faction);
+            IIdentification identification = new Identification(1234, faction);
 
             // Then
             Assert.Equal(faction, identification.Faction);
