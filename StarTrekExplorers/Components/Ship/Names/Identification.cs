@@ -1,4 +1,3 @@
-using System;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorersTests.Systems;
 
