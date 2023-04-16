@@ -1,13 +1,19 @@
+using Spectre.Console.Rendering;
 using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
+using StarTrekExplorers.Presenters;
+using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorersTests.Entities
 {
     public class Ship : IShip
     {
-        public Ship(int seed, Faction faction)
+        private readonly IPresenter presenter;
+
+        public Ship(IPresenter presenter, int seed, Faction faction)
         {
+            this.presenter = presenter;
             Identification = new Identification(seed, faction);
         }
 
@@ -16,7 +22,8 @@ namespace StarTrekExplorersTests.Entities
 
         public int DealDamage(int seed)
         {
-            throw new System.NotImplementedException();
+            string weaponName = presenter.ShipPresenter.SelectWeapon(ShipSystems);
+            return weaponName == "Phaser" ? ShipSystems.Phaser.DealDamage(seed) : ShipSystems.Torpedo.DealDamage(seed);
         }
 
         public void TakeDamage(int damage)
