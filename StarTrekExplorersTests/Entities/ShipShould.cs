@@ -13,6 +13,7 @@ namespace StarTrekExplorersTests.Entities
         {
             // Then
             Assert.NotNull(ship.Identification);
+            Assert.NotNull(ship.Systems);
         }
     }
 }

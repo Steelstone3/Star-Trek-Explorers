@@ -2,9 +2,7 @@ using StarTrekExplorers.Components.Ship.Capabilities;
 
 namespace StarTrekExplorersTests.Entities
 {
-    public interface IShip
+    public class Systems:ISystems
     {
-        IIdentification Identification { get; }
-        ISystems Systems { get; }
     }
 }
