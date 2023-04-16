@@ -19,7 +19,7 @@ namespace StarTrekExplorersTests.Components.Ship.Names
             Assert.Equal(faction, identification.Faction);
             Assert.Equal("USS-45917", identification.SerialNumber);
             Assert.Equal("Excelsio", identification.Name);
-            Assert.Equal("", identification.Class);
+            Assert.Equal("Saber", identification.Class);
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace StarTrekExplorersTests.Components.Ship.Names
             Assert.Equal(faction, identification.Faction);
             Assert.Equal("IKS-45917", identification.SerialNumber);
             Assert.Equal("K't'inga", identification.Name);
-            Assert.Equal("", identification.Class);
+            Assert.Equal("Lotl'eh", identification.Class);
         }
     }
 }

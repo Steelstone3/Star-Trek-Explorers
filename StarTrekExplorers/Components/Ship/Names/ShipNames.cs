@@ -58,7 +58,7 @@ namespace StarTrekExplorers.Components.Ship.Names
             "Yorktown"
         };
 
-        private readonly string[] klingonShipNames = new string[] 
+        private readonly string[] klingonShipNames = new string[]
         {
             "Amar",
             "B'Moth",

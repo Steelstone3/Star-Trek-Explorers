@@ -1,4 +1,5 @@
 using StarTrekExplorers.Components.Ship.Names;
+using StarTrekExplorersTests.Components.Ship.Names;
 using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorersTests.Entities
@@ -10,7 +11,7 @@ namespace StarTrekExplorersTests.Entities
             Faction = faction;
             SerialNumber = new SerialNumberGeneration().GenerateSerialNumber(seed, faction);
             Name = new ShipNames().GetShipName(seed, faction);
-            Class = "";
+            Class = new ShipClasses().GetShipClass(seed, faction);
         }
 
         public Faction Faction { get; }
