@@ -1,12 +1,11 @@
-using System.Numerics;
-using Moq;
+using StarTrekExplorers.Components.Ship.Names;
 using Xunit;
 
 namespace StarTrekExplorersTests.Entities
 {
     public class ShipShould
     {
-        private readonly IShip ship = new Ship();
+        private readonly IShip ship = new Ship(Faction.Federation);
 
         [Fact]
         public void Construct()

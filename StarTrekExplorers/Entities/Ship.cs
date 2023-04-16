@@ -1,10 +1,16 @@
 using StarTrekExplorers.Components.Ship.Capabilities;
+using StarTrekExplorers.Components.Ship.Names;
 
 namespace StarTrekExplorersTests.Entities
 {
     public class Ship : IShip
     {
-        public IIdentification Identification { get; } = new Identification();
+        public Ship(Faction faction)
+        {
+            Identification = new Identification(faction);
+        }
+
+        public IIdentification Identification { get; }
         public ISystems Systems { get; } = new Systems();
     }
 }
