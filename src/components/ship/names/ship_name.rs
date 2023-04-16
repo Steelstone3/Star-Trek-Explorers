@@ -333,7 +333,7 @@ impl Display for ShipName {
                 write!(f, "B'rel")
             }
             ShipName::Buruk => {
-                write!(f, "B'rel")
+                write!(f, "Buruk")
             }
             ShipName::ChTang => {
                 write!(f, "Ch'Tang")
