@@ -3,7 +3,7 @@ using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorersTests.Entities
 {
-    public class Torpedo : IDamageDealer
+    public class Torpedo : IWeapon
     {
         public int Maximum { get; } = 10;
         public int Minimum { get; } = 5;

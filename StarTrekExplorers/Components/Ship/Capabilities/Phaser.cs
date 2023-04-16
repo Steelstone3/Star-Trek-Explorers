@@ -3,7 +3,7 @@ using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorersTests.Entities
 {
-    public class Phaser : IDamageDealer
+    public class Phaser : IWeapon
     {
         public int Maximum { get; } = 10;
         public int Minimum { get; } = 5;

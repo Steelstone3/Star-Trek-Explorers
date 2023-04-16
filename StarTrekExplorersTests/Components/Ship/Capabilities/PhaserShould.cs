@@ -6,7 +6,7 @@ namespace StarTrekExplorersTests.Components.Ship.Capabilities
 {
     public class PhaserShould
     {
-        private readonly IDamageDealer phaser = new Phaser();
+        private readonly IWeapon phaser = new Phaser();
 
         [Fact]
         public void Construct()

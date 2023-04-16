@@ -6,7 +6,7 @@ namespace StarTrekExplorersTests.Components.Ship.Capabilities
 {
     public class TorpedoShould
     {
-        private readonly IDamageDealer torpedo = new Torpedo();
+        private readonly IWeapon torpedo = new Torpedo();
 
         [Fact]
         public void Construct()
