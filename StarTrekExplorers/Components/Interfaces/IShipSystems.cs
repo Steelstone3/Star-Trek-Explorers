@@ -4,7 +4,7 @@ namespace StarTrekExplorers.Components.Interfaces
     {
         IPhaser Phaser { get; }
         ITorpedo Torpedo { get; }
-        IDefense Shield { get; }
-        IDefense Hull { get; }
+        IDamageTaker Shield { get; }
+        IDamageTaker Hull { get; }
     }
 }

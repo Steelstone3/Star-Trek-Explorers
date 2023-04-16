@@ -6,7 +6,7 @@ namespace StarTrekExplorersTests.Components.Ship.Capabilities
 {
     public class HullShould
     {
-        private readonly IDefense hull = new Hull();
+        private readonly IDamageTaker hull = new Hull();
 
         [Fact]
         public void Construct()

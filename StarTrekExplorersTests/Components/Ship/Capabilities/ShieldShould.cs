@@ -6,7 +6,7 @@ namespace StarTrekExplorersTests.Components.Ship.Capabilities
 {
     public class ShieldShould
     {
-        private readonly IDefense shield = new Shield();
+        private readonly IDamageTaker shield = new Shield();
 
         [Fact]
         public void Construct()

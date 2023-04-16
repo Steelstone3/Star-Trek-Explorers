@@ -2,7 +2,7 @@ using StarTrekExplorers.Components.Interfaces;
 
 namespace StarTrekExplorersTests.Entities
 {
-    public class Shield : IDefense
+    public class Shield : IDamageTaker
     {
         public int Current { get; private set; } = 100;
         public int Maximum { get; } = 100;
