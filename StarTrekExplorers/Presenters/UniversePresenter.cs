@@ -23,7 +23,7 @@ namespace StarTrekExplorers.Presenters
 
         public void PrintStar(IStar star)
         {
-            presenter.Print($"| Star: {star.Name} {star.StarClass} |");
+            presenter.Print($"\n| Star: {star.Name} {star.StarClass} |");
             PrintPlanets(star.Planets);
         }
 

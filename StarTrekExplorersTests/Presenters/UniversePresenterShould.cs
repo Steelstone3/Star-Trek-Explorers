@@ -9,7 +9,7 @@ namespace StarTrekExplorersTests.Presenters
 {
     public class UniversePresenterShould
     {
-        private const string starMessage = "| Star: Sol Class A |";
+        private const string starMessage = "\n| Star: Sol Class A |";
         private const string planetMessage = "| Planet: Earth Class M |";
         private readonly Mock<IStar> star = new();
         private readonly Mock<IPlanet> planet = new();
