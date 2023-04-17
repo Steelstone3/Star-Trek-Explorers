@@ -13,12 +13,13 @@ namespace StarTrekExplorersTests.Entities
         {
             this.presenter = presenter;
             Identification = new Identification(seed, faction);
+            ShipSystems = new ShipSystems();
         }
 
-        public IIdentification Identification { get; }
-        public IShipSystems ShipSystems { get; } = new ShipSystems();
+        public IIdentification Identification { get; protected set; }
+        public IShipSystems ShipSystems { get; protected set; }
 
-        public int DealDamage(int seed)
+        public virtual int DealDamage(int seed)
         {
             string weaponName = presenter.ShipPresenter.SelectWeapon(ShipSystems);
             return weaponName == "Phaser" ? ShipSystems.Phaser.DealDamage(seed) : ShipSystems.Torpedo.DealDamage(seed);
