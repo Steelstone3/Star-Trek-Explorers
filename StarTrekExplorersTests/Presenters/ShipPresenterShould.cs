@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using Moq;
 using StarTrekExplorers.Components.Interfaces;
-using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
 using StarTrekExplorers.Presenters;
 using StarTrekExplorers.Presenters.Interfaces;
