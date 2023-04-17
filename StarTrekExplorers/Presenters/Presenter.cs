@@ -16,6 +16,10 @@ namespace StarTrekExplorers.Presenters
         public IShipPresenter ShipPresenter { get; }
         public IUniversePresenter UniversePresenter { get; }
 
+        public void NewLine() {
+            AnsiConsole.WriteLine();
+        }
+
         public void Print(string message)
         {
             AnsiConsole.WriteLine(message);
