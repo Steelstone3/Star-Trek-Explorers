@@ -6,7 +6,7 @@ namespace StarTrekExplorers.Components.Interfaces
     {
         Faction Faction { get; }
         string Name { get; }
-        string Class { get; }
+        string ShipClass { get; }
         string SerialNumber { get; }
     }
 }

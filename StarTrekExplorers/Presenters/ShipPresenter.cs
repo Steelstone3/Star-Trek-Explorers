@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Spectre.Console;
 using StarTrekExplorers.Components.Interfaces;
+using StarTrekExplorers.Entities.Interfaces;
 using StarTrekExplorers.Presenters.Interfaces;
-using StarTrekExplorersTests.Entities;
 
 namespace StarTrekExplorers.Presenters
 {
@@ -26,5 +25,19 @@ namespace StarTrekExplorers.Presenters
 
             return weaponName;
         }
+
+        public void PrintShipNames(IEnumerable<IShip> ships)
+        {
+            foreach (IShip ship in ships)
+            {
+                PrintShipName(ship);
+            }
+        }
+
+        public void PrintShipName(IShip ship)
+        {
+            presenter.Print($"| Ship: {ship.Identification.SerialNumber} {ship.Identification.Name} {ship.Identification.ShipClass} |");
+        }
+
     }
 }

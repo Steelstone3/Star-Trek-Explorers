@@ -12,12 +12,12 @@ namespace StarTrekExplorersTests.Entities
             Faction = faction;
             SerialNumber = new SerialNumberGeneration().GenerateSerialNumber(seed, faction);
             Name = new ShipNames().GetShipName(seed, faction);
-            Class = new ShipClasses().GetShipClass(seed, faction);
+            ShipClass = new ShipClasses().GetShipClass(seed, faction);
         }
 
         public Faction Faction { get; }
         public string SerialNumber { get; }
         public string Name { get; }
-        public string Class { get; }
+        public string ShipClass { get; }
     }
 }

@@ -15,7 +15,7 @@ namespace StarTrekExplorers.Presenters
 
         public void PrintStars(IEnumerable<IStar> stars)
         {
-            foreach (var star in stars)
+            foreach (IStar star in stars)
             {
                 PrintStar(star);
             }
@@ -29,7 +29,7 @@ namespace StarTrekExplorers.Presenters
 
         public void PrintPlanets(IEnumerable<IPlanet> planets)
         {
-            foreach (var planet in planets)
+            foreach (IPlanet planet in planets)
             {
                 PrintPlanet(planet);
             }
