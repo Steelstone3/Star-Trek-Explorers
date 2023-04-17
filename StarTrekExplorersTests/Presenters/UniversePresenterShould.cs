@@ -73,7 +73,6 @@ namespace StarTrekExplorersTests.Presenters
         public void PrintStars()
         {
             // Given
-
             List<IPlanet> planets = new() { planet.Object, planet.Object };
             star.Setup(s => s.Planets).Returns(planets);
             List<IStar> stars = new() { star.Object, star.Object };
