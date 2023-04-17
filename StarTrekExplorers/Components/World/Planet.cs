@@ -10,10 +10,10 @@ namespace StarTrekExplorers.Systems
         {
             RandomGeneration rng = new();
             Name = new PlanetNames().GetName(rng.GetSeed());
-            Class = new PlanetClasses().GetPlanetClass(rng.GetSeed());
+            PlanetClass = new PlanetClasses().GetPlanetClass(rng.GetSeed());
         }
 
         public string Name { get; }
-        public string Class { get; }
+        public string PlanetClass { get; }
     }
 }

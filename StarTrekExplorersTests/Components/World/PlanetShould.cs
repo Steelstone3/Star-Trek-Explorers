@@ -13,7 +13,7 @@ namespace StarTrekExplorersTests.Components.World
         {
             // Then
             Assert.NotNull(planet.Name);
-            Assert.NotNull(planet.Class);
+            Assert.NotNull(planet.PlanetClass);
         }
     }
 }
