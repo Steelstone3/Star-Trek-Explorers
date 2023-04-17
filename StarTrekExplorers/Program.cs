@@ -11,7 +11,9 @@ namespace StarTrekExplorers
         {
             IPresenter presenter = new Presenter();
             IGame game = new Game(presenter);
-
+            presenter.ShipPresenter.PrintShipName(game.PlayerShip);
+            presenter.ShipPresenter.PrintShipNames(game.FederationShips);
+            presenter.ShipPresenter.PrintShipNames(game.KlingonShips);
             presenter.UniversePresenter.PrintStars(game.Universe.Stars);
         }
     }
