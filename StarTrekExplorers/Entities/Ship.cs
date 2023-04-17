@@ -1,7 +1,7 @@
 using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
-using StarTrekExplorers.Presenters;
+using StarTrekExplorers.Presenters.Interfaces;
 
 namespace StarTrekExplorersTests.Entities
 {

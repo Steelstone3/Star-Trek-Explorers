@@ -3,7 +3,7 @@ using System.Linq;
 using Moq;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
-using StarTrekExplorers.Presenters;
+using StarTrekExplorers.Presenters.Interfaces;
 using StarTrekExplorers.Systems;
 using StarTrekExplorers.Systems.Interfaces;
 using Xunit;

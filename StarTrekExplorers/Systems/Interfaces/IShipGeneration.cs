@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
-using StarTrekExplorers.Presenters;
+using StarTrekExplorers.Presenters.Interfaces;
 
 namespace StarTrekExplorers.Systems.Interfaces
 {

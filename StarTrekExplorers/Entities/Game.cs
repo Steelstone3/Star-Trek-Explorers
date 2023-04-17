@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Formats.Asn1;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
-using StarTrekExplorers.Presenters;
+using StarTrekExplorers.Presenters.Interfaces;
 using StarTrekExplorers.Systems;
 using StarTrekExplorersTests.Systems;
 

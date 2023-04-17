@@ -1,7 +1,7 @@
 using Moq;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
-using StarTrekExplorers.Presenters;
+using StarTrekExplorers.Presenters.Interfaces;
 using Xunit;
 
 namespace StarTrekExplorersTests.Entities

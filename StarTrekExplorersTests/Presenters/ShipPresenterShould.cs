@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Moq;
 using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorers.Presenters;
+using StarTrekExplorers.Presenters.Interfaces;
 using Xunit;
 
 namespace StarTrekExplorersTests.Presenters

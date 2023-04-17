@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Spectre.Console;
 using StarTrekExplorers.Components.Interfaces;
+using StarTrekExplorers.Presenters.Interfaces;
 using StarTrekExplorersTests.Entities;
 
 namespace StarTrekExplorers.Presenters

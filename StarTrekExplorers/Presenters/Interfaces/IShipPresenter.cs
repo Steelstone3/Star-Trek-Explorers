@@ -1,6 +1,6 @@
 using StarTrekExplorers.Components.Interfaces;
 
-namespace StarTrekExplorers.Presenters
+namespace StarTrekExplorers.Presenters.Interfaces
 {
     public interface IShipPresenter
     {

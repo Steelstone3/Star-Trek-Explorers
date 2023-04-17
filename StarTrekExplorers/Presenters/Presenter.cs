@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Spectre.Console;
+using StarTrekExplorers.Presenters.Interfaces;
 
 namespace StarTrekExplorers.Presenters
 {
@@ -9,9 +10,11 @@ namespace StarTrekExplorers.Presenters
         public Presenter()
         {
             ShipPresenter = new ShipPresenter(this);
+            UniversePresenter = new UniversePresenter(this);
         }
 
         public IShipPresenter ShipPresenter { get; }
+        public IUniversePresenter UniversePresenter { get; }
 
         public void Print(string message)
         {

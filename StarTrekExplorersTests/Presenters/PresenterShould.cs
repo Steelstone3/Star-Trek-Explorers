@@ -1,4 +1,5 @@
 using StarTrekExplorers.Presenters;
+using StarTrekExplorers.Presenters.Interfaces;
 using Xunit;
 
 namespace StarTrekExplorersTests.Presenters
@@ -12,6 +13,7 @@ namespace StarTrekExplorersTests.Presenters
         {
             // Then
             Assert.NotNull(presenter.ShipPresenter);
+            Assert.NotNull(presenter.UniversePresenter);
         }
     }
 }
