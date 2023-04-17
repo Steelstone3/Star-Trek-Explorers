@@ -23,13 +23,16 @@ namespace StarTrekExplorers.Systems
 
         private void Turn(int seed, IShip attackingShip, IShip defendingShip)
         {
+            presenter.NewLine();
             presenter.ShipPresenter.PrintShipName(attackingShip);
             presenter.ShipPresenter.PrintShipOffensiveSystems(attackingShip);
-            presenter.ShipPresenter.PrintShipName(defendingShip);
 
+            presenter.NewLine();
             int damage = attackingShip.DealDamage(seed);
-
             defendingShip.TakeDamage(damage);
+
+            presenter.NewLine();
+            presenter.ShipPresenter.PrintShipName(defendingShip);
             presenter.ShipPresenter.PrintShipDefensiveSystems(defendingShip);
         }
     }
