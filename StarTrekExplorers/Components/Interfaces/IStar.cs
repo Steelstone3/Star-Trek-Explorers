@@ -5,7 +5,7 @@ namespace StarTrekExplorersTests.Entities
     public interface IStar
     {
         string Name { get; }
-        string Class { get; }
+        string StarClass { get; }
         IEnumerable<IPlanet> Planets { get; }
     }
 }

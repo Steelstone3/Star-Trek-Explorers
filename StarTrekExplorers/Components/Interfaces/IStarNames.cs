@@ -2,6 +2,6 @@ namespace StarTrekExplorers.Components.Interfaces
 {
     public interface IStarNames
     {
-        string GetName();
+        string GetName(int seed);
     }
 }
