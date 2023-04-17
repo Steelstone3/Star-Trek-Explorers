@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Formats.Asn1;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
 using StarTrekExplorers.Presenters.Interfaces;
@@ -13,7 +12,7 @@ namespace StarTrekExplorersTests.Entities
         public Game(IPresenter presenter)
         {
             ShipGeneration shipGeneration = new();
-            PlayerShip = new Ship(presenter, new RandomGeneration().GetSeed(), Faction.Federation);
+            PlayerShip = new PlayerShip(presenter, new RandomGeneration().GetSeed(), Faction.Federation);
             FederationShips = shipGeneration.GenerateShips(presenter, Faction.Federation);
             KlingonShips = shipGeneration.GenerateShips(presenter, Faction.KlingonEmpire);
         }

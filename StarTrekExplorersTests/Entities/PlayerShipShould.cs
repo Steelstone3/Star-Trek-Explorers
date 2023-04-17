@@ -1,20 +1,21 @@
 using Moq;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
-using StarTrekExplorers.Entities.Ships;
 using StarTrekExplorers.Presenters.Interfaces;
 using Xunit;
 
 namespace StarTrekExplorersTests.Entities
 {
-    public class AiShipShould
+    public class PlayerShipShould
     {
+        private readonly Mock<IShipPresenter> shipPresenter = new();
         private readonly Mock<IPresenter> presenter = new();
         private readonly IShip ship;
 
-        public AiShipShould()
+        public PlayerShipShould()
         {
-            ship = new AiShip(presenter.Object, 1234, Faction.Federation);
+            presenter.Setup(p => p.ShipPresenter).Returns(shipPresenter.Object);
+            ship = new PlayerShip(presenter.Object, 1234, Faction.Federation);
         }
 
         [Fact]
@@ -26,19 +27,19 @@ namespace StarTrekExplorersTests.Entities
         }
 
         [Theory]
-        [InlineData(7777, "Torpedo", 8)]
-        [InlineData(4321, "Phaser", 5)]
+        [InlineData(1234, "Phaser", 6)]
+        [InlineData(4321, "Torpedo", 5)]
         public void DealDamage(int seed, string weaponName, int expectedDamage)
         {
             // Given
-            presenter.Setup(p => p.Print(weaponName));
+            shipPresenter.Setup(sp => sp.SelectWeapon(ship.ShipSystems)).Returns(weaponName);
 
             // When
             int damage = ship.DealDamage(seed);
 
             // Then
             Assert.Equal(expectedDamage, damage);
-            presenter.VerifyAll();
+            shipPresenter.VerifyAll();
         }
 
         [Theory]

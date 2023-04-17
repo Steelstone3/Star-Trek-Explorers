@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using StarTrekExplorers.Components.Ship.Names;
 using StarTrekExplorers.Entities.Interfaces;
+using StarTrekExplorers.Entities.Ships;
 using StarTrekExplorers.Presenters.Interfaces;
 using StarTrekExplorers.Systems.Interfaces;
-using StarTrekExplorersTests.Entities;
 using StarTrekExplorersTests.Systems;
 
 namespace StarTrekExplorers.Systems
@@ -14,12 +14,12 @@ namespace StarTrekExplorers.Systems
         {
             List<IShip> stars = new();
 
-            AddStars(presenter, faction, stars);
+            AddShips(presenter, faction, stars);
 
             return stars;
         }
 
-        private static void AddStars(IPresenter presenter, Faction faction, List<IShip> stars)
+        private static void AddShips(IPresenter presenter, Faction faction, List<IShip> stars)
         {
             RandomGeneration rng = new();
             int amount = rng.GetRandomInRange(rng.GetSeed(), 1, 10);
