@@ -14,8 +14,8 @@ namespace StarTrekExplorersTests.Entities
         {
             ShipGeneration shipGeneration = new();
             PlayerShip = new Ship(presenter, new RandomGeneration().GetSeed(), Faction.Federation);
-            FederationShips = shipGeneration.GenerateShips(Faction.Federation);
-            KlingonShips = shipGeneration.GenerateShips(Faction.KlingonEmpire);
+            FederationShips = shipGeneration.GenerateShips(presenter, Faction.Federation);
+            KlingonShips = shipGeneration.GenerateShips(presenter, Faction.KlingonEmpire);
         }
 
         public IShip PlayerShip { get; }
