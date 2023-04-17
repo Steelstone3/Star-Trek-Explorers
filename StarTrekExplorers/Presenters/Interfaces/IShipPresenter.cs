@@ -7,7 +7,9 @@ namespace StarTrekExplorers.Presenters.Interfaces
     public interface IShipPresenter
     {
         string SelectWeapon(IShipSystems shipSystems);
-        void PrintShipName(IShip ship);
         void PrintShipNames(IEnumerable<IShip> ships);
+        void PrintShipName(IShip ship);
+        void PrintShipOffensiveSystems(IShip ship);
+        void PrintShipDefensiveSystems(IShip ship);
     }
 }

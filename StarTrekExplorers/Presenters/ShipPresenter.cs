@@ -39,5 +39,14 @@ namespace StarTrekExplorers.Presenters
             presenter.Print($"| Ship: {ship.Identification.SerialNumber} {ship.Identification.Name} {ship.Identification.ShipClass} |");
         }
 
+        public void PrintShipOffensiveSystems(IShip ship)
+        {
+            presenter.Print($"| {ship.ShipSystems.Phaser.Name}: {ship.ShipSystems.Phaser.Maximum} {ship.ShipSystems.Torpedo.Name}: {ship.ShipSystems.Torpedo.Maximum} |");
+        }
+
+        public void PrintShipDefensiveSystems(IShip ship)
+        {
+            presenter.Print($"| Shield: {ship.ShipSystems.Shield.Current} Hull: {ship.ShipSystems.Hull.Current} |");
+        }
     }
 }

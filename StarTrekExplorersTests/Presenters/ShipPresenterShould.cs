@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using Moq;
 using StarTrekExplorers.Components.Interfaces;
 using StarTrekExplorers.Components.Ship.Names;
@@ -13,6 +14,7 @@ namespace StarTrekExplorersTests.Presenters
     {
         private const string identificationMessage = "| Ship: USS-1234 Enterprise Galaxy |";
         private readonly Mock<IShip> ship = new();
+        private readonly Mock<IShipSystems> shipSystems = new();
         private readonly Mock<IIdentification> identification = new();
         private readonly Mock<IPresenter> presenter = new();
         private readonly IShipPresenter shipPresenter;
@@ -73,24 +75,41 @@ namespace StarTrekExplorersTests.Presenters
             presenter.Verify(p => p.Print(identificationMessage), Times.Exactly(2));
         }
 
-        [Fact(Skip = "reason")]
+        [Fact]
         public void PrintShipOffensiveSystems()
         {
             // Given
+            Mock<IWeapon> weapon = new();
+            weapon.Setup(w => w.Name).Returns("Weapon");
+            weapon.Setup(w => w.Maximum).Returns(10);
+            shipSystems.Setup(ss => ss.Phaser).Returns(weapon.Object);
+            shipSystems.Setup(ss => ss.Torpedo).Returns(weapon.Object);
+            ship.Setup(s => s.ShipSystems).Returns(shipSystems.Object);
+            presenter.Setup(p => p.Print("| Weapon: 10 Weapon: 10 |"));
 
             // When
+            shipPresenter.PrintShipOffensiveSystems(ship.Object);
 
             // Then
+            presenter.VerifyAll();
         }
 
-        [Fact(Skip = "reason")]
+        [Fact]
         public void PrintShipDefensiveSystems()
         {
             // Given
+            Mock<IDefense> defense = new();
+            defense.Setup(w => w.Current).Returns(10);
+            shipSystems.Setup(ss => ss.Shield).Returns(defense.Object);
+            shipSystems.Setup(ss => ss.Hull).Returns(defense.Object);
+            ship.Setup(s => s.ShipSystems).Returns(shipSystems.Object);
+            presenter.Setup(p => p.Print("| Shield: 10 Hull: 10 |"));
 
             // When
+            shipPresenter.PrintShipDefensiveSystems(ship.Object);
 
             // Then
+            presenter.VerifyAll();
         }
     }
 }
