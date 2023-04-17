@@ -9,6 +9,10 @@ namespace StarTrekExplorers
     {
         internal static void Main()
         {
+            IPresenter presenter = new Presenter();
+            IGame game = new Game(presenter);
+
+            presenter.UniversePresenter.PrintStars(game.Universe.Stars);
         }
     }
 }
