@@ -12,7 +12,7 @@ namespace StarTrekExplorersTests.Systems
         private readonly IPlanetGeneration planetGeneration = new PlanetGeneration();
 
         [Fact]
-        public void GeneratePlanet()
+        public void GeneratePlanets()
         {
             // When
             IEnumerable<IPlanet> planets = planetGeneration.GeneratePlanets();

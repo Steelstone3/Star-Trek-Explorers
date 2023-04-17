@@ -20,8 +20,8 @@ namespace StarTrekExplorersTests.Entities
             // Then
             Assert.NotNull(game.PlayerShip);
             Assert.NotNull(game.Universe);
-            Assert.Empty(game.FederationShips);
-            Assert.Empty(game.KlingonShips);
+            Assert.NotEmpty(game.FederationShips);
+            Assert.NotEmpty(game.KlingonShips);
         }
     }
 }
