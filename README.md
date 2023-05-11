@@ -1,29 +1,29 @@
-# Star Trek Explorers
+# C# Project Template
 
-A test driven Rust version based on the original 1970s console game in the genre of "rogue-like" and is proceedurally generated using ASCII graphics.
+A template project for creating C# applications
 
-## Running Star Trek Explorers
+## Running Example
 
-> cd ~/Star-Trek-Explorers
+> cd ~/C-Sharp-Project-Template/Example
 >
-> cargo build
+> dotnet restore
 >
-> cargo run
-
-Or launch project from your IDE.
-
-This application has been tested to run on debain derived Linux, Windows 10 and Mac OS 10 beyond this scope your expierences may vary.
-
-## Testing Star Trek Explorers
+> dotnet build
 >
-> cd ~/Star-Trek-Explorers
+> dotnet run
+
+## Tests
+
+> cd ~/C-Sharp-Project-Template/ExampleTests
 >
-> cargo test
+> dotnet restore
+>
+> dotnet build
+>
+> dotnet test
 
-Or run the tests from your IDE of choice.
+## Dependencies
 
-## Star Trek Explorers Dependencies
+Follow the steps for installing dotnet runtime for your given operating system.
 
-Please go to the Rust website to install Rust for your given operating system.
-
-> <https://www.rust-lang.org/>
+> <https://dotnet.microsoft.com/en-us/download/dotnet/7.0>
