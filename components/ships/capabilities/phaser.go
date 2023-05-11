@@ -1,7 +1,7 @@
 package capabilities
 
 type Phaser struct {
-	Damage int
+	Damage uint
 }
 
 func ConstructPhaser() Phaser {

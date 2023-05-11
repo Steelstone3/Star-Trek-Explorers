@@ -5,9 +5,9 @@ import (
 	"testing"
 )
 
-func TestPhaserConstruction(t *testing.T) {
-	result := ConstructPhaser()
-	expected := Phaser{
+func TestTorpedoConstruction(t *testing.T) {
+	result := ConstructTorpedo()
+	expected := Torpedo{
 		Damage: 10,
 	}
 

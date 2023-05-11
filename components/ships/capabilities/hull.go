@@ -3,9 +3,9 @@ package capabilities
 import ()
 
 type Hull struct {
-	RepairRate                 int
-	CurrentStructuralIntegrity int
-	maximumStructuralIntegrity int
+	RepairRate                 uint
+	CurrentStructuralIntegrity uint
+	maximumStructuralIntegrity uint
 }
 
 func ConstructHull() Hull {
