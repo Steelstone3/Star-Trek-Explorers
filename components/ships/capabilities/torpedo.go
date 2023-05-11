@@ -1,7 +1,5 @@
 package capabilities
 
-import ()
-
 type Torpedo struct {
 	Damage uint
 }
