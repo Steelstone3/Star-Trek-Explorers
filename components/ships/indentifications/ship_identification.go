@@ -1,8 +1,17 @@
 package indentifications
 
 type ShipIdentification struct {
-	name string
-	class string
-	serial_number string
-	faction string
+	Name          string
+	Class         string
+	SerialNumber string
+	Faction       string
+}
+
+func ConstructFederation() ShipIdentification {
+	return ShipIdentification{
+		Name:          "Enterprise",
+		Class:         "Galaxy",
+		SerialNumber: "NCC-1709",
+		Faction:       "Federation",
+	}
 }

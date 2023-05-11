@@ -7,3 +7,9 @@ import (
 type Ship struct {
 	ship_identification indentifications.ShipIdentification
 }
+
+func ConstructFederation() Ship {
+	return Ship{
+		ship_identification: indentifications.ConstructFederation(),
+	}
+}
