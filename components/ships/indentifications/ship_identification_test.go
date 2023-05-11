@@ -1,12 +1,13 @@
 package indentifications
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 	"testing"
+
+	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 )
 
-func TestConstruction(t *testing.T) {
-	result := ConstructFederation()
+func TestShipIdentificationConstruction(t *testing.T) {
+	result := ConstructFederationShipIdentification()
 	expected := ShipIdentification{
 		Name:         "Enterprise",
 		Class:        "Galaxy",
@@ -14,5 +15,8 @@ func TestConstruction(t *testing.T) {
 		Faction:      "Federation",
 	}
 
-	asserters.AssertEqual(expected, result)
+	asserters.AssertEqual(expected.Name, result.Name)
+	asserters.AssertEqual(expected.Class, result.Class)
+	asserters.AssertEqual(expected.Faction, result.Faction)
+	asserters.AssertEqual(expected.SerialNumber, result.SerialNumber)
 }

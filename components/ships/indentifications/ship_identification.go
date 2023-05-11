@@ -7,7 +7,7 @@ type ShipIdentification struct {
 	Faction      string
 }
 
-func ConstructFederation() ShipIdentification {
+func ConstructFederationShipIdentification() ShipIdentification {
 	return ShipIdentification{
 		Name:         "Enterprise",
 		Class:        "Galaxy",

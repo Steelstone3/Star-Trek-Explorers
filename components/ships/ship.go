@@ -8,8 +8,8 @@ type Ship struct {
 	ship_identification indentifications.ShipIdentification
 }
 
-func ConstructFederation() Ship {
+func ConstructFederationShip() Ship {
 	return Ship{
-		ship_identification: indentifications.ConstructFederation(),
+		ship_identification: indentifications.ConstructFederationShipIdentification(),
 	}
 }

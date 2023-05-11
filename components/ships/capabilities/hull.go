@@ -8,7 +8,7 @@ type Hull struct {
 	maximumStructuralIntegrity int
 }
 
-func Construct() Hull {
+func ConstructHull() Hull {
 	return Hull{
 		RepairRate:                 5,
 		CurrentStructuralIntegrity: 100,

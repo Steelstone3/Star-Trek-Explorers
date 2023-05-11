@@ -5,13 +5,15 @@ import (
 	"testing"
 )
 
-func TestConstruction(t *testing.T) {
-	result := Construct()
+func TestHullConstruction(t *testing.T) {
+	result := ConstructHull()
 	expected := Hull{
 		RepairRate:                 5,
 		CurrentStructuralIntegrity: 100,
 		maximumStructuralIntegrity: 100,
 	}
 
-	asserters.AssertEqual(expected, result)
+	asserters.AssertEqual(expected.RepairRate, result.RepairRate)
+	asserters.AssertEqual(expected.CurrentStructuralIntegrity, result.CurrentStructuralIntegrity)
+	asserters.AssertEqual(expected.maximumStructuralIntegrity, result.maximumStructuralIntegrity)
 }

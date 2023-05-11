@@ -5,7 +5,7 @@ import (
 	"reflect"
 )
 
-func AssertEqual(expected, actual interface{}) {
+func AssertEqual(expected interface{}, actual interface{}) {
 	if !reflect.DeepEqual(expected, actual) {
 		fmt.Printf("Assertion failed: Expected %v, but got %v\n", expected, actual)
 	}
