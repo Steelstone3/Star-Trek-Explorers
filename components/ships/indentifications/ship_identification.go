@@ -1,17 +1,17 @@
 package indentifications
 
 type ShipIdentification struct {
-	Name          string
-	Class         string
+	Name         string
+	Class        string
 	SerialNumber string
-	Faction       string
+	Faction      string
 }
 
 func ConstructFederation() ShipIdentification {
 	return ShipIdentification{
-		Name:          "Enterprise",
-		Class:         "Galaxy",
+		Name:         "Enterprise",
+		Class:        "Galaxy",
 		SerialNumber: "NCC-1709",
-		Faction:       "Federation",
+		Faction:      "Federation",
 	}
 }
