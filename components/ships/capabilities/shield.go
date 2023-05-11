@@ -1,15 +1,15 @@
 package capabilities
 
 type Shield struct {
-	RepairRate                 uint
-	CurrentStructuralIntegrity uint
-	maximumStructuralIntegrity uint
+	Regeneration          uint
+	CurrentShieldStrength uint
+	maximumShieldStrength uint
 }
 
 func ConstructShield() Shield {
 	return Shield{
-		RepairRate:                 5,
-		CurrentStructuralIntegrity: 100,
-		maximumStructuralIntegrity: 100,
+		Regeneration:          5,
+		CurrentShieldStrength: 100,
+		maximumShieldStrength: 100,
 	}
 }

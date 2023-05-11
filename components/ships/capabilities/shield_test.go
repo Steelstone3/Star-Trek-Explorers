@@ -1,19 +1,20 @@
 package capabilities
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 	"testing"
+
+	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 )
 
 func TestShieldConstruction(t *testing.T) {
 	result := ConstructShield()
 	expected := Shield{
-		RepairRate:                 5,
-		CurrentStructuralIntegrity: 100,
-		maximumStructuralIntegrity: 100,
+		Regeneration:          5,
+		CurrentShieldStrength: 100,
+		maximumShieldStrength: 100,
 	}
 
-	asserters.AssertEqual(expected.RepairRate, result.RepairRate)
-	asserters.AssertEqual(expected.CurrentStructuralIntegrity, result.CurrentStructuralIntegrity)
-	asserters.AssertEqual(expected.maximumStructuralIntegrity, result.maximumStructuralIntegrity)
+	asserters.AssertEqual(expected.Regeneration, result.Regeneration)
+	asserters.AssertEqual(expected.CurrentShieldStrength, result.CurrentShieldStrength)
+	asserters.AssertEqual(expected.maximumShieldStrength, result.maximumShieldStrength)
 }
