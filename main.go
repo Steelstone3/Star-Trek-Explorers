@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "github.com/Steelstone3/Shhh-Library/controllers"
+    "github.com/Steelstone3/Star-Trek-Explorers/controllers"
 )
 
 func main() {
