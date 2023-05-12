@@ -9,9 +9,9 @@ type ShipCapabilities struct {
 
 func ConstructShipCapabilities() ShipCapabilities {
 	return ShipCapabilities{
-		Shield: ConstructShield(),
-		Hull: ConstructHull(),
-		Phaser: ConstructPhaser(),
+		Shield:  ConstructShield(),
+		Hull:    ConstructHull(),
+		Phaser:  ConstructPhaser(),
 		Torpedo: ConstructTorpedo(),
 	}
 }

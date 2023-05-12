@@ -1,8 +1,8 @@
 package asserters
 
 import (
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func AssertEqual(t *testing.T, expected interface{}, actual interface{}) {
