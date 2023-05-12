@@ -24,9 +24,8 @@ func ConstructKlingonShip() Ship {
 	}
 }
 
-func (s *Ship) AttackHostileShip(defendingShip Ship) Ship {
-
-	return defendingShip
+func (s Ship) AttackHostileShip(defendingShip Ship) Ship {
+	return defendingShip.TakeDamageToShip(s)
 }
 
 func (defendingShip Ship) TakeDamageToShip(attackingShip Ship) Ship {
