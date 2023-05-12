@@ -1,24 +1,25 @@
 package capabilities
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 	"testing"
+
+	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 )
 
 func TestShipCapabilitiesConstruction(t *testing.T) {
 	result := ConstructShipCapabilities()
 	expected := ShipCapabilities{
-		Shield:  Shield{
+		Shield: Shield{
 			Regeneration:          5,
 			CurrentShieldStrength: 100,
-			maximumShieldStrength: 100,
+			MaximumShieldStrength: 100,
 		},
-		Hull:    Hull{
+		Hull: Hull{
 			RepairRate:                 5,
 			CurrentStructuralIntegrity: 100,
-			maximumStructuralIntegrity: 100,
+			MaximumStructuralIntegrity: 100,
 		},
-		Phaser:  Phaser{
+		Phaser: Phaser{
 			Damage: 10,
 		},
 		Torpedo: Torpedo{

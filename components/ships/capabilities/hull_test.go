@@ -1,8 +1,9 @@
 package capabilities
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 	"testing"
+
+	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 )
 
 func TestHullConstruction(t *testing.T) {
@@ -10,10 +11,10 @@ func TestHullConstruction(t *testing.T) {
 	expected := Hull{
 		RepairRate:                 5,
 		CurrentStructuralIntegrity: 100,
-		maximumStructuralIntegrity: 100,
+		MaximumStructuralIntegrity: 100,
 	}
 
 	asserters.AssertEqual(t, expected.RepairRate, result.RepairRate)
 	asserters.AssertEqual(t, expected.CurrentStructuralIntegrity, result.CurrentStructuralIntegrity)
-	asserters.AssertEqual(t, expected.maximumStructuralIntegrity, result.maximumStructuralIntegrity)
+	asserters.AssertEqual(t, expected.MaximumStructuralIntegrity, result.MaximumStructuralIntegrity)
 }

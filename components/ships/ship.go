@@ -1,15 +1,18 @@
 package ships
 
 import (
+	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/capabilities"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/indentifications"
 )
 
 type Ship struct {
-	ship_identification indentifications.ShipIdentification
+	Identification indentifications.ShipIdentification
+	Capabilities   capabilities.ShipCapabilities
 }
 
 func ConstructFederationShip() Ship {
 	return Ship{
-		ship_identification: indentifications.ConstructFederationShipIdentification(),
+		Identification: indentifications.ConstructFederationShipIdentification(),
+		Capabilities:   capabilities.ConstructShipCapabilities(),
 	}
 }
