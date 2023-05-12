@@ -13,7 +13,7 @@ func TestShieldConstruction(t *testing.T) {
 		maximumShieldStrength: 100,
 	}
 
-	asserters.AssertEqual(expected.Regeneration, result.Regeneration)
-	asserters.AssertEqual(expected.CurrentShieldStrength, result.CurrentShieldStrength)
-	asserters.AssertEqual(expected.maximumShieldStrength, result.maximumShieldStrength)
+	asserters.AssertEqual(t, expected.Regeneration, result.Regeneration)
+	asserters.AssertEqual(t, expected.CurrentShieldStrength, result.CurrentShieldStrength)
+	asserters.AssertEqual(t, expected.maximumShieldStrength, result.maximumShieldStrength)
 }

@@ -11,7 +11,7 @@ func ConstructFederationShipIdentification() ShipIdentification {
 	return ShipIdentification{
 		Name:         "Enterprise",
 		Class:        "Galaxy",
-		SerialNumber: "NCC-1709",
+		SerialNumber: "NCC-1701",
 		Faction:      "Federation",
 	}
 }

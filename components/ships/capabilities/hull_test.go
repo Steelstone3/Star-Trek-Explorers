@@ -13,7 +13,7 @@ func TestHullConstruction(t *testing.T) {
 		maximumStructuralIntegrity: 100,
 	}
 
-	asserters.AssertEqual(expected.RepairRate, result.RepairRate)
-	asserters.AssertEqual(expected.CurrentStructuralIntegrity, result.CurrentStructuralIntegrity)
-	asserters.AssertEqual(expected.maximumStructuralIntegrity, result.maximumStructuralIntegrity)
+	asserters.AssertEqual(t, expected.RepairRate, result.RepairRate)
+	asserters.AssertEqual(t, expected.CurrentStructuralIntegrity, result.CurrentStructuralIntegrity)
+	asserters.AssertEqual(t, expected.maximumStructuralIntegrity, result.maximumStructuralIntegrity)
 }

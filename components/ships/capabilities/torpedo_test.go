@@ -11,5 +11,5 @@ func TestTorpedoConstruction(t *testing.T) {
 		Damage: 10,
 	}
 
-	asserters.AssertEqual(expected.Damage, result.Damage)
+	asserters.AssertEqual(t, expected.Damage, result.Damage)
 }

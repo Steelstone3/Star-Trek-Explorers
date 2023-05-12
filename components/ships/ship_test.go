@@ -12,10 +12,10 @@ func TestShipConstruction(t *testing.T) {
 		ship_identification: indentifications.ShipIdentification{
 			Name:         "Enterprise",
 			Class:        "Galaxy",
-			SerialNumber: "NCC-1709",
+			SerialNumber: "NCC-1701",
 			Faction:      "Federation",
 		},
 	}
 
-	asserters.AssertEqual(expected.ship_identification, result.ship_identification)
+	asserters.AssertEqual(t, expected.ship_identification, result.ship_identification)
 }

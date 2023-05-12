@@ -1,12 +1,12 @@
 package asserters
 
 import (
-	"fmt"
+	"testing"
 	"reflect"
 )
 
-func AssertEqual(expected interface{}, actual interface{}) {
+func AssertEqual(t *testing.T, expected interface{}, actual interface{}) {
 	if !reflect.DeepEqual(expected, actual) {
-		fmt.Printf("Assertion failed: Expected %v, but got %v\n", expected, actual)
+		t.Errorf("Assertion failed: Expected %v, but got %v\n", expected, actual)
 	}
 }
