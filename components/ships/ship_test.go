@@ -1,11 +1,10 @@
 package ships
 
 import (
-	"testing"
-
 	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/capabilities"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/indentifications"
+	"testing"
 )
 
 func TestShipConstruction(t *testing.T) {

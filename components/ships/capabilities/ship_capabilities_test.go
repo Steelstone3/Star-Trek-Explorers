@@ -1,9 +1,8 @@
 package capabilities
 
 import (
-	"testing"
-
 	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
+	"testing"
 )
 
 func TestShipCapabilitiesConstruction(t *testing.T) {
