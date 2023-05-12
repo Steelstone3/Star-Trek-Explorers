@@ -1,16 +1,14 @@
 package main
 
 import (
-	"fmt"
-	// "github.com/Steelstone3/Star-Trek-Explorers/entities/ships"
-	// "github.com/Steelstone3/Star-Trek-Explorers/systems"
+	"github.com/Steelstone3/Star-Trek-Explorers/entities/ships"
+	"github.com/Steelstone3/Star-Trek-Explorers/systems"
 )
 
 func main() {
-	// federation_ship := ships.ConstructFederationShip()
-	// klingon_ship := ships.ConstructKlingonShip()
+	federation_ship := ships.ConstructFederationShip()
+	klingon_ship := ships.ConstructKlingonShip()
 
-	
-
-	fmt.Println("Result:", 5)
+	systems.CombatTurn(federation_ship, klingon_ship)
+	systems.CombatTurn(klingon_ship, federation_ship)
 }

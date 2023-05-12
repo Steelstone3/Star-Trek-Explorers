@@ -26,18 +26,22 @@ func ConstructKlingonShip() Ship {
 }
 
 func (s *Ship) DisplayShip() {
-	fmt.Println("", s.Identification.Name)
-	fmt.Print("", s.Identification.Class)
-	fmt.Print("", s.Identification.SerialNumber)
-	fmt.Print("", s.Identification.Faction)
+	fmt.Println("")
+	fmt.Print(" ", s.Identification.Name)
+	fmt.Print(" ", s.Identification.Class)
+	fmt.Print(" ", s.Identification.SerialNumber)
+	fmt.Print(" ", s.Identification.Faction)
 
-	fmt.Println("Offensive Capability ||", )
-	fmt.Print("Phaser:", s.Capabilities.Phaser.Damage)
-	fmt.Print("Torpedo:", s.Capabilities.Torpedo.Damage)
+	fmt.Println("")
+	fmt.Print("Offensive Capability || ", )
+	fmt.Print("Phaser: ", s.Capabilities.Phaser.Damage)
+	fmt.Print(" | Torpedo: ", s.Capabilities.Torpedo.Damage)
 
-	fmt.Println("Defensive Capability ||")
-	fmt.Print("Shield Strength:", s.Capabilities.Shield.CurrentShieldStrength)
-	fmt.Print("Hull Structrual Integrity:", s.Capabilities.Hull.CurrentStructuralIntegrity)
+	fmt.Println("")
+	fmt.Print("Defensive Capability || ")
+	fmt.Print("Shield Strength: ", s.Capabilities.Shield.CurrentShieldStrength)
+	fmt.Print(" | Hull Structrual Integrity: ", s.Capabilities.Hull.CurrentStructuralIntegrity)
+	fmt.Println("")
 }
 
 func (s Ship) AttackHostileShip(defendingShip Ship) Ship {
