@@ -9,6 +9,6 @@ func main() {
 	federation_ship := ships.ConstructFederationShip()
 	klingon_ship := ships.ConstructKlingonShip()
 
-	systems.CombatTurn(federation_ship, klingon_ship)
-	systems.CombatTurn(klingon_ship, federation_ship)
+	klingon_ship = systems.CombatTurn(federation_ship, klingon_ship)
+	federation_ship = systems.CombatTurn(klingon_ship, federation_ship)
 }
