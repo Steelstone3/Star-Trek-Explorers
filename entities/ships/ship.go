@@ -16,3 +16,10 @@ func ConstructFederationShip() Ship {
 		Capabilities:   capabilities.ConstructShipCapabilities(),
 	}
 }
+
+func ConstructKlingonShip() Ship {
+	return Ship{
+		Identification: indentifications.ConstructKlingonShipIdentification(),
+		Capabilities:   capabilities.ConstructShipCapabilities(),
+	}
+}

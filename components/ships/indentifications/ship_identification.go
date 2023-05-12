@@ -15,3 +15,12 @@ func ConstructFederationShipIdentification() ShipIdentification {
 		Faction:      "Federation",
 	}
 }
+
+func ConstructKlingonShipIdentification() ShipIdentification {
+	return ShipIdentification{
+		Name:         "Pagh",
+		Class:        "Sompek",
+		SerialNumber: "IKS-2359",
+		Faction:      "Klingon Empire",
+	}
+}
