@@ -6,7 +6,7 @@ import(
 
 func CombatTurn(attackingShip ships.Ship, defendingShip ships.Ship) ships.Ship {
 	attackingShip.DisplayShip()
-	ship := attackingShip.AttackHostileShip(defendingShip)
-	ship.DisplayShip()
-	return ship
+	damagedDefendingShip := attackingShip.AttackHostileShip(defendingShip)
+	damagedDefendingShip.DisplayShip()
+	return damagedDefendingShip
 }
