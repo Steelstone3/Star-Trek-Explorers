@@ -35,6 +35,20 @@ func TestTakeCriticalShieldDamage(t *testing.T) {
 	assert.Equal(t, expectedRemainingShield, shield.CurrentShieldStrength)
 }
 
+func TestTakeShieldDamageAcceptance(t *testing.T) {
+	var damage uint = 10
+	var expectedRemainingShield uint = 50
+	shield := constructShield()
+
+	shield = shield.TakeShieldDamage(damage)
+	shield = shield.TakeShieldDamage(damage)
+	shield = shield.TakeShieldDamage(damage)
+	shield = shield.TakeShieldDamage(damage)
+	shield = shield.TakeShieldDamage(damage)
+
+	assert.Equal(t, expectedRemainingShield, shield.CurrentShieldStrength)
+}
+
 func constructShield() Shield {
 	return Shield{
 		Regeneration:          5,
