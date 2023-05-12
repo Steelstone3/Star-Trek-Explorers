@@ -28,7 +28,15 @@ func (s *Ship) AttackHostileShip(defendingShip Ship) Ship {
 	return defendingShip
 }
 
-func (s *Ship) TakeDamageToShip() {
-	// s.Capabilities.Shield.TakeDamageToShield();
-	// s.Capabilities.Hull.TakeDamageToHull();
+func (s Ship) TakeDamageToShip(damage uint) Ship {
+	var remainingDamage uint = 0
+
+	if damage > s.Capabilities.Shield.CurrentShieldStrength{
+		remainingDamage = damage - s.Capabilities.Shield.CurrentShieldStrength;
+	}
+	
+	s.Capabilities.Shield = s.Capabilities.Shield.TakeShieldDamage(damage);
+	s.Capabilities.Hull = s.Capabilities.Hull.TakeHullDamage(s.Capabilities.Shield.CurrentShieldStrength, remainingDamage);
+
+	return s
 }

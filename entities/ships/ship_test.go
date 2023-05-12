@@ -1,9 +1,9 @@
 package ships
 
 import (
-	"github.com/stretchr/testify/assert"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/capabilities"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/indentifications"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -21,6 +21,55 @@ func TestConstructKlingonShip(t *testing.T) {
 
 	assert.Equal(t, expected.Identification, result.Identification)
 	assert.Equal(t, expected.Capabilities, result.Capabilities)
+}
+
+func TestTakeDamageToShip(t *testing.T) {
+	var damage uint = 10
+	var expectedShield uint = 90
+	var expectedHull uint = 100
+	ship := constructKlingonShip()
+
+	ship = ship.TakeDamageToShip(damage)
+
+	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
+}
+
+func TestTakeHullDamageToShip(t *testing.T) {
+	var damage uint = 10
+	var expectedShield uint = 0
+	var expectedHull uint = 90
+	ship := constructKlingonShip()
+	ship.Capabilities.Shield.CurrentShieldStrength = 0
+
+	ship = ship.TakeDamageToShip(damage)
+
+	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
+}
+
+func TestCriticalDamageToShipShields(t *testing.T) {
+	var damage uint = 101
+	var expectedShield uint = 0
+	var expectedHull uint = 99
+	ship := constructKlingonShip()
+
+	ship = ship.TakeDamageToShip(damage)
+
+	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
+}
+
+func TestCriticalDamageToShip(t *testing.T) {
+	var damage uint = 201
+	var expectedShield uint = 0
+	var expectedHull uint = 0
+	ship := constructKlingonShip()
+
+	ship = ship.TakeDamageToShip(damage)
+
+	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
 // func TestAttackHostileShip(t *testing.T) {
