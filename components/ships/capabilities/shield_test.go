@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestShieldConstruction(t *testing.T) {
+func TestConstructShield(t *testing.T) {
 	result := ConstructShield()
 	expected := Shield{
 		Regeneration:          5,

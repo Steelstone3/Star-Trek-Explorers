@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestPhaserConstruction(t *testing.T) {
+func TestConstructPhaser(t *testing.T) {
 	result := ConstructPhaser()
 	expected := Phaser{
 		Damage: 10,

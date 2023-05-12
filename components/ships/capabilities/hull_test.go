@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestHullConstruction(t *testing.T) {
+func TestConstructHull(t *testing.T) {
 	result := ConstructHull()
 	expected := Hull{
 		RepairRate:                 5,

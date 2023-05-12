@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestShipCapabilitiesConstruction(t *testing.T) {
+func TestConstructShipCapabilities(t *testing.T) {
 	result := ConstructShipCapabilities()
 	expected := ShipCapabilities{
 		Shield: Shield{

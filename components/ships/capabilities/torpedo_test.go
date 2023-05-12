@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestTorpedoConstruction(t *testing.T) {
+func TestConstructTorpedo(t *testing.T) {
 	result := ConstructTorpedo()
 	expected := Torpedo{
 		Damage: 10,
