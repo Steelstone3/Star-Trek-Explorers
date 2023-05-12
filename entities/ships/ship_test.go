@@ -30,12 +30,12 @@ func TestTakeDamageToShip(t *testing.T) {
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage=damage
 	attackingShip.Capabilities.Torpedo.Damage=damage
-	ship := constructKlingonShip()
+	defendingShip := constructKlingonShip()
 
-	ship = ship.TakeDamageToShip(attackingShip)
+	defendingShip = attackingShip.AttackHostileShip(defendingShip)
 
-	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
-	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
+	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
 func TestTakeHullDamageToShip(t *testing.T) {
@@ -45,13 +45,13 @@ func TestTakeHullDamageToShip(t *testing.T) {
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage=damage
 	attackingShip.Capabilities.Torpedo.Damage=damage
-	ship := constructKlingonShip()
-	ship.Capabilities.Shield.CurrentShieldStrength = 0
+	defendingShip := constructKlingonShip()
+	defendingShip.Capabilities.Shield.CurrentShieldStrength = 0
 
-	ship = ship.TakeDamageToShip(attackingShip)
+	defendingShip = attackingShip.AttackHostileShip(defendingShip)
 
-	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
-	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
+	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
 func TestCriticalDamageToShipShields(t *testing.T) {
@@ -62,12 +62,12 @@ func TestCriticalDamageToShipShields(t *testing.T) {
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage=phaserDamage
 	attackingShip.Capabilities.Torpedo.Damage=torpedoDamage
-	ship := constructKlingonShip()
+	defendingShip := constructKlingonShip()
 
-	ship = ship.TakeDamageToShip(attackingShip)
+	defendingShip = attackingShip.AttackHostileShip(defendingShip)
 
-	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
-	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
+	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
 func TestCriticalDamageToShip(t *testing.T) {
@@ -79,7 +79,7 @@ func TestCriticalDamageToShip(t *testing.T) {
 	attackingShip.Capabilities.Torpedo.Damage=damage
 	defendingShip := constructKlingonShip()
 
-	defendingShip = attackingShip.TakeDamageToShip(attackingShip)
+	defendingShip = attackingShip.AttackHostileShip(defendingShip)
 
 	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
 	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
@@ -92,23 +92,11 @@ func TestTakeDamageToShipAcceptance(t *testing.T) {
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage=damage
 	attackingShip.Capabilities.Torpedo.Damage=damage
-	ship := constructKlingonShip()
-
-	for i := 0; i < 14; i++ {
-		ship = ship.TakeDamageToShip(attackingShip)
-	}
-
-	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
-	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
-}
-
-func TestAttackHostileShip(t *testing.T) {
-	var expectedShield uint = 90
-	var expectedHull uint = 100
-	attackingShip := constructFederationShip()
 	defendingShip := constructKlingonShip()
 
-	defendingShip = attackingShip.AttackHostileShip(defendingShip)
+	for i := 0; i < 14; i++ {
+		defendingShip = attackingShip.AttackHostileShip(defendingShip)
+	}
 
 	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
 	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)

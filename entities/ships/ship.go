@@ -25,10 +25,10 @@ func ConstructKlingonShip() Ship {
 }
 
 func (s Ship) AttackHostileShip(defendingShip Ship) Ship {
-	return defendingShip.TakeDamageToShip(s)
+	return defendingShip.takeDamageToShip(s)
 }
 
-func (defendingShip Ship) TakeDamageToShip(attackingShip Ship) Ship {
+func (defendingShip Ship) takeDamageToShip(attackingShip Ship) Ship {
 	var phaserDamage = attackingShip.Capabilities.Phaser.Damage
 	var maximumDamage = attackingShip.Capabilities.Phaser.Damage + attackingShip.Capabilities.Torpedo.Damage
 	var remainingDamage uint = 0
