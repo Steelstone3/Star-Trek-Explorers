@@ -23,3 +23,12 @@ func ConstructKlingonShip() Ship {
 		Capabilities:   capabilities.ConstructShipCapabilities(),
 	}
 }
+
+func (s *Ship) AttackHostileShip(defendingShip Ship) Ship {
+	return defendingShip
+}
+
+func (s *Ship) TakeDamageToShip() {
+	// s.Capabilities.Shield.TakeDamageToShield();
+	// s.Capabilities.Hull.TakeDamageToHull();
+}

@@ -9,7 +9,34 @@ import (
 
 func TestConstructFederationShip(t *testing.T) {
 	result := ConstructFederationShip()
-	expected := Ship{
+	expected := constructFederationShip()
+
+	assert.Equal(t, expected.Identification, result.Identification)
+	assert.Equal(t, expected.Capabilities, result.Capabilities)
+}
+
+func TestConstructKlingonShip(t *testing.T) {
+	result := ConstructKlingonShip()
+	expected := constructKlingonShip()
+
+	assert.Equal(t, expected.Identification, result.Identification)
+	assert.Equal(t, expected.Capabilities, result.Capabilities)
+}
+
+// func TestAttackHostileShip(t *testing.T) {
+// 	var expectedShield uint = 90
+// 	var expectedHull uint = 100
+// 	attackingShip := constructFederationShip()
+// 	defendingShip := constructKlingonShip()
+
+// 	defendingShip = attackingShip.AttackHostileShip(defendingShip)
+
+// 	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
+// 	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
+// }
+
+func constructFederationShip() Ship {
+	return Ship{
 		Identification: indentifications.ShipIdentification{
 			Name:         "Enterprise",
 			Class:        "Galaxy",
@@ -35,14 +62,10 @@ func TestConstructFederationShip(t *testing.T) {
 			},
 		},
 	}
-
-	assert.Equal(t, expected.Identification, result.Identification)
-	assert.Equal(t, expected.Capabilities, result.Capabilities)
 }
 
-func TestConstructKlingonShip(t *testing.T) {
-	result := ConstructKlingonShip()
-	expected := Ship{
+func constructKlingonShip() Ship {
+	return Ship{
 		Identification: indentifications.ShipIdentification{
 			Name:         "Pagh",
 			Class:        "Sompek",
@@ -68,7 +91,4 @@ func TestConstructKlingonShip(t *testing.T) {
 			},
 		},
 	}
-
-	assert.Equal(t, expected.Identification, result.Identification)
-	assert.Equal(t, expected.Capabilities, result.Capabilities)
 }

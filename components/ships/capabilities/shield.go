@@ -13,3 +13,16 @@ func ConstructShield() Shield {
 		MaximumShieldStrength: 100,
 	}
 }
+
+func (s *Shield) TakeShieldDamage(damage uint) Shield {
+	if damage > s.CurrentShieldStrength{
+		shield := ConstructShield()
+		shield.CurrentShieldStrength = 0
+		return shield
+	}
+
+	var remainingShield = s.CurrentShieldStrength - damage;
+	shield := ConstructShield()
+	shield.CurrentShieldStrength = remainingShield
+	return shield
+}
