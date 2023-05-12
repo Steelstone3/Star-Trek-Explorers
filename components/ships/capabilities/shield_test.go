@@ -1,7 +1,7 @@
 package capabilities
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -13,7 +13,7 @@ func TestConstructShield(t *testing.T) {
 		MaximumShieldStrength: 100,
 	}
 
-	asserters.AssertEqual(t, expected.Regeneration, result.Regeneration)
-	asserters.AssertEqual(t, expected.CurrentShieldStrength, result.CurrentShieldStrength)
-	asserters.AssertEqual(t, expected.MaximumShieldStrength, result.MaximumShieldStrength)
+	assert.Equal(t, expected.Regeneration, result.Regeneration)
+	assert.Equal(t, expected.CurrentShieldStrength, result.CurrentShieldStrength)
+	assert.Equal(t, expected.MaximumShieldStrength, result.MaximumShieldStrength)
 }

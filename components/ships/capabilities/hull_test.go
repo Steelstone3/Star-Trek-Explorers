@@ -1,7 +1,7 @@
 package capabilities
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -13,7 +13,7 @@ func TestConstructHull(t *testing.T) {
 		MaximumStructuralIntegrity: 100,
 	}
 
-	asserters.AssertEqual(t, expected.RepairRate, result.RepairRate)
-	asserters.AssertEqual(t, expected.CurrentStructuralIntegrity, result.CurrentStructuralIntegrity)
-	asserters.AssertEqual(t, expected.MaximumStructuralIntegrity, result.MaximumStructuralIntegrity)
+	assert.Equal(t, expected.RepairRate, result.RepairRate)
+	assert.Equal(t, expected.CurrentStructuralIntegrity, result.CurrentStructuralIntegrity)
+	assert.Equal(t, expected.MaximumStructuralIntegrity, result.MaximumStructuralIntegrity)
 }

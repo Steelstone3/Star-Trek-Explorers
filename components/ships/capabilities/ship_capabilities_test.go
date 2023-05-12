@@ -1,7 +1,7 @@
 package capabilities
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -26,8 +26,8 @@ func TestConstructShipCapabilities(t *testing.T) {
 		},
 	}
 
-	asserters.AssertEqual(t, expected.Shield, result.Shield)
-	asserters.AssertEqual(t, expected.Hull, result.Hull)
-	asserters.AssertEqual(t, expected.Phaser, result.Phaser)
-	asserters.AssertEqual(t, expected.Torpedo, result.Torpedo)
+	assert.Equal(t, expected.Shield, result.Shield)
+	assert.Equal(t, expected.Hull, result.Hull)
+	assert.Equal(t, expected.Phaser, result.Phaser)
+	assert.Equal(t, expected.Torpedo, result.Torpedo)
 }

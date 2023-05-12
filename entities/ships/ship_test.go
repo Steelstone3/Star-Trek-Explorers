@@ -1,7 +1,7 @@
 package ships
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
+	"github.com/stretchr/testify/assert"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/capabilities"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/indentifications"
 	"testing"
@@ -36,8 +36,8 @@ func TestConstructFederationShip(t *testing.T) {
 		},
 	}
 
-	asserters.AssertEqual(t, expected.Identification, result.Identification)
-	asserters.AssertEqual(t, expected.Capabilities, result.Capabilities)
+	assert.Equal(t, expected.Identification, result.Identification)
+	assert.Equal(t, expected.Capabilities, result.Capabilities)
 }
 
 func TestConstructKlingonShip(t *testing.T) {
@@ -69,6 +69,6 @@ func TestConstructKlingonShip(t *testing.T) {
 		},
 	}
 
-	asserters.AssertEqual(t, expected.Identification, result.Identification)
-	asserters.AssertEqual(t, expected.Capabilities, result.Capabilities)
+	assert.Equal(t, expected.Identification, result.Identification)
+	assert.Equal(t, expected.Capabilities, result.Capabilities)
 }

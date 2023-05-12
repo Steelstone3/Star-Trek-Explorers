@@ -1,7 +1,7 @@
 package capabilities
 
 import (
-	"github.com/Steelstone3/Star-Trek-Explorers/asserters"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -11,5 +11,5 @@ func TestConstructPhaser(t *testing.T) {
 		Damage: 10,
 	}
 
-	asserters.AssertEqual(t, expected.Damage, result.Damage)
+	assert.Equal(t, expected.Damage, result.Damage)
 }
