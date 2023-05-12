@@ -25,18 +25,22 @@ func ConstructKlingonShip() Ship {
 }
 
 func (s *Ship) AttackHostileShip(defendingShip Ship) Ship {
+
 	return defendingShip
 }
 
-func (s Ship) TakeDamageToShip(damage uint) Ship {
+func (defendingShip Ship) TakeDamageToShip(attackingShip Ship) Ship {
+	var phaserDamage = attackingShip.Capabilities.Phaser.Damage
+	var maximumDamage = attackingShip.Capabilities.Phaser.Damage + attackingShip.Capabilities.Torpedo.Damage
 	var remainingDamage uint = 0
 
-	if damage > s.Capabilities.Shield.CurrentShieldStrength{
-		remainingDamage = damage - s.Capabilities.Shield.CurrentShieldStrength;
-	}
-	
-	s.Capabilities.Shield = s.Capabilities.Shield.TakeShieldDamage(damage);
-	s.Capabilities.Hull = s.Capabilities.Hull.TakeHullDamage(s.Capabilities.Shield.CurrentShieldStrength, remainingDamage);
 
-	return s
+	if phaserDamage > defendingShip.Capabilities.Shield.CurrentShieldStrength{
+		remainingDamage = maximumDamage - defendingShip.Capabilities.Shield.CurrentShieldStrength;
+	}
+
+	defendingShip.Capabilities.Shield = defendingShip.Capabilities.Shield.TakeShieldDamage(phaserDamage);
+	defendingShip.Capabilities.Hull = defendingShip.Capabilities.Hull.TakeHullDamage(defendingShip.Capabilities.Shield.CurrentShieldStrength, remainingDamage);
+
+	return defendingShip
 }

@@ -27,9 +27,12 @@ func TestTakeDamageToShip(t *testing.T) {
 	var damage uint = 10
 	var expectedShield uint = 90
 	var expectedHull uint = 100
+	attackingShip := constructFederationShip()
+	attackingShip.Capabilities.Phaser.Damage=damage
+	attackingShip.Capabilities.Torpedo.Damage=damage
 	ship := constructKlingonShip()
 
-	ship = ship.TakeDamageToShip(damage)
+	ship = ship.TakeDamageToShip(attackingShip)
 
 	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
 	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
@@ -38,38 +41,48 @@ func TestTakeDamageToShip(t *testing.T) {
 func TestTakeHullDamageToShip(t *testing.T) {
 	var damage uint = 10
 	var expectedShield uint = 0
-	var expectedHull uint = 90
+	var expectedHull uint = 80
+	attackingShip := constructFederationShip()
+	attackingShip.Capabilities.Phaser.Damage=damage
+	attackingShip.Capabilities.Torpedo.Damage=damage
 	ship := constructKlingonShip()
 	ship.Capabilities.Shield.CurrentShieldStrength = 0
 
-	ship = ship.TakeDamageToShip(damage)
+	ship = ship.TakeDamageToShip(attackingShip)
 
 	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
 	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
 func TestCriticalDamageToShipShields(t *testing.T) {
-	var damage uint = 101
+	var phaserDamage uint = 101
+	var torpedoDamage uint = 10
 	var expectedShield uint = 0
-	var expectedHull uint = 99
+	var expectedHull uint = 89
+	attackingShip := constructFederationShip()
+	attackingShip.Capabilities.Phaser.Damage=phaserDamage
+	attackingShip.Capabilities.Torpedo.Damage=torpedoDamage
 	ship := constructKlingonShip()
 
-	ship = ship.TakeDamageToShip(damage)
+	ship = ship.TakeDamageToShip(attackingShip)
 
 	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
 	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
 func TestCriticalDamageToShip(t *testing.T) {
-	var damage uint = 201
+	var damage uint = 101
 	var expectedShield uint = 0
 	var expectedHull uint = 0
-	ship := constructKlingonShip()
+	attackingShip := constructFederationShip()
+	attackingShip.Capabilities.Phaser.Damage=damage
+	attackingShip.Capabilities.Torpedo.Damage=damage
+	defendingShip := constructKlingonShip()
 
-	ship = ship.TakeDamageToShip(damage)
+	defendingShip = attackingShip.TakeDamageToShip(attackingShip)
 
-	assert.Equal(t, expectedShield, ship.Capabilities.Shield.CurrentShieldStrength)
-	assert.Equal(t, expectedHull, ship.Capabilities.Hull.CurrentStructuralIntegrity)
+	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
+	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
 // func TestAttackHostileShip(t *testing.T) {
