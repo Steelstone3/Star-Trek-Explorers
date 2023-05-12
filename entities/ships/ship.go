@@ -44,11 +44,7 @@ func (s *Ship) DisplayShip() {
 	fmt.Println("")
 }
 
-func (s Ship) AttackHostileShip(defendingShip Ship) Ship {
-	return defendingShip.takeDamageToShip(s)
-}
-
-func (defendingShip Ship) takeDamageToShip(attackingShip Ship) Ship {
+func (attackingShip Ship) AttackHostileShip(defendingShip Ship) Ship {
 	var phaserDamage = attackingShip.Capabilities.Phaser.Damage
 	var maximumDamage = attackingShip.Capabilities.Phaser.Damage + attackingShip.Capabilities.Torpedo.Damage
 	var remainingDamage uint = 0
