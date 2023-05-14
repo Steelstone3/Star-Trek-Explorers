@@ -29,3 +29,7 @@ func ConstructGame() Game {
 		},
 	}
 }
+
+func StartGame() {
+	
+}
