@@ -30,6 +30,6 @@ func ConstructGame() Game {
 	}
 }
 
-func StartGame() {
-	
+func (g *Game) StartGame() {
+
 }

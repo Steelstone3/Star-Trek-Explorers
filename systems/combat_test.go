@@ -1,11 +1,12 @@
 package systems
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/Steelstone3/Star-Trek-Explorers/entities/ships"
+	"testing"
+
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/capabilities"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/indentifications"
-	"testing"
+	"github.com/Steelstone3/Star-Trek-Explorers/entities/ships"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCombatTurn(t *testing.T) {
@@ -14,8 +15,8 @@ func TestCombatTurn(t *testing.T) {
 	attackingShip := constructShip()
 	defendingShip := constructShip()
 
-	defendingShip = CombatTurn(attackingShip, defendingShip)
-	
+	defendingShip = combatTurn(attackingShip, defendingShip)
+
 	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
 	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
 }
@@ -27,9 +28,9 @@ func TestCombatTurnAcceptance(t *testing.T) {
 	defendingShip := constructShip()
 
 	for i := 0; i < 14; i++ {
-		defendingShip = CombatTurn(attackingShip, defendingShip)
+		defendingShip = combatTurn(attackingShip, defendingShip)
 	}
-	
+
 	assert.Equal(t, expectedShield, defendingShip.Capabilities.Shield.CurrentShieldStrength)
 	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
 }
