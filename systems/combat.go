@@ -6,7 +6,11 @@ import (
 )
 
 func StartCombat(game entities.Game) {
+	//TODO If Alive Klingons && Alive player then
+	//TODO Player select alive klingon vessel
 	game.KlingonShips[0] = combatTurn(game.PlayerShip, game.KlingonShips[0])
+	//TODO If Alive Klingons && Alive player then
+	//TODO AI Select alive klingon vessel to attack player
 	game.PlayerShip = combatTurn(game.KlingonShips[0], game.PlayerShip)
 
 	endCombat(game)
