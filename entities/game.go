@@ -31,5 +31,5 @@ func ConstructGame() Game {
 }
 
 func (g *Game) StartGame() {
-
+	//TODO Exploration state start
 }

@@ -25,6 +25,7 @@ func ConstructKlingonShip() Ship {
 	}
 }
 
+//TODO create a table using library
 func (s *Ship) DisplayShip() {
 	fmt.Println("")
 	fmt.Print(" ", s.Identification.Name)

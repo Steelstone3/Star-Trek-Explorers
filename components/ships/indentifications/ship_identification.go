@@ -1,6 +1,7 @@
 package indentifications
 
 type ShipIdentification struct {
+	//TODO Random Name, Class and Serial Number system for all Factions
 	Name         string
 	Class        string
 	SerialNumber string
