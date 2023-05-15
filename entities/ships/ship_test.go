@@ -28,8 +28,8 @@ func TestTakeDamageToShip(t *testing.T) {
 	var expectedShield uint = 90
 	var expectedHull uint = 100
 	attackingShip := constructFederationShip()
-	attackingShip.Capabilities.Phaser.Damage=damage
-	attackingShip.Capabilities.Torpedo.Damage=damage
+	attackingShip.Capabilities.Phaser.Damage = damage
+	attackingShip.Capabilities.Torpedo.Damage = damage
 	defendingShip := constructKlingonShip()
 
 	defendingShip = attackingShip.AttackHostileShip(defendingShip)
@@ -43,8 +43,8 @@ func TestTakeHullDamageToShip(t *testing.T) {
 	var expectedShield uint = 0
 	var expectedHull uint = 80
 	attackingShip := constructFederationShip()
-	attackingShip.Capabilities.Phaser.Damage=damage
-	attackingShip.Capabilities.Torpedo.Damage=damage
+	attackingShip.Capabilities.Phaser.Damage = damage
+	attackingShip.Capabilities.Torpedo.Damage = damage
 	defendingShip := constructKlingonShip()
 	defendingShip.Capabilities.Shield.CurrentShieldStrength = 0
 
@@ -60,8 +60,8 @@ func TestCriticalDamageToShipShields(t *testing.T) {
 	var expectedShield uint = 0
 	var expectedHull uint = 89
 	attackingShip := constructFederationShip()
-	attackingShip.Capabilities.Phaser.Damage=phaserDamage
-	attackingShip.Capabilities.Torpedo.Damage=torpedoDamage
+	attackingShip.Capabilities.Phaser.Damage = phaserDamage
+	attackingShip.Capabilities.Torpedo.Damage = torpedoDamage
 	defendingShip := constructKlingonShip()
 
 	defendingShip = attackingShip.AttackHostileShip(defendingShip)
@@ -75,8 +75,8 @@ func TestCriticalDamageToShip(t *testing.T) {
 	var expectedShield uint = 0
 	var expectedHull uint = 0
 	attackingShip := constructFederationShip()
-	attackingShip.Capabilities.Phaser.Damage=damage
-	attackingShip.Capabilities.Torpedo.Damage=damage
+	attackingShip.Capabilities.Phaser.Damage = damage
+	attackingShip.Capabilities.Torpedo.Damage = damage
 	defendingShip := constructKlingonShip()
 
 	defendingShip = attackingShip.AttackHostileShip(defendingShip)
@@ -90,8 +90,8 @@ func TestTakeDamageToShipAcceptance(t *testing.T) {
 	var expectedShield uint = 0
 	var expectedHull uint = 20
 	attackingShip := constructFederationShip()
-	attackingShip.Capabilities.Phaser.Damage=damage
-	attackingShip.Capabilities.Torpedo.Damage=damage
+	attackingShip.Capabilities.Phaser.Damage = damage
+	attackingShip.Capabilities.Torpedo.Damage = damage
 	defendingShip := constructKlingonShip()
 
 	for i := 0; i < 14; i++ {
