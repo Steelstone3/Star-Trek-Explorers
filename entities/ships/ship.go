@@ -1,10 +1,10 @@
 package ships
 
 import (
-	"fmt"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/capabilities"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/indentifications"
-	"strings"
+	"github.com/Steelstone3/Star-Trek-Explorers/presenters"
+	"strconv"
 )
 
 type Ship struct {
@@ -28,20 +28,22 @@ func ConstructKlingonShip() Ship {
 
 // TODO create a table using library
 func (s *Ship) DisplayShip() {
-	ship := "{Name} {Class} {SerialNumber} {Faction}\nOffensive Capability || Phaser: {Phaser} | Torpedo: {Torpedo}\nDefensive Capability || Shield Strength: {ShieldStrength} | Hull Structural Integrity: {HullStructuralIntegrity}"
-
-	ship = strings.Replace(ship, "{Name}", s.Identification.Name, 1)
-	ship = strings.Replace(ship, "{Class}", s.Identification.Class, 1)
-	ship = strings.Replace(ship, "{SerialNumber}", s.Identification.SerialNumber, 1)
-	ship = strings.Replace(ship, "{Faction}", s.Identification.Faction, 1)
-
-	ship = strings.Replace(ship, "{Phaser}", fmt.Sprintf("%d", s.Capabilities.Phaser.Damage), 1)
-	ship = strings.Replace(ship, "{Torpedo}", fmt.Sprintf("%d", s.Capabilities.Torpedo.Damage), 1)
-
-	ship = strings.Replace(ship, "{ShieldStrength}", fmt.Sprintf("%d", s.Capabilities.Shield.CurrentShieldStrength), 1)
-	ship = strings.Replace(ship, "{HullStructuralIntegrity}", fmt.Sprintf("%d", s.Capabilities.Hull.CurrentStructuralIntegrity), 1)
-	
-	fmt.Println(ship)
+	presenters.DisplayTable("Ship",
+		[][]string{
+			{"Identification", "."},
+			{"Name", s.Identification.Name},
+			{"Class", s.Identification.Class},
+			{"Serial Number", s.Identification.SerialNumber},
+			{"Faction", s.Identification.Faction},
+			{"Capabilities", "."},
+			{"Offensive", ".."},
+			{"Phaser", strconv.Itoa(int(s.Capabilities.Phaser.Damage))},
+			{"Torpedo", strconv.Itoa(int(s.Capabilities.Torpedo.Damage))},
+			{"Defensive", ".."},
+			{"Shield Strength", strconv.Itoa(int(s.Capabilities.Shield.CurrentShieldStrength))},
+			{"Hull Structural Integrity", strconv.Itoa(int(s.Capabilities.Hull.CurrentStructuralIntegrity))},
+		},
+	)
 }
 
 func (attackingShip Ship) AttackHostileShip(defendingShip Ship) Ship {
