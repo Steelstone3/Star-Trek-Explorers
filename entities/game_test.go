@@ -26,11 +26,11 @@ func constructGame() Game {
 			constructFederationShip(),
 		},
 		KlingonShips: []ships.Ship{
-			constructKlingonShip(),
-			constructKlingonShip(),
-			constructKlingonShip(),
-			constructKlingonShip(),
-			constructKlingonShip(),
+			constructAiKlingonShip(),
+			constructAiKlingonShip(),
+			constructAiKlingonShip(),
+			constructAiKlingonShip(),
+			constructAiKlingonShip(),
 		},
 	}
 }
@@ -64,7 +64,7 @@ func constructFederationShip() ships.Ship {
 	}
 }
 
-func constructKlingonShip() ships.Ship {
+func constructAiKlingonShip() ships.Ship {
 	return ships.Ship{
 		Identification: indentifications.ShipIdentification{
 			Name:         "Pagh",
@@ -84,10 +84,10 @@ func constructKlingonShip() ships.Ship {
 				MaximumStructuralIntegrity: 100,
 			},
 			Phaser: capabilities.Phaser{
-				Damage: 10,
+				Damage: 2,
 			},
 			Torpedo: capabilities.Torpedo{
-				Damage: 10,
+				Damage: 2,
 			},
 		},
 	}
