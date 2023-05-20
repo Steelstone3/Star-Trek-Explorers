@@ -21,7 +21,7 @@ func GetStringFromConsole(prompt string) string {
 }
 
 func GetUintFromConsole(prompt string) uint {
-	var text = GetStringFromConsole(prompt)
+	text := GetStringFromConsole(prompt)
 	num, err := strconv.ParseUint(text, 10, 64)
 	if err != nil {
 		return 0

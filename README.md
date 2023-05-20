@@ -1,29 +1,23 @@
-# C# Project Template
+# Star Trek Explorers
 
-A template project for creating C# applications
+Golang Star Trek game loosely based on the C++ original
 
-## Running Example
+## Running Star Trek Explorers
 
-> cd ~/C-Sharp-Project-Template/Example
+> cd ~/Star-Trek-Explorers
 >
-> dotnet restore
+> go build
 >
-> dotnet build
->
-> dotnet run
+> go run ./main.go
 
 ## Tests
 
-> cd ~/C-Sharp-Project-Template/ExampleTests
+> cd ~/Star-Trek-Explorers
 >
-> dotnet restore
->
-> dotnet build
->
-> dotnet test
+> go test ./...
 
 ## Dependencies
 
-Follow the steps for installing dotnet runtime for your given operating system.
+Follow the steps for installing golang runtime for your given operating system.
 
-> <https://dotnet.microsoft.com/en-us/download/dotnet/7.0>
+> <https://go.dev/dl/>

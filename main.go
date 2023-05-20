@@ -7,7 +7,7 @@ import (
 
 func main() {
 	game := entities.ConstructGame()
-	var isInCombat bool = true
+	isInCombat := true
 
 	for isInCombat {
 		game = systems.StartExploration(game)

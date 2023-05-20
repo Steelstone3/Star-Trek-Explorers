@@ -1,37 +1,32 @@
 package world
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestConstructStar(t *testing.T) {
 	// Given
-	expected := constructStar()
+	var seed int64 = 1234
+	expected := Star{
+		StarName:  StarName{"Kepler-452 (HIP 104893)"},
+		StarClass: StarClass{"A-Type"},
+	}
 
 	// When
-	result := ConstructStar()
+	result := ConstructStar(seed)
 
 	// Then
-	assert.Equal(t, expected.Name, result.Name)
-	assert.Equal(t, expected.Class, result.Class)
-	assert.Equal(t, expected.Planets, result.Planets)
+	assert.Equal(t, expected.StarName, result.StarName)
+	assert.Equal(t, expected.StarClass, result.StarClass)
+	assert.NotEmpty(t, result.Planets)
 }
 
-func constructStar() Star {
-	return Star{
-		Name:    "Sol",
-		Class:   "S Class",
-		Planets: constructPlanets(),
-	}
-}
+func TestConstructRandomStars(t *testing.T) {
+	// When
+	stars := ConstructRandomStars()
 
-func constructPlanets() []Planet {
-	return []Planet{
-		constructPlanet(),
-		constructPlanet(),
-		constructPlanet(),
-		constructPlanet(),
-		constructPlanet(),
-	}
+	// Then
+	assert.NotEmpty(t, stars)
 }

@@ -1,8 +1,9 @@
 package capabilities
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestConstructPhaser(t *testing.T) {

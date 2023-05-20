@@ -1,27 +1,26 @@
 package identifications
 
 type ShipIdentification struct {
-	//TODO Random Name, Class and Serial Number system for all Factions
-	Name         string
-	Class        string
-	SerialNumber string
-	Faction      string
+	ShipName     ShipName
+	ShipClass    ShipClass
+	SerialNumber SerialNumber
+	Faction      Faction
 }
 
-func ConstructFederationShipIdentification() ShipIdentification {
+func ConstructFederationShipIdentification(seed int64) ShipIdentification {
 	return ShipIdentification{
-		Name:         "Enterprise",
-		Class:        "Galaxy",
-		SerialNumber: "NCC-1701",
-		Faction:      "Federation",
+		ShipName:     constructFederationShipName(seed),
+		ShipClass:    constructFederationShipClass(seed),
+		SerialNumber: constructFederationSerialNumber(seed),
+		Faction:      constructFederationFaction(),
 	}
 }
 
-func ConstructKlingonShipIdentification() ShipIdentification {
+func ConstructKlingonShipIdentification(seed int64) ShipIdentification {
 	return ShipIdentification{
-		Name:         "Pagh",
-		Class:        "Sompek",
-		SerialNumber: "IKS-2359",
-		Faction:      "Klingon Empire",
+		ShipName:     constructKlingonShipName(seed),
+		ShipClass:    constructKlingonShipClass(seed),
+		SerialNumber: constructKlingonSerialNumber(seed),
+		Faction:      constructKlingonFaction(),
 	}
 }

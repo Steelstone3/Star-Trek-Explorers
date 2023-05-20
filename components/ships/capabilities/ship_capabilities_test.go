@@ -1,8 +1,9 @@
 package capabilities
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestConstructShipCapabilities(t *testing.T) {
@@ -55,7 +56,7 @@ func constructShipCapabilities() ShipCapabilities {
 }
 
 func constructAiShipCapabilities() ShipCapabilities {
-	var shipCapabilities = constructShipCapabilities()
+	shipCapabilities := constructShipCapabilities()
 	shipCapabilities.Phaser.Damage = 2
 	shipCapabilities.Torpedo.Damage = 2
 

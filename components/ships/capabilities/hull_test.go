@@ -1,8 +1,9 @@
 package capabilities
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestConstructHull(t *testing.T) {
@@ -21,7 +22,7 @@ func TestConstructHull(t *testing.T) {
 func TestTakeHullDamage(t *testing.T) {
 	// Given
 	var damage uint = 10
-	var shieldStrength uint = 0
+	var shieldStrength uint
 	var expectedRemainingHull uint = 90
 	hull := constructHull()
 
@@ -35,8 +36,8 @@ func TestTakeHullDamage(t *testing.T) {
 func TestTakeCriticalHullDamage(t *testing.T) {
 	// Given
 	var damage uint = 101
-	var shieldStrength uint = 0
-	var expectedRemainingHull uint = 0
+	var shieldStrength uint
+	var expectedRemainingHull uint
 	hull := constructHull()
 
 	// When
@@ -63,12 +64,12 @@ func TestTakeNoHullDamage(t *testing.T) {
 func TestTakeHullDamageAcceptance(t *testing.T) {
 	// Given
 	var damage uint = 10
-	var shieldStrength uint = 0
+	var shieldStrength uint
 	var expectedRemainingHull uint = 50
 	hull := constructHull()
 
 	// When
-	for i := 0; i < 5; i++ {		
+	for i := 0; i < 5; i++ {
 		hull = hull.TakeHullDamage(shieldStrength, damage)
 	}
 

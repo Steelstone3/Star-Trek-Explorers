@@ -1,8 +1,9 @@
 package capabilities
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestConstructTorpedo(t *testing.T) {
@@ -26,7 +27,7 @@ func TestConstructAiTorpedo(t *testing.T) {
 
 	// When
 	result := ConstructAiTorpedo()
-	
+
 	// Then
 	assert.Equal(t, expected.Damage, result.Damage)
 }

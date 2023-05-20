@@ -1,18 +1,20 @@
 package ships
 
 import (
+	"testing"
+
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/capabilities"
 	"github.com/Steelstone3/Star-Trek-Explorers/components/ships/identifications"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestConstructFederationShip(t *testing.T) {
 	// Given
+	var seed int64 = 1234
 	expected := constructFederationShip()
 
 	// When
-	result := ConstructFederationShip()
+	result := ConstructFederationShip(seed)
 
 	// Then
 	assert.Equal(t, expected.Identification, result.Identification)
@@ -21,10 +23,11 @@ func TestConstructFederationShip(t *testing.T) {
 
 func TestConstructKlingonShip(t *testing.T) {
 	// Given
+	var seed int64 = 1234
 	expected := constructKlingonShip()
 
 	// When
-	result := ConstructKlingonShip()
+	result := ConstructKlingonShip(seed)
 
 	// Then
 	assert.Equal(t, expected.Identification, result.Identification)
@@ -33,10 +36,11 @@ func TestConstructKlingonShip(t *testing.T) {
 
 func TestConstructAiKlingonShip(t *testing.T) {
 	// Given
+	var seed int64 = 1234
 	expected := constructAiKlingonShip()
 
 	// When
-	result := ConstructAiKlingonShip()
+	result := ConstructAiKlingonShip(seed)
 
 	// Then
 	assert.Equal(t, expected.Identification, result.Identification)
@@ -64,7 +68,7 @@ func TestTakeDamageToShip(t *testing.T) {
 func TestTakeHullDamageToShip(t *testing.T) {
 	// Given
 	var damage uint = 10
-	var expectedShield uint = 0
+	var expectedShield uint
 	var expectedHull uint = 80
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage = damage
@@ -84,7 +88,7 @@ func TestCriticalDamageToShipShields(t *testing.T) {
 	// Given
 	var phaserDamage uint = 101
 	var torpedoDamage uint = 10
-	var expectedShield uint = 0
+	var expectedShield uint
 	var expectedHull uint = 89
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage = phaserDamage
@@ -102,8 +106,8 @@ func TestCriticalDamageToShipShields(t *testing.T) {
 func TestCriticalDamageToShip(t *testing.T) {
 	// Given
 	var damage uint = 101
-	var expectedShield uint = 0
-	var expectedHull uint = 0
+	var expectedShield uint
+	var expectedHull uint
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage = damage
 	attackingShip.Capabilities.Torpedo.Damage = damage
@@ -120,7 +124,7 @@ func TestCriticalDamageToShip(t *testing.T) {
 func TestTakeDamageToShipAcceptance(t *testing.T) {
 	// Given
 	var damage uint = 10
-	var expectedShield uint = 0
+	var expectedShield uint
 	var expectedHull uint = 20
 	attackingShip := constructFederationShip()
 	attackingShip.Capabilities.Phaser.Damage = damage
@@ -137,13 +141,53 @@ func TestTakeDamageToShipAcceptance(t *testing.T) {
 	assert.Equal(t, expectedHull, defendingShip.Capabilities.Hull.CurrentStructuralIntegrity)
 }
 
+func TestConstructRandomFederationShips(t *testing.T) {
+	// When
+	federationShips := ConstructRandomFederationShips()
+
+	// Then
+	assert.NotEmpty(t, federationShips)
+}
+
+func TestConstructRandomAiKlingonShips(t *testing.T) {
+	// When
+	AiKlingonShips := ConstructRandomAiKlingonShips()
+
+	// Then
+	assert.NotEmpty(t, AiKlingonShips)
+}
+
+func TestIsDestroyed(t *testing.T) {
+	// Given
+	ship := constructFederationShip()
+	ship.Capabilities.Shield.CurrentShieldStrength = 0
+	ship.Capabilities.Hull.CurrentStructuralIntegrity = 0
+
+	// When
+	isDestroyed := ship.IsDestroyed()
+
+	// Then
+	assert.True(t, isDestroyed)
+}
+
+func TestIsOperational(t *testing.T) {
+	// Given
+	ship := constructFederationShip()
+
+	// When
+	isDestroyed := ship.IsDestroyed()
+
+	// Then
+	assert.False(t, isDestroyed)
+}
+
 func constructFederationShip() Ship {
 	return Ship{
 		Identification: identifications.ShipIdentification{
-			Name:         "Enterprise",
-			Class:        "Galaxy",
-			SerialNumber: "NCC-1701",
-			Faction:      "Federation",
+			ShipName:     identifications.ShipName{Name: "Monitor"},
+			ShipClass:    identifications.ShipClass{Class: "Defiant"},
+			SerialNumber: identifications.SerialNumber{SerialNumber: "USS-37482"},
+			Faction:      identifications.Faction{Name: "Federation"},
 		},
 		Capabilities: capabilities.ShipCapabilities{
 			Shield: capabilities.Shield{
@@ -169,10 +213,10 @@ func constructFederationShip() Ship {
 func constructKlingonShip() Ship {
 	return Ship{
 		Identification: identifications.ShipIdentification{
-			Name:         "Pagh",
-			Class:        "Sompek",
-			SerialNumber: "IKS-2359",
-			Faction:      "Klingon Empire",
+			ShipName:     identifications.ShipName{Name: "Pagh"},
+			ShipClass:    identifications.ShipClass{Class: "B'rel"},
+			SerialNumber: identifications.SerialNumber{SerialNumber: "IKS-37482"},
+			Faction:      identifications.Faction{Name: "Klingon Empire"},
 		},
 		Capabilities: capabilities.ShipCapabilities{
 			Shield: capabilities.Shield{
@@ -196,7 +240,7 @@ func constructKlingonShip() Ship {
 }
 
 func constructAiKlingonShip() Ship {
-	var ship = constructKlingonShip()
+	ship := constructKlingonShip()
 	ship.Capabilities.Phaser.Damage = 2
 	ship.Capabilities.Torpedo.Damage = 2
 

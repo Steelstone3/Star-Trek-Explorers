@@ -1,25 +1,30 @@
 package world
 
-import(
-	"github.com/stretchr/testify/assert"
+import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestConstructPlanet(t *testing.T) {
 	// Given
-	expected := constructPlanet()
-	
+	var seed int64 = 1234
+	expected := Planet{
+		PlanetName:  PlanetName{"HAT-P-11b"},
+		PlanetClass: PlanetClass{"J Class"},
+	}
+
 	// When
-	result := ConstructPlanet()
+	result := constructPlanet(seed)
 
 	// Then
-	assert.Equal(t, expected.Name, result.Name)
-	assert.Equal(t, expected.Class, result.Class)
+	assert.Equal(t, expected, result)
 }
 
-func constructPlanet() Planet {
-	return Planet{
-		Name:  "Earth",
-		Class: "M Class",
-	}
+func TestConstructRandomPlanets(t *testing.T) {
+	// When
+	planets := constructRandomPlanets()
+
+	// Then
+	assert.NotEmpty(t, planets)
 }

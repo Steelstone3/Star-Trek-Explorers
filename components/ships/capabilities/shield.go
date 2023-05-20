@@ -16,13 +16,13 @@ func ConstructShield() Shield {
 
 func (s *Shield) TakeShieldDamage(damage uint) Shield {
 	shield := ConstructShield()
-	
-	if damage > s.CurrentShieldStrength{
+
+	if damage > s.CurrentShieldStrength {
 		shield.CurrentShieldStrength = 0
 		return shield
 	}
 
-	var remainingShield = s.CurrentShieldStrength - damage;
+	remainingShield := s.CurrentShieldStrength - damage
 	shield.CurrentShieldStrength = remainingShield
 	return shield
 }

@@ -35,7 +35,7 @@ func TestTakeShieldDamage(t *testing.T) {
 func TestTakeCriticalShieldDamage(t *testing.T) {
 	// Given
 	var damage uint = 101
-	var expectedRemainingShield uint = 0
+	var expectedRemainingShield uint
 	shield := constructShield()
 
 	shield = shield.TakeShieldDamage(damage)

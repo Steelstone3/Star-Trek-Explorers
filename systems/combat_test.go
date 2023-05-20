@@ -12,18 +12,18 @@ import (
 
 func TestEndedStartCombatPlayer(t *testing.T) {
 	// Given
-	var criticalDamage uint = 0
+	var criticalDamage uint
 	playerShip := constructShip()
 	aiShip := constructShip()
 	aiShip.Capabilities.Shield.CurrentShieldStrength = criticalDamage
 	aiShip.Capabilities.Hull.CurrentStructuralIntegrity = criticalDamage
-	var expectedGame = entities.Game{
+	expectedGame := entities.Game{
 		PlayerShip:   playerShip,
 		KlingonShips: []ships.Ship{aiShip},
 	}
 
 	// When
-	var game, isInCombat = StartCombat(expectedGame)
+	game, isInCombat := StartCombat(expectedGame)
 
 	// Then
 	assert.Equal(t, false, isInCombat)
@@ -33,18 +33,18 @@ func TestEndedStartCombatPlayer(t *testing.T) {
 
 func TestEndedStartCombatOpponent(t *testing.T) {
 	// Given
-	var criticalDamage uint = 0
+	var criticalDamage uint
 	aiShip := constructShip()
 	playerShip := constructShip()
 	playerShip.Capabilities.Shield.CurrentShieldStrength = criticalDamage
 	playerShip.Capabilities.Hull.CurrentStructuralIntegrity = criticalDamage
-	var expectedGame = entities.Game{
+	expectedGame := entities.Game{
 		PlayerShip:   playerShip,
 		KlingonShips: []ships.Ship{aiShip},
 	}
 
 	// When
-	var game, isInCombat = StartCombat(expectedGame)
+	game, isInCombat := StartCombat(expectedGame)
 
 	// Then
 	assert.Equal(t, false, isInCombat)
@@ -61,7 +61,7 @@ func TestFilterCombatReadyShips(t *testing.T) {
 	}
 
 	// When
-	var filteredShips = filterOutDestroyedShips(ships)
+	filteredShips := filterOutDestroyedShips(ships)
 
 	// Then
 	assert.Equal(t, 3, len(filteredShips))
@@ -76,7 +76,7 @@ func TestFilterDestroyedShips(t *testing.T) {
 	}
 
 	// When
-	var filteredShips = filterOutDestroyedShips(ships)
+	filteredShips := filterOutDestroyedShips(ships)
 
 	// Then
 	assert.Equal(t, 2, len(filteredShips))
@@ -99,7 +99,7 @@ func TestCombatTurn(t *testing.T) {
 
 func TestCombatTurnAcceptance(t *testing.T) {
 	// Given
-	var expectedShield uint = 0
+	var expectedShield uint
 	var expectedHull uint = 20
 	attackingShip := constructShip()
 	defendingShip := constructShip()
@@ -117,10 +117,10 @@ func TestCombatTurnAcceptance(t *testing.T) {
 func constructShip() ships.Ship {
 	return ships.Ship{
 		Identification: identifications.ShipIdentification{
-			Name:         "Enterprise",
-			Class:        "Galaxy",
-			SerialNumber: "NCC-1701",
-			Faction:      "Federation",
+			ShipName:     identifications.ShipName{Name: "Enterprise"},
+			ShipClass:    identifications.ShipClass{Class: "Defiant"},
+			SerialNumber: identifications.SerialNumber{SerialNumber: "USS-1701"},
+			Faction:      identifications.Faction{Name: "Federation"},
 		},
 		Capabilities: capabilities.ShipCapabilities{
 			Shield: capabilities.Shield{
@@ -144,7 +144,7 @@ func constructShip() ships.Ship {
 }
 
 func constructDestroyedShip() ships.Ship {
-	var ship = constructShip()
+	ship := constructShip()
 
 	ship.Capabilities.Shield.CurrentShieldStrength = 0
 	ship.Capabilities.Hull.CurrentStructuralIntegrity = 0
